@@ -1,0 +1,49 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-D5X_rlWn.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/fonts/anakotmai-bold.eot": {
+    "file": "assets/anakotmai-bold-B5195NLd.eot",
+    "src": "resources/fonts/anakotmai-bold.eot"
+  },
+  "resources/fonts/anakotmai-bold.woff": {
+    "file": "assets/anakotmai-bold-CoOSqFZi.woff",
+    "src": "resources/fonts/anakotmai-bold.woff"
+  },
+  "resources/fonts/anakotmai-bold.woff2": {
+    "file": "assets/anakotmai-bold-DAPGwlZb.woff2",
+    "src": "resources/fonts/anakotmai-bold.woff2"
+  },
+  "resources/fonts/anakotmai-light.eot": {
+    "file": "assets/anakotmai-light-DbPA87CW.eot",
+    "src": "resources/fonts/anakotmai-light.eot"
+  },
+  "resources/fonts/anakotmai-light.woff": {
+    "file": "assets/anakotmai-light-7-zkiWD9.woff",
+    "src": "resources/fonts/anakotmai-light.woff"
+  },
+  "resources/fonts/anakotmai-light.woff2": {
+    "file": "assets/anakotmai-light-opqZnjhY.woff2",
+    "src": "resources/fonts/anakotmai-light.woff2"
+  },
+  "resources/fonts/anakotmai-medium.eot": {
+    "file": "assets/anakotmai-medium-BLKeLKmK.eot",
+    "src": "resources/fonts/anakotmai-medium.eot"
+  },
+  "resources/fonts/anakotmai-medium.woff": {
+    "file": "assets/anakotmai-medium-Clxn5uOg.woff",
+    "src": "resources/fonts/anakotmai-medium.woff"
+  },
+  "resources/fonts/anakotmai-medium.woff2": {
+    "file": "assets/anakotmai-medium-BE4ZYan3.woff2",
+    "src": "resources/fonts/anakotmai-medium.woff2"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-CKl8NZMC.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}

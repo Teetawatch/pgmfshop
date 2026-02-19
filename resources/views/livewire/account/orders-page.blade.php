@@ -1,0 +1,125 @@
+@php
+    $statusColors = [
+        'pending' => 'bg-yellow-50 text-yellow-700',
+        'awaiting_payment' => 'bg-orange-50 text-orange-700',
+        'paid' => 'bg-blue-50 text-blue-700',
+        'processing' => 'bg-indigo-50 text-indigo-700',
+        'shipped' => 'bg-purple-50 text-purple-700',
+        'delivered' => 'bg-green-50 text-green-700',
+        'cancelled' => 'bg-red-50 text-red-700',
+        'expired' => 'bg-gray-100 text-gray-600',
+    ];
+    $statusLabels = [
+        'pending' => 'รอดำเนินการ',
+        'awaiting_payment' => 'รอชำระเงิน',
+        'paid' => 'ชำระแล้ว',
+        'processing' => 'กำลังจัดเตรียม',
+        'shipped' => 'จัดส่งแล้ว',
+        'delivered' => 'ส่งสำเร็จ',
+        'cancelled' => 'ยกเลิก',
+        'expired' => 'ไม่ชำระตามกำหนด',
+    ];
+@endphp
+
+<div class="container mx-auto px-4 py-8 max-w-7xl">
+    {{-- Breadcrumb --}}
+    <div class="flex items-center gap-2 text-sm text-gray-500 mb-6">
+        <a href="{{ route('account') }}" class="hover:text-gray-900 transition-colors">บัญชีของฉัน</a>
+        <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+        <span class="text-gray-900 font-medium">คำสั่งซื้อ</span>
+    </div>
+
+    <h1 class="text-xl font-bold mb-6">คำสั่งซื้อของฉัน</h1>
+
+    @if($orders->count() === 0)
+        <div class="bg-white rounded-lg border text-center py-16">
+            <svg class="h-12 w-12 mx-auto text-gray-300 mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            <h2 class="font-bold mb-1">ยังไม่มีคำสั่งซื้อ</h2>
+            <p class="text-sm text-gray-500 mb-5">เริ่มช้อปปิ้งเลย!</p>
+            <a href="{{ route('products') }}" class="inline-flex items-center gap-2 px-5 py-2 bg-[hsl(var(--primary))] text-white rounded-md text-sm font-medium hover:opacity-90 transition-colors">
+                เลือกซื้อสินค้า
+            </a>
+        </div>
+    @else
+        <div class="space-y-4">
+            @foreach($orders as $order)
+                <div class="bg-white rounded-lg border">
+                    {{-- Header --}}
+                    <div class="px-5 py-4 border-b flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div class="flex items-center gap-3">
+                            <span class="font-mono text-sm font-bold">{{ $order->order_number }}</span>
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium {{ $statusColors[$order->status] ?? 'bg-gray-50 text-gray-700' }}">
+                                {{ $statusLabels[$order->status] ?? $order->status }}
+                            </span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-sm text-gray-500">{{ $order->created_at->locale('th')->translatedFormat('j F Y, H:i') }}</span>
+                            @if($order->status === 'awaiting_payment' && $order->payment_deadline)
+                                <div x-data="paymentCountdown('{{ $order->payment_deadline->toIso8601String() }}')" class="mt-1">
+                                    <div x-show="!expired" class="inline-flex items-center gap-1.5 px-2 py-1 bg-orange-50 border border-orange-200 rounded-full">
+                                        <svg class="h-3 w-3 text-orange-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                        <span class="text-xs font-medium text-orange-700 font-mono"><span x-text="hours">00</span>:<span x-text="minutes">00</span>:<span x-text="seconds">00</span></span>
+                                    </div>
+                                    <div x-show="expired">
+                                        <span class="inline-flex items-center gap-1 px-2 py-1 bg-red-50 border border-red-200 rounded-full text-xs font-medium text-red-600">หมดเวลาชำระ</span>
+                                    </div>
+                                </div>
+                            @endif
+                            @if($order->status === 'expired')
+                                <p class="text-xs text-gray-500 mt-0.5">ไม่ชำระเงินตามเวลาที่กำหนด</p>
+                            @endif
+                        </div>
+                    </div>
+
+                    {{-- Items --}}
+                    <div class="px-5 py-4 space-y-3">
+                        @foreach($order->items->take(3) as $item)
+                            <div class="flex gap-3 items-center">
+                                <div class="w-14 h-14 rounded-md overflow-hidden bg-gray-100 shrink-0">
+                                    @if($item->product_image)
+                                        <img src="{{ $item->product_image }}" alt="{{ $item->product_name }}" class="w-full h-full object-cover" />
+                                    @else
+                                        <div class="w-full h-full flex items-center justify-center text-gray-400">
+                                            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium line-clamp-1">{{ $item->product_name }}</p>
+                                    <p class="text-xs text-gray-500">x{{ $item->quantity }}</p>
+                                </div>
+                                <p class="text-sm font-medium shrink-0">฿{{ number_format($item->price * $item->quantity, 0) }}</p>
+                            </div>
+                        @endforeach
+                        @if($order->items->count() > 3)
+                            <p class="text-xs text-gray-400">และอีก {{ $order->items->count() - 3 }} รายการ</p>
+                        @endif
+                    </div>
+
+                    {{-- Footer --}}
+                    <div class="px-5 py-3 bg-gray-50 border-t flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div>
+                            <span class="text-sm text-gray-500">รวม </span>
+                            <span class="text-base font-bold">฿{{ number_format($order->total, 0) }}</span>
+                            @if($order->tracking_number)
+                                <span class="ml-3 text-xs text-gray-500">เลขพัสดุ: <span class="font-mono">{{ $order->tracking_number }}</span></span>
+                            @endif
+                        </div>
+                        <div class="flex gap-2">
+                            @if($order->tracking_number)
+                                <a href="{{ route('account.orders.tracking', $order->id) }}" class="inline-flex items-center gap-1.5 px-3 py-2 text-sm border border-purple-200 bg-purple-50 text-purple-700 rounded-md hover:bg-purple-100 transition-colors font-medium">
+                                    <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
+                                    ติดตามพัสดุ
+                                </a>
+                            @endif
+                            <a href="{{ route('account.orders.show', $order->id) }}" class="inline-flex items-center gap-1.5 px-4 py-2 text-sm border rounded-md hover:bg-white transition-colors font-medium">
+                                ดูรายละเอียด
+                                <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    @endif
+</div>
