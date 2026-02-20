@@ -14,7 +14,7 @@
     {{-- ===== Single Main Bar (always visible, shrinks on scroll) ===== --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between gap-4 transition-all duration-300"
-            :class="scrolled ? 'h-12' : 'h-16'">
+            :class="scrolled ? 'h-12' : 'h-14 md:h-16'">
 
             {{-- Logo --}}
             <a href="/" class="flex items-center gap-2.5 shrink-0 group">
@@ -25,8 +25,8 @@
                     :class="scrolled ? 'text-base' : 'text-lg'">PGMF Shop</span>
             </a>
 
-            {{-- Search Bar - Desktop --}}
-            <form wire:submit="search" class="hidden md:flex flex-1 justify-center max-w-md" x-data @click.away="$wire.closeSuggestions()">
+            {{-- Search Bar - Desktop + Mobile --}}
+            <form wire:submit="search" class="flex flex-1 justify-center max-w-xs md:max-w-md" x-data @click.away="$wire.closeSuggestions()">
                 <div class="relative w-full">
                     <input type="text" wire:model.live.debounce.300ms="searchQuery" placeholder="ค้นหาสินค้า..."
                         @focus="if($wire.searchQuery.length >= 2) $wire.showSuggestions = true"
@@ -119,7 +119,7 @@
                     <a href="{{ route('login') }}" class="hidden md:inline-flex items-center gap-2 h-9 px-4 rounded-lg text-sm font-medium text-gray-600 border border-gray-200 hover:bg-gray-50 hover:text-gray-800 transition-colors"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 00-4-4H9a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>เข้าสู่ระบบ</a>
                 @endauth
                 {{-- Mobile Menu Toggle --}}
-                <button wire:click="$toggle('isMenuOpen')" class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                <button wire:click="$toggle('isMenuOpen')" class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors" title="เมนู">
                     @if($isMenuOpen)<svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
                     @else<svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>@endif
                 </button>
@@ -196,13 +196,7 @@
     {{-- ===== Mobile Menu ===== --}}
     @if($isMenuOpen)
         <div class="md:hidden border-t border-gray-200 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-4">
-                <form wire:submit="search">
-                    <div class="relative">
-                        <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                        <input type="text" wire:model="searchQuery" placeholder="ค้นหาสินค้า..." class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-gray-300 focus:ring-1 focus:ring-gray-300 transition" />
-                    </div>
-                </form>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 space-y-3">
                 <div class="space-y-0.5">
                     <a href="{{ route('products') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
                         <span class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center"><svg class="h-4 w-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></span>
