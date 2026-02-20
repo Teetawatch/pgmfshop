@@ -3,20 +3,20 @@
 
 @php
     $colors = [
-        'pending' => 'bg-gray-100 text-gray-700 border border-gray-200',
+        'pending' => 'bg-gray-50 text-gray-700 border border-gray-200',
         'awaiting_payment' => 'bg-amber-50 text-amber-700 border border-amber-200',
-        'paid' => 'bg-blue-50 text-blue-700 border border-blue-200',
-        'processing' => 'bg-indigo-50 text-indigo-700 border border-indigo-200',
+        'paid' => 'bg-green-50 text-green-700 border border-green-200',
+        'processing' => 'bg-blue-50 text-blue-700 border border-blue-200',
         'shipped' => 'bg-purple-50 text-purple-700 border border-purple-200',
         'delivered' => 'bg-emerald-50 text-emerald-700 border border-emerald-200',
         'cancelled' => 'bg-red-50 text-red-700 border border-red-200',
-        'expired' => 'bg-gray-100 text-gray-700 border border-gray-200',
+        'expired' => 'bg-gray-50 text-gray-700 border border-gray-200',
     ];
     $dotColors = [
         'pending' => 'bg-gray-500',
         'awaiting_payment' => 'bg-amber-500',
-        'paid' => 'bg-blue-500',
-        'processing' => 'bg-indigo-500',
+        'paid' => 'bg-green-500',
+        'processing' => 'bg-blue-500',
         'shipped' => 'bg-purple-500',
         'delivered' => 'bg-emerald-500',
         'cancelled' => 'bg-red-500',
@@ -47,41 +47,41 @@
     </div>
     
     <!-- Order Header -->
-    <div class="bg-white rounded-xl border border-gray-200 shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+    <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
             <div class="flex items-start gap-4">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-lg">
-                    <x-heroicon-o-document-text class="w-6 h-6 text-white" />
+                <div class="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center">
+                    <x-heroicon-o-document-text class="w-6 h-6 text-gray-600" />
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold text-gray-900">คำสั่งซื้อ #{{ $order->order_number }}</h1>
-                    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-1">
-                        <p class="text-sm text-gray-500">
-                            <x-heroicon-o-calendar class="w-4 h-4 inline mr-1" />
+                    <h1 class="text-2xl font-semibold text-gray-900">คำสั่งซื้อ #{{ $order->order_number }}</h1>
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 mt-2">
+                        <div class="flex items-center gap-2 text-sm text-gray-600">
+                            <x-heroicon-o-calendar class="w-4 h-4" />
                             {{ $order->created_at->format('d/m/Y H:i') }}
-                        </p>
+                        </div>
                         @if($order->user)
-                        <p class="text-sm text-gray-500">
-                            <x-heroicon-o-user class="w-4 h-4 inline mr-1" />
+                        <div class="flex items-center gap-2 text-sm text-gray-600">
+                            <x-heroicon-o-user class="w-4 h-4" />
                             {{ $order->user->name }}
-                        </p>
+                        </div>
                         @endif
                     </div>
                 </div>
             </div>
-            <div class="flex flex-wrap items-center gap-3">
-                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold {{ $colors[$order->status] ?? '' }} shadow-sm hover:shadow-md transition-all duration-200">
-                    <span class="w-2 h-2 rounded-full {{ $dotColors[$order->status] ?? 'bg-gray-400' }} animate-pulse"></span>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium {{ $colors[$order->status] ?? '' }}">
+                    <span class="w-2 h-2 rounded-full {{ $dotColors[$order->status] ?? 'bg-gray-400' }}"></span>
                     {{ $labels[$order->status] ?? $order->status }}
                 </span>
                 <div class="flex items-center gap-2">
                     <a href="{{ route('admin.orders.receipt', $order) }}" target="_blank"
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:text-teal-600 hover:border-teal-300 hover:shadow-md transition-all duration-200 shadow-sm">
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-colors">
                         <x-heroicon-o-document class="w-4 h-4" />
                         พิมพ์ใบเสร็จ
                     </a>
                     <a href="{{ route('admin.orders.shippingLabel', $order) }}" target="_blank"
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:text-purple-600 hover:border-purple-300 hover:shadow-md transition-all duration-200 shadow-sm">
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-colors">
                         <x-heroicon-o-printer class="w-4 h-4" />
                         ใบปะหน้าพัสดุ
                     </a>
@@ -103,36 +103,36 @@
             this.seconds = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
         },
         destroy() { if(this.interval) clearInterval(this.interval); }
-    }" class="mb-6 bg-amber-50 border border-amber-200 rounded-xl p-4">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+    }" class="mb-6 bg-gray-50 border border-gray-200 rounded-lg p-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-amber-100 flex items-center justify-center shrink-0">
+                <div class="w-10 h-10 rounded-lg bg-white border border-gray-300 flex items-center justify-center shrink-0">
                     <x-heroicon-o-clock class="w-5 h-5 text-amber-600" />
                 </div>
                 <div>
-                    <p class="text-sm font-semibold text-amber-800">กำหนดชำระเงิน</p>
-                    <p class="text-xs text-amber-600">ภายใน {{ $order->payment_deadline->format('d/m/Y H:i') }} น.</p>
+                    <p class="text-sm font-semibold text-gray-900">กำหนดชำระเงิน</p>
+                    <p class="text-xs text-gray-600">ภายใน {{ $order->payment_deadline->format('d/m/Y H:i') }} น.</p>
                 </div>
             </div>
-            <div x-show="!expired" class="flex items-center gap-2">
-                <div class="bg-white border border-amber-200 rounded-lg px-2.5 py-1.5 text-center min-w-[44px] shadow-sm">
-                    <span class="text-lg font-bold font-mono text-amber-700" x-text="hours">00</span>
-                    <p class="text-[9px] text-amber-500 -mt-0.5">ชม.</p>
+            <div x-show="!expired" class="flex items-center gap-3">
+                <div class="bg-white border border-gray-300 rounded-lg px-3 py-2 text-center min-w-[48px]">
+                    <span class="text-lg font-bold font-mono text-gray-900" x-text="hours">00</span>
+                    <p class="text-[10px] text-gray-500 -mt-0.5">ชม.</p>
                 </div>
-                <span class="text-amber-400 font-bold">:</span>
-                <div class="bg-white border border-amber-200 rounded-lg px-2.5 py-1.5 text-center min-w-[44px] shadow-sm">
-                    <span class="text-lg font-bold font-mono text-amber-700" x-text="minutes">00</span>
-                    <p class="text-[9px] text-amber-500 -mt-0.5">นาที</p>
+                <span class="text-gray-400 font-bold text-lg">:</span>
+                <div class="bg-white border border-gray-300 rounded-lg px-3 py-2 text-center min-w-[48px]">
+                    <span class="text-lg font-bold font-mono text-gray-900" x-text="minutes">00</span>
+                    <p class="text-[10px] text-gray-500 -mt-0.5">นาที</p>
                 </div>
-                <span class="text-amber-400 font-bold">:</span>
-                <div class="bg-white border border-amber-200 rounded-lg px-2.5 py-1.5 text-center min-w-[44px] shadow-sm">
-                    <span class="text-lg font-bold font-mono text-amber-700" x-text="seconds">00</span>
-                    <p class="text-[9px] text-amber-500 -mt-0.5">วินาที</p>
+                <span class="text-gray-400 font-bold text-lg">:</span>
+                <div class="bg-white border border-gray-300 rounded-lg px-3 py-2 text-center min-w-[48px]">
+                    <span class="text-lg font-bold font-mono text-gray-900" x-text="seconds">00</span>
+                    <p class="text-[10px] text-gray-500 -mt-0.5">วินาที</p>
                 </div>
             </div>
-            <div x-show="expired" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-50 border border-red-200 rounded-full">
-                <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
-                <span class="text-xs font-semibold text-red-600">หมดเวลาชำระแล้ว</span>
+            <div x-show="expired" class="inline-flex items-center gap-2 px-3 py-2 bg-red-50 border border-red-200 rounded-lg">
+                <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                <span class="text-sm font-semibold text-red-600">หมดเวลาชำระแล้ว</span>
             </div>
         </div>
     </div>
@@ -144,13 +144,13 @@
 
         {{-- Order Items --}}
         <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white">
+            <div class="px-6 py-5 border-b border-gray-200">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-lg">
-                        <x-heroicon-o-cube class="w-5 h-5 text-white" />
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center">
+                        <x-heroicon-o-cube class="w-5 h-5 text-gray-600" />
                     </div>
                     <div>
-                        <h2 class="text-base font-bold text-gray-900">รายการสินค้า</h2>
+                        <h2 class="text-lg font-semibold text-gray-900">รายการสินค้า</h2>
                         <p class="text-sm text-gray-500 mt-0.5">{{ $order->items->count() }} รายการ</p>
                     </div>
                 </div>
@@ -218,7 +218,7 @@
             </div>
 
             {{-- Summary --}}
-            <div class="border-t border-gray-200 bg-gradient-to-br from-gray-50 to-white">
+            <div class="border-t border-gray-200 bg-gray-50">
                 <div class="px-6 py-5 space-y-3 max-w-sm ml-auto">
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-gray-600">ยอดสินค้า</span>
@@ -234,9 +234,9 @@
                         <span class="text-sm text-gray-600">ค่าจัดส่ง</span>
                         <span class="text-sm font-medium text-gray-900">฿{{ number_format($order->shipping_cost, 0) }}</span>
                     </div>
-                    <div class="flex justify-between items-center pt-3 border-t border-gray-200">
-                        <span class="text-base font-bold text-gray-900">รวมทั้งหมด</span>
-                        <span class="text-lg font-bold text-teal-600 bg-teal-50 px-3 py-1 rounded-lg">฿{{ number_format($order->total, 0) }}</span>
+                    <div class="flex justify-between items-center pt-3 border-t border-gray-300">
+                        <span class="text-base font-semibold text-gray-900">รวมทั้งหมด</span>
+                        <span class="text-lg font-bold text-gray-900 bg-white px-3 py-1 rounded-lg border border-gray-300">฿{{ number_format($order->total, 0) }}</span>
                     </div>
                 </div>
             </div>
@@ -245,24 +245,24 @@
         {{-- Payment Slip --}}
         @if($order->payment_slip)
         <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-amber-50 to-orange-50">
+            <div class="px-6 py-5 border-b border-gray-200">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center shadow-lg">
-                            <x-heroicon-o-banknotes class="w-5 h-5 text-white" />
+                        <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center">
+                            <x-heroicon-o-banknotes class="w-5 h-5 text-gray-600" />
                         </div>
                         <div>
-                            <h2 class="text-base font-bold text-gray-900">สลิปการชำระเงิน</h2>
-                            <p class="text-sm text-gray-600 mt-0.5">หลักฐานการโอนเงิน</p>
+                            <h2 class="text-lg font-semibold text-gray-900">สลิปการชำระเงิน</h2>
+                            <p class="text-sm text-gray-500 mt-0.5">หลักฐานการโอนเงิน</p>
                         </div>
                     </div>
                     @if($order->slip_verified)
-                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold bg-green-50 text-green-700 border border-green-200">
                             <x-heroicon-o-check-circle class="w-4 h-4" />
                             ตรวจสอบแล้ว
                         </span>
                     @else
-                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold bg-amber-50 text-amber-700 border border-amber-200">
                             <x-heroicon-o-clock class="w-4 h-4" />
                             รอตรวจสอบ
                         </span>
@@ -390,14 +390,14 @@
 
         {{-- Status History / Timeline --}}
         <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-purple-50 to-indigo-50">
+            <div class="px-6 py-5 border-b border-gray-200">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center shadow-lg">
-                        <x-heroicon-o-clock class="w-5 h-5 text-white" />
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center">
+                        <x-heroicon-o-clock class="w-5 h-5 text-gray-600" />
                     </div>
                     <div>
-                        <h3 class="text-base font-bold text-gray-900">ประวัติสถานะ</h3>
-                        <p class="text-sm text-gray-600 mt-0.5">การเปลี่ยนแปลงสถานะออเดอร์</p>
+                        <h3 class="text-lg font-semibold text-gray-900">ประวัติสถานะ</h3>
+                        <p class="text-sm text-gray-500 mt-0.5">การเปลี่ยนแปลงสถานะออเดอร์</p>
                     </div>
                 </div>
             </div>
@@ -447,14 +447,14 @@
         {{-- Update Status --}}
         @if(!in_array($order->status, ['cancelled', 'expired', 'delivered']))
         <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-cyan-50">
+            <div class="px-6 py-5 border-b border-gray-200">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center shadow-lg">
-                        <x-heroicon-o-arrow-path class="w-5 h-5 text-white" />
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center">
+                        <x-heroicon-o-arrow-path class="w-5 h-5 text-gray-600" />
                     </div>
                     <div>
-                        <h3 class="text-base font-bold text-gray-900">อัปเดตสถานะ</h3>
-                        <p class="text-sm text-gray-600 mt-0.5">เปลี่ยนแปลงสถานะออเดอร์</p>
+                        <h3 class="text-lg font-semibold text-gray-900">อัปเดตสถานะ</h3>
+                        <p class="text-sm text-gray-500 mt-0.5">เปลี่ยนแปลงสถานะออเดอร์</p>
                     </div>
                 </div>
             </div>
@@ -490,20 +490,20 @@
 
         {{-- Customer Info --}}
         <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-sky-50 to-blue-50">
+            <div class="px-6 py-5 border-b border-gray-200">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center shadow-lg">
-                        <x-heroicon-o-user class="w-5 h-5 text-white" />
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center">
+                        <x-heroicon-o-user class="w-5 h-5 text-gray-600" />
                     </div>
                     <div>
-                        <h3 class="text-base font-bold text-gray-900">ข้อมูลลูกค้า</h3>
-                        <p class="text-sm text-gray-600 mt-0.5">รายละเอียดผู้สั่งซื้อ</p>
+                        <h3 class="text-lg font-semibold text-gray-900">ข้อมูลลูกค้า</h3>
+                        <p class="text-sm text-gray-500 mt-0.5">รายละเอียดผู้สั่งซื้อ</p>
                     </div>
                 </div>
             </div>
             <div class="p-6">
                 <div class="flex items-center gap-4 mb-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-gray-200 to-gray-300 rounded-full flex items-center justify-center text-lg font-bold text-gray-600 shadow-sm">
+                    <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-lg font-semibold text-gray-600 border border-gray-300">
                         {{ mb_substr($order->user->name ?? '?', 0, 1) }}
                     </div>
                     <div>
@@ -516,11 +516,14 @@
 
         {{-- Shipping Address --}}
         <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div class="px-5 py-4 border-b border-gray-100 flex items-center gap-2">
-                <div class="w-7 h-7 rounded-lg bg-orange-50 flex items-center justify-center">
-                    <x-heroicon-o-map-pin class="w-4 h-4 text-orange-600" />
+            <div class="px-6 py-5 border-b border-gray-200 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center">
+                    <x-heroicon-o-map-pin class="w-5 h-5 text-gray-600" />
                 </div>
-                <h3 class="text-sm font-semibold text-gray-800">ที่อยู่จัดส่ง</h3>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900">ที่อยู่จัดส่ง</h3>
+                    <p class="text-sm text-gray-500 mt-0.5">ข้อมูลที่อยู่สำหรับจัดส่ง</p>
+                </div>
             </div>
             <div class="p-5">
                 @if($order->shipping_address)
