@@ -3,7 +3,7 @@
     $discountPercent = $product->original_price ? round(($product->original_price - $product->price) / $product->original_price * 100) : 0;
 @endphp
 
-<div class="container mx-auto px-4 py-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Enhanced Breadcrumb -->
     <div class="mb-8">
         <nav class="flex items-center space-x-2 text-sm" aria-label="Breadcrumb">
