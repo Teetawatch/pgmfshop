@@ -1,7 +1,7 @@
 <div class="min-h-screen bg-gray-50">
     <!-- Hero Header -->
     <div class="bg-[#FF6512]">
-        <div class="container mx-auto px-4 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
                     <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 00-1-1H5a2 2 0 000 4h15a1 1 0 011 1v4h-3a2 2 0 000 4h3a1 1 0 001-1v-2.5"/><path d="M3 5v14a2 2 0 002 2h15a1 1 0 001-1v-4"/></svg>
@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="container mx-auto px-4 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
     @if(count($items) === 0 && !$orderId)
         <div class="text-center py-16">
             <svg class="h-16 w-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
