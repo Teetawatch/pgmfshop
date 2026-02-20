@@ -2,7 +2,7 @@
 
 <div class="min-h-screen bg-gray-50">
     <!-- Hero Header -->
-    <div class="bg-teal-600">
+    <div class="bg-[#FF6512]">
         <div class="container mx-auto px-4 py-8">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div class="flex items-center gap-4">
@@ -15,7 +15,7 @@
                     @endif
                     <div>
                         <h1 class="text-xl font-bold text-white">{{ $user->name }}</h1>
-                        <p class="text-teal-100 text-sm">{{ $user->email }}</p>
+                        <p class="text-white/70 text-sm">{{ $user->email }}</p>
                     </div>
                 </div>
                 @if($user->social_provider)
@@ -37,7 +37,7 @@
             <!-- Sidebar Navigation -->
             <div>
                 <nav class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden sticky top-24">
-                    <a href="{{ route('account') }}" class="flex items-center gap-3 px-5 py-3.5 text-sm font-medium bg-teal-50 text-teal-700 border-l-3 border-teal-600">
+                    <a href="{{ route('account') }}" class="flex items-center gap-3 px-5 py-3.5 text-sm font-medium bg-orange-50 text-[#FF6512] border-l-3 border-[#FF6512]">
                         <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 00-4-4H9a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                         ข้อมูลส่วนตัว
                     </a>
@@ -68,7 +68,7 @@
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200">
                     <div class="px-6 py-5 border-b border-gray-100">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-teal-600 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-lg bg-[#FF6512] flex items-center justify-center">
                                 <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 00-4-4H9a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                             </div>
                             <h2 class="text-base font-bold text-gray-900">ข้อมูลส่วนตัว</h2>
@@ -110,25 +110,25 @@
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200">
                     <div class="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-teal-600 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-lg bg-[#FF6512] flex items-center justify-center">
                                 <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                             </div>
                             <h2 class="text-base font-bold text-gray-900">ที่อยู่จัดส่ง</h2>
                         </div>
-                        <a href="{{ route('account.addresses') }}" class="text-sm text-teal-600 hover:underline font-medium">จัดการ</a>
+                        <a href="{{ route('account.addresses') }}" class="text-sm text-blue-600 hover:underline font-medium">จัดการ</a>
                     </div>
                     <div class="p-6">
                         @php $addresses = $user->addresses ?? []; @endphp
                         @if(is_array($addresses) && count($addresses) > 0)
                             <div class="space-y-3">
                                 @foreach(array_slice($addresses, 0, 2) as $addr)
-                                    <div class="p-4 rounded-xl border {{ ($addr['is_default'] ?? false) ? 'border-teal-200 bg-teal-50/50' : 'border-gray-200' }}">
+                                    <div class="p-4 rounded-xl border {{ ($addr['is_default'] ?? false) ? 'border-orange-200 bg-orange-50/50' : 'border-gray-200' }}">
                                         <div class="flex items-center gap-2 mb-1">
                                             <span class="text-sm font-semibold text-gray-900">{{ $addr['name'] ?? '' }}</span>
                                             <span class="text-gray-300">|</span>
                                             <span class="text-sm text-gray-500">{{ $addr['phone'] ?? '' }}</span>
                                             @if($addr['is_default'] ?? false)
-                                                <span class="text-[11px] text-teal-700 bg-teal-100 px-2 py-0.5 rounded-full font-medium">ค่าเริ่มต้น</span>
+                                                <span class="text-[11px] text-orange-700 bg-orange-100 px-2 py-0.5 rounded-full font-medium">ค่าเริ่มต้น</span>
                                             @endif
                                         </div>
                                         <p class="text-sm text-gray-500 line-clamp-1">

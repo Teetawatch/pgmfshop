@@ -33,10 +33,10 @@
 
 <div class="min-h-screen bg-gray-50">
     <!-- Hero Header -->
-    <div class="bg-teal-600">
+    <div class="bg-[#FF6512]">
         <div class="container mx-auto px-4 py-8">
             <!-- Breadcrumb -->
-            <div class="flex items-center gap-2 text-sm text-teal-100 mb-4">
+            <div class="flex items-center gap-2 text-sm text-white/70 mb-4">
                 <a href="{{ route('account') }}" class="hover:text-white transition-colors">บัญชีของฉัน</a>
                 <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
                 <a href="{{ route('account.orders') }}" class="hover:text-white transition-colors">คำสั่งซื้อ</a>
@@ -52,7 +52,7 @@
                     </div>
                     <div>
                         <h1 class="text-xl font-bold text-white">{{ $order->order_number }}</h1>
-                        <p class="text-teal-100 text-sm">สั่งเมื่อ {{ $order->created_at->locale('th')->translatedFormat('j F Y, H:i') }} น.</p>
+                        <p class="text-white/70 text-sm">สั่งเมื่อ {{ $order->created_at->locale('th')->translatedFormat('j F Y, H:i') }} น.</p>
                     </div>
                 </div>
                 <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium bg-white/20 text-white">
@@ -126,12 +126,12 @@
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
                 <div class="flex items-center gap-2">
                     @foreach($steps as $i => $step)
-                        <div class="flex-1 h-2 rounded-full {{ $currentIndex !== false && $i <= $currentIndex ? 'bg-teal-600' : 'bg-gray-200' }}"></div>
+                        <div class="flex-1 h-2 rounded-full {{ $currentIndex !== false && $i <= $currentIndex ? 'bg-[#FF6512]' : 'bg-gray-200' }}"></div>
                     @endforeach
                 </div>
                 <div class="flex justify-between mt-3">
                     @foreach($steps as $i => $step)
-                        <span class="text-xs font-medium {{ $currentIndex !== false && $i <= $currentIndex ? 'text-teal-600' : 'text-gray-400' }}">
+                        <span class="text-xs font-medium {{ $currentIndex !== false && $i <= $currentIndex ? 'text-[#FF6512]' : 'text-gray-400' }}">
                             {{ $statusLabels[$step] ?? $step }}
                         </span>
                     @endforeach
@@ -145,7 +145,7 @@
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200">
                     <div class="px-6 py-5 border-b border-gray-100">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-teal-600 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-lg bg-[#FF6512] flex items-center justify-center">
                                 <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                             </div>
                             <div>
@@ -201,7 +201,7 @@
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200">
                     <div class="px-6 py-5 border-b border-gray-100">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-teal-600 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-lg bg-[#FF6512] flex items-center justify-center">
                                 <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                             </div>
                             <div>
@@ -233,7 +233,7 @@
                     <div class="bg-white rounded-xl shadow-sm border border-gray-200">
                         <div class="px-6 py-5 border-b border-gray-100">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-lg bg-teal-600 flex items-center justify-center">
+                                <div class="w-10 h-10 rounded-lg bg-[#FF6512] flex items-center justify-center">
                                     <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
                                 </div>
                                 <div>
@@ -254,7 +254,7 @@
                                 </div>
                             @endif
                             <div class="flex flex-col gap-3">
-                                <a href="{{ route('account.orders.tracking', $order->id) }}" class="flex items-center justify-center gap-2 py-3 px-4 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition-colors">
+                                <a href="{{ route('account.orders.tracking', $order->id) }}" class="flex items-center justify-center gap-2 py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
                                     <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
                                     ติดตามพัสดุ
                                 </a>
@@ -271,7 +271,7 @@
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200">
                     <div class="px-6 py-5 border-b border-gray-100">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-teal-600 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-lg bg-[#FF6512] flex items-center justify-center">
                                 <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
                             </div>
                             <div>
@@ -298,7 +298,7 @@
                         <div class="border-t border-gray-200 pt-4">
                             <div class="flex justify-between">
                                 <span class="text-base font-bold text-gray-900">รวมทั้งสิ้น</span>
-                                <span class="text-lg font-bold text-teal-600 bg-teal-50 px-3 py-1 rounded-lg">฿{{ number_format($order->total, 0) }}</span>
+                                <span class="text-lg font-bold text-[#FF6512] bg-orange-50 px-3 py-1 rounded-lg">฿{{ number_format($order->total, 0) }}</span>
                             </div>
                         </div>
                         <div class="pt-2 text-xs text-gray-500 bg-gray-50 rounded-lg p-3">

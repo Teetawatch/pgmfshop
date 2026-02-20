@@ -23,9 +23,9 @@
 
 <div class="min-h-screen bg-gray-50">
     <!-- Hero Header -->
-    <div class="bg-teal-600">
+    <div class="bg-[#FF6512]">
         <div class="container mx-auto px-4 py-8">
-            <div class="flex items-center gap-2 text-sm text-teal-100 mb-4">
+            <div class="flex items-center gap-2 text-sm text-white/70 mb-4">
                 <a href="{{ route('account') }}" class="hover:text-white transition-colors">บัญชีของฉัน</a>
                 <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
                 <span class="text-white font-medium">คำสั่งซื้อ</span>
@@ -36,7 +36,7 @@
                 </div>
                 <div>
                     <h1 class="text-xl font-bold text-white">คำสั่งซื้อของฉัน</h1>
-                    <p class="text-teal-100 text-sm">{{ $orders->count() }} รายการ</p>
+                    <p class="text-white/70 text-sm">{{ $orders->count() }} รายการ</p>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
                 <svg class="h-12 w-12 mx-auto text-gray-300 mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                 <h2 class="font-bold mb-1">ยังไม่มีคำสั่งซื้อ</h2>
                 <p class="text-sm text-gray-500 mb-5">เริ่มช้อปปิ้งเลย!</p>
-                <a href="{{ route('products') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-teal-600 text-white rounded-lg text-sm font-medium hover:bg-teal-700 transition-colors">
+                <a href="{{ route('products') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
                     เลือกซื้อสินค้า
                 </a>
             </div>
@@ -119,7 +119,7 @@
                             </div>
                             <div class="flex gap-2">
                                 @if($order->tracking_number)
-                                    <a href="{{ route('account.orders.tracking', $order->id) }}" class="inline-flex items-center gap-1.5 px-3 py-2 text-sm border border-teal-200 bg-teal-50 text-teal-700 rounded-lg hover:bg-teal-100 transition-colors font-medium">
+                                    <a href="{{ route('account.orders.tracking', $order->id) }}" class="inline-flex items-center gap-1.5 px-3 py-2 text-sm border border-blue-200 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors font-medium">
                                         <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
                                         ติดตามพัสดุ
                                     </a>

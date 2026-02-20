@@ -2,13 +2,13 @@
     {{-- Loading overlay for cart actions --}}
     <div wire:loading.delay wire:target="updateQuantity,removeItem,clearCart,applyCoupon" class="fixed inset-0 bg-white/60 backdrop-blur-sm z-50 flex items-center justify-center">
         <div class="flex items-center gap-3 bg-white rounded-xl shadow-lg px-6 py-4 border">
-            <svg class="h-5 w-5 animate-spin text-teal-600" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
+            <svg class="h-5 w-5 animate-spin text-[#FF6512]" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
             <span class="text-sm font-medium text-gray-600">กำลังอัปเดตตะกร้า...</span>
         </div>
     </div>
 
     <!-- Hero Header -->
-    <div class="bg-teal-600">
+    <div class="bg-[#FF6512]">
         <div class="container mx-auto px-4 py-8">
             <div class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
@@ -16,7 +16,7 @@
                 </div>
                 <div>
                     <h1 class="text-xl font-bold text-white">ตะกร้าสินค้า</h1>
-                    <p class="text-teal-100 text-sm">{{ count($items) }} รายการ</p>
+                    <p class="text-white/70 text-sm">{{ count($items) }} รายการ</p>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
             <h1 class="text-2xl font-bold mb-2">ตะกร้าว่างเปล่า</h1>
             <p class="text-gray-500 mb-6">ยังไม่มีสินค้าในตะกร้า เลือกซื้อสินค้าเลย!</p>
             <a href="{{ route('products') }}">
-                <button class="px-6 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors">เลือกซื้อสินค้า</button>
+                <button class="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">เลือกซื้อสินค้า</button>
             </a>
         </div>
     @else
@@ -44,7 +44,7 @@
                                 <img src="{{ $firstImage }}" alt="{{ $product->name }}" class="w-full h-full object-cover" />
                             </div>
                             <div class="flex-1 min-w-0">
-                                <a href="{{ route('products.show', $product->slug) }}" class="font-medium hover:text-teal-600 line-clamp-2">{{ $product->name }}</a>
+                                <a href="{{ route('products.show', $product->slug) }}" class="font-medium hover:text-[#FF6512] line-clamp-2">{{ $product->name }}</a>
                                 <p class="text-sm text-gray-500 mt-0.5">{{ $product->category->name ?? '' }}</p>
                                 @if(!empty($options))
                                     <div class="flex flex-wrap gap-1.5 mt-1">
@@ -73,7 +73,7 @@
                                         </button>
                                     </div>
                                     <div class="flex items-center gap-3">
-                                        <span class="font-bold text-teal-600">฿{{ number_format($product->price * $qty, 0) }}</span>
+                                        <span class="font-bold text-[#FF6512]">฿{{ number_format($product->price * $qty, 0) }}</span>
                                         <button wire:click="removeItem('{{ $cartKey }}')" class="h-8 w-8 flex items-center justify-center text-red-500 hover:bg-red-50 rounded-md">
                                             <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
                                         </button>
@@ -100,7 +100,7 @@
 
                     <!-- Coupon -->
                     <div class="flex gap-2">
-                        <input type="text" wire:model="couponCode" placeholder="รหัสคูปอง" class="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500" />
+                        <input type="text" wire:model="couponCode" placeholder="รหัสคูปอง" class="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500" />
                         <button wire:click="applyCoupon" class="px-4 py-2 border border-gray-200 rounded-lg text-sm hover:bg-gray-50 transition-colors">ใช้</button>
                     </div>
 
@@ -130,11 +130,11 @@
 
                     <div class="flex justify-between font-bold text-lg">
                         <span>รวมทั้งสิ้น</span>
-                        <span class="text-teal-600">฿{{ number_format($total, 0) }}</span>
+                        <span class="text-[#FF6512]">฿{{ number_format($total, 0) }}</span>
                     </div>
 
                     <a href="{{ route('checkout') }}" class="block">
-                        <button class="w-full py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors">ดำเนินการสั่งซื้อ</button>
+                        <button class="w-full py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">ดำเนินการสั่งซื้อ</button>
                     </a>
                 </div>
             </div>

@@ -35,10 +35,10 @@
 
 <div class="min-h-screen bg-gray-50">
     <!-- Hero Header -->
-    <div class="bg-teal-600">
+    <div class="bg-[#FF6512]">
         <div class="container mx-auto px-4 py-8">
             <!-- Breadcrumb -->
-            <div class="flex items-center gap-2 text-sm text-teal-100 mb-4">
+            <div class="flex items-center gap-2 text-sm text-white/70 mb-4">
                 <a href="{{ route('account') }}" class="hover:text-white transition-colors">บัญชีของฉัน</a>
                 <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
                 <a href="{{ route('account.orders') }}" class="hover:text-white transition-colors">คำสั่งซื้อ</a>
@@ -56,7 +56,7 @@
                     </div>
                     <div>
                         <h1 class="text-xl font-bold text-white">ติดตามพัสดุ</h1>
-                        <p class="text-teal-100 text-sm">คำสั่งซื้อ #{{ $order->order_number }}</p>
+                        <p class="text-white/70 text-sm">คำสั่งซื้อ #{{ $order->order_number }}</p>
                     </div>
                 </div>
                 <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium bg-white/20 text-white">
@@ -75,7 +75,7 @@
                 <!-- Tracking Number Card -->
                 @if($order->tracking_number)
                 <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
-                    <div class="bg-teal-600 px-6 py-4">
+                    <div class="bg-[#FF6512] px-6 py-4">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
                                 <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
@@ -87,7 +87,7 @@
                         </div>
                     </div>
                     <div class="px-6 py-4 flex flex-col sm:flex-row gap-3">
-                        <a href="{{ $thaiPostUrl }}" target="_blank" rel="noopener noreferrer" class="flex-1 flex items-center justify-center gap-2 py-3 px-4 bg-teal-600 text-white font-medium rounded-lg hover:bg-teal-700 transition-colors">
+                        <a href="{{ $thaiPostUrl }}" target="_blank" rel="noopener noreferrer" class="flex-1 flex items-center justify-center gap-2 py-3 px-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
                             <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
                             ตรวจสอบสถานะที่ไปรษณีย์ไทย
                         </a>
@@ -105,7 +105,7 @@
                     <h3 class="text-lg font-semibold text-gray-700 mb-1">ยังไม่มีเลขพัสดุ</h3>
                     <p class="text-sm text-gray-500">เลขพัสดุจะแสดงเมื่อร้านค้าจัดส่งสินค้าแล้ว</p>
                     @if($order->status === 'processing')
-                        <div class="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 text-teal-700 font-medium rounded-lg">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 bg-orange-50 text-[#FF6512] font-medium rounded-lg">
                             <svg class="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
                             กำลังจัดเตรียมสินค้า
                         </div>
@@ -117,7 +117,7 @@
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200">
                     <div class="px-6 py-4 border-b border-gray-100">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-teal-600 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-lg bg-[#FF6512] flex items-center justify-center">
                                 <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                             </div>
                             <div>
@@ -135,7 +135,7 @@
                                         $entryStatus = $entry['status'] ?? '';
                                         $entryNote = $entry['note'] ?? '';
                                         $entryTime = isset($entry['timestamp']) ? \Carbon\Carbon::parse($entry['timestamp']) : null;
-                                        $colorClass = $isFirst ? 'bg-teal-600 text-white' : 'bg-gray-200 text-gray-600';
+                                        $colorClass = $isFirst ? 'bg-[#FF6512] text-white' : 'bg-gray-200 text-gray-600';
                                     @endphp
                                     <div class="flex gap-4 {{ !$loop->last ? 'pb-6' : '' }} relative">
                                         {{-- Timeline line --}}
@@ -157,7 +157,7 @@
                                                     {{ $statusLabels[$entryStatus] ?? $entryStatus }}
                                                 </span>
                                                 @if($isFirst)
-                                                    <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-teal-50 text-teal-700">ล่าสุด</span>
+                                                    <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-orange-50 text-[#FF6512]">ล่าสุด</span>
                                                 @endif
                                             </div>
                                             @if($entryNote)
@@ -185,7 +185,7 @@
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200">
                     <div class="px-5 py-4 border-b border-gray-100">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-teal-600 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-lg bg-[#FF6512] flex items-center justify-center">
                                 <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                             </div>
                             <div>
@@ -222,7 +222,7 @@
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200">
                     <div class="px-5 py-4 border-b border-gray-100">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-teal-600 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-lg bg-[#FF6512] flex items-center justify-center">
                                 <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                             </div>
                             <div>
@@ -241,15 +241,15 @@
                 </div>
 
                 <!-- Thai Post Info -->
-                <div class="bg-teal-50 rounded-xl border border-teal-200 p-5">
+                <div class="bg-orange-50 rounded-xl border border-orange-200 p-5">
                     <div class="flex items-start gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-teal-100 flex items-center justify-center shrink-0">
-                            <svg class="h-5 w-5 text-teal-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
+                        <div class="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center shrink-0">
+                            <svg class="h-5 w-5 text-[#FF6512]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
                         </div>
                         <div>
-                            <p class="text-sm font-semibold text-teal-800">จัดส่งโดย ไปรษณีย์ไทย</p>
-                            <p class="text-xs text-teal-600 mt-1">ระยะเวลาจัดส่งโดยประมาณ 1-3 วันทำการ</p>
-                            <a href="https://www.thailandpost.co.th" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs text-teal-700 font-medium mt-2 hover:underline">
+                            <p class="text-sm font-semibold text-orange-800">จัดส่งโดย ไปรษณีย์ไทย</p>
+                            <p class="text-xs text-orange-600 mt-1">ระยะเวลาจัดส่งโดยประมาณ 1-3 วันทำการ</p>
+                            <a href="https://www.thailandpost.co.th" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs text-[#FF6512] font-medium mt-2 hover:underline">
                                 เว็บไซต์ไปรษณีย์ไทย
                                 <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                             </a>

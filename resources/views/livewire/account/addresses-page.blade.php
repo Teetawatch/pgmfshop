@@ -1,8 +1,8 @@
 <div class="min-h-screen bg-gray-50">
     <!-- Hero Header -->
-    <div class="bg-teal-600">
+    <div class="bg-[#FF6512]">
         <div class="container mx-auto px-4 py-8">
-            <div class="flex items-center gap-2 text-sm text-teal-100 mb-4">
+            <div class="flex items-center gap-2 text-sm text-white/70 mb-4">
                 <a href="{{ route('account') }}" class="hover:text-white transition-colors">บัญชีของฉัน</a>
                 <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
                 <span class="text-white font-medium">ที่อยู่จัดส่ง</span>
@@ -69,7 +69,7 @@
                     <span class="text-sm">ตั้งเป็นที่อยู่เริ่มต้น</span>
                 </label>
                 <div class="flex gap-3 pt-2">
-                    <button wire:click="save" class="px-5 py-2.5 bg-teal-600 text-white rounded-lg text-sm font-medium hover:bg-teal-700 transition-colors">
+                    <button wire:click="save" class="px-5 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
                         บันทึก
                     </button>
                     <button wire:click="cancel" class="px-5 py-2.5 border border-gray-200 rounded-lg text-sm hover:bg-gray-50 transition-colors">
@@ -86,7 +86,7 @@
             <svg class="h-12 w-12 mx-auto text-gray-300 mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <h2 class="font-bold mb-1">ยังไม่มีที่อยู่จัดส่ง</h2>
             <p class="text-sm text-gray-500 mb-5">เพิ่มที่อยู่เพื่อใช้ในการสั่งซื้อ</p>
-            <button wire:click="startNew" class="inline-flex items-center gap-2 px-5 py-2.5 bg-teal-600 text-white rounded-lg text-sm font-medium hover:bg-teal-700 transition-colors">
+            <button wire:click="startNew" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></svg>
                 เพิ่มที่อยู่ใหม่
             </button>
@@ -94,7 +94,7 @@
     @else
         <div class="space-y-3">
             @foreach($addresses as $index => $addr)
-                <div class="bg-white rounded-xl shadow-sm border p-5 {{ ($addr['is_default'] ?? false) ? 'border-teal-200' : 'border-gray-200' }}">
+                <div class="bg-white rounded-xl shadow-sm border p-5 {{ ($addr['is_default'] ?? false) ? 'border-orange-200' : 'border-gray-200' }}">
                     <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                         <div class="flex-1">
                             <div class="flex items-center gap-2 mb-1">
@@ -102,7 +102,7 @@
                                 <span class="text-gray-300">|</span>
                                 <p class="text-sm text-gray-500">{{ $addr['phone'] ?? '' }}</p>
                                 @if($addr['is_default'] ?? false)
-                                    <span class="text-[11px] text-teal-700 bg-teal-100 px-2 py-0.5 rounded-full font-medium">ค่าเริ่มต้น</span>
+                                    <span class="text-[11px] text-orange-700 bg-orange-100 px-2 py-0.5 rounded-full font-medium">ค่าเริ่มต้น</span>
                                 @endif
                             </div>
                             <p class="text-sm text-gray-500">
@@ -114,7 +114,7 @@
                         </div>
                         <div class="flex items-center gap-1 shrink-0">
                             @if(!($addr['is_default'] ?? false))
-                                <button wire:click="setDefault({{ $index }})" class="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-colors" {{ $editing !== null ? 'disabled' : '' }}>
+                                <button wire:click="setDefault({{ $index }})" class="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" {{ $editing !== null ? 'disabled' : '' }}>
                                     <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                                     ตั้งเป็นค่าเริ่มต้น
                                 </button>
