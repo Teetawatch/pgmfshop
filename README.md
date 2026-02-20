@@ -130,10 +130,6 @@ php artisan icons:cache       # (ถ้ามี)
 
 หลังจาก `db:seed`:
 
-| Role     | Email                  | Password |
-|----------|------------------------|----------|
-| Admin    | admin@pgmfshop.com     | password |
-| Customer | customer@pgmfshop.com  | password |
 
 > **สำคัญ:** เปลี่ยนรหัสผ่านทันทีหลังจาก deploy!
 
