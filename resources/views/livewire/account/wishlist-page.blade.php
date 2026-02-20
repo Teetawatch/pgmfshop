@@ -1,28 +1,35 @@
-<div class="container mx-auto px-4 py-8 max-w-7xl">
+<div class="min-h-screen bg-gray-50">
     {{-- Loading overlay for wishlist actions --}}
     <div wire:loading.delay wire:target="addToCart,removeFromWishlist" class="fixed inset-0 bg-white/60 backdrop-blur-sm z-50 flex items-center justify-center">
         <div class="flex items-center gap-3 bg-white rounded-xl shadow-lg px-6 py-4 border">
-            <svg class="h-5 w-5 animate-spin text-[hsl(var(--primary))]" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
+            <svg class="h-5 w-5 animate-spin text-teal-600" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
             <span class="text-sm font-medium text-gray-600">กำลังดำเนินการ...</span>
         </div>
     </div>
 
-    {{-- Breadcrumb --}}
-    <div class="flex items-center gap-2 text-sm text-gray-500 mb-6">
-        <a href="{{ route('home') }}" class="hover:text-gray-900 transition-colors">หน้าแรก</a>
-        <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
-        <a href="{{ route('account') }}" class="hover:text-gray-900 transition-colors">บัญชีของฉัน</a>
-        <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
-        <span class="text-gray-900 font-medium">รายการโปรด</span>
-    </div>
-
-    {{-- Header --}}
-    <div class="flex items-center justify-between mb-6">
-        <div>
-            <h1 class="text-xl font-bold text-gray-900">รายการโปรด</h1>
-            <p class="text-sm text-gray-500 mt-0.5">{{ $wishlists->count() }} รายการ</p>
+    <!-- Hero Header -->
+    <div class="bg-teal-600">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex items-center gap-2 text-sm text-teal-100 mb-4">
+                <a href="{{ route('home') }}" class="hover:text-white transition-colors">หน้าแรก</a>
+                <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+                <a href="{{ route('account') }}" class="hover:text-white transition-colors">บัญชีของฉัน</a>
+                <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+                <span class="text-white font-medium">รายการโปรด</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
+                    <svg class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-white">รายการโปรด</h1>
+                    <p class="text-teal-100 text-sm">{{ $wishlists->count() }} รายการ</p>
+                </div>
+            </div>
         </div>
     </div>
+
+    <div class="container mx-auto px-4 py-6">
 
     @if($wishlists->count() > 0)
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -112,17 +119,18 @@
     @else
         {{-- Empty State --}}
         <div class="text-center py-16">
-            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gray-50 flex items-center justify-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
                 <svg class="h-10 w-10 text-gray-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
                 </svg>
             </div>
             <h3 class="text-lg font-semibold text-gray-700 mb-1">ยังไม่มีรายการโปรด</h3>
             <p class="text-sm text-gray-500 mb-6">กดปุ่มหัวใจบนสินค้าที่สนใจเพื่อบันทึกไว้ดูภายหลัง</p>
-            <a href="{{ route('products') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-800 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition-colors">
+            <a href="{{ route('products') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-700 transition-colors">
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                 เลือกซื้อสินค้า
             </a>
         </div>
     @endif
+    </div>
 </div>

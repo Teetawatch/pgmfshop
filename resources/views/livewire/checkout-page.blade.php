@@ -1,10 +1,26 @@
-<div class="container mx-auto px-4 py-8">
+<div class="min-h-screen bg-gray-50">
+    <!-- Hero Header -->
+    <div class="bg-teal-600">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
+                    <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 00-1-1H5a2 2 0 000 4h15a1 1 0 011 1v4h-3a2 2 0 000 4h3a1 1 0 001-1v-2.5"/><path d="M3 5v14a2 2 0 002 2h15a1 1 0 001-1v-4"/></svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-white">ชำระเงิน</h1>
+                    <p class="text-teal-100 text-sm">{{ count($items) }} รายการ</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-6">
     @if(count($items) === 0 && !$orderId)
         <div class="text-center py-16">
             <svg class="h-16 w-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
             <h1 class="text-2xl font-bold mb-2">ไม่มีสินค้าในตะกร้า</h1>
             <p class="text-gray-500 mb-6">เพิ่มสินค้าลงตะกร้าก่อนดำเนินการชำระเงิน</p>
-            <a href="{{ route('products') }}"><button class="px-6 py-3 bg-[hsl(var(--primary))] text-white rounded-md font-medium hover:opacity-90">เลือกซื้อสินค้า</button></a>
+            <a href="{{ route('products') }}"><button class="px-6 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors">เลือกซื้อสินค้า</button></a>
         </div>
     @elseif($step === 3)
         {{-- Order Confirmation --}}
@@ -15,7 +31,7 @@
                 </div>
                 <h1 class="text-3xl font-bold mb-2">สั่งซื้อสำเร็จ!</h1>
                 <p class="text-gray-500">หมายเลขคำสั่งซื้อ</p>
-                <p class="text-xl font-mono font-bold text-[hsl(var(--primary))] mt-1">{{ $orderId }}</p>
+                <p class="text-xl font-mono font-bold text-teal-600 mt-1">{{ $orderId }}</p>
             </div>
 
             <div class="bg-white rounded-lg border p-6 mb-6">
@@ -29,9 +45,9 @@
                     </div>
                     <h3 class="font-semibold text-lg">{{ $paymentMethod === 'promptpay' ? 'ชำระผ่าน PromptPay' : 'โอนเงินผ่านธนาคาร' }}</h3>
                 </div>
-                <div class="bg-[hsl(var(--primary))]/5 rounded-lg p-3 text-center mb-4">
+                <div class="bg-teal-50 rounded-lg p-3 text-center mb-4">
                     <p class="text-sm text-gray-500">ยอดชำระ</p>
-                    <p class="text-2xl font-bold text-[hsl(var(--primary))]">฿{{ number_format($finalTotal, 0) }}</p>
+                    <p class="text-2xl font-bold text-teal-600">฿{{ number_format($finalTotal, 0) }}</p>
                 </div>
 @php $slipVerification = session('slipVerification'); @endphp
                 @if($slipVerification)
@@ -84,22 +100,20 @@
 
             <p class="text-sm text-gray-500 mb-6 text-center">เราจะส่งอีเมลยืนยันคำสั่งซื้อไปที่ {{ auth()->user()->email }}</p>
             <div class="flex gap-3 justify-center">
-                <a href="{{ route('account.orders') }}"><button class="px-6 py-2 bg-[hsl(var(--primary))] text-white rounded-md font-medium hover:opacity-90">ดูคำสั่งซื้อ</button></a>
-                <a href="{{ route('products') }}"><button class="px-6 py-2 border border-gray-200 rounded-md font-medium hover:bg-gray-50">เลือกซื้อต่อ</button></a>
+                <a href="{{ route('account.orders') }}"><button class="px-6 py-2.5 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors">ดูคำสั่งซื้อ</button></a>
+                <a href="{{ route('products') }}"><button class="px-6 py-2.5 border border-gray-200 rounded-lg font-medium hover:bg-gray-50 transition-colors">เลือกซื้อต่อ</button></a>
             </div>
         </div>
     @else
         {{-- Steps 1 & 2 --}}
-        <h1 class="text-3xl font-bold mb-8">ชำระเงิน</h1>
-
         {{-- Step Indicator --}}
         <div class="flex items-center justify-center gap-2 mb-8">
-            <button wire:click="goToStep1" class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all {{ $step >= 1 ? 'bg-[hsl(var(--primary))] text-white shadow-md' : 'bg-gray-100 text-gray-500' }}">
+            <button wire:click="goToStep1" class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all {{ $step >= 1 ? 'bg-teal-600 text-white shadow-md' : 'bg-gray-100 text-gray-500' }}">
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 ที่อยู่ & จัดส่ง
             </button>
-            <div class="w-8 h-0.5 {{ $step > 1 ? 'bg-[hsl(var(--primary))]' : 'bg-gray-200' }}"></div>
-            <span class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium {{ $step >= 2 ? 'bg-[hsl(var(--primary))] text-white shadow-md' : 'bg-gray-100 text-gray-500' }}">
+            <div class="w-8 h-0.5 {{ $step > 1 ? 'bg-teal-600' : 'bg-gray-200' }}"></div>
+            <span class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium {{ $step >= 2 ? 'bg-teal-600 text-white shadow-md' : 'bg-gray-100 text-gray-500' }}">
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 00-1-1H5a2 2 0 000 4h15a1 1 0 011 1v4h-3a2 2 0 000 4h3a1 1 0 001-1v-2.5"/><path d="M3 5v14a2 2 0 002 2h15a1 1 0 001-1v-4"/></svg>
                 ชำระเงิน
             </span>
@@ -182,7 +196,7 @@
                             </div>
                         </div>
 
-                        <button wire:click="goToStep2" class="w-full py-3 bg-[hsl(var(--primary))] text-white rounded-md font-medium hover:opacity-90 transition-colors flex items-center justify-center gap-2">
+                        <button wire:click="goToStep2" class="w-full py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors flex items-center justify-center gap-2">
                             ถัดไป: เลือกวิธีชำระเงิน
                         </button>
                     </div>
@@ -388,7 +402,7 @@
                                 <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                                 ย้อนกลับ
                             </button>
-                            <button wire:click="placeOrder" class="flex-1 py-3 bg-[hsl(var(--primary))] text-white rounded-md font-medium hover:opacity-90 transition-colors flex items-center justify-center gap-2" wire:loading.attr="disabled">
+                            <button wire:click="placeOrder" class="flex-1 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors flex items-center justify-center gap-2" wire:loading.attr="disabled">
                                 <span wire:loading wire:target="placeOrder"><svg class="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg></span>
                                 <span wire:loading wire:target="placeOrder">กำลังสั่งซื้อ...</span>
                                 <span wire:loading.remove wire:target="placeOrder">
@@ -403,9 +417,9 @@
 
             {{-- Order Summary Sidebar --}}
             <div>
-                <div class="bg-white rounded-lg border p-6 sticky top-24 space-y-4">
-                    <h2 class="font-bold flex items-center gap-2">
-                        <svg class="h-5 w-5 text-[hsl(var(--primary))]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-24 space-y-4">
+                    <h2 class="font-bold flex items-center gap-2 text-gray-900">
+                        <svg class="h-5 w-5 text-teal-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                         สรุปคำสั่งซื้อ
                     </h2>
                     <div class="max-h-64 overflow-y-auto space-y-3 pr-1">
@@ -425,7 +439,7 @@
                                         </p>
                                     @endif
                                     <p class="text-xs text-gray-500">x{{ $item['quantity'] }}</p>
-                                    <p class="text-sm font-bold text-[hsl(var(--primary))]">฿{{ number_format($p->price * $item['quantity'], 0) }}</p>
+                                    <p class="text-sm font-bold text-teal-600">฿{{ number_format($p->price * $item['quantity'], 0) }}</p>
                                 </div>
                             </div>
                         @endforeach
@@ -444,7 +458,7 @@
                     <hr class="border-gray-200">
                     <div class="flex justify-between font-bold text-lg">
                         <span>รวมทั้งสิ้น</span>
-                        <span class="text-[hsl(var(--primary))]">฿{{ number_format($total, 0) }}</span>
+                        <span class="text-teal-600">฿{{ number_format($total, 0) }}</span>
                     </div>
                     <div class="flex items-center gap-2 text-xs text-gray-500 pt-1">
                         <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
@@ -454,6 +468,7 @@
             </div>
         </div>
     @endif
+    </div>
 </div>
 
 <script>

@@ -17,7 +17,7 @@ class SocialAuthController extends Controller
     {
         $this->validateProvider($provider);
 
-        return Socialite::driver($provider)->redirect();
+        return Socialite::driver($provider)->stateless()->redirect();
     }
 
     /**
@@ -28,13 +28,9 @@ class SocialAuthController extends Controller
         $this->validateProvider($provider);
 
         try {
-            // Debug: Log the current request URL
-            \Log::info('Social Auth Callback - Request URL: ' . request()->fullUrl());
-            \Log::info('Social Auth Callback - Provider: ' . $provider);
-            
-            $socialUser = Socialite::driver($provider)->user();
+            $socialUser = Socialite::driver($provider)->stateless()->user();
         } catch (\Exception $e) {
-            \Log::error('Social Auth Error: ' . $e->getMessage());
+            \Log::error('Social Auth Error [' . $provider . ']: ' . $e->getMessage());
             return redirect()->route('login')->with('error', 'ไม่สามารถเข้าสู่ระบบด้วย ' . ucfirst($provider) . ' ได้ กรุณาลองใหม่อีกครั้ง');
         }
 
