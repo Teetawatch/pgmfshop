@@ -8,7 +8,7 @@
             window.addEventListener('scroll', () => { this.scrolled = window.scrollY > 80; }, { passive: true });
         }
     }"
-    :class="scrolled ? 'shadow-md shadow-gray-200/60' : ''"
+    :class="scrolled ? 'shadow-sm' : ''"
     class="sticky top-0 z-50 w-full bg-white border-b border-gray-200 transition-shadow duration-300">
 
     {{-- ===== Single Main Bar (always visible, shrinks on scroll) ===== --}}
@@ -128,7 +128,7 @@
     </div>
 
     {{-- ===== Category Nav Bar - Desktop (collapses on scroll, NO content swap) ===== --}}
-    <div class="overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out border-t border-b-2 border-orange-500 hidden md:block"
+    <div class="overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out border-b-2 border-orange-500 hidden md:block"
         :style="scrolled ? 'max-height:0;opacity:0;border-color:transparent' : 'max-height:56px;opacity:1'">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-11 text-sm">
