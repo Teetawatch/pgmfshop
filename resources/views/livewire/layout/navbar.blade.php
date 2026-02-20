@@ -11,13 +11,14 @@
         lastScrollY = y;
     ">
     <!-- Compact Bar (visible on scroll down, all screens) -->
-    <div x-show="scrolled" x-cloak
-        x-transition:enter="transition ease-out duration-200"
-        x-transition:enter-start="opacity-0 -translate-y-2"
-        x-transition:enter-end="opacity-100 translate-y-0"
-        x-transition:leave="transition ease-in duration-150"
-        x-transition:leave-start="opacity-100 translate-y-0"
-        x-transition:leave-end="opacity-0 -translate-y-2"
+    <div x-show="scrolled"
+        x-transition:enter="transition ease-out duration-150"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-100"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        style="display:none"
         class="border-b-2 border-orange-500 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-11 md:h-12 gap-2 md:gap-4">
@@ -99,13 +100,7 @@
     </div>
 
     <!-- Main Bar -->
-    <div x-show="!scrolled"
-        x-transition:enter="transition ease-out duration-200"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave="transition ease-in duration-150"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0">
+    <div x-show="!scrolled">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between gap-6">
             <!-- Logo -->
@@ -270,14 +265,7 @@
     </div>
 
     <!-- Category Nav Bar - Desktop -->
-    <div x-show="!scrolled"
-        x-transition:enter="transition ease-out duration-200"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave="transition ease-in duration-150"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0"
-        class="border-b-2 border-orange-500 bg-white hidden md:block">
+    <div x-show="!scrolled" class="border-b-2 border-orange-500 bg-white hidden md:block">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-11 text-sm">
                 <!-- Left: Category Dropdown -->
