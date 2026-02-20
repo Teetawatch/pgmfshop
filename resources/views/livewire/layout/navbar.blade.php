@@ -212,7 +212,29 @@
                         </a>
                     @endforeach
                 </div>
-                <div class="border-t border-gray-100 pt-4 space-y-1">
+                {{-- About + Contact --}}
+                <div class="border-t border-gray-100 pt-3 space-y-0.5">
+                    <p class="px-3 pb-1 text-[11px] font-semibold uppercase tracking-wider text-gray-400">เกี่ยวกับร้าน</p>
+                    <a href="{{ route('about') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
+                        <svg class="h-4 w-4 text-gray-400 ml-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>รายละเอียดร้าน
+                    </a>
+                    <a href="{{ route('how-to-order') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
+                        <svg class="h-4 w-4 text-gray-400 ml-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="m9 12 2 2 4-4"/></svg>วิธีการสั่งซื้อ
+                    </a>
+                    <a href="{{ route('faq') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
+                        <svg class="h-4 w-4 text-gray-400 ml-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3m.08 4h.01"/></svg>คำถามที่พบบ่อย
+                    </a>
+                    <a href="#footer" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
+                        <svg class="h-4 w-4 text-gray-400 ml-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>ติดต่อร้านค้า
+                    </a>
+                    @auth
+                        <a href="{{ route('account.orders') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
+                            <svg class="h-4 w-4 text-gray-400 ml-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>การสั่งซื้อของฉัน
+                        </a>
+                    @endauth
+                </div>
+
+                <div class="border-t border-gray-100 pt-3 space-y-1">
                     @auth
                         <a href="{{ route('account') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg hover:bg-gray-50 transition-colors">
                             @if($authUser->social_avatar || $authUser->avatar)
@@ -225,7 +247,6 @@
                                 <p class="text-xs text-gray-500">{{ $authUser->email }}</p>
                             </div>
                         </a>
-                        <a href="{{ route('account.orders') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"><svg class="h-4 w-4 text-gray-400 ml-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>คำสั่งซื้อ</a>
                         <a href="{{ route('account.wishlist') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"><svg class="h-4 w-4 text-gray-400 ml-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>รายการโปรด@if($wishlistCount > 0)<span class="bg-red-100 text-red-600 text-[10px] font-semibold px-1.5 py-0.5 rounded-full">{{ $wishlistCount }}</span>@endif</a>
                         @if($authUser->role === 'admin')
                             <a href="/admin" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"><svg class="h-4 w-4 text-gray-400 ml-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>แผงควบคุมแอดมิน</a>
