@@ -8,7 +8,8 @@
 </div>
 
 <div class="bg-white rounded-xl border overflow-hidden">
-    <table class="w-full text-sm">
+<div class="overflow-x-auto">
+    <table class="w-full text-sm min-w-[700px]">
         <thead class="bg-gray-50 text-xs text-gray-500">
             <tr>
                 <th class="px-5 py-3 text-left">โค้ด</th>
@@ -62,6 +63,7 @@
             @endforelse
         </tbody>
     </table>
+</div>
 </div>
 
 <div class="mt-4">{{ $coupons->links() }}</div>

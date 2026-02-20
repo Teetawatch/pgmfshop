@@ -30,7 +30,7 @@
 <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
     <form method="GET" class="flex flex-wrap items-center gap-2">
         <input type="text" name="search" value="{{ request('search') }}" placeholder="ค้นหาสินค้า..."
-            class="px-3 py-2 border border-gray-300 rounded-lg text-sm w-56 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none">
+            class="px-3 py-2 border border-gray-300 rounded-lg text-sm w-full sm:w-56 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none">
         <select name="category" class="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500 outline-none">
             <option value="">ทุกหมวดหมู่</option>
             @foreach($categories as $cat)
@@ -64,7 +64,8 @@
 
 <!-- Products Table -->
 <div class="bg-white rounded-xl border overflow-hidden">
-    <table class="w-full text-sm">
+<div class="overflow-x-auto">
+    <table class="w-full text-sm min-w-[800px]">
         <thead class="bg-gray-50 text-xs text-gray-500">
             <tr>
                 <th class="px-4 py-3 text-left">สินค้า</th>
@@ -142,6 +143,7 @@
             @endforelse
         </tbody>
     </table>
+</div>
 </div>
 
 <div class="mt-4">{{ $products->withQueryString()->links() }}</div>

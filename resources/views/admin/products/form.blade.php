@@ -49,7 +49,7 @@
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none">
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">หมวดหมู่ *</label>
                         <select name="category_id" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500 outline-none">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div x-show="productType !== 'clothing'">
                         <label class="block text-sm font-medium text-gray-700 mb-1">สต็อก *</label>
                         <input type="number" name="stock" value="{{ old('stock', $product->stock ?? 0) }}" min="0" :required="productType !== 'clothing'"
@@ -86,7 +86,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">ราคาขาย (฿) *</label>
                         <input type="number" name="price" value="{{ old('price', $product->price ?? '') }}" min="0" step="0.01" required
@@ -112,7 +112,7 @@
                             <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
                             ข้อมูลหนังสือ
                         </h3>
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">สำนักพิมพ์</label>
                                 <input type="text" name="publisher" value="{{ old('publisher', $product->publisher ?? '') }}" placeholder="เช่น สำนักพิมพ์ ABC"
@@ -216,13 +216,13 @@
                         <p class="text-sm text-gray-500">คลิกหรือลากไฟล์มาวาง</p>
                         <p class="text-xs text-gray-400 mt-1">รองรับ JPG, PNG, GIF, WebP (สูงสุด 2MB ต่อไฟล์)</p>
                     </div>
-                    <div id="preview-new" class="grid grid-cols-4 gap-3 mt-3"></div>
+                    <div id="preview-new" class="grid grid-cols-3 sm:grid-cols-4 gap-3 mt-3"></div>
                 </div>
 
                 @if($product && !empty($product->images))
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">รูปภาพปัจจุบัน</label>
-                        <div class="grid grid-cols-4 gap-3" id="existing-images">
+                        <div class="grid grid-cols-3 sm:grid-cols-4 gap-3" id="existing-images">
                             @foreach($product->images as $idx => $img)
                                 <div class="relative group" id="existing-img-{{ $idx }}">
                                     <img src="{{ $img }}" alt="รูปที่ {{ $idx + 1 }}" class="w-full aspect-square object-cover rounded-lg border">
@@ -243,7 +243,7 @@
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500 outline-none">
                 </div>
 
-                <div class="flex items-center gap-6">
+                <div class="flex flex-wrap items-center gap-4 sm:gap-6">
                     <label class="flex items-center gap-2 text-sm">
                         <input type="checkbox" name="is_featured" value="1" {{ old('is_featured', $product->is_featured ?? false) ? 'checked' : '' }}
                             class="rounded border-gray-300 text-teal-600 focus:ring-teal-500">

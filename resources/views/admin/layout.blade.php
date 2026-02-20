@@ -16,14 +16,25 @@
             }
         }
     </script>
+    <style>[x-cloak]{display:none!important}</style>
 </head>
-<body class="bg-gray-100 min-h-screen flex">
+<body class="bg-gray-100 min-h-screen" x-data="{ sidebarOpen: false }">
+    <!-- Mobile Overlay -->
+    <div x-show="sidebarOpen" x-cloak @click="sidebarOpen = false"
+         x-transition:enter="transition-opacity ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+         x-transition:leave="transition-opacity ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+         class="fixed inset-0 bg-black/50 z-40 lg:hidden"></div>
+
     <!-- Sidebar -->
-    <aside class="w-60 bg-gray-900 text-gray-300 flex flex-col fixed inset-y-0 left-0 z-30">
-        <div class="h-14 flex items-center px-5 border-b border-gray-800">
+    <aside class="w-64 bg-gray-900 text-gray-300 flex flex-col fixed inset-y-0 left-0 z-50 transition-transform duration-200 ease-in-out lg:translate-x-0"
+           :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'">
+        <div class="h-14 flex items-center justify-between px-5 border-b border-gray-800 shrink-0">
             <span class="text-white font-bold text-lg">PGMF Admin</span>
+            <button @click="sidebarOpen = false" class="lg:hidden text-gray-400 hover:text-white">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
         </div>
-        <nav class="flex-1 py-4 space-y-1 px-3 text-sm">
+        <nav class="flex-1 py-4 space-y-1 px-3 text-sm overflow-y-auto">
             <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg {{ request()->routeIs('admin.dashboard') ? 'bg-primary text-white' : 'hover:bg-gray-800' }}">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"/></svg>
                 แดชบอร์ด
@@ -101,13 +112,18 @@
     </aside>
 
     <!-- Main Content -->
-    <div class="flex-1 ml-60">
-        <header class="h-14 bg-white border-b flex items-center justify-between px-6 sticky top-0 z-20">
-            <h1 class="text-sm font-semibold text-gray-700">@yield('title', 'แดชบอร์ด')</h1>
-            <span class="text-xs text-gray-400">{{ now()->format('d/m/Y H:i') }}</span>
+    <div class="flex-1 lg:ml-64">
+        <header class="h-14 bg-white border-b flex items-center justify-between px-4 sm:px-6 sticky top-0 z-20">
+            <div class="flex items-center gap-3">
+                <button @click="sidebarOpen = true" class="lg:hidden p-1.5 -ml-1 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+                <h1 class="text-sm font-semibold text-gray-700">@yield('title', 'แดชบอร์ด')</h1>
+            </div>
+            <span class="text-xs text-gray-400 hidden sm:inline">{{ now()->format('d/m/Y H:i') }}</span>
         </header>
 
-        <main class="p-6">
+        <main class="p-4 sm:p-6">
             @if(session('success'))
                 <div class="mb-4 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg text-sm">
                     {{ session('success') }}

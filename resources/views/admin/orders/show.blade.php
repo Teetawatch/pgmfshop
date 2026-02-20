@@ -224,8 +224,13 @@
                 <div class="flex flex-col sm:flex-row gap-6">
                     {{-- Slip Image --}}
                     <div class="sm:w-56 shrink-0">
-                        <a href="{{ asset('storage/' . $order->payment_slip) }}" target="_blank" class="block group">
-                            <img src="{{ asset('storage/' . $order->payment_slip) }}" alt="สลิป" class="w-full rounded-lg border border-gray-200 group-hover:opacity-90 transition-opacity shadow-sm">
+                        @php
+                            $slipUrl = file_exists(public_path('uploads/' . $order->payment_slip))
+                                ? asset('uploads/' . $order->payment_slip)
+                                : asset('storage/' . $order->payment_slip);
+                        @endphp
+                        <a href="{{ $slipUrl }}" target="_blank" class="block group">
+                            <img src="{{ $slipUrl }}" alt="สลิป" class="w-full rounded-lg border border-gray-200 group-hover:opacity-90 transition-opacity shadow-sm">
                         </a>
                         <p class="text-[10px] text-gray-400 mt-1.5 text-center">คลิกเพื่อดูขนาดเต็ม</p>
                     </div>

@@ -9,7 +9,7 @@
             @if($coupon) @method('PUT') @endif
 
             <div class="space-y-4">
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">โค้ดคูปอง *</label>
                         <input type="text" name="code" value="{{ old('code', $coupon->code ?? '') }}" required
@@ -30,7 +30,7 @@
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500 outline-none">
                 </div>
 
-                <div class="grid grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">มูลค่าส่วนลด *</label>
                         <input type="number" name="discount_value" value="{{ old('discount_value', $coupon->discount_value ?? '') }}" min="0" step="0.01" required
@@ -48,7 +48,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">จำกัดการใช้ (0=ไม่จำกัด)</label>
                         <input type="number" name="usage_limit" value="{{ old('usage_limit', $coupon->usage_limit ?? 0) }}" min="0"

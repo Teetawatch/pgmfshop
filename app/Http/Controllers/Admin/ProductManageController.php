@@ -106,12 +106,14 @@ class ProductManageController extends Controller
         $newImages = $this->handleImageUploads($request);
         $images = array_merge($existingImages, $newImages);
 
-        // Delete removed images from storage
+        // Delete removed images
         $oldImages = $product->images ?? [];
         foreach ($oldImages as $oldImg) {
-            if (!in_array($oldImg, $existingImages) && Str::startsWith($oldImg, '/storage/')) {
-                $path = str_replace('/storage/', 'public/', $oldImg);
-                Storage::delete($path);
+            if (!in_array($oldImg, $existingImages)) {
+                $fullPath = public_path(ltrim($oldImg, '/'));
+                if (file_exists($fullPath)) {
+                    @unlink($fullPath);
+                }
             }
         }
 
@@ -148,11 +150,11 @@ class ProductManageController extends Controller
 
     public function destroy(Product $product)
     {
-        // Delete product images from storage
+        // Delete product images
         foreach ($product->images ?? [] as $img) {
-            if (Str::startsWith($img, '/storage/')) {
-                $path = str_replace('/storage/', 'public/', $img);
-                Storage::delete($path);
+            $fullPath = public_path(ltrim($img, '/'));
+            if (file_exists($fullPath)) {
+                @unlink($fullPath);
             }
         }
 
@@ -221,9 +223,14 @@ class ProductManageController extends Controller
     {
         $images = [];
         if ($request->hasFile('upload_images')) {
+            $dir = public_path('uploads/products');
+            if (!file_exists($dir)) {
+                mkdir($dir, 0755, true);
+            }
             foreach ($request->file('upload_images') as $file) {
-                $path = $file->store('products', 'public');
-                $images[] = '/storage/' . $path;
+                $filename = time() . '_' . Str::random(8) . '.' . $file->getClientOriginalExtension();
+                $file->move($dir, $filename);
+                $images[] = '/uploads/products/' . $filename;
             }
         }
         return $images;

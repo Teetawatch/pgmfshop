@@ -2,16 +2,16 @@
 @section('title', 'จัดการหมวดหมู่')
 
 @section('content')
-<div class="flex items-center justify-between mb-4">
-    <form method="GET" class="flex items-center gap-2">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+    <form method="GET" class="flex flex-wrap items-center gap-2">
         <input type="text" name="search" value="{{ request('search') }}" placeholder="ค้นหาหมวดหมู่..."
-            class="px-3 py-2 border border-gray-300 rounded-lg text-sm w-64 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none">
+            class="px-3 py-2 border border-gray-300 rounded-lg text-sm w-full sm:w-64 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none">
         <button type="submit" class="px-4 py-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700">ค้นหา</button>
         @if(request('search'))
             <a href="{{ route('admin.categories.index') }}" class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700">ล้าง</a>
         @endif
     </form>
-    <a href="{{ route('admin.categories.create') }}" class="px-4 py-2 bg-teal-600 text-white rounded-lg text-sm hover:bg-teal-700">+ เพิ่มหมวดหมู่</a>
+    <a href="{{ route('admin.categories.create') }}" class="px-4 py-2 bg-teal-600 text-white rounded-lg text-sm hover:bg-teal-700 text-center shrink-0">+ เพิ่มหมวดหมู่</a>
 </div>
 
 @if(session('error'))
@@ -21,7 +21,8 @@
 @endif
 
 <div class="bg-white rounded-xl border overflow-hidden">
-    <table class="w-full text-sm">
+<div class="overflow-x-auto">
+    <table class="w-full text-sm min-w-[600px]">
         <thead class="bg-gray-50 text-xs text-gray-500">
             <tr>
                 <th class="px-5 py-3 text-left">ลำดับ</th>
@@ -89,6 +90,7 @@
             @endforelse
         </tbody>
     </table>
+</div>
 </div>
 
 @if($categories->hasPages())

@@ -26,7 +26,7 @@
 
 @section('content')
 <!-- Status Tabs -->
-<div class="flex items-center gap-2 mb-4 flex-wrap">
+<div class="flex items-center gap-2 mb-4 flex-wrap overflow-x-auto pb-1">
     <a href="{{ route('admin.orders.index') }}" class="px-3 py-1.5 rounded-lg text-xs font-medium {{ !request('status') ? 'bg-teal-600 text-white' : 'bg-white text-gray-600 border hover:bg-gray-50' }}">
         ทั้งหมด ({{ $statusCounts['all'] }})
     </a>
@@ -42,21 +42,22 @@
     @if(request('status'))<input type="hidden" name="status" value="{{ request('status') }}">@endif
     <div class="flex gap-2">
         <input type="text" name="search" value="{{ request('search') }}" placeholder="ค้นหาหมายเลขคำสั่งซื้อ..."
-            class="px-3 py-2 border border-gray-300 rounded-lg text-sm w-72 focus:ring-2 focus:ring-teal-500 outline-none">
-        <button type="submit" class="px-4 py-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700">ค้นหา</button>
+            class="px-3 py-2 border border-gray-300 rounded-lg text-sm w-full sm:w-72 focus:ring-2 focus:ring-teal-500 outline-none">
+        <button type="submit" class="px-4 py-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700 shrink-0">ค้นหา</button>
     </div>
 </form>
 
 <div class="bg-white rounded-xl border overflow-hidden">
-    <table class="w-full text-sm">
+<div class="overflow-x-auto">
+    <table class="w-full text-sm min-w-[650px]">
         <thead class="bg-gray-50 text-xs text-gray-500">
             <tr>
-                <th class="px-5 py-3 text-left">หมายเลข</th>
-                <th class="px-5 py-3 text-left">ลูกค้า</th>
-                <th class="px-5 py-3 text-center">สถานะ</th>
-                <th class="px-5 py-3 text-right">ยอดรวม</th>
-                <th class="px-5 py-3 text-left">วันที่</th>
-                <th class="px-5 py-3 text-center">จัดการ</th>
+                <th class="px-4 sm:px-5 py-3 text-left">หมายเลข</th>
+                <th class="px-4 sm:px-5 py-3 text-left">ลูกค้า</th>
+                <th class="px-4 sm:px-5 py-3 text-center">สถานะ</th>
+                <th class="px-4 sm:px-5 py-3 text-right">ยอดรวม</th>
+                <th class="px-4 sm:px-5 py-3 text-left">วันที่</th>
+                <th class="px-4 sm:px-5 py-3 text-center">จัดการ</th>
             </tr>
         </thead>
         <tbody class="divide-y">
@@ -86,6 +87,7 @@
             @endforelse
         </tbody>
     </table>
+</div>
 </div>
 
 <div class="mt-4">{{ $orders->withQueryString()->links() }}</div>

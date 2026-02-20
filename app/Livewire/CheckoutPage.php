@@ -180,9 +180,19 @@ class CheckoutPage extends Component
         $shippingCost = ShippingRate::getCostForQuantity($totalQty);
         $total = $subtotal + $shippingCost;
 
-        // Store slip
+        // Store slip directly in public/uploads for shared hosting compatibility
+        $slipDir = public_path('uploads/slips');
+        if (!file_exists($slipDir)) {
+            mkdir($slipDir, 0755, true);
+        }
         $slipFilename = 'slips/' . auth()->id() . '_' . time() . '.' . $this->paymentSlip->getClientOriginalExtension();
         $this->paymentSlip->storeAs('public', $slipFilename);
+        // Also copy to public/uploads for shared hosting
+        $sourcePath = storage_path('app/public/' . $slipFilename);
+        $destPath = public_path('uploads/' . $slipFilename);
+        if (file_exists($sourcePath)) {
+            copy($sourcePath, $destPath);
+        }
 
         // Auto-verify if score >= 80%
         $autoVerified = $verification['percentage'] >= 80;

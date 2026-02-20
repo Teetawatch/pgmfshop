@@ -12,7 +12,7 @@
         <div>
             <label class="block text-xs text-gray-500 mb-1">ค้นหา</label>
             <input type="text" name="search" value="{{ request('search') }}" placeholder="ค้นหาสินค้า..."
-                class="px-3 py-2 border border-gray-300 rounded-lg text-sm w-56 focus:ring-2 focus:ring-teal-500 outline-none">
+                class="px-3 py-2 border border-gray-300 rounded-lg text-sm w-full sm:w-56 focus:ring-2 focus:ring-teal-500 outline-none">
         </div>
         <div>
             <label class="block text-xs text-gray-500 mb-1">หมวดหมู่</label>
@@ -48,7 +48,8 @@
     </div>
 
     <div class="bg-white rounded-xl border overflow-hidden">
-        <table class="w-full text-sm">
+    <div class="overflow-x-auto">
+        <table class="w-full text-sm min-w-[600px]">
             <thead class="bg-gray-50 text-xs text-gray-500">
                 <tr>
                     <th class="px-4 py-3 text-left w-8">
@@ -100,6 +101,7 @@
                 @endforelse
             </tbody>
         </table>
+    </div>
     </div>
 
     <!-- Hidden inputs container -->

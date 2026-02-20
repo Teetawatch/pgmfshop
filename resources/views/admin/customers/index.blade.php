@@ -5,13 +5,14 @@
 <form method="GET" class="mb-4">
     <div class="flex gap-2">
         <input type="text" name="search" value="{{ request('search') }}" placeholder="ค้นหาชื่อ, อีเมล..."
-            class="px-3 py-2 border border-gray-300 rounded-lg text-sm w-72 focus:ring-2 focus:ring-teal-500 outline-none">
+            class="px-3 py-2 border border-gray-300 rounded-lg text-sm w-full sm:w-72 focus:ring-2 focus:ring-teal-500 outline-none">
         <button type="submit" class="px-4 py-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700">ค้นหา</button>
     </div>
 </form>
 
 <div class="bg-white rounded-xl border overflow-hidden">
-    <table class="w-full text-sm">
+<div class="overflow-x-auto">
+    <table class="w-full text-sm min-w-[700px]">
         <thead class="bg-gray-50 text-xs text-gray-500">
             <tr>
                 <th class="px-5 py-3 text-left">ลูกค้า</th>
@@ -48,6 +49,7 @@
             @endforelse
         </tbody>
     </table>
+</div>
 </div>
 
 <div class="mt-4">{{ $customers->withQueryString()->links() }}</div>

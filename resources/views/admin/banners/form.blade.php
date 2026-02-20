@@ -42,7 +42,7 @@
                     </div>
                 @endif
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">หัวข้อ (Title)</label>
                         <input type="text" name="title" value="{{ old('title', $banner->title ?? '') }}" placeholder="เช่น โปรโมชั่นพิเศษ"
@@ -55,7 +55,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">ข้อความปุ่ม</label>
                         <input type="text" name="button_text" value="{{ old('button_text', $banner->button_text ?? '') }}" placeholder="เช่น ช้อปเลย"
@@ -68,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">ลำดับการแสดง</label>
                         <input type="number" name="sort_order" value="{{ old('sort_order', $banner->sort_order ?? 0) }}" min="0"

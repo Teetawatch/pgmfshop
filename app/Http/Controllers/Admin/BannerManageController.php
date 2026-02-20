@@ -32,14 +32,20 @@ class BannerManageController extends Controller
             'sort_order' => 'nullable|integer|min:0',
         ]);
 
-        $path = $request->file('image')->store('banners', 'public');
+        $dir = public_path('uploads/banners');
+        if (!file_exists($dir)) {
+            mkdir($dir, 0755, true);
+        }
+        $file = $request->file('image');
+        $filename = time() . '_' . \Illuminate\Support\Str::random(8) . '.' . $file->getClientOriginalExtension();
+        $file->move($dir, $filename);
 
         Banner::create([
             'title' => $request->title,
             'subtitle' => $request->subtitle,
             'button_text' => $request->button_text,
             'button_link' => $request->button_link,
-            'image' => '/storage/' . $path,
+            'image' => '/uploads/banners/' . $filename,
             'sort_order' => $request->sort_order ?? 0,
             'is_active' => $request->boolean('is_active', true),
         ]);
@@ -65,11 +71,20 @@ class BannerManageController extends Controller
 
         if ($request->hasFile('image')) {
             // Delete old image
-            if ($banner->image && Str::startsWith($banner->image, '/storage/')) {
-                Storage::delete(str_replace('/storage/', 'public/', $banner->image));
+            if ($banner->image) {
+                $oldPath = public_path(ltrim($banner->image, '/'));
+                if (file_exists($oldPath)) {
+                    @unlink($oldPath);
+                }
             }
-            $path = $request->file('image')->store('banners', 'public');
-            $banner->image = '/storage/' . $path;
+            $dir = public_path('uploads/banners');
+            if (!file_exists($dir)) {
+                mkdir($dir, 0755, true);
+            }
+            $file = $request->file('image');
+            $filename = time() . '_' . Str::random(8) . '.' . $file->getClientOriginalExtension();
+            $file->move($dir, $filename);
+            $banner->image = '/uploads/banners/' . $filename;
         }
 
         $banner->update([
@@ -87,8 +102,11 @@ class BannerManageController extends Controller
 
     public function destroy(Banner $banner)
     {
-        if ($banner->image && Str::startsWith($banner->image, '/storage/')) {
-            Storage::delete(str_replace('/storage/', 'public/', $banner->image));
+        if ($banner->image) {
+            $fullPath = public_path(ltrim($banner->image, '/'));
+            if (file_exists($fullPath)) {
+                @unlink($fullPath);
+            }
         }
         $banner->delete();
         return redirect()->route('admin.banners.index')->with('success', 'ลบแบนเนอร์สำเร็จ');

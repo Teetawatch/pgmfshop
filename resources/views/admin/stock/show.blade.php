@@ -81,6 +81,7 @@
             <span class="text-xs font-normal text-gray-400">({{ $product->variants->count() }} ตัวเลือก)</span>
         </h3>
     </div>
+    <div class="overflow-x-auto">
     <table class="w-full text-sm">
         <thead class="bg-gray-50 text-xs text-gray-500">
             <tr>
@@ -119,6 +120,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 </div>
 @endif
 
@@ -127,7 +129,8 @@
     <div class="px-5 py-4 border-b">
         <h3 class="text-sm font-semibold text-gray-800">ประวัติการเคลื่อนไหวสต็อก</h3>
     </div>
-    <table class="w-full text-sm">
+    <div class="overflow-x-auto">
+    <table class="w-full text-sm min-w-[800px]">
         <thead class="bg-gray-50 text-xs text-gray-500">
             <tr>
                 <th class="px-5 py-3 text-left">วันที่</th>
@@ -185,6 +188,7 @@
             @endforelse
         </tbody>
     </table>
+    </div>
 </div>
 
 <div class="mt-4">{{ $movements->links() }}</div>
