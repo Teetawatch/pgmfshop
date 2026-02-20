@@ -13,14 +13,14 @@
 
     {{-- ===== Single Main Bar (always visible, shrinks on scroll) ===== --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between gap-4 transition-all duration-300"
-            :class="scrolled ? 'h-12' : 'h-14 md:h-16'">
+        <div class="flex items-center justify-between gap-4 transition-all duration-300 h-14 md:h-16"
+            :class="scrolled ? 'h-12' : ''">
 
             {{-- Logo --}}
             <a href="/" class="flex items-center gap-2.5 shrink-0 group">
                 <img src="{{ vite_image('pgmf-logo.jpg') }}" alt="PGMF Shop"
-                    class="rounded-lg object-cover ring-1 ring-gray-200 group-hover:ring-gray-300 transition-all duration-300"
-                    :class="scrolled ? 'h-7 w-7' : 'h-9 w-9'" />
+                    class="h-9 w-9 rounded-lg object-cover ring-1 ring-gray-200 group-hover:ring-gray-300 transition-all duration-300"
+                    :class="scrolled ? 'h-7 w-7' : ''" />
                 <span class="font-bold text-gray-900 hidden sm:inline tracking-tight transition-all duration-300"
                     :class="scrolled ? 'text-base' : 'text-lg'">PGMF Shop</span>
             </a>
