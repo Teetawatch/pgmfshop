@@ -223,13 +223,25 @@ class ProductDetail extends Component
             return;
         }
 
-        // Check if user has purchased this product (delivered orders only)
+        // Debug: Check all orders for this user and product
+        $allOrders = OrderItem::where('product_id', $this->product->id)
+            ->whereHas('order', fn($q) => $q->where('user_id', $userId))
+            ->with('order')
+            ->get();
+        
+        \Log::info('Review Debug - User ID: ' . $userId . ', Product ID: ' . $this->product->id);
+        \Log::info('Review Debug - All orders found: ' . $allOrders->count());
+        foreach ($allOrders as $item) {
+            \Log::info('Review Debug - Order #' . $item->order->order_number . ' Status: ' . $item->order->status);
+        }
+
+        // Check if user has purchased this product (paid, shipped, or delivered orders)
         $hasPurchased = OrderItem::where('product_id', $this->product->id)
-            ->whereHas('order', fn($q) => $q->where('user_id', $userId)->where('status', 'delivered'))
+            ->whereHas('order', fn($q) => $q->where('user_id', $userId)->whereIn('status', ['paid', 'shipped', 'delivered']))
             ->exists();
 
         if (!$hasPurchased) {
-            $this->dispatch('toast', message: 'คุณต้องซื้อและได้รับสินค้าแล้วจึงจะรีวิวได้', type: 'error');
+            $this->dispatch('toast', message: 'คุณต้องซื้อและชำระเงินแล้วจึงจะรีวิวได้', type: 'error');
             return;
         }
 
@@ -260,7 +272,7 @@ class ProductDetail extends Component
             $hasReviewed = Review::where('product_id', $this->product->id)->where('user_id', $userId)->exists();
             if (!$hasReviewed) {
                 $canReview = OrderItem::where('product_id', $this->product->id)
-                    ->whereHas('order', fn($q) => $q->where('user_id', $userId)->where('status', 'delivered'))
+                    ->whereHas('order', fn($q) => $q->where('user_id', $userId)->whereIn('status', ['paid', 'shipped', 'delivered']))
                     ->exists();
             }
         }

@@ -1,26 +1,26 @@
 @extends('admin.layout')
-@section('title', 'คำสั่งซื้อ ' . $order->order_number)
+@section('title', 'รายละเอียดคำสั่งซื้อ #' . $order->order_number)
 
 @php
     $colors = [
-        'pending' => 'bg-gray-100 text-gray-600 border border-gray-200',
-        'awaiting_payment' => 'bg-yellow-50 text-yellow-700 border border-yellow-200',
+        'pending' => 'bg-gray-100 text-gray-700 border border-gray-200',
+        'awaiting_payment' => 'bg-amber-50 text-amber-700 border border-amber-200',
         'paid' => 'bg-blue-50 text-blue-700 border border-blue-200',
         'processing' => 'bg-indigo-50 text-indigo-700 border border-indigo-200',
         'shipped' => 'bg-purple-50 text-purple-700 border border-purple-200',
-        'delivered' => 'bg-green-50 text-green-700 border border-green-200',
+        'delivered' => 'bg-emerald-50 text-emerald-700 border border-emerald-200',
         'cancelled' => 'bg-red-50 text-red-700 border border-red-200',
-        'expired' => 'bg-gray-100 text-gray-600 border border-gray-200',
+        'expired' => 'bg-gray-100 text-gray-700 border border-gray-200',
     ];
     $dotColors = [
-        'pending' => 'bg-gray-400',
-        'awaiting_payment' => 'bg-yellow-500',
+        'pending' => 'bg-gray-500',
+        'awaiting_payment' => 'bg-amber-500',
         'paid' => 'bg-blue-500',
         'processing' => 'bg-indigo-500',
         'shipped' => 'bg-purple-500',
-        'delivered' => 'bg-green-500',
+        'delivered' => 'bg-emerald-500',
         'cancelled' => 'bg-red-500',
-        'expired' => 'bg-gray-400',
+        'expired' => 'bg-gray-500',
     ];
     $labels = [
         'pending' => 'รอดำเนินการ',
@@ -36,38 +36,60 @@
 
 @section('content')
 {{-- Page Header --}}
-<div class="mb-6">
-    <div class="flex items-center gap-2 text-xs text-gray-400 mb-3">
-        <a href="{{ route('admin.orders.index') }}" class="hover:text-teal-600 transition-colors">คำสั่งซื้อ</a>
-        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-        <span class="text-gray-600">{{ $order->order_number }}</span>
+<div class="mb-8">
+    <!-- Breadcrumb -->
+    <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+        <a href="{{ route('admin.dashboard') }}" class="hover:text-gray-700 transition-colors">แดชบอร์ด</a>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        <a href="{{ route('admin.orders.index') }}" class="hover:text-gray-700 transition-colors">คำสั่งซื้อ</a>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-gray-900 font-medium">{{ $order->order_number }}</span>
     </div>
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-        <div class="flex items-center gap-3">
-            <a href="{{ route('admin.orders.index') }}" class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-500 hover:bg-gray-50 hover:text-gray-700 transition-colors">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-            </a>
-            <div>
-                <h1 class="text-lg font-bold text-gray-900">{{ $order->order_number }}</h1>
-                <p class="text-xs text-gray-400 mt-0.5">สร้างเมื่อ {{ $order->created_at->format('d/m/Y H:i') }}</p>
+    
+    <!-- Order Header -->
+    <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-lg">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-gray-900">คำสั่งซื้อ #{{ $order->order_number }}</h1>
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-1">
+                        <p class="text-sm text-gray-500">
+                            <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            {{ $order->created_at->format('d/m/Y H:i') }}
+                        </p>
+                        @if($order->user)
+                        <p class="text-sm text-gray-500">
+                            <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                            {{ $order->user->name }}
+                        </p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold {{ $colors[$order->status] ?? '' }}">
+                    <span class="w-2 h-2 rounded-full {{ $dotColors[$order->status] ?? 'bg-gray-400' }}"></span>
+                    {{ $labels[$order->status] ?? $order->status }}
+                </span>
+                <div class="flex items-center gap-2">
+                    <a href="{{ route('admin.orders.receipt', $order) }}" target="_blank"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:text-teal-600 transition-all shadow-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+                        พิมพ์ใบเสร็จ
+                    </a>
+                    <a href="{{ route('admin.orders.shippingLabel', $order) }}" target="_blank"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:text-purple-600 transition-all shadow-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18.75 7.159l-.351.064"/></svg>
+                        ใบปะหน้าพัสดุ
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="flex items-center gap-2 self-start">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold {{ $colors[$order->status] ?? '' }}">
-                <span class="w-1.5 h-1.5 rounded-full {{ $dotColors[$order->status] ?? 'bg-gray-400' }}"></span>
-                {{ $labels[$order->status] ?? $order->status }}
-            </span>
-            <a href="{{ route('admin.orders.receipt', $order) }}" target="_blank"
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:text-teal-700 transition-colors shadow-sm">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
-                พิมพ์ใบเสร็จ
-            </a>
-            <a href="{{ route('admin.orders.shippingLabel', $order) }}" target="_blank"
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:text-purple-700 transition-colors shadow-sm">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18.75 7.159l-.351.064"/></svg>
-                ใบปะหน้าพัสดุ
-            </a>
-        </div>
+    </div>
+</div>
     </div>
 </div>
 
@@ -125,18 +147,22 @@
 
         {{-- Order Items --}}
         <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-2">
-                <div class="w-7 h-7 rounded-lg bg-teal-50 flex items-center justify-center">
-                    <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            <div class="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-lg">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-base font-bold text-gray-900">รายการสินค้า</h2>
+                        <p class="text-sm text-gray-500 mt-0.5">{{ $order->items->count() }} รายการ</p>
+                    </div>
                 </div>
-                <h2 class="text-sm font-semibold text-gray-800">รายการสินค้า</h2>
-                <span class="ml-auto text-xs text-gray-400">{{ $order->items->count() }} รายการ</span>
             </div>
 
             {{-- Table Header --}}
-            <div class="hidden sm:grid grid-cols-12 gap-4 px-6 py-2.5 bg-gray-50 text-[11px] font-medium text-gray-500 uppercase tracking-wider border-b border-gray-100">
+            <div class="hidden sm:grid grid-cols-12 gap-4 px-6 py-3 bg-gray-50/80 text-xs font-semibold text-gray-600 uppercase tracking-wide border-b border-gray-200">
                 <div class="col-span-6">สินค้า</div>
-                <div class="col-span-2 text-right">ราคา</div>
+                <div class="col-span-2 text-right">ราคาต่อหน่วย</div>
                 <div class="col-span-2 text-center">จำนวน</div>
                 <div class="col-span-2 text-right">รวม</div>
             </div>
@@ -145,75 +171,102 @@
             <div class="divide-y divide-gray-100">
                 @foreach($order->items as $item)
                 <div class="px-6 py-4 grid grid-cols-12 gap-4 items-center">
-                    <div class="col-span-12 sm:col-span-6 flex items-center gap-3">
+                    <div class="col-span-12 sm:col-span-6 flex items-start gap-4">
                         @if($item->product_image)
-                            <img src="{{ $item->product_image }}" alt="" class="w-12 h-12 rounded-lg object-cover bg-gray-100 border border-gray-100 shrink-0">
+                            <img src="{{ $item->product_image }}" alt="" class="w-16 h-16 rounded-xl object-cover bg-gray-100 border border-gray-200 shadow-sm shrink-0">
                         @else
-                            <div class="w-12 h-12 rounded-lg bg-gray-100 border border-gray-100 flex items-center justify-center shrink-0">
-                                <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+                            <div class="w-16 h-16 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center shrink-0">
+                                <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
                             </div>
                         @endif
-                        <div>
-                            <p class="text-sm font-medium text-gray-800 leading-snug">{{ $item->product_name }}</p>
+                        <div class="flex-1">
+                            <p class="text-sm font-semibold text-gray-900 leading-tight">{{ $item->product_name }}</p>
                             @if(!empty($item->options))
-                                <p class="text-xs text-gray-400 mt-0.5">
-                                    @if(!empty($item->options['size']))ไซส์: {{ $item->options['size'] }}@endif
-                                    @if(!empty($item->options['size']) && !empty($item->options['color'])) · @endif
-                                    @if(!empty($item->options['color']))สี: {{ $item->options['color'] }}@endif
-                                </p>
+                                <div class="flex flex-wrap gap-2 mt-1.5">
+                                    @if(!empty($item->options['size']))
+                                        <span class="inline-flex items-center px-2 py-0.5 bg-gray-100 text-gray-600 text-[10px] font-medium rounded-md">
+                                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                                            {{ $item->options['size'] }}
+                                        </span>
+                                    @endif
+                                    @if(!empty($item->options['color']))
+                                        <span class="inline-flex items-center px-2 py-0.5 bg-gray-100 text-gray-600 text-[10px] font-medium rounded-md">
+                                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 01-4 4z"/></svg>
+                                            {{ $item->options['color'] }}
+                                        </span>
+                                    @endif
+                                </div>
                             @endif
                         </div>
                     </div>
-                    <div class="hidden sm:block col-span-2 text-right text-sm text-gray-500">฿{{ number_format($item->price, 0) }}</div>
-                    <div class="hidden sm:block col-span-2 text-center text-sm text-gray-500">{{ $item->quantity }}</div>
-                    <div class="hidden sm:block col-span-2 text-right text-sm font-semibold text-gray-800">฿{{ number_format($item->total, 0) }}</div>
-                    <div class="sm:hidden col-span-12 text-xs text-gray-400 -mt-2 ml-15">฿{{ number_format($item->price, 0) }} x {{ $item->quantity }} = <span class="font-semibold text-gray-700">฿{{ number_format($item->total, 0) }}</span></div>
+                    <div class="hidden sm:block col-span-2 text-right">
+                        <p class="text-sm font-medium text-gray-700">฿{{ number_format($item->price, 0) }}</p>
+                    </div>
+                    <div class="hidden sm:block col-span-2 text-center">
+                        <span class="inline-flex items-center justify-center w-8 h-8 bg-gray-100 text-gray-700 text-sm font-semibold rounded-lg">
+                            {{ $item->quantity }}
+                        </span>
+                    </div>
+                    <div class="hidden sm:block col-span-2 text-right">
+                        <p class="text-base font-bold text-gray-900">฿{{ number_format($item->total, 0) }}</p>
+                    </div>
+                    <div class="sm:hidden col-span-12 mt-3 pt-3 border-t border-gray-100">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">฿{{ number_format($item->price, 0) }} x {{ $item->quantity }}</span>
+                            <span class="text-base font-bold text-gray-900">฿{{ number_format($item->total, 0) }}</span>
+                        </div>
+                    </div>
                 </div>
                 @endforeach
             </div>
 
             {{-- Summary --}}
-            <div class="border-t border-gray-200 bg-gray-50/70">
-                <div class="px-6 py-4 space-y-2 max-w-xs ml-auto">
-                    <div class="flex justify-between text-sm">
-                        <span class="text-gray-500">ยอดสินค้า</span>
-                        <span class="text-gray-700">฿{{ number_format($order->subtotal, 0) }}</span>
+            <div class="border-t border-gray-200 bg-gradient-to-br from-gray-50 to-white">
+                <div class="px-6 py-5 space-y-3 max-w-sm ml-auto">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-600">ยอดสินค้า</span>
+                        <span class="text-sm font-medium text-gray-900">฿{{ number_format($order->subtotal, 0) }}</span>
                     </div>
                     @if($order->discount > 0)
-                    <div class="flex justify-between text-sm">
-                        <span class="text-gray-500">ส่วนลด</span>
-                        <span class="text-red-500 font-medium">-฿{{ number_format($order->discount, 0) }}</span>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-600">ส่วนลด</span>
+                        <span class="text-sm font-semibold text-red-600 bg-red-50 px-2 py-0.5 rounded">-฿{{ number_format($order->discount, 0) }}</span>
                     </div>
                     @endif
-                    <div class="flex justify-between text-sm">
-                        <span class="text-gray-500">ค่าจัดส่ง</span>
-                        <span class="text-gray-700">฿{{ number_format($order->shipping_cost, 0) }}</span>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-600">ค่าจัดส่ง</span>
+                        <span class="text-sm font-medium text-gray-900">฿{{ number_format($order->shipping_cost, 0) }}</span>
                     </div>
-                    <div class="flex justify-between text-base font-bold pt-2 border-t border-gray-200">
-                        <span class="text-gray-800">รวมทั้งหมด</span>
-                        <span class="text-teal-700">฿{{ number_format($order->total, 0) }}</span>
+                    <div class="flex justify-between items-center pt-3 border-t border-gray-200">
+                        <span class="text-base font-bold text-gray-900">รวมทั้งหมด</span>
+                        <span class="text-lg font-bold text-teal-600 bg-teal-50 px-3 py-1 rounded-lg">฿{{ number_format($order->total, 0) }}</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        {{-- Payment Slip (moved to main area for better visibility) --}}
+        {{-- Payment Slip --}}
         @if($order->payment_slip)
         <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-2">
-                <div class="w-7 h-7 rounded-lg bg-amber-50 flex items-center justify-center">
-                    <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/></svg>
-                </div>
-                <h2 class="text-sm font-semibold text-gray-800">สลิปการชำระเงิน</h2>
-                <div class="ml-auto">
+            <div class="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-amber-50 to-orange-50">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center shadow-lg">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/></svg>
+                        </div>
+                        <div>
+                            <h2 class="text-base font-bold text-gray-900">สลิปการชำระเงิน</h2>
+                            <p class="text-sm text-gray-600 mt-0.5">หลักฐานการโอนเงิน</p>
+                        </div>
+                    </div>
                     @if($order->slip_verified)
-                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-green-50 text-green-700 border border-green-200">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                             ตรวจสอบแล้ว
                         </span>
                     @else
-                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-50 text-yellow-700 border border-yellow-200">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                             รอตรวจสอบ
                         </span>
                     @endif
@@ -340,10 +393,17 @@
 
         {{-- Status History / Timeline --}}
         <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-2">
-                <div class="w-7 h-7 rounded-lg bg-purple-50 flex items-center justify-center">
-                    <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div class="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-purple-50 to-indigo-50">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center shadow-lg">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-gray-900">ประวัติสถานะ</h3>
+                        <p class="text-sm text-gray-600 mt-0.5">การเปลี่ยนแปลงสถานะออเดอร์</p>
+                    </div>
                 </div>
+            </div>
                 <h2 class="text-sm font-semibold text-gray-800">ประวัติสถานะ</h2>
             </div>
             <div class="p-6">
@@ -386,18 +446,21 @@
             </div>
         </div>
     </div>
-
-    {{-- ==================== RIGHT COLUMN (SIDEBAR) ==================== --}}
     <div class="space-y-6">
 
         {{-- Update Status --}}
-        @if(!in_array($order->status, ['delivered', 'cancelled', 'expired']))
+        @if(!in_array($order->status, ['cancelled', 'expired', 'delivered']))
         <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div class="px-5 py-4 border-b border-gray-100 flex items-center gap-2">
-                <div class="w-7 h-7 rounded-lg bg-blue-50 flex items-center justify-center">
-                    <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/></svg>
+            <div class="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-cyan-50">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center shadow-lg">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-gray-900">อัปเดตสถานะ</h3>
+                        <p class="text-sm text-gray-600 mt-0.5">เปลี่ยนแปลงสถานะออเดอร์</p>
+                    </div>
                 </div>
-                <h3 class="text-sm font-semibold text-gray-800">อัปเดตสถานะ</h3>
             </div>
             <div class="p-5">
                 <form action="{{ route('admin.orders.updateStatus', $order) }}" method="POST" class="space-y-3">
@@ -431,19 +494,24 @@
 
         {{-- Customer Info --}}
         <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div class="px-5 py-4 border-b border-gray-100 flex items-center gap-2">
-                <div class="w-7 h-7 rounded-lg bg-sky-50 flex items-center justify-center">
-                    <svg class="w-4 h-4 text-sky-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+            <div class="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-sky-50 to-blue-50">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center shadow-lg">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-gray-900">ข้อมูลลูกค้า</h3>
+                        <p class="text-sm text-gray-600 mt-0.5">รายละเอียดผู้สั่งซื้อ</p>
+                    </div>
                 </div>
-                <h3 class="text-sm font-semibold text-gray-800">ข้อมูลลูกค้า</h3>
             </div>
-            <div class="p-5">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-9 h-9 bg-gray-100 rounded-full flex items-center justify-center text-sm font-bold text-gray-500">
+            <div class="p-6">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-gray-200 to-gray-300 rounded-full flex items-center justify-center text-lg font-bold text-gray-600 shadow-sm">
                         {{ mb_substr($order->user->name ?? '?', 0, 1) }}
                     </div>
                     <div>
-                        <p class="text-sm font-medium text-gray-800">{{ $order->user->name ?? '-' }}</p>
+                        <p class="text-base font-semibold text-gray-900">{{ $order->user->name ?? '-' }}</p>
                         <p class="text-xs text-gray-400">{{ $order->user->email ?? '-' }}</p>
                     </div>
                 </div>
