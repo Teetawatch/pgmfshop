@@ -26,7 +26,7 @@
 
     {{-- ===== Single Main Bar (always visible, shrinks on scroll) ===== --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between gap-4 transition-[height] duration-300"
+        <div class="flex items-center justify-between gap-2 transition-[height] duration-300"
             :style="scrolled ? 'height:48px' : 'height:52px'">
 
             {{-- Logo --}}
@@ -38,8 +38,11 @@
                     :class="scrolled ? 'text-base' : 'text-lg'">PGMF Shop</span>
             </a>
 
+            {{-- Spacer to push right side --}}
+            <div class="flex-1"></div>
+
             {{-- Search Bar - Desktop + Mobile --}}
-            <form wire:submit="search" class="flex flex-1 justify-end max-w-[160px] md:max-w-[220px]" x-data @click.away="$wire.closeSuggestions()">
+            <form wire:submit="search" class="flex shrink-0 w-[140px] md:w-[200px]" x-data @click.away="$wire.closeSuggestions()">
                 <div class="relative w-full">
                     <input type="text" wire:model.live.debounce.300ms="searchQuery" placeholder="ค้นหาสินค้า..."
                         @focus="if($wire.searchQuery.length >= 2) $wire.showSuggestions = true"
@@ -141,8 +144,8 @@
     </div>
 
     {{-- ===== Category Nav Bar - Desktop (collapses on scroll, NO content swap) ===== --}}
-    <div class="overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out border-b-2 border-orange-500 hidden md:block"
-        :style="scrolled ? 'max-height:0;opacity:0;border-color:transparent' : 'max-height:56px;opacity:1'">
+    <div class="transition-[max-height,opacity] duration-300 ease-in-out border-b-2 border-orange-500 hidden md:block"
+        :style="scrolled ? 'max-height:0;opacity:0;border-color:transparent;overflow:hidden' : 'max-height:56px;opacity:1;overflow:visible'">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-11 text-sm">
                 <div class="flex items-center">
