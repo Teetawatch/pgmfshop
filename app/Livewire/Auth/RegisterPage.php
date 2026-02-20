@@ -56,7 +56,11 @@ class RegisterPage extends Component
         ]);
 
         event(new Registered($user));
-        Mail::to($user->email)->send(new WelcomeMail($user));
+        try {
+            Mail::to($user->email)->send(new WelcomeMail($user));
+        } catch (\Exception $e) {
+            \Log::error('Failed to send welcome email: ' . $e->getMessage());
+        }
 
         Auth::login($user);
         session()->regenerate();

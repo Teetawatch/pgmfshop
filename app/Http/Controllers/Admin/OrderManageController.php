@@ -67,13 +67,21 @@ class OrderManageController extends Controller
         $order->load(['items', 'user']);
 
         if ($request->status === 'shipped' && $order->user) {
-            Mail::to($order->user->email)->send(new ShippingNotificationMail($order));
+            try {
+                Mail::to($order->user->email)->send(new ShippingNotificationMail($order));
+            } catch (\Exception $e) {
+                \Log::error('Failed to send shipping notification email: ' . $e->getMessage());
+            }
         }
 
         if ($request->status === 'cancelled') {
             $this->restoreOrderStock($order, 'ยกเลิกคำสั่งซื้อ');
             if ($order->user) {
-                Mail::to($order->user->email)->send(new OrderCancelledMail($order, $request->note ?? 'ยกเลิกโดยผู้ดูแลระบบ'));
+                try {
+                    Mail::to($order->user->email)->send(new OrderCancelledMail($order, $request->note ?? 'ยกเลิกโดยผู้ดูแลระบบ'));
+                } catch (\Exception $e) {
+                    \Log::error('Failed to send order cancellation email: ' . $e->getMessage());
+                }
             }
         }
 
@@ -96,7 +104,11 @@ class OrderManageController extends Controller
 
         $order->load('user');
         if ($order->user) {
-            Mail::to($order->user->email)->send(new OrderCancelledMail($order, $note));
+            try {
+                Mail::to($order->user->email)->send(new OrderCancelledMail($order, $note));
+            } catch (\Exception $e) {
+                \Log::error('Failed to send order cancellation email: ' . $e->getMessage());
+            }
         }
 
         return back()->with('success', "ยกเลิกคำสั่งซื้อ {$order->order_number} สำเร็จ");
@@ -114,7 +126,12 @@ class OrderManageController extends Controller
 
         $order->load(['items', 'user']);
         if ($order->user) {
-            Mail::to($order->user->email)->send(new PaymentSuccessMail($order));
+            try {
+                Mail::to($order->user->email)->send(new PaymentSuccessMail($order));
+            } catch (\Exception $e) {
+                // Log error but don't fail the process
+                \Log::error('Failed to send payment success email: ' . $e->getMessage());
+            }
         }
 
         return back()->with('success', 'ยืนยันสลิปสำเร็จ สถานะเปลี่ยนเป็น ชำระแล้ว');
@@ -203,7 +220,11 @@ class OrderManageController extends Controller
 
         $order->load('user');
         if ($order->user) {
-            Mail::to($order->user->email)->send(new OrderCancelledMail($order, 'สลิปไม่ถูกต้อง - ยกเลิกคำสั่งซื้อ'));
+            try {
+                Mail::to($order->user->email)->send(new OrderCancelledMail($order, 'สลิปไม่ถูกต้อง - ยกเลิกคำสั่งซื้อ'));
+            } catch (\Exception $e) {
+                \Log::error('Failed to send slip rejection email: ' . $e->getMessage());
+            }
         }
 
         return back()->with('success', "ปฏิเสธสลิปและยกเลิกคำสั่งซื้อ {$order->order_number} สำเร็จ");

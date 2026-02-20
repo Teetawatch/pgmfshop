@@ -289,10 +289,19 @@ class CheckoutPage extends Component
         $this->dispatch('toast', message: 'สั่งซื้อสำเร็จ!', type: 'success');
 
         $order->load(['items', 'user']);
-        Mail::to($order->user->email)->send(new OrderConfirmationMail($order));
+        
+        try {
+            Mail::to($order->user->email)->send(new OrderConfirmationMail($order));
+        } catch (\Exception $e) {
+            \Log::error('Failed to send order confirmation email: ' . $e->getMessage());
+        }
 
         if ($autoVerified) {
-            Mail::to($order->user->email)->send(new PaymentSuccessMail($order));
+            try {
+                Mail::to($order->user->email)->send(new PaymentSuccessMail($order));
+            } catch (\Exception $e) {
+                \Log::error('Failed to send payment success email: ' . $e->getMessage());
+            }
         }
     }
 

@@ -28,8 +28,13 @@ class SocialAuthController extends Controller
         $this->validateProvider($provider);
 
         try {
+            // Debug: Log the current request URL
+            \Log::info('Social Auth Callback - Request URL: ' . request()->fullUrl());
+            \Log::info('Social Auth Callback - Provider: ' . $provider);
+            
             $socialUser = Socialite::driver($provider)->user();
         } catch (\Exception $e) {
+            \Log::error('Social Auth Error: ' . $e->getMessage());
             return redirect()->route('login')->with('error', 'ไม่สามารถเข้าสู่ระบบด้วย ' . ucfirst($provider) . ' ได้ กรุณาลองใหม่อีกครั้ง');
         }
 
@@ -63,7 +68,11 @@ class SocialAuthController extends Controller
                 ]);
 
                 $user->markEmailAsVerified();
-                Mail::to($user->email)->send(new WelcomeMail($user));
+                try {
+                    Mail::to($user->email)->send(new WelcomeMail($user));
+                } catch (\Exception $e) {
+                    \Log::error('Failed to send welcome email for social auth: ' . $e->getMessage());
+                }
             }
         } else {
             // Update avatar on each login

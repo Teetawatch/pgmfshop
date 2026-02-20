@@ -52,7 +52,11 @@ class ExpireUnpaidOrders extends Command
 
             // Send cancellation email
             if ($order->user) {
-                Mail::to($order->user->email)->send(new OrderCancelledMail($order, $reason));
+                try {
+                    Mail::to($order->user->email)->send(new OrderCancelledMail($order, $reason));
+                } catch (\Exception $e) {
+                    \Log::error('Failed to send order expiry email: ' . $e->getMessage());
+                }
             }
 
             $count++;
