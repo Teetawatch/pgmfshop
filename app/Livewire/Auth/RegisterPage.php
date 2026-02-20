@@ -64,8 +64,8 @@ class RegisterPage extends Component
 
         Auth::login($user);
         session()->regenerate();
-        $this->dispatch('toast', message: 'สมัครสมาชิกสำเร็จ! กรุณายืนยันอีเมลของคุณ', type: 'success');
-        return redirect('/email/verify');
+        $this->dispatch('toast', message: 'สมัครสมาชิกสำเร็จ!', type: 'success');
+        return redirect('/');
     }
 
     public function render()

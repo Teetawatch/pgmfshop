@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Checkout & Account (auth required)
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/checkout', App\Livewire\CheckoutPage::class)->name('checkout');
     Route::get('/account', App\Livewire\Account\AccountPage::class)->name('account');
     Route::get('/account/orders', App\Livewire\Account\OrdersPage::class)->name('account.orders');
