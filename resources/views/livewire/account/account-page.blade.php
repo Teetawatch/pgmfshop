@@ -1,25 +1,26 @@
 @php $user = auth()->user(); @endphp
 
 <div class="min-h-screen bg-gray-50">
-    <!-- Hero Header -->
-    <div class="bg-[#FF6512]">
-        <div class="container mx-auto px-4 py-8">
+    <!-- Hero Header (Full-width) -->
+    <section class="w-full bg-gradient-to-br from-[#FF6512] via-[#FF7A33] to-[#E85A0C] relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-50"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div class="flex items-center gap-4">
                     @if($user->social_avatar || $user->avatar)
-                        <img src="{{ $user->social_avatar ?: $user->avatar }}" alt="{{ $user->name }}" class="w-14 h-14 rounded-xl object-cover border-2 border-white/30" referrerpolicy="no-referrer" />
+                        <img src="{{ $user->social_avatar ?: $user->avatar }}" alt="{{ $user->name }}" class="w-16 h-16 rounded-2xl object-cover border-2 border-white/30 shadow-lg" referrerpolicy="no-referrer" />
                     @else
-                        <div class="w-14 h-14 rounded-xl bg-white/20 flex items-center justify-center text-white text-xl font-bold">
+                        <div class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-2xl font-bold shadow-lg">
                             {{ strtoupper(substr($user->name, 0, 1)) }}
                         </div>
                     @endif
                     <div>
-                        <h1 class="text-xl font-bold text-white">{{ $user->name }}</h1>
-                        <p class="text-white/70 text-sm">{{ $user->email }}</p>
+                        <h1 class="text-2xl font-bold text-white">{{ $user->name }}</h1>
+                        <p class="text-white/70 text-sm mt-0.5">{{ $user->email }}</p>
                     </div>
                 </div>
                 @if($user->social_provider)
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium bg-white/20 text-white">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-white/20 backdrop-blur-sm text-white shadow-sm">
                         @if($user->social_provider === 'google')
                             <svg class="h-3.5 w-3.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#fff"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#fff"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#fff"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#fff"/></svg>
                         @else
@@ -30,9 +31,10 @@
                 @endif
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="container mx-auto px-4 py-6">
+    <!-- Content Section (Container) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="grid md:grid-cols-4 gap-6">
             <!-- Sidebar Navigation -->
             <div>

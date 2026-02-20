@@ -11,7 +11,7 @@
     ">
     <!-- Compact Bar (visible on scroll down, all screens) -->
     <div x-show="scrolled" x-cloak class="border-b-2 border-orange-500 bg-white">
-        <div class="container mx-auto px-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-11 md:h-12 gap-2 md:gap-4">
                 <!-- Left: Home + Category Dropdown -->
                 <div class="flex items-center gap-0.5 md:gap-1 shrink-0">
@@ -92,7 +92,7 @@
 
     <!-- Main Bar -->
     <div x-show="!scrolled">
-    <div class="container mx-auto px-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between gap-6">
             <!-- Logo -->
             <a href="/" class="flex items-center gap-2.5 shrink-0 group">
@@ -257,7 +257,7 @@
 
     <!-- Category Nav Bar - Desktop -->
     <div x-show="!scrolled" class="border-b-2 border-orange-500 bg-white hidden md:block">
-        <div class="container mx-auto px-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-11 text-sm">
                 <!-- Left: Category Dropdown -->
                 <div class="flex items-center">
@@ -336,7 +336,7 @@
     <!-- Mobile Menu -->
     @if($isMenuOpen)
         <div class="md:hidden border-t border-gray-200 bg-white">
-            <div class="container mx-auto px-4 py-4 space-y-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-4">
                 <!-- Mobile Search -->
                 <form wire:submit="search">
                     <div class="relative">

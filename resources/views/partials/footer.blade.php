@@ -1,7 +1,7 @@
-<footer class="bg-white border-t">
+<footer class="w-full bg-white border-t">
     <!-- Payment & Shipping Bar -->
     <div class="border-b">
-        <div class="container mx-auto px-4 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
                     <p class="text-xs text-gray-500 mb-2">ช่องทางการชำระเงิน</p>
@@ -27,7 +27,7 @@
     </div>
 
     <!-- Main Footer -->
-    <div class="container mx-auto px-4 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div class="space-y-3">
                 <a href="/" class="inline-flex items-center gap-2 mb-1">
@@ -110,8 +110,8 @@
     </div>
 
     <!-- Bottom Bar -->
-    <div class="border-t">
-        <div class="container mx-auto px-4 py-3 text-center text-[11px] text-gray-400">
+    <div class="w-full border-t bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 text-center text-[11px] text-gray-400">
             &copy; 2026 PGMF Shop. All rights reserved.
         </div>
     </div>
