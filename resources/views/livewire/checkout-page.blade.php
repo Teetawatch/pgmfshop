@@ -155,7 +155,7 @@
                             <div class="p-4 space-y-3">
                                 <div class="flex items-center gap-4 p-4 rounded-xl border-2 border-[hsl(var(--primary))] bg-[hsl(var(--primary))]/5 shadow-sm">
                                     <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center shrink-0 border border-gray-200">
-                                        <img src="{{ Vite::asset('resources/images/ThailandPost_Logo.svg') }}" alt="ไปรษณีย์ไทย" class="h-7 w-7 object-contain">
+                                        <img src="{{ vite_image('ThailandPost_Logo.svg') }}" alt="ไปรษณีย์ไทย" class="h-7 w-7 object-contain">
                                     </div>
                                     <div class="flex-1 min-w-0">
                                         <p class="font-semibold">ไปรษณีย์ไทย</p>
@@ -224,13 +224,13 @@
                                 <div class="bg-white rounded-xl p-6 border border-blue-100 shadow-sm text-center space-y-4">
                                     {{-- QR Code Image --}}
                                     <div class="inline-block p-3 bg-white rounded-xl border-2 border-blue-100 shadow-md">
-                                        <img src="{{ Vite::asset('resources/images/paymentbiller.png') }}" alt="Bill Payment QR Code" class="w-56 h-auto mx-auto" />
+                                        <img src="{{ vite_image('paymentbiller.png') }}" alt="Bill Payment QR Code" class="w-56 h-auto mx-auto" />
                                     </div>
 
                                     {{-- Save QR Code Button --}}
                                     <div class="flex justify-center">
                                         <button 
-                                            onclick="downloadImage('{{ Vite::asset('resources/images/paymentbiller.png') }}', 'PGMF-Payment-QR.png')"
+                                            onclick="downloadImage('{{ vite_image('paymentbiller.png') }}', 'PGMF-Payment-QR.png')"
                                             class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
                                         >
                                             <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -278,7 +278,7 @@
                                 </div>
                                 @php
                                     $bankAccounts = [
-                                        ['ธนาคารกรุงศรี (BAY)', 'มูลนิธิคณะก้าวหน้า', '493-1-08673-2', Vite::asset('resources/images/banks/bay.svg'), '#FFD700'],
+                                        ['ธนาคารกรุงศรี (BAY)', 'มูลนิธิคณะก้าวหน้า', '493-1-08673-2', vite_image('banks/bay.svg'), '#FFD700'],
                                     ];
                                 @endphp
                                 @foreach($bankAccounts as $acc)

@@ -6,7 +6,7 @@
                 <div>
                     <p class="text-xs text-gray-500 mb-2">ช่องทางการชำระเงิน</p>
                     <div class="flex items-center gap-2">
-                        <img src="{{ Vite::asset('resources/images/Thai_QR_Payment_Logo-01.jpg') }}" alt="PromptPay" class="h-auto max-h-12 object-contain rounded-lg shadow-sm">
+                        <img src="{{ vite_image('Thai_QR_Payment_Logo-01.jpg') }}" alt="PromptPay" class="h-auto max-h-12 object-contain rounded-lg shadow-sm">
                         <span class="inline-flex items-center gap-2.5 h-12 px-5 bg-linear-to-r from-blue-600 to-blue-700 text-white text-sm font-semibold rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-800 transform hover:scale-[1.02] transition-all duration-300 border border-blue-500/20">
                             <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/>
@@ -19,7 +19,7 @@
                 <div>
                     <p class="text-xs text-gray-500 mb-2">บริการจัดส่งสินค้า</p>
                     <div class="flex items-center gap-2">
-                        <img src="{{ Vite::asset('resources/images/ThailandPost_Logo.svg') }}" alt="ไปรษณีย์ไทย" class="h-12 object-contain">
+                        <img src="{{ vite_image('ThailandPost_Logo.svg') }}" alt="ไปรษณีย์ไทย" class="h-12 object-contain">
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div class="space-y-3">
                 <a href="/" class="inline-flex items-center gap-2 mb-1">
-                    <img src="{{ Vite::asset('resources/images/pgmf-logo.jpg') }}" alt="PGMF Shop" class="h-8 w-8 rounded-lg object-cover" />
+                    <img src="{{ vite_image('pgmf-logo.jpg') }}" alt="PGMF Shop" class="h-8 w-8 rounded-lg object-cover" />
                     <span class="text-sm font-bold text-gray-800">PGMF Shop</span>
                 </a>
                 <div class="space-y-1.5 text-xs text-gray-500">

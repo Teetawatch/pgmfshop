@@ -3,7 +3,7 @@
         <!-- Logo & Header -->
         <div class="text-center mb-8">
             <a href="/" class="inline-flex items-center gap-2.5 mb-6 group">
-                <img src="{{ Vite::asset('resources/images/pgmf-logo.jpg') }}" alt="PGMF Shop" class="h-12 w-12 rounded-2xl object-cover shadow-lg shadow-indigo-500/30 group-hover:shadow-indigo-500/50 transition-shadow duration-300" />
+                <img src="{{ vite_image('pgmf-logo.jpg') }}" alt="PGMF Shop" class="h-12 w-12 rounded-2xl object-cover shadow-lg shadow-indigo-500/30 group-hover:shadow-indigo-500/50 transition-shadow duration-300" />
                 <span class="text-2xl font-extrabold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent"></span>
             </a>
             <h1 class="text-3xl font-extrabold text-gray-900">ยินดีต้อนรับกลับ</h1>

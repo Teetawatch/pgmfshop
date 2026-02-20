@@ -3,7 +3,7 @@
         <!-- Logo & Header -->
         <div class="text-center mb-8">
             <a href="/" class="inline-flex items-center gap-2.5 mb-6">
-                <img src="{{ Vite::asset('resources/images/pgmf-logo.jpg') }}" alt="PGMF Shop" class="h-11 w-11 rounded-xl object-cover shadow-lg" />
+                <img src="{{ vite_image('pgmf-logo.jpg') }}" alt="PGMF Shop" class="h-11 w-11 rounded-xl object-cover shadow-lg" />
                 <span class="text-2xl font-bold text-[hsl(var(--primary))]">PGMF Shop</span>
             </a>
             <h1 class="text-2xl font-bold text-gray-900">สร้างบัญชีใหม่</h1>
