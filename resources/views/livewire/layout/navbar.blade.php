@@ -13,8 +13,8 @@
 
     {{-- ===== Single Main Bar (always visible, shrinks on scroll) ===== --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between gap-4 transition-all duration-300 h-14 md:h-16"
-            :class="scrolled ? 'h-12' : ''">
+        <div class="flex items-center justify-between gap-4 transition-[height] duration-300"
+            :style="scrolled ? 'height:48px' : 'height:52px'">
 
             {{-- Logo --}}
             <a href="/" class="flex items-center gap-2.5 shrink-0 group">
