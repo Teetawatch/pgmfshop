@@ -32,7 +32,7 @@
                             @if($banner->button_text && $banner->button_link)
                                 <a href="{{ $banner->button_link }}" class="inline-flex items-center gap-2 bg-white text-gray-900 hover:bg-gray-100 text-xs sm:text-sm px-5 sm:px-6 py-2 sm:py-2.5 rounded-lg font-semibold mt-1 transition-all shadow-lg hover:shadow-xl group/btn">
                                     {{ $banner->button_text }}
-                                    <svg class="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                                    <x-heroicon-o-arrow-right class="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5" />
                                 </a>
                             @endif
                         </div>
@@ -45,10 +45,10 @@
             @if($banners->count() > 1)
             <!-- Prev/Next Arrows -->
             <button @click="prev()" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300 z-10 hover:scale-105 active:scale-95">
-                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                <x-heroicon-o-chevron-left class="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />
             </button>
             <button @click="next()" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300 z-10 hover:scale-105 active:scale-95">
-                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                <x-heroicon-o-chevron-right class="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />
             </button>
 
             <!-- Slide Counter + Dots -->
@@ -82,7 +82,7 @@
                     <p class="text-sm sm:text-base text-white/90 max-w-sm leading-relaxed">สินค้าคุณภาพ ราคาดี จัดส่งรวดเร็ว พร้อมโปรโมชั่นสุดพิเศษ</p>
                     <a href="{{ route('products') }}" class="inline-flex items-center gap-2 bg-white text-orange-600 hover:bg-gray-100 text-xs sm:text-sm px-6 py-2.5 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl group/btn">
                         ช้อปเลย
-                        <svg class="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                        <x-heroicon-o-arrow-right class="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5" />
                     </a>
                 </div>
             </div>
@@ -122,7 +122,7 @@
                 </div>
             </div>
             <div class="flex items-center gap-2">
-                <svg class="h-3.5 w-3.5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 6h18M6 12h12M9 18h6"/></svg>
+                <x-heroicon-o-adjustments-horizontal class="h-3.5 w-3.5 text-gray-400" />
                 <select wire:model.live="sortBy" class="text-xs sm:text-sm bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-gray-600 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 cursor-pointer">
                     <option value="default">เรียงตาม: ค่าเริ่มต้น</option>
                     <option value="price_asc">ราคาต่ำ → สูง</option>

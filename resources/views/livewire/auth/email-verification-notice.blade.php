@@ -3,9 +3,7 @@
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-center">
             {{-- Icon --}}
             <div class="mx-auto w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mb-6">
-                <svg class="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                </svg>
+                <x-heroicon-o-envelope class="w-10 h-10 text-blue-500" />
             </div>
 
             <h2 class="text-xl font-bold text-gray-900 mb-2">ยืนยันอีเมลของคุณ</h2>

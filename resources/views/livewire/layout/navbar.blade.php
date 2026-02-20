@@ -49,7 +49,7 @@
                         class="w-full pl-4 pr-10 bg-gray-50 border border-gray-200 rounded-full text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all duration-300"
                         :class="scrolled ? 'h-8' : 'h-9'" />
                     <button type="submit" class="absolute right-1 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition-colors">
-                        <svg class="h-3.5 w-3.5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <x-heroicon-o-magnifying-glass class="h-3.5 w-3.5 text-white" />
                     </button>
                     @if($showSuggestions && count($searchSuggestions) > 0)
                         <div class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-xl shadow-gray-200/60 overflow-hidden z-50">
@@ -79,11 +79,11 @@
             <div class="flex items-center gap-1.5 shrink-0">
                 @auth
                     <a href="{{ route('account.wishlist') }}" class="relative inline-flex items-center justify-center h-9 w-9 rounded-lg text-gray-500 hover:text-red-500 hover:bg-red-50 transition-colors" title="รายการโปรด">
-                        <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                        <x-heroicon-o-heart class="h-[18px] w-[18px]" />
                         @if($wishlistCount > 0)<span class="absolute top-0.5 right-0.5 bg-red-500 text-white text-[10px] rounded-full h-4 min-w-4 px-1 flex items-center justify-center font-medium leading-none">{{ $wishlistCount }}</span>@endif
                     </a>
                     <a href="{{ route('cart') }}" class="relative inline-flex items-center justify-center h-9 w-9 rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
-                        <svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 002 1.58h9.78a2 2 0 001.95-1.57l1.65-7.43H5.12"/></svg>
+                        <x-heroicon-o-shopping-cart class="h-[18px] w-[18px]" />
                         @if($cartCount > 0)<span class="absolute top-0.5 right-0.5 bg-gray-800 text-white text-[10px] rounded-full h-4 min-w-4 px-1 flex items-center justify-center font-medium leading-none">{{ $cartCount }}</span>@endif
                     </a>
                     {{-- User Dropdown - Desktop --}}
@@ -95,7 +95,7 @@
                                 <div class="w-7 h-7 rounded-full bg-gray-700 flex items-center justify-center text-white text-xs font-semibold ring-2 ring-gray-100">{{ strtoupper(mb_substr($authUser->name, 0, 1)) }}</div>
                             @endif
                             <span class="text-sm font-medium text-gray-700 max-w-[90px] truncate">{{ $authUser->name }}</span>
-                            <svg class="h-3.5 w-3.5 text-gray-400 transition-transform duration-200" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+                            <x-heroicon-o-chevron-down class="h-3.5 w-3.5 text-gray-400 transition-transform duration-200" x-bind:class="open ? 'rotate-180' : ''" />
                         </button>
                         <div x-show="open" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-1" class="absolute right-0 top-full mt-2 w-64 z-50" style="display:none">
                             <div class="bg-white rounded-xl border border-gray-200 shadow-lg shadow-gray-200/50 overflow-hidden">
@@ -113,31 +113,31 @@
                                     </div>
                                 </div>
                                 <div class="py-1.5">
-                                    <a href="{{ route('account') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"><svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 00-4-4H9a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>บัญชีของฉัน</a>
-                                    <a href="{{ route('account.orders') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"><svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>คำสั่งซื้อ</a>
-                                    <a href="{{ route('account.wishlist') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"><svg class="h-4 w-4 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>รายการโปรด@if($wishlistCount > 0)<span class="ml-auto bg-red-100 text-red-600 text-[10px] font-semibold px-1.5 py-0.5 rounded-full">{{ $wishlistCount }}</span>@endif</a>
-                                    <a href="{{ route('account.addresses') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"><svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>ที่อยู่จัดส่ง</a>
+                                    <a href="{{ route('account') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"><x-heroicon-o-user class="h-4 w-4 text-gray-400" />บัญชีของฉัน</a>
+                                    <a href="{{ route('account.orders') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"><x-heroicon-o-cube class="h-4 w-4 text-gray-400" />คำสั่งซื้อ</a>
+                                    <a href="{{ route('account.wishlist') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"><x-heroicon-o-heart class="h-4 w-4 text-gray-400" />รายการโปรด@if($wishlistCount > 0)<span class="ml-auto bg-red-100 text-red-600 text-[10px] font-semibold px-1.5 py-0.5 rounded-full">{{ $wishlistCount }}</span>@endif</a>
+                                    <a href="{{ route('account.addresses') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"><x-heroicon-o-map-pin class="h-4 w-4 text-gray-400" />ที่อยู่จัดส่ง</a>
                                     @if($authUser->role === 'admin')
-                                        <a href="/admin" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"><svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>แผงควบคุมแอดมิน</a>
+                                        <a href="/admin" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"><x-heroicon-o-shield-check class="h-4 w-4 text-gray-400" />แผงควบคุมแอดมิน</a>
                                     @endif
                                 </div>
                                 <div class="border-t border-gray-100">
-                                    <button wire:click="logout" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-50 transition-colors w-full"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>ออกจากระบบ</button>
+                                    <button wire:click="logout" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-50 transition-colors w-full"><x-heroicon-o-arrow-right-on-rectangle class="h-4 w-4" />ออกจากระบบ</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @else
                     <a href="{{ route('cart') }}" class="relative inline-flex items-center justify-center h-9 w-9 rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
-                        <svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 002 1.58h9.78a2 2 0 001.95-1.57l1.65-7.43H5.12"/></svg>
+                        <x-heroicon-o-shopping-cart class="h-[18px] w-[18px]" />
                         @if($cartCount > 0)<span class="absolute top-0.5 right-0.5 bg-gray-800 text-white text-[10px] rounded-full h-4 min-w-4 px-1 flex items-center justify-center font-medium leading-none">{{ $cartCount }}</span>@endif
                     </a>
-                    <a href="{{ route('login') }}" class="hidden md:inline-flex items-center gap-2 h-9 px-4 rounded-lg text-sm font-medium text-gray-600 border border-gray-200 hover:bg-gray-50 hover:text-gray-800 transition-colors"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 00-4-4H9a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>เข้าสู่ระบบ</a>
+                    <a href="{{ route('login') }}" class="hidden md:inline-flex items-center gap-2 h-9 px-4 rounded-lg text-sm font-medium text-gray-600 border border-gray-200 hover:bg-gray-50 hover:text-gray-800 transition-colors"><x-heroicon-o-user class="h-4 w-4" />เข้าสู่ระบบ</a>
                 @endauth
                 {{-- Mobile Menu Toggle --}}
                 <button wire:click="$toggle('isMenuOpen')" class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors" title="เมนู">
-                    @if($isMenuOpen)<svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                    @else<svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>@endif
+                    @if($isMenuOpen)<x-heroicon-o-x-mark class="h-5 w-5" />
+                    @else<x-heroicon-o-bars-3 class="h-5 w-5" />@endif
                 </button>
             </div>
         </div>
@@ -151,9 +151,9 @@
                 <div class="flex items-center">
                     <div class="relative" x-data="{ open: false, timer: null }" @mouseenter="clearTimeout(timer); open = true" @mouseleave="timer = setTimeout(() => open = false, 150)">
                         <button class="flex items-center gap-2 text-sm font-medium px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">
-                            <svg class="h-4 w-4 text-gray-600" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                            <x-heroicon-o-bars-3 class="h-4 w-4 text-gray-600" />
                             <span>หมวดหมู่สินค้า</span>
-                            <svg class="h-3.5 w-3.5 text-gray-400 transition-transform duration-200" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+                            <x-heroicon-o-chevron-down class="h-3.5 w-3.5 text-gray-400 transition-transform duration-200" x-bind:class="open ? 'rotate-180' : ''" />
                         </button>
                         <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-1" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute top-full left-0 z-50" style="display:none">
                             <div class="pt-2">
@@ -166,15 +166,15 @@
                                             <p class="font-medium truncate">{{ $cat->name }}</p>
                                             @if($cat->products_count > 0)<p class="text-xs text-gray-400 mt-0.5">{{ $cat->products_count }} สินค้า</p>@endif
                                         </div>
-                                        <svg class="h-4 w-4 text-gray-300 group-hover:text-gray-500 transition-colors shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+                                        <x-heroicon-o-chevron-right class="h-4 w-4 text-gray-300 group-hover:text-gray-500 transition-colors shrink-0" />
                                     </a>
                                 @endforeach
                                 @if($categories->count() > 0)
                                     <div class="border-t border-gray-100 my-1.5 mx-4"></div>
                                     <a href="{{ route('products') }}" class="flex items-center gap-3.5 px-5 py-3 text-sm font-semibold text-gray-800 hover:bg-gray-50 transition-colors group">
-                                        <span class="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center"><svg class="h-4 w-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></span>
+                                        <span class="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center"><x-heroicon-o-cube class="h-4 w-4 text-white" /></span>
                                         ดูสินค้าทั้งหมด
-                                        <svg class="h-4 w-4 text-gray-400 ml-auto shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                                        <x-heroicon-o-arrow-right class="h-4 w-4 text-gray-400 ml-auto shrink-0" />
                                     </a>
                                 @endif
                             </div>
@@ -191,7 +191,7 @@
                     <div class="relative" x-data="{ open: false, timer: null }" @mouseenter="clearTimeout(timer); open = true" @mouseleave="timer = setTimeout(() => open = false, 150)">
                         <button class="flex items-center gap-1.5 px-3 py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors">
                             <span>เกี่ยวกับร้าน</span>
-                            <svg class="h-3 w-3 text-gray-400 transition-transform duration-200" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+                            <x-heroicon-o-chevron-down class="h-3 w-3 text-gray-400 transition-transform duration-200" x-bind:class="open ? 'rotate-180' : ''" />
                         </button>
                         <div x-show="open" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 -translate-y-1" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute top-full right-0 z-50" style="display:none">
                             <div class="pt-2">
@@ -219,7 +219,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 space-y-3">
                 <div class="space-y-0.5">
                     <a href="{{ route('products') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                        <span class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center"><svg class="h-4 w-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></span>
+                        <span class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center"><x-heroicon-o-cube class="h-4 w-4 text-gray-500" /></span>
                         สินค้าทั้งหมด
                     </a>
                     @foreach($categories as $cat)
@@ -236,20 +236,20 @@
                 <div class="border-t border-gray-100 pt-3 space-y-0.5">
                     <p class="px-3 pb-1 text-[11px] font-semibold uppercase tracking-wider text-gray-400">เกี่ยวกับร้าน</p>
                     <a href="{{ route('about') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
-                        <svg class="h-4 w-4 text-gray-400 ml-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>รายละเอียดร้าน
+                        <x-heroicon-o-information-circle class="h-4 w-4 text-gray-400 ml-0.5" />รายละเอียดร้าน
                     </a>
                     <a href="{{ route('how-to-order') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
-                        <svg class="h-4 w-4 text-gray-400 ml-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="m9 12 2 2 4-4"/></svg>วิธีการสั่งซื้อ
+                        <x-heroicon-o-clipboard-document-check class="h-4 w-4 text-gray-400 ml-0.5" />วิธีการสั่งซื้อ
                     </a>
                     <a href="{{ route('faq') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
-                        <svg class="h-4 w-4 text-gray-400 ml-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3m.08 4h.01"/></svg>คำถามที่พบบ่อย
+                        <x-heroicon-o-question-mark-circle class="h-4 w-4 text-gray-400 ml-0.5" />คำถามที่พบบ่อย
                     </a>
                     <a href="#footer" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
-                        <svg class="h-4 w-4 text-gray-400 ml-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>ติดต่อร้านค้า
+                        <x-heroicon-o-phone class="h-4 w-4 text-gray-400 ml-0.5" />ติดต่อร้านค้า
                     </a>
                     @auth
                         <a href="{{ route('account.orders') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
-                            <svg class="h-4 w-4 text-gray-400 ml-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>การสั่งซื้อของฉัน
+                            <x-heroicon-o-cube class="h-4 w-4 text-gray-400 ml-0.5" />การสั่งซื้อของฉัน
                         </a>
                     @endauth
                 </div>
@@ -267,11 +267,11 @@
                                 <p class="text-xs text-gray-500">{{ $authUser->email }}</p>
                             </div>
                         </a>
-                        <a href="{{ route('account.wishlist') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"><svg class="h-4 w-4 text-gray-400 ml-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>รายการโปรด@if($wishlistCount > 0)<span class="bg-red-100 text-red-600 text-[10px] font-semibold px-1.5 py-0.5 rounded-full">{{ $wishlistCount }}</span>@endif</a>
+                        <a href="{{ route('account.wishlist') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"><x-heroicon-o-heart class="h-4 w-4 text-gray-400 ml-0.5" />รายการโปรด@if($wishlistCount > 0)<span class="bg-red-100 text-red-600 text-[10px] font-semibold px-1.5 py-0.5 rounded-full">{{ $wishlistCount }}</span>@endif</a>
                         @if($authUser->role === 'admin')
-                            <a href="/admin" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"><svg class="h-4 w-4 text-gray-400 ml-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>แผงควบคุมแอดมิน</a>
+                            <a href="/admin" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"><x-heroicon-o-shield-check class="h-4 w-4 text-gray-400 ml-0.5" />แผงควบคุมแอดมิน</a>
                         @endif
-                        <button wire:click="logout" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 transition-colors w-full"><svg class="h-4 w-4 ml-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>ออกจากระบบ</button>
+                        <button wire:click="logout" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 transition-colors w-full"><x-heroicon-o-arrow-right-on-rectangle class="h-4 w-4 ml-0.5" />ออกจากระบบ</button>
                     @else
                         <div class="flex gap-2 px-3">
                             <a href="{{ route('login') }}" class="flex-1"><button class="w-full py-2.5 px-4 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">เข้าสู่ระบบ</button></a>

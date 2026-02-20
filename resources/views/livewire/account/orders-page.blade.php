@@ -27,12 +27,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="flex items-center gap-2 text-sm text-white/70 mb-4">
                 <a href="{{ route('account') }}" class="hover:text-white transition-colors">บัญชีของฉัน</a>
-                <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+                <x-heroicon-o-chevron-right class="h-3 w-3" />
                 <span class="text-white font-medium">คำสั่งซื้อ</span>
             </div>
             <div class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
-                    <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                    <x-heroicon-o-cube class="h-6 w-6 text-white" />
                 </div>
                 <div>
                     <h1 class="text-xl font-bold text-white">คำสั่งซื้อของฉัน</h1>
@@ -45,7 +45,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         @if($orders->count() === 0)
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 text-center py-16">
-                <svg class="h-12 w-12 mx-auto text-gray-300 mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                <x-heroicon-o-cube class="h-12 w-12 mx-auto text-gray-300 mb-3" />
                 <h2 class="font-bold mb-1">ยังไม่มีคำสั่งซื้อ</h2>
                 <p class="text-sm text-gray-500 mb-5">เริ่มช้อปปิ้งเลย!</p>
                 <a href="{{ route('products') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
@@ -69,7 +69,7 @@
                                 @if($order->status === 'awaiting_payment' && $order->payment_deadline)
                                     <div x-data="paymentCountdown('{{ $order->payment_deadline->toIso8601String() }}')" class="mt-1">
                                         <div x-show="!expired" class="inline-flex items-center gap-1.5 px-2 py-1 bg-amber-50 border border-amber-200 rounded-full">
-                                            <svg class="h-3 w-3 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                            <x-heroicon-o-clock class="h-3 w-3 text-amber-500" />
                                             <span class="text-xs font-medium text-amber-700 font-mono"><span x-text="hours">00</span>:<span x-text="minutes">00</span>:<span x-text="seconds">00</span></span>
                                         </div>
                                         <div x-show="expired">
@@ -92,7 +92,7 @@
                                             <img src="{{ $item->product_image }}" alt="{{ $item->product_name }}" class="w-full h-full object-cover" />
                                         @else
                                             <div class="w-full h-full flex items-center justify-center text-gray-400">
-                                                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                                                <x-heroicon-o-cube class="h-5 w-5" />
                                             </div>
                                         @endif
                                     </div>
@@ -120,13 +120,13 @@
                             <div class="flex gap-2">
                                 @if($order->tracking_number)
                                     <a href="{{ route('account.orders.tracking', $order->id) }}" class="inline-flex items-center gap-1.5 px-3 py-2 text-sm border border-blue-200 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors font-medium">
-                                        <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
+                                        <x-heroicon-o-truck class="h-3.5 w-3.5" />
                                         ติดตามพัสดุ
                                     </a>
                                 @endif
                                 <a href="{{ route('account.orders.show', $order->id) }}" class="inline-flex items-center gap-1.5 px-4 py-2 text-sm border border-gray-200 rounded-lg hover:bg-white transition-colors font-medium">
                                     ดูรายละเอียด
-                                    <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+                                    <x-heroicon-o-chevron-right class="h-3.5 w-3.5" />
                                 </a>
                             </div>
                         </div>

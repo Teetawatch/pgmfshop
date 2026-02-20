@@ -40,25 +40,25 @@
             <div>
                 <nav class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden sticky top-24">
                     <a href="{{ route('account') }}" class="flex items-center gap-3 px-5 py-3.5 text-sm font-medium bg-orange-50 text-[#FF6512] border-l-3 border-[#FF6512]">
-                        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 00-4-4H9a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <x-heroicon-o-user class="h-4 w-4" />
                         ข้อมูลส่วนตัว
                     </a>
                     <a href="{{ route('account.orders') }}" class="flex items-center gap-3 px-5 py-3.5 text-sm text-gray-600 hover:bg-gray-50 border-l-3 border-transparent hover:text-gray-900 transition-colors">
-                        <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                        <x-heroicon-o-cube class="h-4 w-4 text-gray-400" />
                         คำสั่งซื้อ
                     </a>
                     <a href="{{ route('account.addresses') }}" class="flex items-center gap-3 px-5 py-3.5 text-sm text-gray-600 hover:bg-gray-50 border-l-3 border-transparent hover:text-gray-900 transition-colors">
-                        <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <x-heroicon-o-map-pin class="h-4 w-4 text-gray-400" />
                         ที่อยู่จัดส่ง
                     </a>
                     @if($user->role === 'admin')
                         <a href="/admin" class="flex items-center gap-3 px-5 py-3.5 text-sm text-gray-600 hover:bg-gray-50 border-l-3 border-transparent hover:text-gray-900 transition-colors">
-                            <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                            <x-heroicon-o-shield-check class="h-4 w-4 text-gray-400" />
                             แอดมิน
                         </a>
                     @endif
                     <button wire:click="logout" class="flex items-center gap-3 px-5 py-3.5 text-sm text-red-500 hover:bg-red-50 border-l-3 border-transparent w-full transition-colors">
-                        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                        <x-heroicon-o-arrow-right-on-rectangle class="h-4 w-4" />
                         ออกจากระบบ
                     </button>
                 </nav>
@@ -71,7 +71,7 @@
                     <div class="px-6 py-5 border-b border-gray-100">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-lg bg-[#FF6512] flex items-center justify-center">
-                                <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 00-4-4H9a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                <x-heroicon-o-user class="h-5 w-5 text-white" />
                             </div>
                             <h2 class="text-base font-bold text-gray-900">ข้อมูลส่วนตัว</h2>
                         </div>
@@ -113,7 +113,7 @@
                     <div class="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-lg bg-[#FF6512] flex items-center justify-center">
-                                <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <x-heroicon-o-map-pin class="h-5 w-5 text-white" />
                             </div>
                             <h2 class="text-base font-bold text-gray-900">ที่อยู่จัดส่ง</h2>
                         </div>
@@ -144,7 +144,7 @@
                             </div>
                         @else
                             <div class="text-center py-8 text-gray-400">
-                                <svg class="h-10 w-10 mx-auto mb-2 text-gray-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <x-heroicon-o-map-pin class="h-10 w-10 mx-auto mb-2 text-gray-300" />
                                 <p class="text-sm">ยังไม่มีที่อยู่จัดส่ง</p>
                             </div>
                         @endif

@@ -36,7 +36,7 @@
 </div>
 @else
 <div class="bg-white rounded-xl border p-12 text-center">
-    <svg class="mx-auto h-12 w-12 text-gray-300 mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v13.5A1.5 1.5 0 003.75 21z"/></svg>
+    <x-heroicon-o-photo class="mx-auto h-12 w-12 text-gray-300 mb-3" />
     <p class="text-sm text-gray-400">ยังไม่มีแบนเนอร์</p>
     <a href="{{ route('admin.banners.create') }}" class="inline-block mt-3 px-4 py-2 bg-teal-600 text-white rounded-lg text-sm hover:bg-teal-700">เพิ่มแบนเนอร์แรก</a>
 </div>

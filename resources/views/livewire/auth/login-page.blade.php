@@ -14,7 +14,7 @@
         <div class="bg-white/80 backdrop-blur-xl rounded-3xl border border-white/60 shadow-xl shadow-gray-200/50 p-6 sm:p-8">
             @if (session('error'))
                 <div class="mb-4 p-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm flex items-center gap-2">
-                    <svg class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                    <x-heroicon-o-x-circle class="h-4 w-4 shrink-0" />
                     {{ session('error') }}
                 </div>
             @endif
@@ -32,7 +32,7 @@
                             </svg>
                         </div>
                         <span class="flex-1 text-left">เข้าสู่ระบบด้วย Google</span>
-                        <svg class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-0 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        <x-heroicon-o-arrow-right class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-0 group-hover:translate-x-1" />
                     </a>
 
                     <a href="{{ route('social.redirect', 'facebook') }}" class="w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-gradient-to-r from-[#1877F2] to-[#0C63D4] text-white hover:from-[#166AE0] hover:to-[#0B59BF] transition-all duration-200 text-sm font-semibold shadow-md shadow-blue-500/25 hover:shadow-lg hover:shadow-blue-500/30 group">
@@ -42,7 +42,7 @@
                             </svg>
                         </div>
                         <span class="flex-1 text-left">เข้าสู่ระบบด้วย Facebook</span>
-                        <svg class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-0 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        <x-heroicon-o-arrow-right class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-0 group-hover:translate-x-1" />
                     </a>
 
                     <!-- Divider -->
@@ -55,15 +55,15 @@
 
                     <!-- Email -->
                     <button wire:click="setMode('email')" class="w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-gray-800 text-white hover:bg-gray-700 transition-all duration-200 text-sm font-semibold shadow-sm group">
-                        <svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <x-heroicon-o-envelope class="h-5 w-5 shrink-0" />
                         <span class="flex-1 text-left">เข้าสู่ระบบด้วย E-mail</span>
-                        <svg class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-0 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        <x-heroicon-o-arrow-right class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-0 group-hover:translate-x-1" />
                     </button>
                 </div>
             @else
                 <!-- Back to choose -->
                 <button wire:click="setMode('choose')" class="text-sm text-gray-500 hover:text-indigo-600 transition-colors mb-5 flex items-center gap-1.5 group">
-                    <svg class="h-4 w-4 transition-transform group-hover:-translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    <x-heroicon-o-arrow-left class="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
                     กลับไปเลือกวิธีเข้าสู่ระบบ
                 </button>
 
@@ -71,7 +71,7 @@
                     <div class="space-y-1.5">
                         <label class="text-sm font-semibold text-gray-700">อีเมล</label>
                         <div class="relative">
-                            <svg class="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <x-heroicon-o-envelope class="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                             <input type="email" wire:model="email" placeholder="your@email.com" required class="w-full pl-11 pr-4 py-3 border-2 border-gray-100 rounded-2xl text-sm bg-gray-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 transition-all duration-200" />
                         </div>
                     </div>
@@ -81,13 +81,13 @@
                             <button type="button" class="text-xs text-indigo-500 hover:text-indigo-700 hover:underline font-medium transition-colors">ลืมรหัสผ่าน?</button>
                         </div>
                         <div class="relative">
-                            <svg class="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                            <x-heroicon-o-lock-closed class="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                             <input type="{{ $showPassword ? 'text' : 'password' }}" wire:model="password" placeholder="••••••••" required class="w-full pl-11 pr-11 py-3 border-2 border-gray-100 rounded-2xl text-sm bg-gray-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 transition-all duration-200" />
                             <button type="button" wire:click="$toggle('showPassword')" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-indigo-500 transition-colors">
                                 @if($showPassword)
-                                    <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" x2="23" y1="1" y2="23"/></svg>
+                                    <x-heroicon-o-eye-slash class="h-4 w-4" />
                                 @else
-                                    <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                    <x-heroicon-o-eye class="h-4 w-4" />
                                 @endif
                             </button>
                         </div>
@@ -111,14 +111,14 @@
         <div class="flex items-center justify-center gap-5 mt-6 text-xs text-gray-400">
             <div class="flex items-center gap-1.5">
                 <div class="w-5 h-5 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center">
-                    <svg class="h-3 w-3 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                    <x-heroicon-o-shield-check class="h-3 w-3 text-white" />
                 </div>
                 <span class="font-medium text-gray-500">ปลอดภัย 100%</span>
             </div>
             <div class="w-1 h-1 rounded-full bg-gray-300"></div>
             <div class="flex items-center gap-1.5">
                 <div class="w-5 h-5 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
-                    <svg class="h-3 w-3 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                    <x-heroicon-o-lock-closed class="h-3 w-3 text-white" />
                 </div>
                 <span class="font-medium text-gray-500">เข้ารหัส SSL</span>
             </div>

@@ -8,31 +8,23 @@
     <div class="mb-8">
         <nav class="flex items-center space-x-2 text-sm" aria-label="Breadcrumb">
             <a href="{{ route('home') }}" class="flex items-center text-gray-500 hover:text-[hsl(var(--primary))] transition-colors duration-200">
-                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                </svg>
+                <x-heroicon-o-home class="w-4 h-4 mr-1" />
                 หน้าแรก
             </a>
             
-            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
+            <x-heroicon-o-chevron-right class="w-4 h-4 text-gray-400" />
             
             <a href="{{ route('products') }}" class="text-gray-500 hover:text-[hsl(var(--primary))] transition-colors duration-200">
                 สินค้า
             </a>
             
-            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
+            <x-heroicon-o-chevron-right class="w-4 h-4 text-gray-400" />
             
             <a href="{{ route('products', ['category' => $product->category->slug]) }}" class="text-gray-500 hover:text-[hsl(var(--primary))] transition-colors duration-200">
                 {{ $product->category->name }}
             </a>
             
-            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
+            <x-heroicon-o-chevron-right class="w-4 h-4 text-gray-400" />
             
             <span class="text-gray-900 font-medium">{{ $product->name }}</span>
         </nav>
@@ -158,29 +150,29 @@
                     @if($selectedSize || $selectedColor)
                         @if($currentVariantStock > 0)
                             <p class="text-xs text-green-600 mt-1.5 flex items-center gap-1">
-                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                <x-heroicon-s-check-circle class="w-3.5 h-3.5" />
                                 มีสินค้า (คงเหลือ {{ $currentVariantStock }} ชิ้น)
                             </p>
                         @else
                             <p class="text-xs text-red-500 mt-1.5 flex items-center gap-1">
-                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+                                <x-heroicon-s-x-circle class="w-3.5 h-3.5" />
                                 ตัวเลือกนี้สินค้าหมด
                             </p>
                         @endif
                     @else
                         <p class="text-xs text-gray-500 mt-1.5 flex items-center gap-1">
-                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                            <x-heroicon-s-information-circle class="w-3.5 h-3.5" />
                             กรุณาเลือกไซส์/สี เพื่อดูจำนวนสินค้าคงเหลือ
                         </p>
                     @endif
                 @elseif($product->stock > 0)
                     <p class="text-xs text-green-600 mt-1.5 flex items-center gap-1">
-                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        <x-heroicon-s-check-circle class="w-3.5 h-3.5" />
                         มีสินค้า (คงเหลือ {{ $product->stock }} ชิ้น)
                     </p>
                 @else
                     <p class="text-xs text-red-500 mt-1.5 flex items-center gap-1">
-                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+                        <x-heroicon-s-x-circle class="w-3.5 h-3.5" />
                         สินค้าหมด
                     </p>
                 @endif
@@ -190,7 +182,7 @@
             @if($product->product_type === 'book' && ($product->publisher || !empty($product->authors) || !empty($product->genres) || $product->pages))
             <div class="rounded-xl border border-blue-100 bg-blue-50/40 p-4">
                 <h3 class="text-sm font-semibold text-blue-800 flex items-center gap-1.5 mb-3">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+                    <x-heroicon-o-book-open class="w-4 h-4" />
                     ข้อมูลหนังสือ
                 </h3>
                 <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
@@ -254,7 +246,7 @@
                             @endif
                             @if($selectedSize === $size && !$sizeOutOfStock)
                                 <span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[hsl(var(--primary))] rounded-full flex items-center justify-center">
-                                    <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                    <x-heroicon-o-check class="w-2.5 h-2.5 text-white" />
                                 </span>
                             @endif
                         </button>
@@ -307,7 +299,7 @@
                             @endif
                             @if($selectedColor === $color && !$colorOutOfStock)
                                 <span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[hsl(var(--primary))] rounded-full flex items-center justify-center">
-                                    <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                    <x-heroicon-o-check class="w-2.5 h-2.5 text-white" />
                                 </span>
                             @endif
                         </button>
@@ -319,7 +311,7 @@
             <!-- Clothing: Material -->
             @if($product->isClothing() && $product->material)
             <div class="flex items-center gap-2 text-sm text-gray-600">
-                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"/></svg>
+                <x-heroicon-o-sparkles class="w-4 h-4 text-gray-400" />
                 <span class="text-gray-400">เนื้อผ้า:</span>
                 <span class="font-medium">{{ $product->material }}</span>
             </div>
@@ -350,11 +342,11 @@
                 <span class="text-sm font-semibold text-gray-800">จำนวน</span>
                 <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden">
                     <button wire:click="decrementQty" class="h-10 w-10 flex items-center justify-center hover:bg-gray-50 active:bg-gray-100 transition-colors {{ $quantity <= 1 ? 'opacity-40 cursor-not-allowed' : '' }}">
-                        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>
+                        <x-heroicon-o-minus class="h-4 w-4" />
                     </button>
                     <span class="w-12 text-center font-semibold text-gray-800 border-x border-gray-200">{{ $quantity }}</span>
                     <button wire:click="incrementQty" class="h-10 w-10 flex items-center justify-center hover:bg-gray-50 active:bg-gray-100 transition-colors {{ $quantity >= $currentVariantStock ? 'opacity-40 cursor-not-allowed' : '' }}">
-                        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></svg>
+                        <x-heroicon-o-plus class="h-4 w-4" />
                     </button>
                 </div>
             </div>
@@ -363,7 +355,7 @@
             @php $canAddToCart = $currentVariantStock > 0; @endphp
             <div class="flex gap-3">
                 <button wire:click="addToCart" wire:loading.attr="disabled" wire:target="addToCart" class="flex-1 flex items-center justify-center gap-2 py-3.5 bg-[hsl(var(--primary))] text-white rounded-xl font-semibold hover:opacity-90 active:scale-[0.98] transition-all {{ !$canAddToCart ? 'opacity-50 cursor-not-allowed' : '' }}" {{ !$canAddToCart ? 'disabled' : '' }}>
-                    <svg wire:loading.remove wire:target="addToCart" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 002 1.58h9.78a2 2 0 001.95-1.57l1.65-7.43H5.12"/></svg>
+                    <x-heroicon-o-shopping-cart wire:loading.remove wire:target="addToCart" class="h-5 w-5" />
                     <svg wire:loading wire:target="addToCart" class="h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
                     <span wire:loading.remove wire:target="addToCart">เพิ่มลงตะกร้า</span>
                     <span wire:loading wire:target="addToCart">กำลังเพิ่ม...</span>
@@ -381,15 +373,15 @@
             <!-- Features -->
             <div class="grid grid-cols-3 gap-3">
                 <div class="flex flex-col items-center gap-1.5 py-3 px-2 bg-gray-50 rounded-xl">
-                    <svg class="h-5 w-5 text-[hsl(var(--primary))]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
+                    <x-heroicon-o-truck class="h-5 w-5 text-[hsl(var(--primary))]" />
                     <span class="text-xs font-medium text-gray-700">จัดส่ง 1-3 วัน</span>
                 </div>
                 <div class="flex flex-col items-center gap-1.5 py-3 px-2 bg-gray-50 rounded-xl">
-                    <svg class="h-5 w-5 text-[hsl(var(--primary))]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <x-heroicon-o-shield-check class="h-5 w-5 text-[hsl(var(--primary))]" />
                     <span class="text-xs font-medium text-gray-700">สินค้าแท้ 100%</span>
                 </div>
                 <div class="flex flex-col items-center gap-1.5 py-3 px-2 bg-gray-50 rounded-xl">
-                    <svg class="h-5 w-5 text-[hsl(var(--primary))]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 14l-4 4m0 0l4 4m-4-4h11a4 4 0 000-8h-1"/></svg>
+                    <x-heroicon-o-arrow-uturn-left class="h-5 w-5 text-[hsl(var(--primary))]" />
                     <span class="text-xs font-medium text-gray-700">คืนใน 7 วัน</span>
                 </div>
             </div>
@@ -523,7 +515,7 @@
                     </div>
                 @else
                     <div class="text-center py-12">
-                        <svg class="h-12 w-12 mx-auto text-gray-300 mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/></svg>
+                        <x-heroicon-o-chat-bubble-left-right class="h-12 w-12 mx-auto text-gray-300 mb-3" />
                         <p class="text-gray-400 text-sm">ยังไม่มีรีวิว เป็นคนแรกที่รีวิวสินค้านี้!</p>
                     </div>
                 @endif

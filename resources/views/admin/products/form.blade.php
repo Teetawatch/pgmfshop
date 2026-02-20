@@ -30,11 +30,11 @@
                                     peer-checked:border-teal-500 peer-checked:bg-teal-50 peer-checked:text-teal-700
                                     border-gray-200 text-gray-500 hover:border-gray-300">
                                     @if($typeKey === 'book')
-                                        <svg class="w-5 h-5 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+                                        <x-heroicon-o-book-open class="w-5 h-5 mx-auto mb-1" />
                                     @elseif($typeKey === 'clothing')
-                                        <svg class="w-5 h-5 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+                                        <x-heroicon-o-shopping-bag class="w-5 h-5 mx-auto mb-1" />
                                     @else
-                                        <svg class="w-5 h-5 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
+                                        <x-heroicon-o-archive-box class="w-5 h-5 mx-auto mb-1" />
                                     @endif
                                     {{ $typeLabel }}
                                 </div>
@@ -109,7 +109,7 @@
                     <div class="space-y-4">
                         <hr class="border-gray-200">
                         <h3 class="text-sm font-semibold text-gray-800 flex items-center gap-2">
-                            <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+                            <x-heroicon-o-book-open class="w-4 h-4 text-teal-600" />
                             ข้อมูลหนังสือ
                         </h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -142,7 +142,7 @@
                     <div class="space-y-4">
                         <hr class="border-gray-200">
                         <h3 class="text-sm font-semibold text-gray-800 flex items-center gap-2">
-                            <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+                            <x-heroicon-o-shopping-bag class="w-4 h-4 text-teal-600" />
                             ข้อมูลเสื้อผ้า
                         </h3>
                         <div>
@@ -167,7 +167,7 @@
                             <div>
                                 <hr class="border-gray-200">
                                 <h4 class="text-sm font-semibold text-gray-800 flex items-center gap-2 mt-4 mb-3">
-                                    <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
+                                    <x-heroicon-o-archive-box class="w-4 h-4 text-purple-600" />
                                     สต็อกแต่ละตัวเลือก
                                     <span class="text-xs font-normal text-gray-400" x-text="'(' + variantGrid.length + ' ตัวเลือก)'"></span>
                                 </h4>
@@ -210,9 +210,7 @@
                     <div id="upload-area" class="relative border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-teal-400 transition-colors cursor-pointer">
                         <input type="file" name="upload_images[]" id="upload_images" multiple accept="image/*"
                             class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-                        <svg class="mx-auto h-10 w-10 text-gray-400 mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.338-2.32 3.75 3.75 0 013.57 5.495A3.001 3.001 0 0118 19.5H6.75z"/>
-                        </svg>
+                        <x-heroicon-o-cloud-arrow-up class="mx-auto h-10 w-10 text-gray-400 mb-2" />
                         <p class="text-sm text-gray-500">คลิกหรือลากไฟล์มาวาง</p>
                         <p class="text-xs text-gray-400 mt-1">รองรับ JPG, PNG, GIF, WebP (สูงสุด 2MB ต่อไฟล์)</p>
                     </div>

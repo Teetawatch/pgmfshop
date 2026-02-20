@@ -71,7 +71,7 @@
                                         class="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-gray-50 transition-colors"
                                     >
                                         <span class="text-sm font-medium text-gray-700 pr-4">{{ $item['q'] }}</span>
-                                        <svg class="h-4 w-4 text-gray-400 shrink-0 transition-transform duration-200" :class="{ 'rotate-180': open === '{{ $key }}' }" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                                        <x-heroicon-o-chevron-down class="h-4 w-4 text-gray-400 shrink-0 transition-transform duration-200" x-bind:class="{ 'rotate-180': open === '{{ $key }}' }" />
                                     </button>
                                     <div x-show="open === '{{ $key }}'" x-collapse class="px-5 pb-4">
                                         <p class="text-sm text-gray-500 leading-relaxed">{{ $item['a'] }}</p>
@@ -90,11 +90,11 @@
                 <p class="text-sm text-gray-500 mb-4">ติดต่อทีมงานของเราได้ทุกวัน 09:00 - 21:00 น.</p>
                 <div class="flex items-center justify-center gap-6 text-sm text-gray-600">
                     <span class="inline-flex items-center gap-2">
-                        <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                        <x-heroicon-o-phone class="h-4 w-4 text-gray-400" />
                         02-123-4567
                     </span>
                     <span class="inline-flex items-center gap-2">
-                        <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <x-heroicon-o-envelope class="h-4 w-4 text-gray-400" />
                         support@pgmfshop.com
                     </span>
                 </div>

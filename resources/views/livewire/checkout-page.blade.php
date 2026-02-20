@@ -4,7 +4,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
-                    <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 00-1-1H5a2 2 0 000 4h15a1 1 0 011 1v4h-3a2 2 0 000 4h3a1 1 0 001-1v-2.5"/><path d="M3 5v14a2 2 0 002 2h15a1 1 0 001-1v-4"/></svg>
+                    <x-heroicon-o-wallet class="h-6 w-6 text-white" />
                 </div>
                 <div>
                     <h1 class="text-xl font-bold text-white">ชำระเงิน</h1>
@@ -17,7 +17,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
     @if(count($items) === 0 && !$orderId)
         <div class="text-center py-16">
-            <svg class="h-16 w-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            <x-heroicon-o-cube class="h-16 w-16 mx-auto text-gray-400 mb-4" />
             <h1 class="text-2xl font-bold mb-2">ไม่มีสินค้าในตะกร้า</h1>
             <p class="text-gray-500 mb-6">เพิ่มสินค้าลงตะกร้าก่อนดำเนินการชำระเงิน</p>
             <a href="{{ route('products') }}"><button class="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">เลือกซื้อสินค้า</button></a>
@@ -27,7 +27,7 @@
         <div class="max-w-lg mx-auto py-12">
             <div class="text-center mb-8">
                 <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg class="h-10 w-10 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <x-heroicon-o-check-circle class="h-10 w-10 text-green-500" />
                 </div>
                 <h1 class="text-3xl font-bold mb-2">สั่งซื้อสำเร็จ!</h1>
                 <p class="text-gray-500">หมายเลขคำสั่งซื้อ</p>
@@ -38,9 +38,9 @@
                 <div class="flex items-center justify-center gap-2 mb-4">
                     <div class="w-8 h-8 {{ $paymentMethod === 'promptpay' ? 'bg-blue-600' : 'bg-orange-500' }} rounded-lg flex items-center justify-center">
                         @if($paymentMethod === 'promptpay')
-                            <svg class="h-4 w-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" x2="12.01" y1="18" y2="18"/></svg>
+                            <x-heroicon-o-device-phone-mobile class="h-4 w-4 text-white" />
                         @else
-                            <svg class="h-4 w-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg>
+                            <x-heroicon-o-building-library class="h-4 w-4 text-white" />
                         @endif
                     </div>
                     <h3 class="font-semibold text-lg">{{ $paymentMethod === 'promptpay' ? 'ชำระผ่าน PromptPay' : 'โอนเงินผ่านธนาคาร' }}</h3>
@@ -67,9 +67,9 @@
                         @foreach($slipVerification['checks'] as $check)
                             <div class="flex items-center gap-2 text-sm">
                                 @if($check['passed'])
-                                    <svg class="h-4 w-4 text-green-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                    <x-heroicon-o-check-circle class="h-4 w-4 text-green-500 shrink-0" />
                                 @else
-                                    <svg class="h-4 w-4 text-red-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" x2="9" y1="9" y2="15"/><line x1="9" x2="15" y1="9" y2="15"/></svg>
+                                    <x-heroicon-o-x-circle class="h-4 w-4 text-red-500 shrink-0" />
                                 @endif
                                 <span class="{{ $check['passed'] ? 'text-gray-600' : 'text-red-600' }}">{{ $check['detail'] }}</span>
                             </div>
@@ -81,7 +81,7 @@
                 @if($slipVerification && ($slipVerification['percentage'] ?? 0) >= 80)
                     <div class="bg-green-50 rounded-lg p-4 border border-green-200 text-center">
                         <div class="flex items-center justify-center gap-2 mb-1">
-                            <svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            <x-heroicon-o-check-circle class="h-5 w-5 text-green-500" />
                             <p class="font-medium text-green-700">สลิปผ่านการตรวจสอบอัตโนมัติ</p>
                         </div>
                         <p class="text-sm text-green-600">ระบบยืนยันการชำระเงินเรียบร้อยแล้ว</p>
@@ -89,7 +89,7 @@
                 @else
                     <div class="bg-amber-50 rounded-lg p-4 border border-amber-200 text-center">
                         <div class="flex items-center justify-center gap-2 mb-1">
-                            <svg class="h-5 w-5 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            <x-heroicon-o-clock class="h-5 w-5 text-amber-500" />
                             <p class="font-medium text-amber-700">รอทีมงานตรวจสอบสลิป</p>
                         </div>
                         <p class="text-sm text-amber-600">สลิปอยู่ระหว่างการตรวจสอบโดยทีมงาน</p>
@@ -109,12 +109,12 @@
         {{-- Step Indicator --}}
         <div class="flex items-center justify-center gap-2 mb-8">
             <button wire:click="goToStep1" class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all {{ $step >= 1 ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-500' }}">
-                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <x-heroicon-o-map-pin class="h-4 w-4" />
                 ที่อยู่ & จัดส่ง
             </button>
             <div class="w-8 h-0.5 {{ $step > 1 ? 'bg-blue-600' : 'bg-gray-200' }}"></div>
             <span class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium {{ $step >= 2 ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-500' }}">
-                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 00-1-1H5a2 2 0 000 4h15a1 1 0 011 1v4h-3a2 2 0 000 4h3a1 1 0 001-1v-2.5"/><path d="M3 5v14a2 2 0 002 2h15a1 1 0 001-1v-4"/></svg>
+                <x-heroicon-o-wallet class="h-4 w-4" />
                 ชำระเงิน
             </span>
         </div>
@@ -125,7 +125,7 @@
                     <div class="space-y-6">
                         {{-- Address --}}
                         <div class="bg-white rounded-lg border">
-                            <div class="p-4 border-b"><h2 class="font-bold flex items-center gap-2"><svg class="h-5 w-5 text-[hsl(var(--primary))]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> ที่อยู่จัดส่ง</h2></div>
+                            <div class="p-4 border-b"><h2 class="font-bold flex items-center gap-2"><x-heroicon-o-map-pin class="h-5 w-5 text-[hsl(var(--primary))]" /> ที่อยู่จัดส่ง</h2></div>
                             <div class="p-4 space-y-4">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="space-y-1.5">
@@ -162,7 +162,7 @@
                         <div class="bg-white rounded-lg border">
                             <div class="p-4 border-b">
                                 <h2 class="font-bold flex items-center gap-2">
-                                    <svg class="h-5 w-5 text-[hsl(var(--primary))]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
+                                    <x-heroicon-o-truck class="h-5 w-5 text-[hsl(var(--primary))]" />
                                     การจัดส่ง
                                 </h2>
                             </div>
@@ -206,16 +206,16 @@
                     <div class="space-y-6">
                         {{-- Payment Methods --}}
                         <div class="bg-white rounded-lg border">
-                            <div class="p-4 border-b"><h2 class="font-bold flex items-center gap-2"><svg class="h-5 w-5 text-[hsl(var(--primary))]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 00-1-1H5a2 2 0 000 4h15a1 1 0 011 1v4h-3a2 2 0 000 4h3a1 1 0 001-1v-2.5"/><path d="M3 5v14a2 2 0 002 2h15a1 1 0 001-1v-4"/></svg> เลือกวิธีชำระเงิน</h2></div>
+                            <div class="p-4 border-b"><h2 class="font-bold flex items-center gap-2"><x-heroicon-o-wallet class="h-5 w-5 text-[hsl(var(--primary))]" /> เลือกวิธีชำระเงิน</h2></div>
                             <div class="p-4 space-y-3">
                                 @foreach([['promptpay', 'PromptPay (QR Code)', 'ชำระผ่าน PromptPay พร้อมแนบสลิป', 'bg-blue-600'], ['bank_transfer', 'โอนเงินผ่านธนาคาร', 'โอนเงินแล้วแนบสลิป', 'bg-orange-500']] as $method)
                                     <label class="flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all {{ $paymentMethod === $method[0] ? 'border-[hsl(var(--primary))] bg-[hsl(var(--primary))]/5 shadow-sm' : 'border-transparent bg-gray-50 hover:bg-gray-100' }}">
                                         <input type="radio" wire:model.live="paymentMethod" value="{{ $method[0] }}" class="accent-[hsl(var(--primary))] h-4 w-4" />
                                         <div class="w-10 h-10 {{ $method[3] }} rounded-xl flex items-center justify-center">
                                             @if($method[0] === 'promptpay')
-                                                <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" x2="12.01" y1="18" y2="18"/></svg>
+                                                <x-heroicon-o-device-phone-mobile class="h-5 w-5 text-white" />
                                             @else
-                                                <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg>
+                                                <x-heroicon-o-building-library class="h-5 w-5 text-white" />
                                             @endif
                                         </div>
                                         <div>
@@ -247,9 +247,7 @@
                                             onclick="downloadImage('{{ vite_image('paymentbiller.png') }}', 'PGMF-Payment-QR.png')"
                                             class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
                                         >
-                                            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-                                            </svg>
+                                            <x-heroicon-o-arrow-down-tray class="h-4 w-4" />
                                             บันทึกรูปภาพ QR Code
                                         </button>
                                     </div>
@@ -287,7 +285,7 @@
                         @if($paymentMethod === 'bank_transfer')
                             <div class="bg-orange-50/30 rounded-lg border border-orange-200 p-5 space-y-4">
                                 <div class="flex items-center gap-2 mb-1">
-                                    <svg class="h-4 w-4 text-orange-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg>
+                                    <x-heroicon-o-building-library class="h-4 w-4 text-orange-500" />
                                     <p class="font-semibold text-orange-700">บัญชีธนาคาร</p>
                                 </div>
                                 @php
@@ -314,7 +312,7 @@
                         <div class="bg-white rounded-lg border">
                             <div class="p-4 border-b">
                                 <h2 class="font-bold flex items-center gap-2">
-                                    <svg class="h-5 w-5 text-[hsl(var(--primary))]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                                    <x-heroicon-o-arrow-up-tray class="h-5 w-5 text-[hsl(var(--primary))]" />
                                     แนบสลิปการชำระเงิน *
                                 </h2>
                                 <p class="text-sm text-gray-500 mt-1">อัปโหลดรูปสลิปหลังชำระเงิน (รองรับ JPG, PNG, WEBP ไม่เกิน 5MB)</p>
@@ -329,7 +327,7 @@
                                                     <img src="{{ $paymentSlip->temporaryUrl() }}" alt="สลิป" class="w-full h-auto" />
                                                 </div>
                                                 <div class="flex items-center justify-center gap-2 text-green-600">
-                                                    <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                                    <x-heroicon-o-check-circle class="h-5 w-5" />
                                                     <span class="font-medium">อัปโหลดสลิปแล้ว</span>
                                                 </div>
                                                 <p class="text-xs text-gray-500">คลิกเพื่อเปลี่ยนรูป</p>
@@ -337,7 +335,7 @@
                                         @else
                                             <div class="space-y-2">
                                                 <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
-                                                    <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                                                    <x-heroicon-o-arrow-up-tray class="h-6 w-6 text-gray-400" />
                                                 </div>
                                                 <p class="font-medium text-gray-700">ลากไฟล์หรือคลิกเพื่อเลือกรูปสลิป</p>
                                                 <p class="text-sm text-gray-400">JPG, PNG, WEBP (ไม่เกิน 5MB)</p>
@@ -354,7 +352,7 @@
 
                                 @error('paymentSlip')
                                     <div class="mt-3 flex items-center gap-2 text-sm text-red-600">
-                                        <svg class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+                                        <x-heroicon-o-exclamation-circle class="h-4 w-4 shrink-0" />
                                         <span>{{ $message }}</span>
                                     </div>
                                 @enderror
@@ -362,7 +360,7 @@
                                 {{-- Transfer Info --}}
                                 <div class="mt-4 p-4 bg-gray-50 rounded-xl border border-gray-200 space-y-4">
                                     <h3 class="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                                        <svg class="h-4 w-4 text-[hsl(var(--primary))]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                        <x-heroicon-o-pencil-square class="h-4 w-4 text-[hsl(var(--primary))]" />
                                         ข้อมูลการโอนเงิน *
                                     </h3>
                                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -391,7 +389,7 @@
                                 </div>
 
                                 <div class="mt-3 flex items-start gap-2 p-3 bg-amber-50 rounded-lg border border-amber-200 text-sm">
-                                    <svg class="h-4 w-4 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+                                    <x-heroicon-o-exclamation-circle class="h-4 w-4 text-amber-500 mt-0.5 shrink-0" />
                                     <p class="text-amber-700">สลิปจะถูกตรวจสอบโดยทีมงาน หากสลิปไม่ถูกต้องอาจถูกยกเลิกคำสั่งซื้อ</p>
                                 </div>
                             </div>
@@ -399,14 +397,14 @@
 
                         <div class="flex gap-3">
                             <button wire:click="goToStep1" class="flex-1 py-3 border border-gray-200 rounded-md font-medium hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
-                                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <x-heroicon-o-map-pin class="h-4 w-4" />
                                 ย้อนกลับ
                             </button>
                             <button wire:click="placeOrder" class="flex-1 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center gap-2" wire:loading.attr="disabled">
                                 <span wire:loading wire:target="placeOrder"><svg class="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg></span>
                                 <span wire:loading wire:target="placeOrder">กำลังสั่งซื้อ...</span>
                                 <span wire:loading.remove wire:target="placeOrder">
-                                    <svg class="h-4 w-4 inline" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                                    <x-heroicon-o-shield-check class="h-4 w-4 inline" />
                                     ยืนยันสั่งซื้อ (฿{{ number_format($total, 0) }})
                                 </span>
                             </button>
@@ -419,7 +417,7 @@
             <div>
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-24 space-y-4">
                     <h2 class="font-bold flex items-center gap-2 text-gray-900">
-                        <svg class="h-5 w-5 text-[#FF6512]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                        <x-heroicon-o-cube class="h-5 w-5 text-[#FF6512]" />
                         สรุปคำสั่งซื้อ
                     </h2>
                     <div class="max-h-64 overflow-y-auto space-y-3 pr-1">
@@ -461,7 +459,7 @@
                         <span class="text-[#FF6512]">฿{{ number_format($total, 0) }}</span>
                     </div>
                     <div class="flex items-center gap-2 text-xs text-gray-500 pt-1">
-                        <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                        <x-heroicon-o-shield-check class="h-3.5 w-3.5" />
                         <span>ชำระเงินปลอดภัย 100%</span>
                     </div>
                 </div>

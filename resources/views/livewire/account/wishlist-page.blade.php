@@ -12,14 +12,14 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="flex items-center gap-2 text-sm text-white/70 mb-4">
                 <a href="{{ route('home') }}" class="hover:text-white transition-colors">หน้าแรก</a>
-                <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+                <x-heroicon-o-chevron-right class="h-3 w-3" />
                 <a href="{{ route('account') }}" class="hover:text-white transition-colors">บัญชีของฉัน</a>
-                <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+                <x-heroicon-o-chevron-right class="h-3 w-3" />
                 <span class="text-white font-medium">รายการโปรด</span>
             </div>
             <div class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
-                    <svg class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                    <x-heroicon-o-heart class="h-6 w-6 text-white" />
                 </div>
                 <div>
                     <h1 class="text-xl font-bold text-white">รายการโปรด</h1>
@@ -100,7 +100,7 @@
                         <div class="flex gap-2 mt-2 pt-2 border-t border-gray-100">
                             @if(!$isOutOfStock)
                                 <button wire:click="addToCart({{ $product->id }})" class="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 bg-gray-800 text-white text-xs font-medium rounded-lg hover:bg-gray-700 transition-colors">
-                                    <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 002 1.58h9.78a2 2 0 001.95-1.57l1.65-7.43H5.12"/></svg>
+                                    <x-heroicon-o-shopping-cart class="h-3.5 w-3.5" />
                                     เพิ่มลงตะกร้า
                                 </button>
                             @else
@@ -109,7 +109,7 @@
                                 </span>
                             @endif
                             <button wire:click="removeFromWishlist({{ $product->id }})" wire:confirm="ต้องการนำออกจากรายการโปรด?" class="flex items-center justify-center h-9 w-9 rounded-lg border border-gray-200 text-gray-400 hover:text-red-500 hover:border-red-200 hover:bg-red-50 transition-colors" title="นำออกจากรายการโปรด">
-                                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+                                <x-heroicon-o-trash class="h-4 w-4" />
                             </button>
                         </div>
                     </div>
@@ -120,14 +120,12 @@
         {{-- Empty State --}}
         <div class="text-center py-16">
             <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
-                <svg class="h-10 w-10 text-gray-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
-                </svg>
+                <x-heroicon-o-heart class="h-10 w-10 text-gray-300" />
             </div>
             <h3 class="text-lg font-semibold text-gray-700 mb-1">ยังไม่มีรายการโปรด</h3>
             <p class="text-sm text-gray-500 mb-6">กดปุ่มหัวใจบนสินค้าที่สนใจเพื่อบันทึกไว้ดูภายหลัง</p>
             <a href="{{ route('products') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors">
-                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                <x-heroicon-o-cube class="h-4 w-4" />
                 เลือกซื้อสินค้า
             </a>
         </div>

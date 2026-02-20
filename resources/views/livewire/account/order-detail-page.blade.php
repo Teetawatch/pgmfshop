@@ -38,9 +38,9 @@
             <!-- Breadcrumb -->
             <div class="flex items-center gap-2 text-sm text-white/70 mb-4">
                 <a href="{{ route('account') }}" class="hover:text-white transition-colors">บัญชีของฉัน</a>
-                <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+                <x-heroicon-o-chevron-right class="h-3 w-3" />
                 <a href="{{ route('account.orders') }}" class="hover:text-white transition-colors">คำสั่งซื้อ</a>
-                <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+                <x-heroicon-o-chevron-right class="h-3 w-3" />
                 <span class="text-white font-medium">{{ $order->order_number }}</span>
             </div>
             
@@ -48,7 +48,7 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
-                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                        <x-heroicon-o-clipboard-document-list class="h-6 w-6 text-white" />
                     </div>
                     <div>
                         <h1 class="text-xl font-bold text-white">{{ $order->order_number }}</h1>
@@ -70,7 +70,7 @@
         @if($isExpired)
             <div class="bg-red-50 border border-red-200 rounded-xl p-6 mb-6 flex items-start gap-4">
                 <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center shrink-0">
-                    <svg class="h-5 w-5 text-red-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <x-heroicon-o-clock class="h-5 w-5 text-red-600" />
                 </div>
                 <div>
                     <p class="text-base font-semibold text-red-800">ไม่ชำระเงินตามเวลาที่กำหนด</p>
@@ -84,7 +84,7 @@
             <div x-data="paymentCountdown('{{ $order->payment_deadline->toIso8601String() }}')" class="bg-amber-50 border border-amber-200 rounded-xl p-6 mb-6">
                 <div class="flex items-start gap-4">
                     <div class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center shrink-0">
-                        <svg class="h-5 w-5 text-amber-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <x-heroicon-o-clock class="h-5 w-5 text-amber-600" />
                     </div>
                     <div class="flex-1">
                         <p class="text-base font-semibold text-amber-800">กรุณาชำระเงินภายในเวลาที่กำหนด</p>
@@ -146,7 +146,7 @@
                     <div class="px-6 py-5 border-b border-gray-100">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-lg bg-[#FF6512] flex items-center justify-center">
-                                <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                                <x-heroicon-o-cube class="h-5 w-5 text-white" />
                             </div>
                             <div>
                                 <h2 class="text-base font-bold text-gray-900">รายการสินค้า</h2>
@@ -162,7 +162,7 @@
                                         <img src="{{ $item->product_image }}" alt="{{ $item->product_name }}" class="w-full h-full object-cover" />
                                     @else
                                         <div class="w-full h-full flex items-center justify-center text-gray-400">
-                                            <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                                            <x-heroicon-o-cube class="h-8 w-8" />
                                         </div>
                                     @endif
                                 </div>
@@ -172,13 +172,13 @@
                                         <div class="flex flex-wrap gap-2 mt-2">
                                             @if(!empty($item->options['size']))
                                                 <span class="inline-flex items-center px-2 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-md">
-                                                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                                                    <x-heroicon-o-square-2-stack class="w-3 h-3 mr-1" />
                                                     {{ $item->options['size'] }}
                                                 </span>
                                             @endif
                                             @if(!empty($item->options['color']))
                                                 <span class="inline-flex items-center px-2 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-md">
-                                                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 01-4 4z"/></svg>
+                                                    <x-heroicon-o-swatch class="w-3 h-3 mr-1" />
                                                     {{ $item->options['color'] }}
                                                 </span>
                                             @endif
@@ -202,7 +202,7 @@
                     <div class="px-6 py-5 border-b border-gray-100">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-lg bg-[#FF6512] flex items-center justify-center">
-                                <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <x-heroicon-o-map-pin class="h-5 w-5 text-white" />
                             </div>
                             <div>
                                 <h3 class="text-base font-bold text-gray-900">ที่อยู่จัดส่ง</h3>
@@ -213,7 +213,7 @@
                     <div class="p-6 space-y-3">
                         <div class="flex items-start gap-3">
                             <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center shrink-0">
-                                <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                                <x-heroicon-o-user class="h-5 w-5 text-gray-600" />
                             </div>
                             <div>
                                 <p class="text-base font-semibold text-gray-900">{{ $shippingAddr['name'] ?? '-' }}</p>
@@ -234,7 +234,7 @@
                         <div class="px-6 py-5 border-b border-gray-100">
                             <div class="flex items-center gap-3">
                                 <div class="w-10 h-10 rounded-lg bg-[#FF6512] flex items-center justify-center">
-                                    <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
+                                    <x-heroicon-o-truck class="h-5 w-5 text-white" />
                                 </div>
                                 <div>
                                     <h3 class="text-base font-bold text-gray-900">ข้อมูลจัดส่ง</h3>
@@ -255,11 +255,11 @@
                             @endif
                             <div class="flex flex-col gap-3">
                                 <a href="{{ route('account.orders.tracking', $order->id) }}" class="flex items-center justify-center gap-2 py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
-                                    <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
+                                    <x-heroicon-o-truck class="h-5 w-5" />
                                     ติดตามพัสดุ
                                 </a>
                                 <a href="https://track.thailandpost.co.th/?trackNumber={{ urlencode($order->tracking_number) }}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 py-3 px-4 border border-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-colors">
-                                    <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                                    <x-heroicon-o-globe-alt class="h-5 w-5" />
                                     เช็คที่ไปรษณีย์ไทย
                                 </a>
                             </div>
@@ -272,7 +272,7 @@
                     <div class="px-6 py-5 border-b border-gray-100">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-lg bg-[#FF6512] flex items-center justify-center">
-                                <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                                <x-heroicon-o-credit-card class="h-5 w-5 text-white" />
                             </div>
                             <div>
                                 <h3 class="text-base font-bold text-gray-900">สรุปการชำระเงิน</h3>
@@ -308,7 +308,7 @@
                 </div>
 
                 <a href="{{ route('account.orders') }}" class="flex items-center justify-center gap-2 w-full px-6 py-3 border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">
-                    <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    <x-heroicon-o-arrow-left class="h-4 w-4" />
                     กลับไปหน้าคำสั่งซื้อ
                 </a>
             </div>

@@ -53,7 +53,7 @@
                 <h3 class="text-lg font-bold text-gray-900 mb-2">พร้อมช้อปแล้วหรือยัง?</h3>
                 <p class="text-sm text-gray-500 mb-5">เริ่มเลือกซื้อสินค้าคุณภาพได้เลย</p>
                 <a href="{{ route('products') }}" class="inline-flex items-center gap-2 px-6 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors">
-                    <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg>
+                    <x-heroicon-o-shopping-cart class="h-4 w-4" />
                     เลือกซื้อสินค้า
                 </a>
             </section>

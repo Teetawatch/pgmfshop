@@ -12,7 +12,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
-                    <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 002 1.58h9.78a2 2 0 001.95-1.57l1.65-7.43H5.12"/></svg>
+                    <x-heroicon-o-shopping-cart class="h-6 w-6 text-white" />
                 </div>
                 <div>
                     <h1 class="text-xl font-bold text-white">ตะกร้าสินค้า</h1>
@@ -25,7 +25,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
     @if(count($items) === 0)
         <div class="text-center py-16">
-            <svg class="h-16 w-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+            <x-heroicon-o-shopping-bag class="h-16 w-16 mx-auto text-gray-400 mb-4" />
             <h1 class="text-2xl font-bold mb-2">ตะกร้าว่างเปล่า</h1>
             <p class="text-gray-500 mb-6">ยังไม่มีสินค้าในตะกร้า เลือกซื้อสินค้าเลย!</p>
             <a href="{{ route('products') }}">
@@ -50,13 +50,13 @@
                                     <div class="flex flex-wrap gap-1.5 mt-1">
                                         @if(!empty($options['size']))
                                             <span class="inline-flex items-center gap-1 text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
-                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg>
+                                                <x-heroicon-o-square-2-stack class="w-3 h-3" />
                                                 ไซส์: {{ $options['size'] }}
                                             </span>
                                         @endif
                                         @if(!empty($options['color']))
                                             <span class="inline-flex items-center gap-1 text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
-                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                                                <x-heroicon-o-swatch class="w-3 h-3" />
                                                 สี: {{ $options['color'] }}
                                             </span>
                                         @endif
@@ -65,17 +65,17 @@
                                 <div class="flex items-center justify-between mt-3">
                                     <div class="flex items-center border rounded-md">
                                         <button wire:click="updateQuantity('{{ $cartKey }}', {{ $qty - 1 }})" class="h-8 w-8 flex items-center justify-center hover:bg-gray-50">
-                                            <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>
+                                            <x-heroicon-o-minus class="h-3 w-3" />
                                         </button>
                                         <span class="w-8 text-center text-sm">{{ $qty }}</span>
                                         <button wire:click="updateQuantity('{{ $cartKey }}', {{ $qty + 1 }})" class="h-8 w-8 flex items-center justify-center hover:bg-gray-50 {{ $qty >= $maxStock ? 'opacity-50 cursor-not-allowed' : '' }}" {{ $qty >= $maxStock ? 'disabled' : '' }}>
-                                            <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></svg>
+                                            <x-heroicon-o-plus class="h-3 w-3" />
                                         </button>
                                     </div>
                                     <div class="flex items-center gap-3">
                                         <span class="font-bold text-[#FF6512]">฿{{ number_format($product->price * $qty, 0) }}</span>
                                         <button wire:click="removeItem('{{ $cartKey }}')" class="h-8 w-8 flex items-center justify-center text-red-500 hover:bg-red-50 rounded-md">
-                                            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                                            <x-heroicon-o-trash class="h-4 w-4" />
                                         </button>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@
 
                 <div class="flex justify-between">
                     <a href="{{ route('products') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors">
-                        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
+                        <x-heroicon-o-arrow-left class="h-4 w-4" />
                         เลือกซื้อต่อ
                     </a>
                     <button wire:click="clearCart" class="px-4 py-2 text-sm border border-gray-200 rounded-md text-red-500 hover:bg-red-50 transition-colors">ล้างตะกร้า</button>

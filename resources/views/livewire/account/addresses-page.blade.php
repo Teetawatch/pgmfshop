@@ -4,19 +4,19 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="flex items-center gap-2 text-sm text-white/70 mb-4">
                 <a href="{{ route('account') }}" class="hover:text-white transition-colors">บัญชีของฉัน</a>
-                <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+                <x-heroicon-o-chevron-right class="h-3 w-3" />
                 <span class="text-white font-medium">ที่อยู่จัดส่ง</span>
             </div>
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
-                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <x-heroicon-o-map-pin class="h-6 w-6 text-white" />
                     </div>
                     <h1 class="text-xl font-bold text-white">ที่อยู่จัดส่ง</h1>
                 </div>
                 @if($editing === null)
                     <button wire:click="startNew" class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 text-white rounded-lg text-sm font-medium hover:bg-white/30 transition-colors">
-                        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></svg>
+                        <x-heroicon-o-plus class="h-4 w-4" />
                         เพิ่มที่อยู่ใหม่
                     </button>
                 @endif
@@ -32,7 +32,7 @@
             <div class="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
                 <h2 class="text-base font-bold text-gray-900">{{ $editing === 'new' ? 'เพิ่มที่อยู่ใหม่' : 'แก้ไขที่อยู่' }}</h2>
                 <button wire:click="cancel" class="text-gray-400 hover:text-gray-600 transition-colors">
-                    <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                    <x-heroicon-o-x-mark class="h-5 w-5" />
                 </button>
             </div>
             <div class="p-6 space-y-4">
@@ -83,11 +83,11 @@
     {{-- Address List --}}
     @if(count($addresses) === 0 && $editing === null)
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 text-center py-16">
-            <svg class="h-12 w-12 mx-auto text-gray-300 mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <x-heroicon-o-map-pin class="h-12 w-12 mx-auto text-gray-300 mb-3" />
             <h2 class="font-bold mb-1">ยังไม่มีที่อยู่จัดส่ง</h2>
             <p class="text-sm text-gray-500 mb-5">เพิ่มที่อยู่เพื่อใช้ในการสั่งซื้อ</p>
             <button wire:click="startNew" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
-                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></svg>
+                <x-heroicon-o-plus class="h-4 w-4" />
                 เพิ่มที่อยู่ใหม่
             </button>
         </div>
@@ -115,15 +115,15 @@
                         <div class="flex items-center gap-1 shrink-0">
                             @if(!($addr['is_default'] ?? false))
                                 <button wire:click="setDefault({{ $index }})" class="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" {{ $editing !== null ? 'disabled' : '' }}>
-                                    <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    <x-heroicon-o-star class="h-3 w-3" />
                                     ตั้งเป็นค่าเริ่มต้น
                                 </button>
                             @endif
                             <button wire:click="startEdit({{ $index }})" class="h-8 w-8 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded transition-colors" {{ $editing !== null ? 'disabled' : '' }}>
-                                <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                <x-heroicon-o-pencil-square class="h-3.5 w-3.5" />
                             </button>
                             <button wire:click="delete({{ $index }})" wire:confirm="ต้องการลบที่อยู่นี้?" class="h-8 w-8 flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-50 rounded transition-colors" {{ $editing !== null ? 'disabled' : '' }}>
-                                <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                                <x-heroicon-o-trash class="h-3.5 w-3.5" />
                             </button>
                         </div>
                     </div>

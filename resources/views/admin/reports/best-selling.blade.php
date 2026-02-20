@@ -10,11 +10,11 @@
         </div>
         <div class="flex gap-2">
             <a href="{{ route('admin.reports.best-selling.pdf', request()->query()) }}" class="inline-flex items-center gap-1.5 px-3 py-2 bg-red-500 text-white text-xs font-medium rounded-lg hover:bg-red-600 transition-colors">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+                <x-heroicon-o-arrow-down-tray class="w-4 h-4" />
                 PDF
             </a>
             <a href="{{ route('admin.reports.best-selling.excel', request()->query()) }}" class="inline-flex items-center gap-1.5 px-3 py-2 bg-green-600 text-white text-xs font-medium rounded-lg hover:bg-green-700 transition-colors">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h2"/><path d="M8 17h2"/><path d="M14 13h2"/><path d="M14 17h2"/></svg>
+                <x-heroicon-o-table-cells class="w-4 h-4" />
                 Excel
             </a>
         </div>
@@ -117,7 +117,7 @@
                                         <img src="{{ $p->image }}" class="w-10 h-10 rounded-lg object-cover border" alt="">
                                     @else
                                         <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center">
-                                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                                            <x-heroicon-o-cube class="w-4 h-4 text-gray-400" />
                                         </div>
                                     @endif
                                     <div>

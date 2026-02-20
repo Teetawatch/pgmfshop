@@ -21,7 +21,7 @@
     @endif
     <div class="relative max-w-sm">
         <input type="text" name="search" value="{{ request('search') }}" placeholder="ค้นหาชื่อลูกค้า, สินค้า, หรือเนื้อหารีวิว..." class="w-full pl-10 pr-4 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-gray-300">
-        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <x-heroicon-o-magnifying-glass class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
     </div>
 </form>
 
