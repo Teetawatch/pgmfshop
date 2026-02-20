@@ -1,6 +1,6 @@
 <div class="bg-gray-50 min-h-screen">
     <!-- Hero Banner Slider -->
-    <section class="container mx-auto px-4 pt-4 pb-2">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2">
         @if($banners->count() > 0)
         <div x-data="bannerSlider({{ $banners->count() }})" x-init="startAutoSlide()" class="relative rounded-2xl overflow-hidden h-[200px] sm:h-[320px] md:h-[420px] lg:h-[480px] group shadow-lg shadow-gray-300/40">
             <!-- Slides -->
@@ -107,7 +107,7 @@
 
 
     <!-- Product Tabs + Grid -->
-    <section class="container mx-auto px-4 pb-8">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
         <!-- Tabs -->
         <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
             <div class="flex items-center gap-1">
