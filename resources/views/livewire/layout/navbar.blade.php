@@ -96,7 +96,7 @@
         <div class="flex h-16 items-center justify-between gap-6">
             <!-- Logo -->
             <a href="/" class="flex items-center gap-2.5 shrink-0 group">
-                <img src="{{ asset('images/pgmf-logo.jpg') }}" alt="PGMF Shop" class="h-9 w-9 rounded-lg object-cover ring-1 ring-gray-200 group-hover:ring-gray-300 transition" />
+                <img src="{{ Vite::asset('resources/images/pgmf-logo.jpg') }}" alt="PGMF Shop" class="h-9 w-9 rounded-lg object-cover ring-1 ring-gray-200 group-hover:ring-gray-300 transition" />
                 <span class="font-bold text-lg text-gray-900 hidden sm:inline tracking-tight">PGMF Shop</span>
             </a>
 

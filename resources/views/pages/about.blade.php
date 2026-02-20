@@ -9,7 +9,7 @@
         <!-- Hero -->
         <div class="border-b border-gray-100">
             <div class="container mx-auto px-4 py-16 md:py-20 max-w-3xl text-center">
-                <img src="{{ asset('images/pgmf-logo.jpg') }}" alt="PGMF Shop" class="h-16 w-16 rounded-xl object-cover mx-auto mb-6 ring-1 ring-gray-200">
+                <img src="{{ Vite::asset('resources/images/pgmf-logo.jpg') }}" alt="PGMF Shop" class="h-16 w-16 rounded-xl object-cover mx-auto mb-6 ring-1 ring-gray-200">
                 <h1 class="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">Progressive Movement Foundation Shop</h1>
                 <p class="text-gray-500 mt-3 text-sm leading-relaxed max-w-lg mx-auto">ร้านค้าออนไลน์ของมูลนิธิคณะก้าวหน้า จำหน่ายสินค้าคุณภาพ สนับสนุนกิจกรรมเพื่อสังคม</p>
             </div>

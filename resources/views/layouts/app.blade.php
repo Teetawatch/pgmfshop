@@ -18,7 +18,7 @@
     <meta property="og:image" content="{{ $seoImage }}">
     <meta property="og:image:alt" content="{{ $seoTitle ?? 'PGMF Shop' }}">
     @else
-    <meta property="og:image" content="{{ asset('images/pgmf-logo.jpg') }}">
+    <meta property="og:image" content="{{ Vite::asset('resources/images/pgmf-logo.jpg') }}">
     @endif
     <meta property="og:locale" content="th_TH">
 
