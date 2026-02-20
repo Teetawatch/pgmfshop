@@ -34,7 +34,7 @@
 <div class="min-h-screen bg-gray-50">
     <!-- Hero Header -->
     <div class="bg-[#FF6512]">
-        <div class="container mx-auto px-4 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <!-- Breadcrumb -->
             <div class="flex items-center gap-2 text-sm text-white/70 mb-4">
                 <a href="{{ route('account') }}" class="hover:text-white transition-colors">บัญชีของฉัน</a>
@@ -64,7 +64,7 @@
     </div>
 
     <!-- Main Content -->
-    <div class="container mx-auto px-4 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
         <!-- Expired Banner -->
         @if($isExpired)

@@ -9,7 +9,7 @@
 
     <!-- Hero Header -->
     <div class="bg-[#FF6512]">
-        <div class="container mx-auto px-4 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="flex items-center gap-2 text-sm text-white/70 mb-4">
                 <a href="{{ route('home') }}" class="hover:text-white transition-colors">หน้าแรก</a>
                 <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <div class="container mx-auto px-4 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
     @if($wishlists->count() > 0)
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
