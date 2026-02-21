@@ -7,10 +7,6 @@
                     <p class="text-xs text-gray-500 mb-2">ช่องทางการชำระเงิน</p>
                     <div class="flex items-center gap-2">
                         <img src="{{ vite_image('Thai_QR_Payment_Logo-01.jpg') }}" alt="PromptPay" class="h-auto max-h-12 object-contain rounded-lg shadow-sm">
-                        <span class=    "inline-flex items-center gap-2.5 h-12 px-5 bg-linear-to-r from-blue-600 to-blue-700 text-white text-sm font-semibold rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-800 transform hover:scale-[1.02] transition-all duration-300 border border-blue-500/20">
-                            <x-heroicon-o-building-library class="h-5 w-5" />
-                            โอนเงินผ่านธนาคาร
-                        </span>
                     </div>
                 </div>
                 <div>
