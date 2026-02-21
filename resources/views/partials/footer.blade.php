@@ -81,11 +81,16 @@
                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
                         </svg>
                     </a>
-                    <a href="https://lin.ee/I2lbHqqa" class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors">
+                    <a href="https://www.youtube.com/@pgmfshop" class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors">
                         <svg class="h-5 w-5" viewBox="0 0 24 24">
-                            <path fill="#00C300" d="M22.167 10.733c0-5.233-4.967-9.467-11.083-9.467S0 5.5 0 10.733c0 4.683 3.683 8.6 8.583 9.333l2.5 4.334 2.5-4.334c4.9-.733 8.584-4.65 8.584-9.333z"/>
-                            <path fill="white" d="M6.5 8.5c0-.3.2-.5.5-.5h1c.3 0 .5.2.5.5v3c0 .3-.2.5-.5.5h-1c-.3 0-.5-.2-.5-.5v-3zm3 0c0-.3.2-.5.5-.5h1c.3 0 .5.2.5.5v3c0 .3-.2.5-.5.5h-1c-.3 0-.5-.2-.5-.5v-3zm3 0c0-.3.2-.5.5-.5h1c.3 0 .5.2.5.5v3c0 .3-.2.5-.5.5h-1c-.3 0-.5-.2-.5-.5v-3z"/>
-                            <text x="11" y="15" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="white" text-anchor="middle">LINE</text>
+                            <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5" fill="none" />
+                            <path d="M10 8l6 4-6 4V8z" fill="currentColor" />
+                        </svg>
+                    </a>
+                    <a href="https://lin.ee/I2lbHqqa" class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M5 4h14a1 1 0 011 1v8a3 3 0 01-3 3h-3l-3 3v-3H5a1 1 0 01-1-1V5a1 1 0 011-1z" />
+                            <path d="M7 10h10v1H7zM7 13h7v1H7z" />
                         </svg>
                     </a>
                 </div>
