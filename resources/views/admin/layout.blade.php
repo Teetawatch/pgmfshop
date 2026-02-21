@@ -9,7 +9,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -23,7 +23,23 @@
                         success: '#10b981'
                     },
                     fontFamily: {
-                        'inter': ['Inter', 'system-ui', 'sans-serif'],
+                        'kanit': ['Kanit', 'sans-serif'],
+                        'sans': ['Kanit', 'sans-serif'],
+                    },
+                    fontSize: {
+                        'h1': ['2.5rem', { lineHeight: '1.2', letterSpacing: '-0.02em' }],
+                        'h2': ['2rem', { lineHeight: '1.3', letterSpacing: '-0.02em' }],
+                        'h3': ['1.5rem', { lineHeight: '1.4', letterSpacing: '-0.02em' }],
+                        'h4': ['1.25rem', { lineHeight: '1.4', letterSpacing: '-0.02em' }],
+                        'body': ['1rem', { lineHeight: '1.8', letterSpacing: '0.01em' }],
+                        'caption': ['0.875rem', { lineHeight: '1.6', letterSpacing: '0.01em' }],
+                    },
+                    fontWeight: {
+                        'light': '300',
+                        'normal': '400',
+                        'medium': '500',
+                        'semibold': '600',
+                        'bold': '700',
                     },
                     boxShadow: {
                         'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
@@ -35,7 +51,49 @@
     </script>
     <style>
         [x-cloak]{display:none!important}
-        * { font-family: 'Inter', system-ui, sans-serif; }
+        * { 
+            font-family: 'Kanit', sans-serif; 
+        }
+        h1 { 
+            font-size: 2.5rem; 
+            font-weight: 700; 
+            line-height: 1.2; 
+            letter-spacing: -0.02em;
+        }
+        h2 { 
+            font-size: 2rem; 
+            font-weight: 600; 
+            line-height: 1.3; 
+            letter-spacing: -0.02em;
+        }
+        h3 { 
+            font-size: 1.5rem; 
+            font-weight: 600; 
+            line-height: 1.4; 
+            letter-spacing: -0.02em;
+        }
+        h4 { 
+            font-size: 1.25rem; 
+            font-weight: 500; 
+            line-height: 1.4; 
+            letter-spacing: -0.02em;
+        }
+        p, body { 
+            font-size: 1rem; 
+            font-weight: 300; 
+            line-height: 1.8; 
+            letter-spacing: 0.01em;
+        }
+        small, .caption { 
+            font-size: 0.875rem; 
+            font-weight: 300; 
+            line-height: 1.6; 
+            letter-spacing: 0.01em;
+        }
+        button, .btn, label { 
+            font-size: 1rem; 
+            font-weight: 500;
+        }
         .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
         .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
         .scrollbar-thin::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 3px; }
@@ -50,7 +108,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 h-screen overflow-hidden font-inter" x-data="{ sidebarOpen: false }">
+<body class="bg-gray-50 h-screen overflow-hidden font-kanit" x-data="{ sidebarOpen: false }">
     <!-- Mobile Overlay -->
     <div x-show="sidebarOpen" x-cloak @click="sidebarOpen = false"
          x-transition:enter="transition-opacity ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
