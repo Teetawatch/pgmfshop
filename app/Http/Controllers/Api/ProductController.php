@@ -102,7 +102,7 @@ class ProductController extends Controller
                 'stock', 'sku', 'weight', 'images', 'tags', 'publisher', 'authors', 'genres', 'pages',
                 'sizes', 'colors', 'material', 'is_featured', 'is_new',
             ]),
-            'slug' => Str::slug($request->name) . '-' . Str::random(4),
+            'slug' => $this->generateProductSlug($request->name),
         ]);
 
         return response()->json($product->load('category'), 201);
@@ -144,6 +144,23 @@ class ProductController extends Controller
         $product->delete();
 
         return response()->json(['message' => 'ลบสินค้าสำเร็จ']);
+    }
+
+    private function generateProductSlug(string $name): string
+    {
+        $slug = Str::slug($name);
+
+        if ($slug === '') {
+            $slug = 'product-' . mb_substr(md5($name), 0, 8);
+        }
+
+        $slug = $slug . '-' . Str::random(4);
+
+        while (Product::where('slug', $slug)->exists()) {
+            $slug = Str::beforeLast($slug, '-') . '-' . Str::random(4);
+        }
+
+        return $slug;
     }
 
     public function updateStock(Request $request, Product $product)

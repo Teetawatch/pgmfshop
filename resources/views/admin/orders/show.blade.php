@@ -114,7 +114,7 @@
                     <p class="text-xs text-gray-600">ภายใน {{ $order->payment_deadline->format('d/m/Y H:i') }} น.</p>
                 </div>
             </div>
-            <div x-show="!expired" class="flex items-center gap-3">
+            <div x-show="!expired" cl   ass="flex items-center gap-3">
                 <div class="bg-white border border-gray-300 rounded-lg px-3 py-2 text-center min-w-[48px]">
                     <span class="text-lg font-bold font-mono text-gray-900" x-text="hours">00</span>
                     <p class="text-[10px] text-gray-500 -mt-0.5">ชม.</p>
@@ -141,106 +141,6 @@
 <div class="grid lg:grid-cols-3 gap-6">
     {{-- ==================== LEFT COLUMN ==================== --}}
     <div class="lg:col-span-2 space-y-6">
-
-        {{-- Order Items --}}
-        <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-5 border-b border-gray-200">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center">
-                        <x-heroicon-o-cube class="w-5 h-5 text-gray-600" />
-                    </div>
-                    <div>
-                        <h2 class="text-lg font-semibold text-gray-900">รายการสินค้า</h2>
-                        <p class="text-sm text-gray-500 mt-0.5">{{ $order->items->count() }} รายการ</p>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Table Header --}}
-            <div class="hidden sm:grid grid-cols-12 gap-4 px-6 py-3 bg-gray-50/80 text-xs font-semibold text-gray-600 uppercase tracking-wide border-b border-gray-200">
-                <div class="col-span-6">สินค้า</div>
-                <div class="col-span-2 text-right">ราคาต่อหน่วย</div>
-                <div class="col-span-2 text-center">จำนวน</div>
-                <div class="col-span-2 text-right">รวม</div>
-            </div>
-
-            {{-- Items --}}
-            <div class="divide-y divide-gray-100">
-                @foreach($order->items as $item)
-                <div class="px-6 py-4 grid grid-cols-12 gap-4 items-center">
-                    <div class="col-span-12 sm:col-span-6 flex items-start gap-4">
-                        @if($item->product_image)
-                            <img src="{{ $item->product_image }}" alt="" class="w-16 h-16 rounded-xl object-cover bg-gray-100 border border-gray-200 shadow-sm shrink-0">
-                        @else
-                            <div class="w-16 h-16 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center shrink-0">
-                                <x-heroicon-o-photo class="w-6 h-6 text-gray-300" />
-                            </div>
-                        @endif
-                        <div class="flex-1">
-                            <p class="text-sm font-semibold text-gray-900 leading-tight">{{ $item->product_name }}</p>
-                            @if(!empty($item->options))
-                                <div class="flex flex-wrap gap-2 mt-1.5">
-                                    @if(!empty($item->options['size']))
-                                        <span class="inline-flex items-center px-2 py-0.5 bg-gray-100 text-gray-600 text-[10px] font-medium rounded-md">
-                                            <x-heroicon-o-square-2-stack class="w-3 h-3 mr-1" />
-                                            {{ $item->options['size'] }}
-                                        </span>
-                                    @endif
-                                    @if(!empty($item->options['color']))
-                                        <span class="inline-flex items-center px-2 py-0.5 bg-gray-100 text-gray-600 text-[10px] font-medium rounded-md">
-                                            <x-heroicon-o-swatch class="w-3 h-3 mr-1" />
-                                            {{ $item->options['color'] }}
-                                        </span>
-                                    @endif
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="hidden sm:block col-span-2 text-right">
-                        <p class="text-sm font-medium text-gray-700">฿{{ number_format($item->price, 0) }}</p>
-                    </div>
-                    <div class="hidden sm:block col-span-2 text-center">
-                        <span class="inline-flex items-center justify-center w-8 h-8 bg-gray-100 text-gray-700 text-sm font-semibold rounded-lg">
-                            {{ $item->quantity }}
-                        </span>
-                    </div>
-                    <div class="hidden sm:block col-span-2 text-right">
-                        <p class="text-base font-bold text-gray-900">฿{{ number_format($item->total, 0) }}</p>
-                    </div>
-                    <div class="sm:hidden col-span-12 mt-3 pt-3 border-t border-gray-100">
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">฿{{ number_format($item->price, 0) }} x {{ $item->quantity }}</span>
-                            <span class="text-base font-bold text-gray-900">฿{{ number_format($item->total, 0) }}</span>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-
-            {{-- Summary --}}
-            <div class="border-t border-gray-200 bg-gray-50">
-                <div class="px-6 py-5 space-y-3 max-w-sm ml-auto">
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-600">ยอดสินค้า</span>
-                        <span class="text-sm font-medium text-gray-900">฿{{ number_format($order->subtotal, 0) }}</span>
-                    </div>
-                    @if($order->discount > 0)
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-600">ส่วนลด</span>
-                        <span class="text-sm font-semibold text-red-600 bg-red-50 px-2 py-0.5 rounded">-฿{{ number_format($order->discount, 0) }}</span>
-                    </div>
-                    @endif
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-600">ค่าจัดส่ง</span>
-                        <span class="text-sm font-medium text-gray-900">฿{{ number_format($order->shipping_cost, 0) }}</span>
-                    </div>
-                    <div class="flex justify-between items-center pt-3 border-t border-gray-300">
-                        <span class="text-base font-semibold text-gray-900">รวมทั้งหมด</span>
-                        <span class="text-lg font-bold text-gray-900 bg-white px-3 py-1 rounded-lg border border-gray-300">฿{{ number_format($order->total, 0) }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         {{-- Payment Slip --}}
         @if($order->payment_slip)
@@ -438,6 +338,106 @@
                         <p class="text-sm text-gray-400">ยังไม่มีประวัติ</p>
                     </div>
                 @endif
+            </div>
+        </div>
+
+        {{-- Order Items --}}
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+            <div class="px-6 py-5 border-b border-gray-200">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center">
+                        <x-heroicon-o-cube class="w-5 h-5 text-gray-600" />
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-900">รายการสินค้า</h2>
+                        <p class="text-sm text-gray-500 mt-0.5">{{ $order->items->count() }} รายการ</p>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Table Header --}}
+            <div class="hidden sm:grid grid-cols-12 gap-4 px-6 py-3 bg-gray-50/80 text-xs font-semibold text-gray-600 uppercase tracking-wide border-b border-gray-200">
+                <div class="col-span-6">สินค้า</div>
+                <div class="col-span-2 text-right">ราคาต่อหน่วย</div>
+                <div class="col-span-2 text-center">จำนวน</div>
+                <div class="col-span-2 text-right">รวม</div>
+            </div>
+
+            {{-- Items --}}
+            <div class="divide-y divide-gray-100">
+                @foreach($order->items as $item)
+                <div class="px-6 py-4 grid grid-cols-12 gap-4 items-center">
+                    <div class="col-span-12 sm:col-span-6 flex items-start gap-4">
+                        @if($item->product_image)
+                            <img src="{{ $item->product_image }}" alt="" class="w-16 h-16 rounded-xl object-cover bg-gray-100 border border-gray-200 shadow-sm shrink-0">
+                        @else
+                            <div class="w-16 h-16 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center shrink-0">
+                                <x-heroicon-o-photo class="w-6 h-6 text-gray-300" />
+                            </div>
+                        @endif
+                        <div class="flex-1">
+                            <p class="text-sm font-semibold text-gray-900 leading-tight">{{ $item->product_name }}</p>
+                            @if(!empty($item->options))
+                                <div class="flex flex-wrap gap-2 mt-1.5">
+                                    @if(!empty($item->options['size']))
+                                        <span class="inline-flex items-center px-2 py-0.5 bg-gray-100 text-gray-600 text-[10px] font-medium rounded-md">
+                                            <x-heroicon-o-square-2-stack class="w-3 h-3 mr-1" />
+                                            {{ $item->options['size'] }}
+                                        </span>
+                                    @endif
+                                    @if(!empty($item->options['color']))
+                                        <span class="inline-flex items-center px-2 py-0.5 bg-gray-100 text-gray-600 text-[10px] font-medium rounded-md">
+                                            <x-heroicon-o-swatch class="w-3 h-3 mr-1" />
+                                            {{ $item->options['color'] }}
+                                        </span>
+                                    @endif
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="hidden sm:block col-span-2 text-right">
+                        <p class="text-sm font-medium text-gray-700">฿{{ number_format($item->price, 0) }}</p>
+                    </div>
+                    <div class="hidden sm:block col-span-2 text-center">
+                        <span class="inline-flex items-center justify-center w-8 h-8 bg-gray-100 text-gray-700 text-sm font-semibold rounded-lg">
+                            {{ $item->quantity }}
+                        </span>
+                    </div>
+                    <div class="hidden sm:block col-span-2 text-right">
+                        <p class="text-base font-bold text-gray-900">฿{{ number_format($item->total, 0) }}</p>
+                    </div>
+                    <div class="sm:hidden col-span-12 mt-3 pt-3 border-t border-gray-100">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">฿{{ number_format($item->price, 0) }} x {{ $item->quantity }}</span>
+                            <span class="text-base font-bold text-gray-900">฿{{ number_format($item->total, 0) }}</span>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+
+            {{-- Summary --}}
+            <div class="border-t border-gray-200 bg-gray-50">
+                <div class="px-6 py-5 space-y-3 max-w-sm ml-auto">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-600">ยอดสินค้า</span>
+                        <span class="text-sm font-medium text-gray-900">฿{{ number_format($order->subtotal, 0) }}</span>
+                    </div>
+                    @if($order->discount > 0)
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-600">ส่วนลด</span>
+                        <span class="text-sm font-semibold text-red-600 bg-red-50 px-2 py-0.5 rounded">-฿{{ number_format($order->discount, 0) }}</span>
+                    </div>
+                    @endif
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-600">ค่าจัดส่ง</span>
+                        <span class="text-sm font-medium text-gray-900">฿{{ number_format($order->shipping_cost, 0) }}</span>
+                    </div>
+                    <div class="flex justify-between items-center pt-3 border-t border-gray-300">
+                        <span class="text-base font-semibold text-gray-900">รวมทั้งหมด</span>
+                        <span class="text-lg font-bold text-gray-900 bg-white px-3 py-1 rounded-lg border border-gray-300">฿{{ number_format($order->total, 0) }}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

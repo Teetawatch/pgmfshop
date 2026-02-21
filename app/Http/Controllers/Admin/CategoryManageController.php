@@ -39,7 +39,7 @@ class CategoryManageController extends Controller
 
         Category::create([
             'name' => $request->name,
-            'slug' => $request->slug ?: Str::slug($request->name),
+            'slug' => $request->slug ?: $this->generateUniqueSlug($request->name),
             'description' => $request->description,
             'image' => $request->image,
             'sort_order' => $request->sort_order ?? 0,
@@ -66,7 +66,7 @@ class CategoryManageController extends Controller
 
         $category->update([
             'name' => $request->name,
-            'slug' => $request->slug ?: Str::slug($request->name),
+            'slug' => $request->slug ?: $this->generateUniqueSlug($request->name, $category->id),
             'description' => $request->description,
             'image' => $request->image,
             'sort_order' => $request->sort_order ?? $category->sort_order,
@@ -74,6 +74,34 @@ class CategoryManageController extends Controller
         ]);
 
         return redirect()->route('admin.categories.index')->with('success', 'แก้ไขหมวดหมู่สำเร็จ');
+    }
+
+    private function generateUniqueSlug(string $name, ?int $excludeId = null): string
+    {
+        $slug = Str::slug($name);
+
+        // Str::slug returns empty for Thai/non-ASCII text
+        if ($slug === '') {
+            $slug = 'cat-' . mb_substr(md5($name), 0, 8);
+        }
+
+        $original = $slug;
+        $counter = 1;
+        $query = Category::where('slug', $slug);
+        if ($excludeId) {
+            $query->where('id', '!=', $excludeId);
+        }
+
+        while ($query->exists()) {
+            $slug = $original . '-' . $counter;
+            $query = Category::where('slug', $slug);
+            if ($excludeId) {
+                $query->where('id', '!=', $excludeId);
+            }
+            $counter++;
+        }
+
+        return $slug;
     }
 
     public function destroy(Category $category)

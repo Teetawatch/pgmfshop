@@ -58,7 +58,7 @@ class ProductManageController extends Controller
 
         $product = Product::create([
             ...$request->only(['name', 'category_id', 'product_type', 'description', 'price', 'original_price', 'stock', 'sku', 'weight']),
-            'slug' => Str::slug($request->name) . '-' . Str::random(4),
+            'slug' => $this->generateProductSlug($request->name),
             'images' => $images,
             'publisher' => $request->product_type === 'book' ? $request->publisher : null,
             'pages' => $request->product_type === 'book' ? $request->pages : null,
@@ -217,6 +217,25 @@ class ProductManageController extends Controller
 
         // Sync product-level stock = sum of all variant stocks
         $product->syncStockFromVariants();
+    }
+
+    private function generateProductSlug(string $name): string
+    {
+        $slug = Str::slug($name);
+
+        // Str::slug returns empty for Thai/non-ASCII text
+        if ($slug === '') {
+            $slug = 'product-' . mb_substr(md5($name), 0, 8);
+        }
+
+        $slug = $slug . '-' . Str::random(4);
+
+        // Ensure uniqueness
+        while (Product::where('slug', $slug)->exists()) {
+            $slug = ($slug ? Str::beforeLast($slug, '-') : 'product-' . mb_substr(md5($name), 0, 8)) . '-' . Str::random(4);
+        }
+
+        return $slug;
     }
 
     private function handleImageUploads(Request $request): array

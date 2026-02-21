@@ -3,7 +3,31 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style>
-        body { font-family: 'DejaVu Sans', sans-serif; font-size: 12px; color: #333; margin: 0; padding: 20px; }
+        @font-face {
+            font-family: 'THSarabunNew';
+            font-style: normal;
+            font-weight: normal;
+            src: url('{{ public_path('fonts/THSarabunNew.ttf') }}') format('truetype');
+        }
+        @font-face {
+            font-family: 'THSarabunNew';
+            font-style: normal;
+            font-weight: bold;
+            src: url('{{ public_path('fonts/THSarabunNew Bold.ttf') }}') format('truetype');
+        }
+        @font-face {
+            font-family: 'THSarabunNew';
+            font-style: italic;
+            font-weight: normal;
+            src: url('{{ public_path('fonts/THSarabunNew Italic.ttf') }}') format('truetype');
+        }
+        @font-face {
+            font-family: 'THSarabunNew';
+            font-style: italic;
+            font-weight: bold;
+            src: url('{{ public_path('fonts/THSarabunNew BoldItalic.ttf') }}') format('truetype');
+        }
+        body { font-family: 'THSarabunNew', sans-serif; font-size: 14px; color: #333; margin: 0; padding: 20px; }
         .header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #0d9488; padding-bottom: 15px; }
         .header h1 { font-size: 18px; margin: 0 0 5px; color: #0d9488; }
         .header p { margin: 0; font-size: 10px; color: #666; }

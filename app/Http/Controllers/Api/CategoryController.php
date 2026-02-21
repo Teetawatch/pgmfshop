@@ -35,9 +35,19 @@ class CategoryController extends Controller
             'sort_order' => 'integer',
         ]);
 
+        $slug = Str::slug($request->name);
+        if ($slug === '') {
+            $slug = 'cat-' . mb_substr(md5($request->name), 0, 8);
+        }
+        $original = $slug;
+        $counter = 1;
+        while (Category::where('slug', $slug)->exists()) {
+            $slug = $original . '-' . $counter++;
+        }
+
         $category = Category::create([
             ...$request->only(['name', 'description', 'image', 'sort_order']),
-            'slug' => Str::slug($request->name),
+            'slug' => $slug,
         ]);
 
         return response()->json($category, 201);
