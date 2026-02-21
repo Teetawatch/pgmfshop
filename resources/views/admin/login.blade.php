@@ -39,10 +39,6 @@
                     เข้าสู่ระบบ
                 </button>
             </form>
-
-            <p class="text-center text-xs text-gray-400 mt-6">
-                admin@pgmfshop.com / password
-            </p>
         </div>
     </div>
 </body>
