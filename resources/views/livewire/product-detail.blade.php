@@ -73,11 +73,18 @@
         <div class="space-y-4">
             <div class="relative aspect-square rounded-lg overflow-hidden bg-gray-100">
                 @if(count($images) > 0)
-                    <div x-data="{ currentImage: @entangle('selectedImage') }" x-init="$watch('currentImage', () => {
-                        const container = $el.querySelector('.image-slider');
-                        container.style.transform = `translateX(-${currentImage * 100}%)`;
+                    <div x-data="{ 
+                        currentImage: @entangle('selectedImage'),
+                        isTransitioning: false
+                    }" x-init="$watch('currentImage', (newIndex, oldIndex) => {
+                        if (newIndex !== oldIndex) {
+                            isTransitioning = true;
+                            const container = $el.querySelector('.image-slider');
+                            container.style.transform = `translateX(-${newIndex * 100}%)`;
+                            setTimeout(() => { isTransitioning = false; }, 200);
+                        }
                     })" class="w-full h-full overflow-hidden">
-                        <div class="image-slider flex transition-transform duration-500 ease-in-out h-full" :style="`transform: translateX(-${currentImage * 100}%)`">
+                        <div class="image-slider flex h-full" :class="isTransitioning ? 'transition-transform duration-200 ease-out' : 'transition-none'" :style="`transform: translateX(-${currentImage * 100}%)`">
                             @foreach($images as $img)
                                 <div class="w-full h-full shrink-0">
                                     <img src="{{ $img }}" alt="{{ $product->name }}" class="w-full h-full object-cover" />
@@ -93,8 +100,9 @@
             @if(count($images) > 1)
                 <div class="flex gap-2 overflow-x-auto">
                     @foreach($images as $idx => $img)
-                        <button wire:click="selectImage({{ $idx }})" class="relative w-20 h-20 rounded-md overflow-hidden border-2 shrink-0 {{ $selectedImage === $idx ? 'border-[hsl(var(--primary))]' : 'border-transparent' }} transition-all duration-200 hover:opacity-80">
-                            <img src="{{ $img }}" alt="{{ $product->name }} {{ $idx + 1 }}" class="w-full h-full object-cover" />
+                        <button wire:click="selectImage({{ $idx }})" 
+                                class="relative w-20 h-20 rounded-md overflow-hidden border-2 shrink-0 transition-all duration-150 hover:scale-105 {{ $selectedImage === $idx ? 'border-[hsl(var(--primary))] shadow-lg' : 'border-transparent hover:border-gray-300' }}">
+                            <img src="{{ $img }}" alt="{{ $product->name }} {{ $idx + 1 }}" class="w-full h-full object-cover transition-transform duration-150 hover:scale-110" />
                         </button>
                     @endforeach
                 </div>
