@@ -166,4 +166,9 @@ class Product extends Model
     {
         return $query->where('is_new', true);
     }
+
+    public function isOutOfStock(): bool
+    {
+        return $this->stock <= 0;
+    }
 }
