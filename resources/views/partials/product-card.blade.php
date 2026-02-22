@@ -21,7 +21,7 @@
             <!-- Bottom-left badges -->
             <div class="absolute bottom-2.5 left-2.5 flex gap-1.5">
                 @if($product->isOutOfStock())
-                    <span class="bg-gray-800 text-white text-xs font-bold px-3 py-1 rounded">สินค้าหมด</span>
+                    <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded">SOLD OUT</span>
                 @endif
                 @if($product->is_featured && !$product->isOutOfStock())
                     <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded">HOT</span>
