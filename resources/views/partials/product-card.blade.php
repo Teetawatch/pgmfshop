@@ -8,7 +8,7 @@
         <!-- Image -->
         <div class="relative overflow-hidden rounded-lg bg-gray-100" style="aspect-ratio: 1/1;">
             <img src="{{ $firstImage }}" alt="{{ $product->name }}"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 {{ $product->isOutOfStock() ? 'opacity-60 grayscale' : '' }}"
                 loading="lazy" />
 
             <!-- Top-left type badge -->
@@ -18,15 +18,24 @@
                 <span class="absolute top-2.5 left-2.5 bg-gray-700 text-white text-[10px] font-bold px-2 py-0.5 rounded">อื่นๆ</span>
             @endif
 
+            <!-- Centered SOLD OUT overlay -->
+            @if($product->isOutOfStock())
+                <div class="absolute inset-0 flex items-center justify-center z-10">
+                    <div class="bg-gray-900/90 text-white text-sm font-bold px-4 py-2 rounded-lg shadow-lg">
+                        SOLD OUT
+                    </div>
+                </div>
+            @endif
+
             <!-- Bottom-left badges -->
             <div class="absolute bottom-2.5 left-2.5 flex gap-1.5">
-                @if($product->is_featured)
+                @if($product->is_featured && !$product->isOutOfStock())
                     <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded">HOT</span>
                 @endif
-                @if($product->is_new)
+                @if($product->is_new && !$product->isOutOfStock())
                     <span class="bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded">NEW</span>
                 @endif
-                @if($discountPercent > 0)
+                @if($discountPercent > 0 && !$product->isOutOfStock())
                     <span class="bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded">-{{ $discountPercent }}%</span>
                 @endif
             </div>
