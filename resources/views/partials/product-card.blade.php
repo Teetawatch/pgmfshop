@@ -18,11 +18,17 @@
                 <span class="absolute top-2.5 left-2.5 bg-gray-700 text-white text-[10px] font-bold px-2 py-0.5 rounded">อื่นๆ</span>
             @endif
 
+            <!-- Centered SOLD OUT overlay -->
+            @if($product->isOutOfStock())
+                <div class="absolute inset-0 flex items-center justify-center z-10">
+                    <div class="bg-gray-900/90 text-white text-sm font-bold px-4 py-2 rounded-lg shadow-lg">
+                        SOLD OUT
+                    </div>
+                </div>
+            @endif
+
             <!-- Bottom-left badges -->
             <div class="absolute bottom-2.5 left-2.5 flex gap-1.5">
-                @if($product->isOutOfStock())
-                    <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded">SOLD OUT</span>
-                @endif
                 @if($product->is_featured && !$product->isOutOfStock())
                     <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded">HOT</span>
                 @endif
