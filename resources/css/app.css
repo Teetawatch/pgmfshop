@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'Anakotmai';
+    src: url('../fonts/anakotmai-light.eot');
+    src: url('../fonts/anakotmai-light.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/anakotmai-light.woff2') format('woff2'),
+         url('../fonts/anakotmai-light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anakotmai';
+    src: url('../fonts/anakotmai-medium.eot');
+    src: url('../fonts/anakotmai-medium.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/anakotmai-medium.woff2') format('woff2'),
+         url('../fonts/anakotmai-medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anakotmai';
+    src: url('../fonts/anakotmai-bold.eot');
+    src: url('../fonts/anakotmai-bold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/anakotmai-bold.woff2') format('woff2'),
+         url('../fonts/anakotmai-bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+}
+
+* {
+    border-color: hsl(var(--border));
+}
+
+body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Anakotmai', sans-serif;
+}
+
+@keyframes loading-bar {
+    0% { width: 0%; margin-left: 0; }
+    25% { width: 40%; margin-left: 0; }
+    50% { width: 30%; margin-left: 50%; }
+    75% { width: 40%; margin-left: 60%; }
+    100% { width: 0%; margin-left: 100%; }
+}
+
+.animate-loading-bar {
+    animation: loading-bar 1.5s ease-in-out infinite;
+}
