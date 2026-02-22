@@ -118,11 +118,11 @@
                             </div>
                         @endif
                         <div class="flex justify-between">
-                            <span class="text-gray-500">ค่าจัดส่ง (ประมาณ)</span>
+                            <span class="text-gray-500">ค่าจัดส่ง</span>
                             <span>{{ $shipping === 0 ? 'ฟรี' : '฿' . number_format($shipping, 0) }}</span>
                         </div>
-                        @if($subtotal < 800)
-                            <p class="text-xs text-gray-500">ซื้อเพิ่มอีก ฿{{ number_format(800 - $subtotal, 0) }} เพื่อรับส่งฟรี!</p>
+                        @if($shipping > 0)
+                            <p class="text-xs text-gray-500">คำนวณตามจำนวนสินค้าในตะกร้า</p>
                         @endif
                     </div>
 

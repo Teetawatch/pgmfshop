@@ -7,6 +7,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use App\Models\Product;
 use App\Models\ProductVariant;
+use App\Models\ShippingRate;
 use App\Livewire\Traits\WithSeo;
 
 #[Layout('layouts.app')]
@@ -15,7 +16,7 @@ class CartPage extends Component
     use WithSeo;
 
     public $couponCode = '';
-    public $discount = 0;
+    public $discount = 0; // Keep for compatibility but no coupons used
 
     public function updateQuantity($cartKey, $quantity)
     {
@@ -128,7 +129,11 @@ class CartPage extends Component
         }
 
         $subtotal = collect($items)->sum(fn($i) => $i['product']->price * $i['quantity']);
-        $shipping = $subtotal > 800 ? 0 : 40;
+        
+        // Calculate total quantity in cart for shipping rate
+        $totalQuantity = collect($items)->sum('quantity');
+        $shipping = ShippingRate::getCostForQuantity($totalQuantity);
+        
         $total = $subtotal - $this->discount + $shipping;
 
         $this->setSeo(
