@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="image/jpeg" href="{{ asset('images/pgmf-logo.jpg') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/pgmf-logo.jpg') }}">
     <title>{{ $seoTitle ?? 'Progressive Movement Foundation Shop' }}</title>
     <meta name="description" content="{{ $seoDescription ?? 'ร้านค้าออนไลน์ Progressive Movement Foundation Shop รวมหนังสือ เสื้อผ้า และสินค้าคุณภาพ จัดส่งทั่วไทย' }}">
     <link rel="canonical" href="{{ $seoCanonical ?? url()->current() }}">
