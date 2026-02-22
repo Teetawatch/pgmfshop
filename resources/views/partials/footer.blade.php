@@ -59,7 +59,7 @@
                 <div class="space-y-1.5 text-xs text-gray-500">
                     <div class="flex items-center gap-1.5">
                         <x-heroicon-o-envelope class="h-3 w-3 shrink-0" />
-                        <span>support@pgmfshop.com</span>
+                        <span>Office@progressivemevement.in.th.</span>
                     </div>
                     <div class="flex items-center gap-1.5">
                         <x-heroicon-o-map-pin class="h-3 w-3 shrink-0" />
