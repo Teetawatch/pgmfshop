@@ -8,28 +8,37 @@
 
     <p class="text">
         ยินดีต้อนรับสู่ <strong>{{ config('app.name', 'PGMF Shop') }}</strong>!
-        บัญชีของคุณถูกสร้างเรียบร้อยแล้ว
+        บัญชีของคุณถูกสร้างเรียบร้อยแล้ว ขอบคุณที่เลือกใช้บริการของเรา
     </p>
 
-    <div class="highlight-box info">
-        <p style="font-size: 14px; color: #1e40af; margin: 0;">
-            🎉 คุณสามารถเริ่มเลือกซื้อสินค้าได้ทันที
-        </p>
+    <div class="highlight-box success">
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 24px;">🎉</span>
+            <div>
+                <p style="font-size: 16px; color: #166534; margin: 0; font-weight: 600;">
+                    สมัครสมาชิกสำเร็จ!
+                </p>
+                <p style="font-size: 14px; color: #166534; margin: 4px 0 0;">
+                    คุณสามารถเริ่มเลือกซื้อสินค้าได้ทันที
+                </p>
+            </div>
+        </div>
     </div>
 
     <div class="info-box">
+        <h3 style="font-size: 16px; color: #0f172a; margin: 0 0 16px; font-weight: 600;">📋 ข้อมูลบัญชีของคุณ</h3>
         <table style="width: 100%; font-size: 14px;">
             <tr>
-                <td style="padding: 6px 0; color: #718096;">ชื่อ</td>
-                <td style="padding: 6px 0; text-align: right; font-weight: 600; color: #2d3748;">{{ $user->name }}</td>
+                <td style="padding: 10px 0; color: #64748b;">ชื่อสมาชิก</td>
+                <td style="padding: 10px 0; text-align: right; font-weight: 600; color: #0f172a;">{{ $user->name }}</td>
             </tr>
             <tr>
-                <td style="padding: 6px 0; color: #718096;">อีเมล</td>
-                <td style="padding: 6px 0; text-align: right; font-weight: 600; color: #2d3748;">{{ $user->email }}</td>
+                <td style="padding: 10px 0; color: #64748b;">อีเมล</td>
+                <td style="padding: 10px 0; text-align: right; font-weight: 600; color: #0f172a;">{{ $user->email }}</td>
             </tr>
             <tr>
-                <td style="padding: 6px 0; color: #718096;">วันที่สมัคร</td>
-                <td style="padding: 6px 0; text-align: right; font-weight: 600; color: #2d3748;">{{ now()->format('d/m/Y H:i') }}</td>
+                <td style="padding: 10px 0; color: #64748b;">วันที่สมัคร</td>
+                <td style="padding: 10px 0; text-align: right; font-weight: 600; color: #0f172a;">{{ now()->format('d/m/Y H:i') }}</td>
             </tr>
         </table>
     </div>

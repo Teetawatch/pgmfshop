@@ -10,10 +10,18 @@
         เราได้รับการชำระเงินสำหรับคำสั่งซื้อของคุณเรียบร้อยแล้ว
     </p>
 
-    <div class="highlight-box">
-        <p style="font-size: 14px; color: #22543d; margin: 0;">
-            ✅ <strong>ชำระเงินสำเร็จ</strong> — คำสั่งซื้อ #{{ $order->order_number }}
-        </p>
+    <div class="highlight-box success">
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 24px;">✅</span>
+            <div>
+                <p style="font-size: 16px; color: #166534; margin: 0; font-weight: 600;">
+                    ชำระเงินสำเร็จ
+                </p>
+                <p style="font-size: 14px; color: #166534; margin: 4px 0 0;">
+                    คำสั่งซื้อ #{{ $order->order_number }}
+                </p>
+            </div>
+        </div>
     </div>
 
     {{-- Receipt / Summary --}}

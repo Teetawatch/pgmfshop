@@ -58,10 +58,14 @@ class HomePage extends Component
             description: 'ร้านค้าออนไลน์ Progressive Movement Foundation Shop รวมหนังสือ เสื้อผ้า และสินค้าคุณภาพ สั่งซื้อง่าย จัดส่งทั่วไทย',
         );
 
+        // Check for email verification success message
+        $verified = session('verified', false);
+
         return $this->renderWithSeo('livewire.home-page', [
             'products' => $products,
             'totalSold' => $totalSold,
             'banners' => $banners,
+            'verified' => $verified,
         ]);
     }
 }

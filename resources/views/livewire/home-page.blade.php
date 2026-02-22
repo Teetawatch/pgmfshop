@@ -1,4 +1,35 @@
 <div class="bg-gray-50 min-h-screen">
+    <!-- Email Verification Success Alert -->
+    @if($verified)
+        <div class="bg-green-50 border-b border-green-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                <div class="flex items-center gap-3">
+                    <div class="flex-shrink-0">
+                        <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-green-800">
+                            ยืนยันอีเมลสำเร็จ! บัญชีของคุณได้รับการยืนยันแล้ว
+                        </p>
+                        <p class="text-sm text-green-700 mt-1">
+                            ขอบคุณที่ยืนยันอีเมล คุณสามารถใช้งานระบบได้เต็มรูปแบบแล้ว
+                        </p>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.parentElement.remove()" class="flex-shrink-0 text-green-600 hover:text-green-800">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        @php
+            // Clear the session variable to prevent showing again
+            session()->forget('verified');
+        @endphp
+    @endif
     <!-- Hero Banner Slider -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2">
         @if($banners->count() > 0)

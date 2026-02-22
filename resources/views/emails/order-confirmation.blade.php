@@ -11,9 +11,17 @@
     </p>
 
     <div class="highlight-box info">
-        <p style="font-size: 14px; color: #1e40af; margin: 0;">
-            📋 หมายเลขคำสั่งซื้อ: <strong>{{ $order->order_number }}</strong>
-        </p>
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 24px;">📋</span>
+            <div>
+                <p style="font-size: 16px; color: #1e40af; margin: 0; font-weight: 600;">
+                    หมายเลขคำสั่งซื้อ: {{ $order->order_number }}
+                </p>
+                <p style="font-size: 14px; color: #1e40af; margin: 4px 0 0;">
+                    เราได้รับคำสั่งซื้อของคุณเรียบร้อยแล้ว
+                </p>
+            </div>
+        </div>
     </div>
 
     {{-- Order Items --}}

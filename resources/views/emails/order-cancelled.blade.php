@@ -11,9 +11,17 @@
     </p>
 
     <div class="highlight-box danger">
-        <p style="font-size: 14px; color: #991b1b; margin: 0;">
-            ❌ <strong>คำสั่งซื้อถูกยกเลิก</strong>
-        </p>
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 24px;">❌</span>
+            <div>
+                <p style="font-size: 16px; color: #991b1b; margin: 0; font-weight: 600;">
+                    คำสั่งซื้อถูกยกเลิก
+                </p>
+                <p style="font-size: 14px; color: #991b1b; margin: 4px 0 0;">
+                    หมายเลขคำสั่งซื้อ #{{ $order->order_number }}
+                </p>
+            </div>
+        </div>
     </div>
 
     {{-- Reason --}}
