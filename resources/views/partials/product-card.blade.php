@@ -21,7 +21,7 @@
             <!-- Centered SOLD OUT overlay -->
             @if($product->isOutOfStock())
                 <div class="absolute inset-0 flex items-center justify-center z-10">
-                    <div class="bg-gray-900/90 text-white text-sm font-bold px-4 py-2 rounded-lg shadow-lg">
+                    <div class="bg-gray-600 text-white text-sm font-bold px-4 py-2 rounded-lg shadow-lg">
                         SOLD OUT
                     </div>
                 </div>
