@@ -78,23 +78,14 @@
             <!-- Contact -->
             <section class="mb-4">
                 <h2 class="text-lg font-bold text-gray-900 mb-6">ติดต่อเรา</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                    <div class="flex items-start gap-3">
-                        <div class="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center shrink-0">
-                            <x-heroicon-o-phone class="h-4 w-4 text-gray-500" />
-                        </div>
-                        <div>
-                            <p class="text-xs text-gray-400">โทรศัพท์</p>
-                            <p class="text-sm text-gray-700 font-medium">02-123-4567</p>
-                        </div>
-                    </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div class="flex items-start gap-3">
                         <div class="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center shrink-0">
                             <x-heroicon-o-envelope class="h-4 w-4 text-gray-500" />
                         </div>
                         <div>
                             <p class="text-xs text-gray-400">อีเมล</p>
-                            <p class="text-sm text-gray-700 font-medium">support@pgmfshop.com</p>
+                            <p class="text-sm text-gray-700 font-medium">Office@progressivemevement.in.th.</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
@@ -103,11 +94,11 @@
                         </div>
                         <div>
                             <p class="text-xs text-gray-400">ที่อยู่</p>
-                            <p class="text-sm text-gray-700 font-medium">กรุงเทพมหานคร, ประเทศไทย</p>
+                            <p class="text-sm text-gray-700 font-medium">167 อาคารอนาคตใหม่ ชั้น 3 ยูนิตที่1 แขวงหัวหมาก เขตบางกะปิ กทม. 10240</p>
                         </div>
                     </div>
                 </div>
-                <p class="text-xs text-gray-400 mt-6">เปิดให้บริการทุกวัน 09:00 - 21:00 น.</p>
+                <p class="text-xs text-gray-400 mt-6">เปิดให้บริการทุกวันจันทร์ - ศุกร์ เวลา 09.00 - 19.00 น.</p>
             </section>
 
         </div>

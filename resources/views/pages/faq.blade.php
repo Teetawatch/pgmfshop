@@ -55,6 +55,12 @@
                             ['q' => 'ลืมรหัสผ่าน ทำอย่างไร?', 'a' => 'กดปุ่ม "ลืมรหัสผ่าน" ที่หน้าเข้าสู่ระบบ กรอกอีเมลที่ใช้สมัครสมาชิก ระบบจะส่งลิงก์สำหรับตั้งรหัสผ่านใหม่ไปยังอีเมลของคุณ'],
                         ],
                     ],
+                    [
+                        'category' => 'สินค้า',
+                        'items' => [
+                            ['q' => 'ผ้าแบบนี้มีราขึ้นมั้ยคะ หรือผ้าเสียแล้ว?', 'a' => 'ไม่ใช่รานะคะ และผ้าไม่ได้เสียค่ะ<br><br>ผ้าดิบเป็นผ้าที่ทำจาก เส้นใยฝ้ายธรรมชาติ<br>เป็นเศษของเมล็ดฝ้ายที่ ไม่ผ่านการฟอกและไม่ย้อมสี<br>จึงยังคงสีและผิวสัมผัสตามธรรมชาติของผ้าไว้<br><br>✨ เป็นผ้าแนวออแกนิค เป็นมิตรกับสิ่งแวดล้อม<br>✨ ใส่สบาย ระบายอากาศดี<br>✨ ได้ฟีลธรรมชาติ รักโลกสุด ๆ'],
+                        ],
+                    ],
                 ];
             @endphp
 
@@ -87,15 +93,11 @@
             <hr class="border-gray-100 my-12">
             <section class="text-center mb-4">
                 <h3 class="text-lg font-bold text-gray-900 mb-2">ยังมีคำถามเพิ่มเติม?</h3>
-                <p class="text-sm text-gray-500 mb-4">ติดต่อทีมงานของเราได้ทุกวัน 09:00 - 21:00 น.</p>
+                <p class="text-sm text-gray-500 mb-4">ติดต่อทีมงานของเราได้ทุกวันจันทร์ - ศุกร์ เวลา 09.00 - 19.00 น.</p>
                 <div class="flex items-center justify-center gap-6 text-sm text-gray-600">
                     <span class="inline-flex items-center gap-2">
-                        <x-heroicon-o-phone class="h-4 w-4 text-gray-400" />
-                        02-123-4567
-                    </span>
-                    <span class="inline-flex items-center gap-2">
                         <x-heroicon-o-envelope class="h-4 w-4 text-gray-400" />
-                        support@pgmfshop.com
+                        Office@progressivemevement.in.th.
                     </span>
                 </div>
             </section>

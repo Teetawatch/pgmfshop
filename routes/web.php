@@ -32,6 +32,7 @@ Route::get('/promptpay-qr', [PromptPayQRController::class, 'generate'])->name('p
 
 // Static Pages
 Route::view('/about', 'pages.about')->name('about');
+Route::view('/contact', 'pages.contact')->name('contact');
 Route::view('/faq', 'pages.faq')->name('faq');
 Route::view('/how-to-order', 'pages.how-to-order')->name('how-to-order');
 Route::view('/privacy', 'pages.privacy')->name('privacy');

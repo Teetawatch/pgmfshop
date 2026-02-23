@@ -1,8 +1,12 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-DvvqTxVB.css",
+    "file": "assets/app-D45Pu1FK.css",
     "src": "resources/css/app.css",
-    "isEntry": true
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
   },
   "resources/fonts/anakotmai-bold.eot": {
     "file": "assets/anakotmai-bold-B5195NLd.eot",
@@ -49,7 +53,7 @@
     "src": "resources/images/ThailandPost_Logo.svg"
   },
   "resources/images/banks/bay.svg": {
-    "file": "assets/bay-DSQG24if.svg",
+    "file": "assets/bay-DbYQdpNC.svg",
     "src": "resources/images/banks/bay.svg"
   },
   "resources/images/paymentbiller.png": {
