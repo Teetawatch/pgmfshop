@@ -8,11 +8,11 @@
     }
     
     .input-enhanced {
-        @apply w-full rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-4 py-3 text-base focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all;
+        @apply w-full rounded-xl border border-gray-300 bg-gray-100 text-gray-900 px-4 py-3 text-base focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all;
     }
     
     .input-enhanced:focus {
-        @apply border-blue-600 shadow-lg;
+        @apply bg-white border-blue-500 shadow-lg;
     }
     </style>
 
