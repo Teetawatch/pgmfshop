@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300 py-8">
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
 
@@ -6,24 +6,17 @@
     .shadow-soft {
         box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
     }
+    
+    .input-enhanced {
+        @apply w-full rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-4 py-3 text-base focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all;
+    }
+    
+    .input-enhanced:focus {
+        @apply border-blue-600 shadow-lg;
+    }
     </style>
 
-    <!-- Hero Header -->
-    <header class="bg-linear-to-r from-orange-500 to-orange-600 dark:from-orange-700 dark:to-orange-800 text-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="bg-white/20 p-2 rounded-lg backdrop-blur-sm">
-                    <span class="material-icons-round text-2xl">shopping_bag</span>
-                </div>
-                <div>
-                    <h1 class="text-lg font-semibold leading-tight">ชำระเงิน</h1>
-                    <p class="text-xs text-orange-100 font-light">{{ count($items) }} รายการ</p>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     @if(count($items) === 0 && !$orderId)
         <div class="text-center py-16">
             <x-heroicon-o-cube class="h-16 w-16 mx-auto text-gray-400 mb-4" />
@@ -114,21 +107,21 @@
                                 <h2 class="text-xl font-semibold">ที่อยู่จัดส่ง</h2>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="space-y-2">
-                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="fullname">ชื่อผู้รับ <span class="text-red-500">*</span></label>
-                                    <input type="text" wire:model="addressName" id="fullname" placeholder="ชื่อ-นามสกุล" class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-shadow" />
+                                <div class="space-y-3">
+                                    <label class="block text-base font-semibold text-gray-800 dark:text-gray-200" for="fullname">ชื่อผู้รับ <span class="text-red-500">*</span></label>
+                                    <input type="text" wire:model="addressName" id="fullname" placeholder="ชื่อ-นามสกุล" class="input-enhanced" />
                                 </div>
-                                <div class="space-y-2">
-                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="phone">เบอร์โทร <span class="text-red-500">*</span></label>
-                                    <input type="text" wire:model="addressPhone" id="phone" placeholder="08x-xxx-xxxx" class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-shadow" />
+                                <div class="space-y-3">
+                                    <label class="block text-base font-semibold text-gray-800 dark:text-gray-200" for="phone">เบอร์โทร <span class="text-red-500">*</span></label>
+                                    <input type="text" wire:model="addressPhone" id="phone" placeholder="08x-xxx-xxxx" class="input-enhanced" />
                                 </div>
-                                <div class="col-span-1 md:col-span-2 space-y-2">
-                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="address">ที่อยู่ <span class="text-red-500">*</span></label>
-                                    <input type="text" wire:model="addressLine" id="address" placeholder="บ้านเลขที่ ซอย ถนน" class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-shadow" />
+                                <div class="col-span-1 md:col-span-2 space-y-3">
+                                    <label class="block text-base font-semibold text-gray-800 dark:text-gray-200" for="address">ที่อยู่ <span class="text-red-500">*</span></label>
+                                    <input type="text" wire:model="addressLine" id="address" placeholder="บ้านเลขที่ ซอย ถนน" class="input-enhanced" />
                                 </div>
-                                <div class="space-y-2">
-                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="district">เขต/อำเภอ</label>
-                                    <input type="text" wire:model="addressDistrict" id="district" placeholder="เขต/อำเภอ" class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-shadow" />
+                                <div class="space-y-3">
+                                    <label class="block text-base font-semibold text-gray-800 dark:text-gray-200" for="district">เขต/อำเภอ</label>
+                                    <input type="text" wire:model="addressDistrict" id="district" placeholder="เขต/อำเภอ" class="input-enhanced" />
                                 </div>
                                 <div class="space-y-2 relative" x-data="{ 
                                     provinceQuery: @entangle('provinceQuery'), 
@@ -178,7 +171,7 @@
                                         this.selectedIndex = index;
                                     }
                                 }">
-                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="province">จังหวัด <span class="text-red-500">*</span></label>
+                                    <label class="block text-base font-semibold text-gray-800 dark:text-gray-200" for="province">จังหวัด <span class="text-red-500">*</span></label>
                                     <input 
                                         type="text" 
                                         id="province"
@@ -187,7 +180,7 @@
                                         @keydown="handleKeydown"
                                         @focus="showSuggestions = provinceQuery.length >= 1"
                                         placeholder="จังหวัด" 
-                                        class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-shadow"
+                                        class="input-enhanced"
                                     />
                                     <!-- Province suggestions dropdown -->
                                     <div x-show="showSuggestions && suggestions.length > 0" 
@@ -222,9 +215,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="space-y-2">
-                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="zipcode">รหัสไปรษณีย์ <span class="text-red-500">*</span></label>
-                                    <input type="text" wire:model="addressPostalCode" id="zipcode" placeholder="10xxx" maxlength="5" class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-shadow" />
+                                <div class="space-y-3">
+                                    <label class="block text-base font-semibold text-gray-800 dark:text-gray-200" for="zipcode">รหัสไปรษณีย์ <span class="text-red-500">*</span></label>
+                                    <input type="text" wire:model="addressPostalCode" id="zipcode" placeholder="10xxx" maxlength="5" class="input-enhanced" />
                                 </div>
                             </div>
                         </div>
@@ -266,11 +259,6 @@
                                 @endif
                             </div>
                         </div>
-
-                        <button wire:click="goToStep2" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-xl shadow-lg shadow-blue-500/30 transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 text-lg lg:hidden">
-                            <span>ถัดไป: เลือกวิธีชำระเงิน</span>
-                            <span class="material-icons-round">arrow_forward</span>
-                        </button>
                     </div>
                 @endif
 
@@ -538,6 +526,12 @@
                         <span class="material-icons-round text-base text-green-500">verified_user</span>
                         <span>ชำระเงินปลอดภัย 100%</span>
                     </div>
+                    @if($step === 1)
+                        <button wire:click="goToStep2" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-xl shadow-lg shadow-blue-500/30 transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 text-lg">
+                            <span>ถัดไป: เลือกวิธีชำระเงิน</span>
+                            <span class="material-icons-round">arrow_forward</span>
+                        </button>
+                    @endif
                 </div>
             </div>
         </div>
