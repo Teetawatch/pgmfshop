@@ -207,7 +207,7 @@
                     @auth
                         <a href="{{ route('account.orders') }}" class="px-3 py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors">การสั่งซื้อของฉัน</a>
                     @endauth
-                    <a href="#footer" class="px-3 py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors">ติดต่อร้านค้า</a>
+                    <a href="{{ route('contact') }}" class="px-3 py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors">ติดต่อร้านค้า</a>
                 </div>
             </div>
         </div>
@@ -244,7 +244,7 @@
                     <a href="{{ route('faq') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
                         <x-heroicon-o-question-mark-circle class="h-4 w-4 text-gray-400 ml-0.5" />คำถามที่พบบ่อย
                     </a>
-                    <a href="#footer" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
+                    <a href="{{ route('contact') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
                         <x-heroicon-o-phone class="h-4 w-4 text-gray-400 ml-0.5" />ติดต่อร้านค้า
                     </a>
                     @auth
