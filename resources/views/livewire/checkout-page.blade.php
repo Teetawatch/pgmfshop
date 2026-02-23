@@ -1,4 +1,13 @@
 <div class="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+
+    <style>
+    .shadow-soft {
+        box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    }
+    </style>
+
     <!-- Hero Header -->
     <header class="bg-linear-to-r from-orange-500 to-orange-600 dark:from-orange-700 dark:to-orange-800 text-white shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -534,25 +543,16 @@
         </div>
     @endif
     </div>
+
+    <script>
+    function downloadImage(url, filename) {
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename;
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+    </script>
 </div>
-
-<!-- Material Icons -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
-
-<style>
-.shadow-soft {
-    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-}
-</style>
-
-<script>
-function downloadImage(url, filename) {
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename;
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
-</script>
