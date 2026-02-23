@@ -18,6 +18,19 @@ use App\Mail\OrderConfirmationMail;
 use App\Mail\PaymentSuccessMail;
 use App\Livewire\Traits\WithSeo;
 
+// List of all 77 Thai provinces
+const THAI_PROVINCES = [
+    'กรุงเทพมหานคร', 'สมุทรปราการ', 'นนทบุรี', 'ปทุมธานี', 'พระนครศรีอยุธยา', 'อ่างทอง', 
+    'ลพบุรี', 'สิงห์บุรี', 'ชัยนาท', 'สระบุรี', 'ชัยภูมิ', 'นครราชสีมา', 'บุรีรัมย์', 
+    'สุรินทร์', 'ศรีสะเกษ', 'อุบลราชธานี', 'ยโสธร', 'เลย', 'หนองคาย', 'หนองบัวลำภู', 
+    'ขอนแก่น', 'อุดรธานี', 'มหาสารคาม', 'ร้อยเอ็ด', 'กาฬสินธุ์', 'สกลนคร', 'นครพนม', 
+    'มุกดาหาร', 'เชียงใหม่', 'ลำปาง', 'ลำพูน', 'แพร่', 'น่าน', 'พะเยา', 'เชียงราย', 
+    'แม่ฮ่องสอน', 'นครสวรรค์', 'อุทัยธานี', 'กำแพงเพชร', 'ตาก', 'สุโขทัย', 'พิษณุโลก', 
+    'พิจิตร', 'เพชรบูรณ์', 'ราชบุรี', 'กาญจนบุรี', 'เพชรบุรี', 'ประจวบคีรีขันธ์', 'นครศรีธรรมราช', 
+    'กระบี่', 'พังงา', 'ภูเก็ต', 'สุราษฎร์ธานี', 'ระนอง', 'ชุมพร', 'สงขลา', 'ตรัง', 
+    'พัทลุง', 'ปัตตานี', 'ยะลา', 'นราธิวาส', 'บึงกาฬ'
+];
+
 #[Layout('layouts.app')]
 class CheckoutPage extends Component
 {
@@ -36,6 +49,11 @@ class CheckoutPage extends Component
     public $addressDistrict = '';
     public $addressProvince = '';
     public $addressPostalCode = '';
+
+    // Province autocomplete
+    public $provinceQuery = '';
+    public $showProvinceSuggestions = false;
+    public $selectedProvinceIndex = -1;
 
     // Slip upload
     public $paymentSlip;
@@ -64,6 +82,7 @@ class CheckoutPage extends Component
             $this->addressDistrict = $default['district'] ?? '';
             $this->addressProvince = $default['province'] ?? '';
             $this->addressPostalCode = $default['postal_code'] ?? '';
+            $this->provinceQuery = $this->addressProvince;
         } else {
             $this->addressName = $user->name;
             $this->addressPhone = $user->phone ?? '';
@@ -82,6 +101,41 @@ class CheckoutPage extends Component
     public function goToStep1()
     {
         $this->step = 1;
+    }
+
+    // Province autocomplete methods
+    public function getProvinceSuggestionsProperty()
+    {
+        if (strlen($this->provinceQuery) < 1) {
+            return [];
+        }
+        
+        return collect(THAI_PROVINCES)
+            ->filter(fn($province) => str_contains($province, $this->provinceQuery))
+            ->take(10)
+            ->values()
+            ->toArray();
+    }
+
+    public function selectProvince($province)
+    {
+        $this->addressProvince = $province;
+        $this->provinceQuery = $province;
+        $this->showProvinceSuggestions = false;
+        $this->selectedProvinceIndex = -1;
+    }
+
+    public function updatedProvinceQuery($value)
+    {
+        $this->addressProvince = $value;
+        $this->showProvinceSuggestions = strlen($value) >= 1;
+        $this->selectedProvinceIndex = -1;
+    }
+
+    public function closeProvinceSuggestions()
+    {
+        $this->showProvinceSuggestions = false;
+        $this->selectedProvinceIndex = -1;
     }
 
     public function placeOrder()

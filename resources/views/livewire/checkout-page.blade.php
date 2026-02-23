@@ -146,9 +146,97 @@
                                         <label class="text-sm font-medium">เขต/อำเภอ</label>
                                         <input type="text" wire:model="addressDistrict" placeholder="เขต/อำเภอ" class="w-full px-3 py-2 border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-[hsl(var(--ring))]" />
                                     </div>
-                                    <div class="space-y-1.5">
+                                    <div class="space-y-1.5 relative" x-data="{ 
+                                        provinceQuery: @entangle('provinceQuery'), 
+                                        showSuggestions: @entangle('showProvinceSuggestions'),
+                                        suggestions: @entangle('provinceSuggestions'),
+                                        selectedIndex: -1,
+                                        
+                                        init() {
+                                            this.$watch('provinceQuery', () => {
+                                                this.selectedIndex = -1;
+                                            });
+                                            
+                                            // Close suggestions when clicking outside
+                                            document.addEventListener('click', (e) => {
+                                                if (!this.$el.contains(e.target)) {
+                                                    this.showSuggestions = false;
+                                                    this.selectedIndex = -1;
+                                                }
+                                            });
+                                        },
+                                        
+                                        selectProvince(province) {
+                                            this.$wire.selectProvince(province);
+                                        },
+                                        
+                                        handleKeydown(e) {
+                                            if (!this.showSuggestions || this.suggestions.length === 0) return;
+                                            
+                                            if (e.key === 'ArrowDown') {
+                                                e.preventDefault();
+                                                this.selectedIndex = Math.min(this.selectedIndex + 1, this.suggestions.length - 1);
+                                            } else if (e.key === 'ArrowUp') {
+                                                e.preventDefault();
+                                                this.selectedIndex = Math.max(this.selectedIndex - 1, -1);
+                                            } else if (e.key === 'Enter') {
+                                                e.preventDefault();
+                                                if (this.selectedIndex >= 0) {
+                                                    this.selectProvince(this.suggestions[this.selectedIndex]);
+                                                }
+                                            } else if (e.key === 'Escape') {
+                                                this.showSuggestions = false;
+                                                this.selectedIndex = -1;
+                                            }
+                                        },
+                                        
+                                        highlightSuggestion(index) {
+                                            this.selectedIndex = index;
+                                        }
+                                    }">
                                         <label class="text-sm font-medium">จังหวัด *</label>
-                                        <input type="text" wire:model="addressProvince" placeholder="จังหวัด" class="w-full px-3 py-2 border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-[hsl(var(--ring))]" />
+                                        <input 
+                                            type="text" 
+                                            x-model="provinceQuery"
+                                            @input="$wire.set('provinceQuery', $el.value)"
+                                            @keydown="handleKeydown"
+                                            @focus="showSuggestions = provinceQuery.length >= 1"
+                                            placeholder="จังหวัด" 
+                                            class="w-full px-3 py-2 border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-[hsl(var(--ring))]" 
+                                        />
+                                        
+                                        <!-- Province suggestions dropdown -->
+                                        <div x-show="showSuggestions && suggestions.length > 0" 
+                                             x-transition:enter="transition ease-out duration-200"
+                                             x-transition:enter-start="opacity-0 transform scale-95"
+                                             x-transition:enter-end="opacity-100 transform scale-100"
+                                             x-transition:leave="transition ease-in duration-150"
+                                             x-transition:leave-start="opacity-100 transform scale-100"
+                                             x-transition:leave-end="opacity-0 transform scale-95"
+                                             class="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                                            <template x-for="(province, index) in suggestions" :key="index">
+                                                <div @click="selectProvince(province)"
+                                                     @mouseover="highlightSuggestion(index)"
+                                                     class="px-3 py-2 cursor-pointer text-sm"
+                                                     :class="{
+                                                         'bg-blue-50 text-blue-700': index === selectedIndex,
+                                                         'hover:bg-gray-50': index !== selectedIndex
+                                                     }">
+                                                    <span x-text="province"></span>
+                                                </div>
+                                            </template>
+                                        </div>
+                                        
+                                        <!-- No results message -->
+                                        <div x-show="showSuggestions && suggestions.length === 0 && provinceQuery.length >= 1"
+                                             x-transition:enter="transition ease-out duration-200"
+                                             x-transition:enter-start="opacity-0 transform scale-95"
+                                             x-transition:enter-end="opacity-100 transform scale-100"
+                                             class="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg">
+                                            <div class="px-3 py-2 text-sm text-gray-500">
+                                                ไม่พบจังหวัดที่ค้นหา
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="space-y-1.5">
                                         <label class="text-sm font-medium">รหัสไปรษณีย์ *</label>
