@@ -56,9 +56,9 @@
          x-transition:leave="transition ease-in duration-150"
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
-         class="fixed top-0 left-0 right-0 z-[9999]"
+         class="fixed top-0 left-0 right-0 z-[9999] h-0.5 overflow-hidden"
          style="display: none;">
-        <div class="h-0.5 bg-[hsl(var(--primary))]/20 overflow-hidden">
+        <div class="w-full h-full bg-[hsl(var(--primary))]/20">
             <div class="h-full bg-[hsl(var(--primary))] animate-loading-bar"></div>
         </div>
     </div>

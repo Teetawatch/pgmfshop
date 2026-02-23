@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PGMF Shop - Modern Redesign</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#F36F21", // Extracted orange from logo
+                        secondary: "#1E3A8A", // Deep blue/navy accent
+                        "background-light": "#F8FAFC",
+                        "background-dark": "#0F172A",
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#1E293B",
+                    },
+                    fontFamily: {
+                        display: ["Kanit", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        'xl': '1rem',
+                        '2xl': '1.5rem',
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 font-display transition-colors duration-300">
+<nav class="sticky top-0 z-50 bg-surface-light/90 dark:bg-surface-dark/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 shadow-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-20 items-center">
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 group" href="#">
+<div class="w-10 h-10 bg-gradient-to-br from-primary to-orange-600 rounded-lg flex items-center justify-center text-white font-bold text-xs shadow-lg shadow-primary/30">
+                            PGMF
+                        </div>
+<span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors">PGMF Shop</span>
+</a>
+<div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+<div class="relative group cursor-pointer">
+<button class="flex items-center gap-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">menu</span>
+                                Categories
+                            </button>
+</div>
+<a class="hover:text-primary transition-colors" href="#">Shirts</a>
+<a class="hover:text-primary transition-colors" href="#">Bags</a>
+<a class="hover:text-primary transition-colors" href="#">Books</a>
+<a class="hover:text-primary transition-colors" href="#">Misc</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center bg-slate-100 dark:bg-slate-800 rounded-full px-4 py-2 w-64 focus-within:ring-2 ring-primary transition-all">
+<input class="bg-transparent border-none text-sm w-full focus:ring-0 text-slate-700 dark:text-slate-200 placeholder-slate-400" placeholder="Search products..." type="text"/>
+<button class="text-slate-400 hover:text-primary">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</button>
+</div>
+<div class="flex items-center gap-3 border-l border-slate-200 dark:border-slate-700 pl-4">
+<button class="relative p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<button class="relative p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute top-1 right-1 w-4 h-4 bg-primary text-white text-[10px] flex items-center justify-center rounded-full font-bold">1</span>
+</button>
+<button class="flex items-center gap-2 pl-2 hover:opacity-80">
+<img alt="User Avatar" class="w-8 h-8 rounded-full border border-slate-200 dark:border-slate-600" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPZ2dhwqFQAwJYm8GGZvRZ7-tU2Y67mfbA07F0begGuARo-c0K2_R7wkJeW3UfsZuDyOQstx8ePF3F0F3gIjyjLkk0rXkhEqPbvXHjAYPTcNsF-hYNIfFUBe5oEuuy8B25vhu1tff8SvqbnRWHmETvj0AdqQHdUKoEsfadYoIzf2tuG67mb7f6VULq-G1flnZGsrPgdO6tmD3NApgVvzagUF7fBHf6g7vrcwB06oHwhgOrS6Xgq3vg57wa9wsDdN3LqFRjqnDGl1c"/>
+<span class="hidden xl:block text-sm font-medium">Teetawat...</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<header class="relative bg-surface-light dark:bg-surface-dark overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-orange-50 to-transparent dark:from-slate-900/50 pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="relative w-full aspect-[21/9] rounded-3xl overflow-hidden shadow-2xl group">
+<div class="absolute inset-0 bg-[#C04918] flex items-center justify-center overflow-hidden">
+<div class="absolute top-0 right-0 w-1/2 h-full bg-orange-600 skew-x-[-12deg] translate-x-20 opacity-80"></div>
+<div class="absolute bottom-0 left-0 w-1/3 h-2/3 bg-orange-700 rounded-full blur-3xl opacity-50"></div>
+<div class="relative z-10 w-full h-full flex items-center justify-between px-12 lg:px-24">
+<div class="max-w-xl text-white space-y-4">
+<span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium border border-white/30">New Collection</span>
+<h1 class="text-4xl lg:text-6xl font-extrabold leading-tight">
+                                Progressive <br/> Movement Shop
+                            </h1>
+<p class="text-lg text-white/90 font-light max-w-md">
+                                Discover books, merchandise, and ideas that drive change forward.
+                            </p>
+<button class="mt-4 px-8 py-3 bg-white text-primary font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                                Shop Now
+                            </button>
+</div>
+<div class="hidden lg:flex gap-4 relative">
+<img alt="Book cover" class="w-48 h-64 object-cover rounded-lg shadow-2xl rotate-[-6deg] translate-y-4 border-4 border-white/10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7OJ-tF3X5M_Bnj5tuB6SKQb6DbFhU_sVknGpWxcx7yprz5fgMVc63qxg0cfj2sfaBZC7vicJfNkjBW_LBeWNarBD6xAN4W-JnRxAvuMwxsu1Nn6WBdNobYDiiw-2X4ot54MuZuKdkQQT-BhlChQ-6Ko2HYSsUes5s6Zrt-4ln-HJJB2FqPfgBH7F-yMuj7_Jt0LSpTlXYQu0MedOFvIVVPB3qiDx_TzPjdKc_xy2o2c-EoGxVVuUgngpLkcqmvxJktfEZSbu7P_U"/>
+<img alt="T-shirt" class="w-48 h-64 object-cover rounded-lg shadow-2xl rotate-[6deg] border-4 border-white/10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx4LGtPrK5Br1A3manArptaCLCn0-oSEajlN6MyeCeoAP57V_OzNTWg4B2EGyd6hPh5lzYStzRaoyezBRAOjmIelOF2yRDEZQ5TdXeA3z4h0RnIp8G7_pABPaOH5v9tZKtmPOCx0yatnvyB-OD__7d_mgNJeeyvLIT6OFDRdVUQgLrvwSDTdP5WiNO2VOoubigKipjOjmCyaHV7pAgbdGE6cwOcOTjPdzGW29QxPivxzg17zdwx_Cky_K3CcMfr4oDVTbeTX_ltLA"/>
+</div>
+</div>
+</div>
+<div class="absolute bottom-6 right-8 flex items-center gap-2">
+<button class="w-10 h-10 rounded-full bg-black/20 backdrop-blur text-white hover:bg-white hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="text-white font-medium text-sm px-2 bg-black/20 rounded-full backdrop-blur">2 / 2</div>
+<button class="w-10 h-10 rounded-full bg-black/20 backdrop-blur text-white hover:bg-white hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
+<div class="flex items-center gap-3 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white whitespace-nowrap mr-4">All Products</h2>
+<button class="px-5 py-2 bg-primary text-white rounded-full text-sm font-medium shadow-lg shadow-primary/30 transition-transform hover:scale-105">All</button>
+<button class="px-5 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium hover:border-primary hover:text-primary transition-colors">HOT</button>
+<button class="px-5 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium hover:border-primary hover:text-primary transition-colors">NEW</button>
+<button class="px-5 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium hover:border-primary hover:text-primary transition-colors">RECOMMENDED</button>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">view_list</span>
+</button>
+<div class="relative">
+<select class="appearance-none bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 py-2 pl-4 pr-10 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm cursor-pointer shadow-sm">
+<option>Sort by: Default</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Newest First</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 pointer-events-none text-slate-400 text-sm">expand_more</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="group bg-surface-light dark:bg-surface-dark rounded-2xl border border-slate-100 dark:border-slate-700 hover:shadow-2xl hover:shadow-slate-200/50 dark:hover:shadow-black/50 transition-all duration-300 overflow-hidden relative">
+<div class="absolute top-3 left-3 z-10 flex flex-col gap-2">
+<span class="bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm">HOT</span>
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm">-31%</span>
+</div>
+<div class="relative aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-800">
+<img alt="Canvas Tote Bag" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClFFjDX3lfpVuiamM3RVj_4Hqtiy5iEPkupWQWChIFM7_FcTs496Ts35gWNvW8csflDLviBO4MRol0SjjvzvNbK-_M1osEqwtrRlSzQANwnqTaGHXrxoRXGx7s-UfYO7toUy5uIG2mMFEkE5Bkxp3yq0xEzP1UIUNWok7O7CCvP27Vrk8Iwfl_vxh_eBLFIbRvB2h8Doziwu4G05INvuRZrro2HE-9TRTrPgDcKEJIXgm0y-LMattP3-8JPjt3aJCCuYY6HrY0bZo"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-800 hover:text-primary hover:scale-110 transition-all shadow-lg">
+<span class="material-symbols-outlined text-sm">shopping_bag</span>
+</button>
+<button class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-800 hover:text-red-500 hover:scale-110 transition-all shadow-lg">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-slate-800 dark:text-slate-100 line-clamp-2 min-h-[3rem] group-hover:text-primary transition-colors">Canvas Tote Bag 'There is no time like spring'</h3>
+<div class="mt-4 flex items-end justify-between">
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 line-through">฿ 390.00</span>
+<span class="text-lg font-bold text-slate-900 dark:text-white">฿ 270.00</span>
+</div>
+<button class="text-primary text-sm font-medium hover:underline">View Details</button>
+</div>
+</div>
+</div>
+<div class="group bg-surface-light dark:bg-surface-dark rounded-2xl border border-slate-100 dark:border-slate-700 hover:shadow-2xl hover:shadow-slate-200/50 dark:hover:shadow-black/50 transition-all duration-300 overflow-hidden relative">
+<div class="absolute inset-0 z-20 bg-white/60 dark:bg-black/60 pointer-events-none flex items-center justify-center">
+<span class="bg-slate-800 text-white px-4 py-2 rounded font-bold tracking-wider text-sm shadow-xl">SOLD OUT</span>
+</div>
+<div class="relative aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-800 grayscale">
+<img alt="Book Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXIR5G3-UdRrHrjEQL259b15GnWOnfpGCn_FUzyc0ra8y42SUWIahOk9DOJjuWhzu3Sv8HQ5lAzGeN3Ikzmy_bPvikc_8W5-atZBt-yEJ5lg0-d6-dZr-Iv--aImyT8Jpu4pgeSoDM9CJAzKOT_rOlqiIlmrESUbnZD0LTgMjveTJNVMW1rFBVZmQJiRVZ5ZMGFkPe1VXX8wR3n_5zrPbjpVD4p5vtzQTpBp3Lmy7Xfn98aFYNQZTE6lLHpeZCCtWfrWPGGC3vSbo"/>
+</div>
+<div class="p-4 opacity-75">
+<h3 class="font-medium text-slate-800 dark:text-slate-100 line-clamp-2 min-h-[3rem]">Progressive Ideas Book</h3>
+<div class="mt-4 flex items-end justify-between">
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 line-through">฿ 350.00</span>
+<span class="text-lg font-bold text-slate-900 dark:text-white">฿ 210.00</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group bg-surface-light dark:bg-surface-dark rounded-2xl border border-slate-100 dark:border-slate-700 hover:shadow-2xl hover:shadow-slate-200/50 dark:hover:shadow-black/50 transition-all duration-300 overflow-hidden relative">
+<div class="absolute top-3 left-3 z-10 flex flex-col gap-2">
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm">-40%</span>
+</div>
+<div class="relative aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-800">
+<img alt="Biography Book" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2j9WG5bbpbvoF8583o_HTLjK-fd7A9phQkX28WgEHJX-m7F19zQA_lwDX5O9BVCwkmE8ct2ve4DEvWZ6nsP1CBsQbS3RFalOrvCABKO60kCq41US2df-pfh_qx-OHLsC9iLMSeUYUF-rVwYjCZ-sg7Pr58XAXiL7ae1hJcjVxnX-x2g6fE_XsZlu6nNhZ_RODckZKAOZR4YTQQxr2U09UxguwGH9VE9EfL3EuHmhS5xcTPAlcImAivI0a3MCldchAMdYINJ4poNk"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-800 hover:text-primary hover:scale-110 transition-all shadow-lg">
+<span class="material-symbols-outlined text-sm">shopping_bag</span>
+</button>
+<button class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-800 hover:text-red-500 hover:scale-110 transition-all shadow-lg">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-slate-800 dark:text-slate-100 line-clamp-2 min-h-[3rem] group-hover:text-primary transition-colors">Until The Highest Power Belongs to The People</h3>
+<div class="mt-4 flex items-end justify-between">
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 line-through">฿ 400.00</span>
+<span class="text-lg font-bold text-slate-900 dark:text-white">฿ 240.00</span>
+</div>
+<button class="text-primary text-sm font-medium hover:underline">View Details</button>
+</div>
+</div>
+</div>
+<div class="group bg-surface-light dark:bg-surface-dark rounded-2xl border border-slate-100 dark:border-slate-700 hover:shadow-2xl hover:shadow-slate-200/50 dark:hover:shadow-black/50 transition-all duration-300 overflow-hidden relative">
+<div class="absolute top-3 left-3 z-10 flex flex-col gap-2">
+<span class="bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm">HOT</span>
+<span class="bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm">NEW</span>
+</div>
+<div class="relative aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-800">
+<img alt="Cat T-shirt" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqlMCrMpzpItIcu-5_ls3GezxoazE4p2K8EUQ7KSwchccCk9gCDsEUxuKnUEHoPrh5HoC34yqHu19MnIwSLd7Z2oaMu4qFw_-6kkYZXieY6Se2p98EKOsZl3Pq--rVJzJuP50KhUWP58zzj6H9lFeOG59WSUG0kq6Lgx2eJ8pzKQOVWnWDOXi6PMlc4XCSjm6Fk8gkOWIU01BQ95UELfd3xjRJju8Qj-mGaPoJIkGLv93SHUq7b1aY0iDzcCpg34zKOOOOBJAgBCQ"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-800 hover:text-primary hover:scale-110 transition-all shadow-lg">
+<span class="material-symbols-outlined text-sm">shopping_bag</span>
+</button>
+<button class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-800 hover:text-red-500 hover:scale-110 transition-all shadow-lg">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-slate-800 dark:text-slate-100 line-clamp-2 min-h-[3rem] group-hover:text-primary transition-colors">(Test) Cat Shirt Equal</h3>
+<div class="mt-4 flex items-end justify-between">
+<div class="flex flex-col">
+<span class="text-lg font-bold text-slate-900 dark:text-white">฿ 1.00</span>
+</div>
+<button class="text-primary text-sm font-medium hover:underline">View Details</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-20 border-t border-slate-200 dark:border-slate-700 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col gap-2 text-center md:text-left">
+<h4 class="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Payment Channels</h4>
+<div class="flex gap-4">
+<div class="h-10 px-4 bg-slate-800 text-white rounded flex items-center gap-2 font-bold text-sm">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+                        THAI QR PAYMENT
+                    </div>
+</div>
+</div>
+<div class="flex flex-col gap-2 text-center md:text-right">
+<h4 class="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Shipping Partners</h4>
+<div class="flex items-center justify-center md:justify-end gap-2">
+<div class="flex flex-col items-center">
+<div class="text-red-600 font-bold text-xs">THAILAND POST</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-surface-light dark:bg-surface-dark border-t border-slate-200 dark:border-slate-800 pt-16 pb-8 mt-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-gradient-to-br from-primary to-orange-600 rounded flex items-center justify-center text-white font-bold text-[10px]">
+                            PGMF
+                        </div>
+<span class="text-lg font-bold text-slate-900 dark:text-white">About Us</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                        Supporting the Progressive Movement Foundation through meaningful merchandise. 
+                        We are open every Monday - Friday, 09.00 - 19.00 hrs.
+                    </p>
+</div>
+<div>
+<h4 class="text-slate-900 dark:text-white font-bold mb-6">Information</h4>
+<ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Shop Details</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">How to Order</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-slate-900 dark:text-white font-bold mb-6">Shopping</h4>
+<ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">All Products</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Bags</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Books</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Misc</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Shirts</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Order Tracking</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-slate-900 dark:text-white font-bold mb-6">Contact Us</h4>
+<ul class="space-y-4 text-sm text-slate-500 dark:text-slate-400">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg mt-0.5">mail</span>
+<span>Office@progressivemovement.in.th</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg mt-0.5">location_on</span>
+<span>167 Future Forward Bldg, 3rd Fl, Bang Kapi, Bangkok 10240</span>
+</li>
+</ul>
+<div class="flex gap-4 mt-6">
+<a class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-primary hover:text-white transition-all" href="#">
+<span class="font-bold text-xs">f</span>
+</a>
+<a class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-primary hover:text-white transition-all" href="#">
+<span class="font-bold text-xs">ig</span>
+</a>
+<a class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-primary hover:text-white transition-all" href="#">
+<span class="font-bold text-xs">yt</span>
+</a>
+<a class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-primary hover:text-white transition-all" href="#">
+<span class="font-bold text-xs">L</span>
+</a>
+</div>
+</div>
+</div>
+<div class="border-t border-slate-200 dark:border-slate-800 pt-8 text-center">
+<p class="text-xs text-slate-400">© 2024 Progressive Movement Foundation Shop. All rights reserved.</p>
+</div>
+</div>
+</footer>
+
+</body></html>

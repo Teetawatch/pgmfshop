@@ -3,28 +3,23 @@
 @switch($type)
     {{-- Matches: partials/product-card.blade.php --}}
     @case('product-card')
-        <div class="bg-white rounded-lg overflow-hidden border border-gray-100 h-full flex flex-col animate-pulse">
-            {{-- Image: aspect-square --}}
-            <div class="aspect-square bg-gray-200"></div>
-            {{-- Info: p-3 flex-1 flex flex-col gap-1.5 --}}
-            <div class="p-3 flex-1 flex flex-col gap-1.5">
-                {{-- Name: 2 lines (text-xs sm:text-sm, line-clamp-2) --}}
-                <div class="space-y-1">
-                    <div class="h-3 sm:h-3.5 bg-gray-200 rounded w-full"></div>
-                    <div class="h-3 sm:h-3.5 bg-gray-200 rounded w-3/4"></div>
+        <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 h-full flex flex-col animate-pulse">
+            {{-- Image: aspect-[4/5] --}}
+            <div class="aspect-4/5 bg-gray-200"></div>
+            {{-- Info: p-4 flex-1 flex flex-col --}}
+            <div class="p-4 flex-1 flex flex-col">
+                {{-- Name: 2 lines min-h-[3rem] --}}
+                <div class="space-y-1.5 min-h-12">
+                    <div class="h-4 bg-gray-200 rounded w-full"></div>
+                    <div class="h-4 bg-gray-200 rounded w-3/4"></div>
                 </div>
-                {{-- Price + stars at bottom --}}
-                <div class="mt-auto">
-                    <div class="flex items-baseline gap-2">
-                        <div class="h-4 sm:h-5 bg-gray-200 rounded w-16"></div>
-                        <div class="h-3 bg-gray-200 rounded w-10"></div>
+                {{-- Price row at bottom --}}
+                <div class="mt-4 flex items-end justify-between">
+                    <div class="space-y-1">
+                        <div class="h-3 bg-gray-200 rounded w-14"></div>
+                        <div class="h-5 bg-gray-200 rounded w-20"></div>
                     </div>
-                    <div class="flex items-center gap-1 mt-1">
-                        @for($i = 0; $i < 5; $i++)
-                            <div class="h-2.5 w-2.5 bg-gray-200 rounded-full"></div>
-                        @endfor
-                        <div class="h-2.5 bg-gray-200 rounded w-12 ml-0.5"></div>
-                    </div>
+                    <div class="h-4 bg-gray-200 rounded w-16"></div>
                 </div>
             </div>
         </div>
@@ -33,7 +28,7 @@
     {{-- Configurable grid: default 2/3/4 cols (home), or pass cols="2 lg:3" (products page) --}}
     @case('product-grid')
         @php
-            $gridCols = $cols ?: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4';
+            $gridCols = $cols ?: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8';
         @endphp
         <div class="grid {{ $gridCols }}">
             @for($i = 0; $i < $count; $i++)
