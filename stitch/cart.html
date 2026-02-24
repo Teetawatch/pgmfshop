@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="light" lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Premium Shopping Cart - PGMF Shop</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FF6B00",
+                        "background-light": "#F9FAFB",
+                        "background-dark": "#111827",
+                    },
+                    fontFamily: {
+                        display: ["Kanit", "sans-serif"],
+                        body: ["Kanit", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "12px",
+                        'xl': '20px',
+                    },
+                },
+            },
+        };
+        function toggleCartState() {
+            const emptyState = document.getElementById('empty-state');
+            const fullState = document.getElementById('full-state');
+            const btnText = document.getElementById('toggle-btn-text');
+            if (emptyState.classList.contains('hidden')) {
+                emptyState.classList.remove('hidden');
+                fullState.classList.add('hidden');
+                btnText.innerText = "Show Full Cart";
+            } else {
+                emptyState.classList.add('hidden');
+                fullState.classList.remove('hidden');
+                btnText.innerText = "Show Empty Cart";
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Kanit', sans-serif; }
+    </style>
+<section class="bg-primary pt-10 pb-20 text-white">
+<div class="max-w-7xl mx-auto px-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+<span class="material-icons-round text-3xl">shopping_cart</span>
+</div>
+<div>
+<h1 class="text-3xl font-bold">ตะกร้าสินค้า</h1>
+<p class="text-white/80 font-light">สินค้าที่คุณเลือกไว้ทั้งหมด</p>
+</div>
+</div>
+</div>
+</section>
+<main class="max-w-7xl mx-auto px-4 -mt-10 pb-20">
+<div class="flex justify-end mb-4">
+<button class="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-slate-400 hover:text-primary transition-colors" onclick="toggleCartState()">
+<span class="material-icons-round text-sm">swap_horiz</span>
+<span id="toggle-btn-text">Show Empty Cart</span>
+</button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="full-state">
+<div class="lg:col-span-2 space-y-4">
+<div class="bg-white dark:bg-slate-900 p-4 md:p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col md:flex-row gap-6 group">
+<div class="w-full md:w-32 h-32 bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden flex-shrink-0">
+<img alt="PGMF Classic T-Shirt" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm9GYIuIM12bhv6NbAHkI3GlTdaoKPbH75CGlNYa67qUqTfxt4oFo-Z4ToZ1IrS271s_5ARGaa6QF_dIDTiozzVwPEBH4tFVrX90ie5P59ppCQnk5Voe_OeEMYVPWqrUp0cS4OSNU7-bOQkzLcbObM0iVb6AcIMHCzSj7BPqh5VkkVCw1uOUhM2JFfsQka82VVhoRWNufydNpIIAnhCbL2dsN8roLp43kr5H_4OnEUraGVv1G1Yx6XL-aImLsG1JlMcOSJROKAuF8"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-lg font-semibold text-slate-800 dark:text-white">เสื้อยืด PGMF Classic - White Edition</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">ไซส์: L | สี: ขาว</p>
+</div>
+<button class="text-slate-300 hover:text-red-500 transition-colors">
+<span class="material-icons-round">delete_outline</span>
+</button>
+</div>
+<div class="flex items-end justify-between mt-4">
+<div class="flex items-center border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden bg-slate-50 dark:bg-slate-800">
+<button class="px-3 py-1 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">-</button>
+<span class="px-4 py-1 text-sm font-semibold">1</span>
+<button class="px-3 py-1 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">+</button>
+</div>
+<div class="text-right">
+<span class="text-primary font-bold text-xl">฿590.00</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-4 md:p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col md:flex-row gap-6 group">
+<div class="w-full md:w-32 h-32 bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden flex-shrink-0">
+<img alt="Progressive Cap" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4x0O0_EYKJx3DXGAIsa-dEPwLjYWwEVA7P4NDjwBsLt7wH_X0fSGNXr4oCDm4KFqyXqEfLBXB25lxh-T5la8fbvjokre5dr4udvK-MpWmkc_0SStQfqyaNmsLdOhrMbWGMzo5yYt79Fpt3RoIELWTeRSOWvv08AwEbdaFX776zQvJSthU5m7KUe6xO8eb_Anj5qOoYXizJXeAA2i2PLajSKOLNJd16YZafhIZg1OBVDLflAaW_MZflr7lMDC2wWgHlW_6v56fukA"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-lg font-semibold text-slate-800 dark:text-white">หมวกแก๊ป Progressive Logo</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">สี: ดำ</p>
+</div>
+<button class="text-slate-300 hover:text-red-500 transition-colors">
+<span class="material-icons-round">delete_outline</span>
+</button>
+</div>
+<div class="flex items-end justify-between mt-4">
+<div class="flex items-center border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden bg-slate-50 dark:bg-slate-800">
+<button class="px-3 py-1 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">-</button>
+<span class="px-4 py-1 text-sm font-semibold">1</span>
+<button class="px-3 py-1 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">+</button>
+</div>
+<div class="text-right">
+<span class="text-primary font-bold text-xl">฿450.00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-1">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 sticky top-28">
+<h2 class="text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-icons-round text-primary">receipt_long</span>
+                        สรุปคำสั่งซื้อ
+                    </h2>
+<div class="space-y-4 mb-6 border-b border-slate-100 dark:border-slate-800 pb-6">
+<div class="flex justify-between text-slate-600 dark:text-slate-400">
+<span>ราคารวม (2 รายการ)</span>
+<span>฿1,040.00</span>
+</div>
+<div class="flex justify-between text-slate-600 dark:text-slate-400">
+<span>ค่าจัดส่ง</span>
+<span class="text-green-500">ฟรี</span>
+</div>
+<div class="flex justify-between text-slate-600 dark:text-slate-400">
+<span>ส่วนลด</span>
+<span class="text-red-500">-฿0.00</span>
+</div>
+</div>
+<div class="flex justify-between items-center mb-8">
+<span class="text-lg font-bold">ราคาสุทธิ</span>
+<span class="text-2xl font-extrabold text-primary">฿1,040.00</span>
+</div>
+<button class="w-full bg-primary hover:bg-orange-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 transition-all transform hover:-translate-y-1 mb-4 flex items-center justify-center gap-2">
+                        ดำเนินการสั่งซื้อ
+                        <span class="material-icons-round">arrow_forward</span>
+</button>
+<div class="flex items-center justify-center gap-4">
+<img alt="Visa" class="h-6 grayscale opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXvUMAsmHWt0E_hRYzEoMGtKVfUG3i8O8OqjOVLIcGVR1m1QEB2-1Vc3wk5DBIYycdaJTs4kfAL5EuGQqBY3EFx8cyqWXVzW1xwqWBydwmHJ_uBaiOSjU_dezidnVhVWiwjiBqI2zuUnwrQ5XQSnYwdNS3uSk-n1Go-pDpbDivZqSSEUWGF3vfjsQGyEI0qNw4vLbN-4ypl-gqtQbAwDySeBYY2HB3iGE1-LbP8HJroAy2m-2ak-EVBCLbYVUpnPBD7EQduq1FEQk"/>
+<img alt="Mastercard" class="h-6 grayscale opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASU0gCGrYfPsIdg2bE_NwtInfdnBNi7r68vRzGO9LnKzjPu26ypna8uT_2LZe9QXFtz4O0JfH57pOUGPR1n4sgvaMVneNDqkvbih_6VdqR0NENg7dPoNLFXlqXlwx-lKBmNsJTIARdLd5Xn1zy-2DA4RdFbh0en86cLh66UrPb55cxT9oW64IWwqlZhTos_JM4znPM5NrwG9ELPaZEOZmXROelPrOLTrZTluZbiJFo1QMp6CQVWIDURQCEGEmnY1aFHd7AJawIU2M"/>
+<img alt="QR Code" class="h-6 grayscale opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTqAcrfKZNlDCeiRoJb-LuqA-OQTGAR8KNv1jCTPKk64HTXS9Ko0WCSwbuEiGSOxeM9QPtUpOenMoRky9EJv3pCnKhzTwd4w6HptgbNkRg_VLnCpfcpC8TXIBOLdK-unOvqfhZk9B5zqLht4dW9GDYIHPo6q9_vwd-ZLLZKqywYpSqqaGssrIr1yBj60piDalLvGQyH1w6bTELzscLiYodxIRdfnGO-kxdVb9w4W4687Zqiou7EcQG9Ul-W8Pq2Lp5LxPx0DRI0hs"/>
+</div>
+</div>
+<div class="mt-4 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-dashed border-slate-200 dark:border-slate-700">
+<div class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+<span class="material-icons-round text-primary text-base">verified_user</span>
+<span>รับประกันสินค้าของแท้ 100% และระบบชำระเงินที่ปลอดภัย</span>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden max-w-2xl mx-auto py-12" id="empty-state">
+<div class="bg-white dark:bg-slate-900 rounded-3xl p-12 text-center shadow-sm border border-slate-100 dark:border-slate-800">
+<div class="relative inline-block mb-8">
+<div class="w-32 h-32 bg-primary/5 rounded-full flex items-center justify-center">
+<span class="material-icons-round text-6xl text-primary/40">shopping_bag</span>
+</div>
+<div class="absolute -bottom-2 -right-2 w-12 h-12 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-lg border-2 border-slate-50 dark:border-slate-900">
+<span class="material-icons-round text-primary">add_shopping_cart</span>
+</div>
+</div>
+<h2 class="text-2xl font-bold mb-3 text-slate-800 dark:text-white">ตะกร้าว่างเปล่า</h2>
+<p class="text-slate-500 dark:text-slate-400 mb-8 max-w-sm mx-auto">
+                    ดูเหมือนว่าคุณยังไม่ได้เลือกสินค้าชิ้นใดเลย <br/>เริ่มค้นหาสินค้าที่ถูกใจได้แล้ววันนี้!
+                </p>
+<a class="inline-flex items-center gap-2 bg-primary hover:bg-orange-600 text-white font-bold px-10 py-4 rounded-xl shadow-lg shadow-primary/20 transition-all transform hover:-translate-y-1" href="#">
+                    ไปที่หน้าร้านค้า
+                    <span class="material-icons-round">explore</span>
+</a>
+</div>
+</div>
+</main>
+</body></html>

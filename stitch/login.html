@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PGMF Shop - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#f97316", // Orange from logo
+                        "primary-hover": "#ea580c",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b",
+                        "text-main-light": "#1e293b",
+                        "text-main-dark": "#f1f5f9",
+                        "text-muted-light": "#64748b",
+                        "text-muted-dark": "#94a3b8",
+                        facebook: "#1877F2",
+                    },
+                    fontFamily: {
+                        sans: ['Kanit', 'sans-serif'],
+                        display: ['Kanit', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Kanit', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark transition-colors duration-300 min-h-screen flex flex-col">
+<div class="flex-grow flex flex-col md:flex-row h-screen">
+<div class="hidden md:flex md:w-1/2 lg:w-3/5 relative bg-gray-900">
+<img alt="Lifestyle shopping experience" class="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-overlay" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2eohXUVLfnLLZL4yThYrVpOTIYKie-XU0i98IgEyIyrZA0pSedh6r6QwplZ_9p_eS7l6pb-hWOlqzC9bq-qYrRfTOJpcMvymxxxOI3GD6zQTNJWHiMUTqaA099fOvhQUNGkaOu2h2xE3oMsuIMf1XOuaYEv22dhaw_JGgvXKRj_2quHjzp_FGTkfxC5XSt6P0ahxlNwF8IBrDnMtGPvo3yweDlJqDKL86JAaNlZAce1sJjReXc3CDOPMAyzkq4J4i2ztBs_76wJg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+<div class="relative z-10 flex flex-col justify-end p-12 lg:p-16 text-white w-full">
+<h2 class="text-4xl lg:text-5xl font-bold mb-4 leading-tight">ร่วมสร้างสังคมใหม่<br/>ไปกับเรา</h2>
+<p class="text-lg lg:text-xl text-gray-200 max-w-lg">สนับสนุนสินค้าคุณภาพ เพื่อการเปลี่ยนแปลงที่ยั่งยืน เริ่มต้นที่นี่ PGMF Shop</p>
+<div class="mt-8 flex gap-4">
+<div class="flex items-center gap-2 text-sm text-gray-300">
+<i class="fa-solid fa-shield-halved text-primary"></i>
+<span>ปลอดภัย 100%</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-gray-300">
+<i class="fa-solid fa-lock text-blue-400"></i>
+<span>เข้ารหัส SSL</span>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full md:w-1/2 lg:w-2/5 flex flex-col bg-surface-light dark:bg-surface-dark overflow-y-auto">
+<div class="w-full p-6 flex justify-between items-center">
+<a class="flex items-center gap-2 group" href="#">
+<div class="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-400 to-primary flex items-center justify-center text-white shadow-lg group-hover:shadow-primary/50 transition-all">
+<i class="fa-solid fa-bag-shopping"></i>
+</div>
+<span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">PGMF Shop</span>
+</a>
+<div class="flex items-center gap-4">
+<button class="text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors">
+<i class="fa-solid fa-globe"></i> <span class="text-sm font-medium">TH</span>
+</button>
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-text-muted-light dark:text-text-muted-dark" onclick="document.documentElement.classList.toggle('dark')">
+<i class="fa-regular fa-moon dark:hidden"></i>
+<i class="fa-regular fa-sun hidden dark:inline"></i>
+</button>
+</div>
+</div>
+<div class="flex-grow flex flex-col justify-center px-8 sm:px-12 lg:px-20 py-8">
+<div class="max-w-md w-full mx-auto">
+<div class="text-center mb-10">
+<h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">ยินดีต้อนรับกลับ</h1>
+<p class="text-text-muted-light dark:text-text-muted-dark">เข้าสู่ระบบเพื่อสั่งซื้อสินค้าและติดตามคำสั่งซื้อ</p>
+</div>
+<div class="space-y-4">
+<button class="w-full flex items-center justify-center gap-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium py-3 px-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow">
+<img alt="Google Logo" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDp4Bb904PO3ToTTp2h-y_0LIbWwhX3NZ5NIuaeQE5RXy_7ldvBtjjIVqCx6yQ_3G7X49wf93fRUZBqfNsPNKSdPk_PLsdEAKzhrjdwJEq0fASBILbwOZIwkvvDqtrOVs56vnW4ozuU0hXoI35JGAukO0MRwRoCDUS9UjB73X-HlvKnZNVDA8LYGLYMloEmA4o-zwOLUmgoDkApDF8Jzhe5i_fBBSaLlFNzs0npl8PxjV4BvCXFUQUX7fLmlT0-78DCQEG4vsUEObo"/>
+                            เข้าสู่ระบบด้วย Google
+                        </button>
+<button class="w-full flex items-center justify-center gap-3 bg-[#1877F2] hover:bg-[#166fe5] text-white font-medium py-3 px-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md hover:shadow-blue-900/20">
+<i class="fa-brands fa-facebook text-xl"></i>
+                            เข้าสู่ระบบด้วย Facebook
+                        </button>
+<div class="relative py-4">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-gray-200 dark:border-gray-700"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-4 bg-surface-light dark:bg-surface-dark text-text-muted-light dark:text-text-muted-dark font-medium">หรือ</span>
+</div>
+</div>
+<button class="w-full flex items-center justify-center gap-3 bg-primary hover:bg-primary-hover text-white font-semibold py-3.5 px-4 rounded-xl transition-all duration-200 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/40 hover:-translate-y-0.5">
+<i class="fa-regular fa-envelope text-lg"></i>
+                            เข้าสู่ระบบด้วย E-mail
+                        </button>
+</div>
+<div class="mt-8 text-center text-sm">
+<p class="text-text-muted-light dark:text-text-muted-dark">
+                            ยังไม่มีบัญชี? 
+                            <a class="font-semibold text-primary hover:text-primary-hover underline decoration-2 decoration-transparent hover:decoration-primary transition-all" href="#">สมัครสมาชิกฟรี</a>
+</p>
+</div>
+</div>
+</div>
+<div class="p-6 text-center border-t border-gray-100 dark:border-gray-800">
+<div class="flex justify-center gap-6 mb-4">
+<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary dark:hover:text-primary transition-colors text-xl" href="#"><i class="fa-brands fa-facebook"></i></a>
+<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary dark:hover:text-primary transition-colors text-xl" href="#"><i class="fa-brands fa-instagram"></i></a>
+<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary dark:hover:text-primary transition-colors text-xl" href="#"><i class="fa-brands fa-youtube"></i></a>
+<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary dark:hover:text-primary transition-colors text-xl" href="#"><i class="fa-brands fa-line"></i></a>
+</div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark opacity-70">
+                    © 2026 Progressive Movement Foundation Shop. All rights reserved.
+                </p>
+<div class="flex justify-center gap-4 mt-2 text-xs text-text-muted-light dark:text-text-muted-dark opacity-60">
+<a class="hover:underline" href="#">นโยบายความเป็นส่วนตัว</a>
+<span>•</span>
+<a class="hover:underline" href="#">ข้อตกลงการใช้งาน</a>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

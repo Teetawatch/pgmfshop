@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html class="light" lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FAQ - Elite Experience | PGMF Shop</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#F47521",
+                        secondary: "#1E3A8A",
+                        "background-light": "#F8FAFC",
+                        "background-dark": "#0F172A",
+                    },
+                    fontFamily: {
+                        display: ["Anuphan", "sans-serif"],
+                        sans: ["Anuphan", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "12px",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        body { font-family: 'Anuphan', sans-serif; transition: background-color 0.3s ease; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .accordion-item.active .accordion-content { max-height: 200px; }
+        .accordion-item.active .chevron-icon { transform: rotate(180deg); }
+        .glass-nav { backdrop-filter: blur(10px); background-color: rgba(255, 255, 255, 0.8); }
+        .dark .glass-nav { background-color: rgba(15, 23, 42, 0.8); }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 min-h-screen">
+<main class="max-w-7xl mx-auto px-4 py-16">
+<div class="text-center mb-16">
+<h1 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">คำถามที่พบบ่อย</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto">เรารวบรวมคำตอบสำหรับคำถามที่ลูกค้าสอบถามบ่อยที่สุด เพื่อความรวดเร็วในการรับข้อมูลเบื้องต้น</p>
+</div>
+<div class="flex flex-col lg:flex-row gap-12">
+<aside class="lg:w-1/4">
+<div class="sticky top-32 space-y-2">
+<nav class="flex flex-col">
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-slate-800 text-primary shadow-sm rounded-xl font-semibold border-l-4 border-primary" href="#ordering">
+<span class="material-icons-round text-xl">shopping_bag</span> การสั่งซื้อ
+                        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all" href="#payment">
+<span class="material-icons-round text-xl">payments</span> การชำระเงิน
+                        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all" href="#shipping">
+<span class="material-icons-round text-xl">local_shipping</span> การจัดส่ง
+                        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all" href="#returns">
+<span class="material-icons-round text-xl">assignment_return</span> การคืนสินค้า
+                        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all" href="#account">
+<span class="material-icons-round text-xl">person</span> บัญชีผู้ใช้
+                        </a>
+</nav>
+</div>
+</aside>
+<div class="lg:w-3/4 space-y-16">
+<section class="scroll-mt-32" id="ordering">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-primary">
+<span class="material-icons-round">shopping_basket</span>
+</div>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white uppercase tracking-wider">การสั่งซื้อ</h2>
+</div>
+<div class="space-y-4">
+<div class="accordion-item bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700/50 overflow-hidden group">
+<button class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors" onclick="toggleAccordion(this)">
+<span class="text-lg font-medium text-slate-700 dark:text-slate-200">สั่งซื้อสินค้าอย่างไร?</span>
+<span class="material-icons-round text-slate-400 chevron-icon transition-transform duration-300">expand_more</span>
+</button>
+<div class="accordion-content">
+<div class="p-6 pt-0 text-slate-500 dark:text-slate-400 leading-relaxed">
+                                    คุณสามารถเลือกสินค้าที่ต้องการลงรถเข็น จากนั้นคลิกปุ่ม "ชำระเงิน" และทำตามขั้นตอนการกรอกที่อยู่และเลือกวิธีชำระเงินได้ทันที ระบบจะยืนยันคำสั่งซื้อผ่านอีเมลของคุณ
+                                </div>
+</div>
+</div>
+<div class="accordion-item bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700/50 overflow-hidden group">
+<button class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors" onclick="toggleAccordion(this)">
+<span class="text-lg font-medium text-slate-700 dark:text-slate-200">สามารถยกเลิกคำสั่งซื้อได้หรือไม่?</span>
+<span class="material-icons-round text-slate-400 chevron-icon transition-transform duration-300">expand_more</span>
+</button>
+<div class="accordion-content">
+<div class="p-6 pt-0 text-slate-500 dark:text-slate-400 leading-relaxed">
+                                    คุณสามารถยกเลิกได้หากสินค้ายังไม่ถูกจัดส่ง โปรดติดต่อฝ่ายบริการลูกค้าผ่านทางแชทหรืออีเมลเพื่อดำเนินการขอยกเลิกทันที
+                                </div>
+</div>
+</div>
+</div>
+</section>
+<section class="scroll-mt-32" id="payment">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-secondary">
+<span class="material-icons-round">payment</span>
+</div>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white uppercase tracking-wider">การชำระเงิน</h2>
+</div>
+<div class="space-y-4">
+<div class="accordion-item bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700/50 overflow-hidden">
+<button class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors" onclick="toggleAccordion(this)">
+<span class="text-lg font-medium text-slate-700 dark:text-slate-200">รับชำระเงินช่องทางใดบ้าง?</span>
+<span class="material-icons-round text-slate-400 chevron-icon transition-transform">expand_more</span>
+</button>
+<div class="accordion-content">
+<div class="p-6 pt-0 text-slate-500 dark:text-slate-400">
+                                    เรารับชำระผ่านการโอนเงินผ่านธนาคาร (QR PromptPay), บัตรเครดิต/เดบิต และบริการเก็บเงินปลายทาง (COD) ในบางรายการสินค้า
+                                </div>
+</div>
+</div>
+</div>
+</section>
+<section class="scroll-mt-32" id="shipping">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600">
+<span class="material-icons-round">local_shipping</span>
+</div>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white uppercase tracking-wider">การจัดส่ง</h2>
+</div>
+<div class="space-y-4">
+<div class="accordion-item bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700/50 overflow-hidden">
+<button class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors" onclick="toggleAccordion(this)">
+<span class="text-lg font-medium text-slate-700 dark:text-slate-200">จัดส่งสินค้าภายในกี่วัน?</span>
+<span class="material-icons-round text-slate-400 chevron-icon transition-transform">expand_more</span>
+</button>
+<div class="accordion-content">
+<div class="p-6 pt-0 text-slate-500 dark:text-slate-400">
+                                    สำหรับการจัดส่งในกรุงเทพฯ และปริมณฑล ใช้เวลา 1-3 วันทำการ สำหรับต่างจังหวัดใช้เวลา 3-5 วันทำการ (ไม่รวมวันหยุดนักขัตฤกษ์)
+                                </div>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-20">
+<div class="relative overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-800 dark:to-slate-950 rounded-[2rem] p-12 text-center text-white shadow-2xl">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary opacity-10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-500 opacity-10 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
+<div class="relative z-10">
+<h3 class="text-3xl font-bold mb-4">ยังมีคำถามเพิ่มเติม?</h3>
+<p class="text-slate-400 max-w-lg mx-auto mb-10 text-lg">หากคุณไม่พบคำตอบที่ต้องการ สามารถติดต่อเจ้าหน้าที่ฝ่ายบริการลูกค้าของเราได้โดยตรง เรายินดีช่วยเหลือคุณเสมอ</p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+<a class="group flex items-center gap-3 bg-white text-slate-900 px-8 py-4 rounded-2xl font-bold hover:bg-primary hover:text-white transition-all duration-300" href="mailto:office@progressivemovement.in.th">
+<span class="material-icons-round text-primary group-hover:text-white">mail</span>
+                                    ส่งอีเมลหาเรา
+                                </a>
+<a class="flex items-center gap-3 bg-slate-700/50 backdrop-blur-sm border border-slate-600 px-8 py-4 rounded-2xl font-bold hover:bg-slate-700 transition-all duration-300" href="#">
+<span class="material-icons-round">chat_bubble</span>
+                                    แชทสดกับเจ้าหน้าที่
+                                </a>
+</div>
+<div class="mt-10 flex items-center justify-center gap-2 text-slate-400 text-sm">
+<span class="material-icons-round text-base">schedule</span>
+<span>จันทร์ - ศุกร์ | 09.00 - 19.00 น.</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<script>
+        function toggleAccordion(button) {
+            const item = button.parentElement;
+            const isActive = item.classList.contains('active');
+            // Close all other items (optional, but cleaner)
+            document.querySelectorAll('.accordion-item').forEach(el => {
+                el.classList.remove('active');
+            });
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    // Update sidebar active state
+                    document.querySelectorAll('aside nav a').forEach(nav => {
+                        nav.classList.remove('bg-white', 'dark:bg-slate-800', 'text-primary', 'shadow-sm', 'border-l-4', 'border-primary', 'font-semibold');
+                        nav.classList.add('text-slate-500', 'dark:text-slate-400');
+                    });
+                    this.classList.add('bg-white', 'dark:bg-slate-800', 'text-primary', 'shadow-sm', 'border-l-4', 'border-primary', 'font-semibold');
+                    this.classList.remove('text-slate-500', 'dark:text-slate-400');
+                }
+            });
+        });
+    </script>
+
+</body></html>

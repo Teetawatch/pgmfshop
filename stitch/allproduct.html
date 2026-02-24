@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html class="light" lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PGMF Shop - Premium Product List</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FF6B00",
+                        "background-light": "#FAFAFA",
+                        "background-dark": "#121212",
+                        "card-light": "#FFFFFF",
+                        "card-dark": "#1E1E1E",
+                    },
+                    fontFamily: {
+                        display: ["Anuphan", "sans-serif"],
+                        body: ["Anuphan", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "12px",
+                        'xl': "20px",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        body { font-family: 'Anuphan', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24 }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #374151; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 transition-colors duration-300">
+<div class="container mx-auto px-6 h-20 flex items-center justify-between">
+
+<div class="flex flex-col lg:flex-row gap-8">
+<aside class="w-full lg:w-72 flex-shrink-0 space-y-8">
+<div>
+<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">grid_view</span>
+                        ประเภทสินค้า
+                    </h3>
+<ul class="space-y-1">
+<li>
+<button class="w-full flex justify-between items-center px-4 py-2.5 bg-primary text-white rounded-lg font-medium shadow-md shadow-primary/20 transition-all">
+<span>ทุกประเภท</span>
+<span class="text-xs opacity-70">124</span>
+</button>
+</li>
+<li>
+<button class="w-full flex justify-between items-center px-4 py-2.5 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400 transition-all">
+<span>หนังสือ</span>
+<span class="text-xs text-slate-400">42</span>
+</button>
+</li>
+<li>
+<button class="w-full flex justify-between items-center px-4 py-2.5 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400 transition-all">
+<span>เสื้อผ้า</span>
+<span class="text-xs text-slate-400">28</span>
+</button>
+</li>
+<li>
+<button class="w-full flex justify-between items-center px-4 py-2.5 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400 transition-all">
+<span>กระเป๋า</span>
+<span class="text-xs text-slate-400">15</span>
+</button>
+</li>
+<li>
+<button class="w-full flex justify-between items-center px-4 py-2.5 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400 transition-all">
+<span>อื่นๆ</span>
+<span class="text-xs text-slate-400">39</span>
+</button>
+</li>
+</ul>
+</div>
+<div class="p-6 bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 rounded-2xl">
+<h3 class="text-base font-bold mb-6">ช่วงราคา</h3>
+<div class="px-2">
+<input class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary" max="2000" min="0" type="range"/>
+<div class="flex justify-between mt-4 text-xs font-medium text-slate-500">
+<span>฿0</span>
+<span>฿2,000+</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-6">
+<div class="space-y-1">
+<label class="text-[10px] uppercase tracking-wider text-slate-400">ต่ำสุด</label>
+<input class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm px-3 py-1.5 focus:ring-primary focus:border-primary" type="number" value="0"/>
+</div>
+<div class="space-y-1">
+<label class="text-[10px] uppercase tracking-wider text-slate-400">สูงสุด</label>
+<input class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm px-3 py-1.5 focus:ring-primary focus:border-primary" type="number" value="1000"/>
+</div>
+</div>
+</div>
+<div class="relative overflow-hidden p-6 bg-slate-900 rounded-2xl text-white">
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[100px]">mail</span>
+</div>
+<h4 class="font-bold mb-2">รับข่าวสารใหม่ๆ</h4>
+<p class="text-xs text-slate-400 mb-4 leading-relaxed">รับโปรโมชั่นพิเศษและสินค้าใหม่ก่อนใคร</p>
+<input class="w-full bg-white/10 border-white/20 rounded-lg text-xs mb-3 focus:ring-primary focus:border-primary placeholder:text-white/30" placeholder="อีเมลของคุณ" type="email"/>
+<button class="w-full py-2 bg-primary text-white rounded-lg text-xs font-bold hover:bg-orange-600 transition-colors">ติดตามตอนนี้</button>
+</div>
+</aside>
+<div class="flex-1">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+<div>
+<h1 class="text-3xl font-bold mb-1">สินค้าทั้งหมด</h1>
+<p class="text-slate-500 text-sm">พบสินค้าทั้งหมด 4 รายการ</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-sm text-slate-500 hidden sm:block">เรียงตาม:</span>
+<select class="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-full text-sm py-2 pl-4 pr-10 focus:ring-primary focus:border-primary min-w-[160px]">
+<option>แนะนำ</option>
+<option>ราคา: ต่ำ-สูง</option>
+<option>ราคา: สูง-ต่ำ</option>
+<option>สินค้าใหม่</option>
+</select>
+<div class="flex bg-slate-100 dark:bg-slate-900 rounded-full p-1">
+<button class="p-1.5 bg-white dark:bg-slate-800 rounded-full shadow-sm">
+<span class="material-symbols-outlined text-xl">grid_view</span>
+</button>
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-800 rounded-full transition-all text-slate-400">
+<span class="material-symbols-outlined text-xl">view_list</span>
+</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="group bg-white dark:bg-card-dark rounded-xl border border-slate-100 dark:border-slate-800 overflow-hidden hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img alt="กระเป๋าผ้าแคนวาส" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgt__Uuof9z2tLIs0Ho6tflPKuWO0coKxa9QHzd_ojrICxjTIyo7ItjS95g-sTc8Nq1z22G7M3TKvw5wnERnnMWYYDYILY31hjbA8ALq_lzOw5-GYx5cC-9yI2McCM8u24CcWXYG0kEEtq_3U6LfHvEfGD56mVlUboerPgf5Ma94RRv2Vpg27ACmh2N4xEMlvQfH0xx0xvJED42-8aH4mEL6keFPtss8FCk2Hs1SvoPYebPhuxy3SEpHocyIM8vBZwpuT8jAlCdWg"/>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="px-3 py-1 bg-red-500 text-white text-[10px] font-bold rounded-full uppercase tracking-wider">Hot</span>
+<span class="px-3 py-1 bg-primary text-white text-[10px] font-bold rounded-full uppercase tracking-wider">-31%</span>
+</div>
+<button class="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 hover:bg-white hover:text-red-500">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<div class="p-5">
+<div class="flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-yellow-400 text-xs">star</span>
+<span class="text-[10px] font-bold text-slate-400">4.9 (12 รีวิว)</span>
+</div>
+<h3 class="font-bold text-lg mb-2 line-clamp-2 leading-snug group-hover:text-primary transition-colors">
+                                กระเป๋าผ้าแคนวาสคอลเลคชั่น 'There is no time like spring'
+                            </h3>
+<div class="flex items-end justify-between">
+<div>
+<span class="block text-slate-400 text-xs line-through mb-0.5">฿390.00</span>
+<span class="text-xl font-bold text-primary">฿270.00</span>
+</div>
+<button class="p-2.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-lg hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group bg-white dark:bg-card-dark rounded-xl border border-slate-100 dark:border-slate-800 overflow-hidden transition-all duration-300">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img alt="หนังสือคิดไปข้างหน้า" class="w-full h-full object-cover grayscale opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIGMyyPskpyuwTTiJfThTGBnQWjRFVytXOhMXsJ8GWK3VGSYHDLO7amvjR6GZ1FFl85w9rtrKaYVmSlscCO5fYgZWcHOnn6Wd1BRTHRJSCLXmVdG_qyka-isDYBSz6lPjnrIdqRnjzcYh_3IA55RJxemjWqw5ehfBmfz5SEovHxHsq6dhhe24i93ieXlgOkBVV9jREaGPcSioD8_RQ6laR4AzSypIf5uGFDURGA6qRm0SNRVIfXjo8qSfg1YC6sn-AaugRIYK79WI"/>
+<div class="absolute inset-0 bg-black/20 flex items-center justify-center backdrop-blur-[2px]">
+<span class="px-6 py-2 bg-black/80 text-white text-sm font-bold rounded-full border border-white/20">SOLD OUT</span>
+</div>
+</div>
+<div class="p-5 opacity-60">
+<h3 class="font-bold text-lg mb-2 line-clamp-2 leading-snug">
+                                หนังสือคิดไปข้างหน้า
+                            </h3>
+<div class="flex items-end justify-between">
+<div>
+<span class="block text-slate-400 text-xs line-through mb-0.5">฿350.00</span>
+<span class="text-xl font-bold text-slate-600 dark:text-slate-400">฿210.00</span>
+</div>
+<button class="p-2.5 bg-slate-200 dark:bg-slate-800 text-slate-400 rounded-lg cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined">shopping_cart_off</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group bg-white dark:bg-card-dark rounded-xl border border-slate-100 dark:border-slate-800 overflow-hidden hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img alt="หนังสือจนกว่าอำนาจ" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVienjBMPxVWGwEs-YbqqkuSpBrD6MFtCoX9TfMmHrZ_6A7OWnY6IHRmcDxsCCgPHWv2IPz5jLA0c9S_l2mrYcGzz7V1ZbbI0TYxFfqN9er4EIaaJmEDzOhpfMVDJWAMNk7zh5XdCKv5hfxqFqI1Ulf4-ft3HkbbJFr47E_UgGILXZAD-4jXYUuunGD3hvHo-0e3oTCsFZgAo-ZXtzcFalGxruY_Et3myIpSI91BiYwXHHwt_pk8rH8Y1Ft3N-0scSJWFqwGWznek"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-primary text-white text-[10px] font-bold rounded-full uppercase tracking-wider">-40%</span>
+</div>
+<button class="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 hover:bg-white hover:text-red-500">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<div class="p-5">
+<div class="flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-yellow-400 text-xs">star</span>
+<span class="text-[10px] font-bold text-slate-400">5.0 (28 รีวิว)</span>
+</div>
+<h3 class="font-bold text-lg mb-2 line-clamp-2 leading-snug group-hover:text-primary transition-colors">
+                                หนังสือจนกว่าอำนาจสูงสุดจะเป็นของประชาชน
+                            </h3>
+<div class="flex items-end justify-between">
+<div>
+<span class="block text-slate-400 text-xs line-through mb-0.5">฿400.00</span>
+<span class="text-xl font-bold text-primary">฿240.00</span>
+</div>
+<button class="p-2.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-lg hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group bg-white dark:bg-card-dark rounded-xl border border-slate-100 dark:border-slate-800 overflow-hidden hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300">
+<div class="relative aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-slate-900">
+<img alt="เสื้อยืดแมวเท่ากัน" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASLoZs7DVyXWxzKjxrQD5zSYfgOfNA3Pm9yNLTWBePaEXqpnzu9UMd_5vAEcQMQfmrKjlqSrUqE5w8GTZKYn8vwjdNwZ9SHl17xDRTtgWWuw98uhFpTrzNB0_kQg3-4SX0GpAcPWY-VPJbAnOVpiVrp2D_1T5isGiugE1Kgqug5hJjyzwExjGp38BpKs_8iR9FT0tySaFntwPtv76GhV1U8CEW9r23qv_UgpGpdrBR7-4KZL1k3pNJA0uduTnaHCrS_nGkrX9_jSQ"/>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="px-3 py-1 bg-red-500 text-white text-[10px] font-bold rounded-full uppercase tracking-wider">Hot</span>
+<span class="px-3 py-1 bg-blue-500 text-white text-[10px] font-bold rounded-full uppercase tracking-wider">New</span>
+</div>
+<button class="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 hover:bg-white hover:text-red-500">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<div class="p-5">
+<div class="flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-slate-300 text-xs">star</span>
+<span class="text-[10px] font-bold text-slate-400">ยังไม่มีรีวิว</span>
+</div>
+<h3 class="font-bold text-lg mb-2 line-clamp-2 leading-snug group-hover:text-primary transition-colors">
+                                (ทดสอบ) เสื้อยืดแมวเท่ากัน
+                            </h3>
+<div class="flex items-end justify-between">
+<div>
+<span class="text-xl font-bold text-primary">฿1.00</span>
+</div>
+<button class="p-2.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-lg hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 flex justify-center items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-primary hover:border-primary transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold shadow-lg shadow-primary/20">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 hover:text-primary hover:border-primary transition-all">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 hover:text-primary hover:border-primary transition-all">3</button>
+<span class="px-2 text-slate-400">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 hover:text-primary hover:border-primary transition-all">10</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-primary hover:border-primary transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+
+
+</body></html>
