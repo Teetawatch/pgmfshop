@@ -149,24 +149,6 @@
             </div>
         </div>
 
-        {{-- Contact --}}
-        <div class="bg-linear-to-r from-gray-900 to-gray-800 rounded-3xl p-8 sm:p-12 text-center text-white">
-            <h2 class="text-2xl sm:text-3xl font-bold mb-4">ติดต่อเรา</h2>
-            <p class="text-gray-300 mb-8 max-w-xl mx-auto">หากคุณมีคำถามเกี่ยวกับนโยบายความเป็นส่วนตัว หรือต้องการใช้สิทธิ์ตามกฎหมาย กรุณาติดต่อเราผ่านช่องทางด้านล่าง</p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="mailto:support@pgmfshop.com"
-                   class="flex items-center gap-3 bg-white/10 border border-white/10 px-6 py-4 rounded-xl hover:bg-white/20 transition-all group">
-                    <span class="material-icons-outlined group-hover:text-[hsl(var(--primary))] transition-colors">email</span>
-                    <span class="font-medium">support@pgmfshop.com</span>
-                </a>
-                <a href="tel:02-123-4567"
-                   class="flex items-center gap-3 bg-white/10 border border-white/10 px-6 py-4 rounded-xl hover:bg-white/20 transition-all group">
-                    <span class="material-icons-outlined group-hover:text-[hsl(var(--primary))] transition-colors">phone_in_talk</span>
-                    <span class="font-medium">02-123-4567</span>
-                </a>
-            </div>
-        </div>
-
     </main>
 </div>
 @endsection
