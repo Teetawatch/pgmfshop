@@ -12,8 +12,6 @@ class Navbar extends Component
 {
     public $categories = [];
     public $searchQuery = '';
-    public $isMenuOpen = false;
-    public $showCategories = false;
     public $searchSuggestions = [];
     public $showSuggestions = false;
 

@@ -3,6 +3,7 @@
 <header
     x-data="{
         scrolled: false,
+        menuOpen: false,
         init() {
             this.scrolled = window.scrollY > 80;
             let ticking = false;
@@ -193,9 +194,9 @@
                     <a href="{{ route('login') }}" class="hidden md:inline-flex items-center gap-2 h-9 px-4 rounded-full text-sm font-medium text-slate-600 border border-slate-200 hover:bg-slate-50 hover:text-slate-800 transition-colors"><x-heroicon-o-user class="h-4 w-4" />เข้าสู่ระบบ</a>
                 @endauth
                 {{-- Mobile Menu Toggle --}}
-                <button wire:click="$toggle('isMenuOpen')" class="md:hidden p-2 rounded-full text-slate-600 hover:bg-slate-100 transition-colors" title="เมนู">
-                    @if($isMenuOpen)<x-heroicon-o-x-mark class="h-5 w-5" />
-                    @else<x-heroicon-o-bars-3 class="h-5 w-5" />@endif
+                <button @click="menuOpen = !menuOpen" class="md:hidden p-2 rounded-full text-slate-600 hover:bg-slate-100 transition-colors" title="เมนู">
+                    <x-heroicon-o-x-mark class="h-5 w-5" x-show="menuOpen" style="display:none" />
+                    <x-heroicon-o-bars-3 class="h-5 w-5" x-show="!menuOpen" />
                 </button>
             </div>
         </div>
@@ -203,8 +204,15 @@
 
     
     {{-- ===== Mobile Menu ===== --}}
-    @if($isMenuOpen)
-        <div class="md:hidden bg-white">
+    <div class="md:hidden bg-white"
+         x-show="menuOpen"
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0 -translate-y-2"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100 translate-y-0"
+         x-transition:leave-end="opacity-0 -translate-y-2"
+         style="display:none">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 space-y-3">
                 <div class="space-y-0.5">
                     <a href="{{ route('products') }}" class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors">
