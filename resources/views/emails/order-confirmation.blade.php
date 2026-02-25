@@ -111,7 +111,7 @@
     </div>
 
     <p style="text-align: center;">
-        <a href="{{ route('account.orders.show', $order->id) }}" class="btn">📋 ดูรายละเอียดคำสั่งซื้อ</a>
+        <a href="{{ url('/account/orders/' . $order->id) }}" class="btn">📋 ดูรายละเอียดคำสั่งซื้อ</a>
     </p>
 
     <hr class="divider">

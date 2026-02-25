@@ -12,7 +12,6 @@
 
     <div class="highlight-box success">
         <div style="display: flex; align-items: center; gap: 12px;">
-            <span style="font-size: 24px;">✅</span>
             <div>
                 <p style="font-size: 16px; color: #166534; margin: 0; font-weight: 600;">
                     ชำระเงินสำเร็จ
@@ -25,7 +24,7 @@
     </div>
 
     {{-- Receipt / Summary --}}
-    <h3 style="font-size: 15px; color: #1a1a2e; margin: 20px 0 10px;">🧾 ใบเสร็จรับเงิน</h3>
+    <h3 style="font-size: 15px; color: #1a1a2e; margin: 20px 0 10px;">ใบเสร็จรับเงิน</h3>
 
     <table class="items">
         <thead>
@@ -99,6 +98,6 @@
     </p>
 
     <p style="text-align: center;">
-        <a href="{{ route('account.orders.show', $order->id) }}" class="btn">📋 ดูรายละเอียดคำสั่งซื้อ</a>
+        <a href="{{ url('/account/orders/' . $order->id) }}" class="btn">ดูรายละเอียดคำสั่งซื้อ</a>
     </p>
 @endsection

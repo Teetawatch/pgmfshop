@@ -66,13 +66,13 @@
 
     @if($trackingUrl)
     <p style="text-align: center;">
-        <a href="{{ $trackingUrl }}" class="btn" style="background: #2563eb;">📍 ติดตามพัสดุ</a>
+        <a href="{{ $trackingUrl }}" class="btn" style="background: #2563eb;">ติดตามพัสดุ</a>
     </p>
     @endif
 
     {{-- Shipping Address --}}
     @if($order->shipping_address)
-    <h3 style="font-size: 15px; color: #1a1a2e; margin: 20px 0 10px;">📦 ที่อยู่จัดส่ง</h3>
+    <h3 style="font-size: 15px; color: #1a1a2e; margin: 20px 0 10px;">ที่อยู่จัดส่ง</h3>
     <div class="info-box">
         <p style="font-size: 14px; color: #4a5568; margin: 0; line-height: 1.8;">
             <strong>{{ $order->shipping_address['name'] ?? '' }}</strong><br>
@@ -86,7 +86,7 @@
     @endif
 
     {{-- Order Items Summary --}}
-    <h3 style="font-size: 15px; color: #1a1a2e; margin: 20px 0 10px;">🛒 สินค้าในพัสดุ</h3>
+    <h3 style="font-size: 15px; color: #1a1a2e; margin: 20px 0 10px;">สินค้าในพัสดุ</h3>
     <table class="items">
         <tbody>
             @foreach($order->items as $item)

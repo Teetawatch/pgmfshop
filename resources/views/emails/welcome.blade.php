@@ -4,7 +4,7 @@
 @section('header-subtitle', 'ขอบคุณที่สมัครสมาชิก')
 
 @section('content')
-    <p class="greeting">สวัสดีคุณ {{ $user->name }} 👋</p>
+    <p class="greeting">สวัสดีคุณ {{ $user->name }}</p>
 
     <p class="text">
         ยินดีต้อนรับสู่ <strong>PGMF Shop</strong>!
@@ -13,7 +13,6 @@
 
     <div class="highlight-box success">
         <div style="display: flex; align-items: center; gap: 12px;">
-            <span style="font-size: 24px;">🎉</span>
             <div>
                 <p style="font-size: 16px; color: #166534; margin: 0; font-weight: 600;">
                     สมัครสมาชิกสำเร็จ!
@@ -26,7 +25,7 @@
     </div>
 
     <div class="info-box">
-        <h3 style="font-size: 16px; color: #0f172a; margin: 0 0 16px; font-weight: 600;">📋 ข้อมูลบัญชีของคุณ</h3>
+        <h3 style="font-size: 16px; color: #0f172a; margin: 0 0 16px; font-weight: 600;">ข้อมูลบัญชีของคุณ</h3>
         <table style="width: 100%; font-size: 14px;">
             <tr>
                 <td style="padding: 10px 0; color: #64748b;">ชื่อสมาชิก</td>
@@ -44,7 +43,7 @@
     </div>
 
     <p style="text-align: center;">
-        <a href="{{ route('home') }}" class="btn">🛍️ เริ่มช้อปปิ้งเลย</a>
+        <a href="{{ url('/') }}" class="btn">เริ่มช้อปปิ้งเลย</a>
     </p>
 
     <hr class="divider">

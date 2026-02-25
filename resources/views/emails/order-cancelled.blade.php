@@ -76,7 +76,7 @@
     @endif
 
     <p style="text-align: center;">
-        <a href="{{ route('products') }}" class="btn">🛍️ เลือกซื้อสินค้าอื่น</a>
+        <a href="{{ url('/products') }}" class="btn">🛍️ เลือกซื้อสินค้าอื่น</a>
     </p>
 
     <hr class="divider">
