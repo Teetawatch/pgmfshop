@@ -5,8 +5,7 @@
     {{-- ===== HERO HEADER ===== --}}
     <div class="relative overflow-hidden h-64 flex items-center"
          style="background: linear-gradient(135deg, #1f2937 0%, #374151 100%);">
-        <div class="absolute inset-0"
-             style="background-image:url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff6b00' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;);">
+        <div class="bg-[#FF6B00] absolute inset-0">
         </div>
         <div class="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col sm:flex-row items-center sm:items-end gap-6 pb-8">
@@ -27,8 +26,8 @@
 
                 {{-- Name & Email --}}
                 <div class="text-center sm:text-left text-white mb-2">
-                    <h1 class="text-3xl font-bold tracking-tight mb-1">{{ $user->name }}</h1>
-                    <div class="flex items-center justify-center sm:justify-start gap-2 text-gray-300 text-sm">
+                    <h1 class="text-3xl font-bold tracking-tight mb-1 text-white">{{ $user->name }}</h1>
+                    <div class="flex items-center justify-center sm:justify-start gap-2 text-gray-300 text-sm text-white">
                         <span class="material-icons-outlined text-base">email</span>
                         {{ $user->email }}
                     </div>
