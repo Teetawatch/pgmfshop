@@ -24,7 +24,7 @@
 
         body {
             font-family: 'THSarabunNew', sans-serif;
-            font-size: 16px;
+            font-size: 20px;
             color: #333;
              margin: 0;
             padding: 0;
@@ -51,7 +51,7 @@
         }
 
         .shop-address {
-            font-size: 16px;
+            font-size: 18px;
             color: #555;
             line-height: 1.0;
             letter-spacing: normal;
@@ -81,13 +81,13 @@
         }
 
         .info-label {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
             color: #1e3a5f;
         }
 
         .info-value {
-            font-size: 13px;
+            font-size: 16px;
             color: #333;
         }
 
@@ -97,7 +97,7 @@
         }
 
         .customer-label {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 700;
             color: #1e3a5f;
             margin-bottom: 1px;
@@ -106,7 +106,7 @@
         }
 
         .customer-name {
-            font-size: 13px;
+            font-size: 16px;
             color: #333;
             margin-bottom: 1px;
             line-height: 1.0;
@@ -114,7 +114,7 @@
         }
 
         .customer-address {
-            font-size: 12px;
+            font-size: 15px;
             color: #555;
             margin-bottom: 1px;
             line-height: 1.0;
@@ -122,7 +122,7 @@
         }
 
         .customer-phone {
-            font-size: 12px;
+            font-size: 15px;
             color: #555;
             margin-top: 0px;
             line-height: 1.0;
@@ -140,7 +140,7 @@
 .items-table th,
 .items-table td {
     padding: 4px;
-    font-size: 14px;
+    font-size: 16px;
     word-wrap: break-word;
     vertical-align: top;
 }
@@ -159,7 +159,7 @@
 
 .items-table tfoot td {
     border-top: 2px solid #1e3a5f;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
 }
 
@@ -172,7 +172,7 @@
 /* Body */
 .items-table tbody td {
     padding: 4px;
-    font-size: 14px;
+    font-size: 16px;
     border-bottom: 1px solid #e5e5e5;
     vertical-align: top;
 
@@ -183,7 +183,7 @@
 /* Footer */
 .items-table tfoot td {
     padding: 6px 4px;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 700;
     border-top: 2px solid #1e3a5f;
 }
@@ -196,7 +196,7 @@
 
         .summary-row td {
             padding: 4px 6px;
-            font-size: 16px;
+            font-size: 18px;
         }
 
         .summary-label {
@@ -216,7 +216,7 @@
 
         .subtotal-row td {
             padding: 6px 6px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
         }
 
@@ -228,7 +228,7 @@
         }
 
         .grand-total-text {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
             color: #333;
         }
