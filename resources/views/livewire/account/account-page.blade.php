@@ -11,16 +11,15 @@
         <div class="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col sm:flex-row items-center sm:items-end gap-6 pb-8">
 
-                {{-- Avatar with glow ring --}}
-                <div class="relative group shrink-0">
-                    <div class="absolute -inset-0.5 bg-linear-to-r from-[#ff6b00] to-orange-400 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
+                {{-- Avatar --}}
+                <div class="shrink-0">
                     @if($user->social_avatar || $user->avatar)
                         <img src="{{ $user->social_avatar ?: $user->avatar }}"
                              alt="{{ $user->name }}"
-                             class="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-white object-cover shadow-xl"
+                             class="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-white object-cover shadow-xl"
                              referrerpolicy="no-referrer" />
                     @else
-                        <div class="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-white bg-linear-to-br from-orange-400 to-orange-600 flex items-center justify-center shadow-xl">
+                        <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-white bg-linear-to-br from-orange-400 to-orange-600 flex items-center justify-center shadow-xl">
                             <span class="text-white text-4xl font-bold">{{ strtoupper(substr($user->name, 0, 1)) }}</span>
                         </div>
                     @endif
