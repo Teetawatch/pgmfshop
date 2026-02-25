@@ -20,6 +20,14 @@ class AddressesPage extends Component
     public $formPostalCode = '';
     public $formIsDefault = false;
 
+    public function logout()
+    {
+        auth()->logout();
+        session()->invalidate();
+        session()->regenerateToken();
+        return redirect('/');
+    }
+
     public function mount()
     {
         if (!auth()->check()) {
