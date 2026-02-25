@@ -9,12 +9,7 @@
     <div class="relative z-10 w-full max-w-md">
 
         {{-- Card --}}
-        <div class="bg-white rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.12)] border border-gray-100 overflow-hidden">
-
-            {{-- Gradient top bar --}}
-            <div class="h-1 w-full bg-gradient-to-r from-[hsl(var(--primary))] via-orange-400 to-[#1877F2]"></div>
-
-            <div class="px-8 py-10 text-center">
+        <div class="bg-white rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.12)] border border-gray-100 p-8 text-center">
 
                 {{-- Logo --}}
                 <div class="flex justify-center mb-6">
