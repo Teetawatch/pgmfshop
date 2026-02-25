@@ -4,10 +4,10 @@
 ])
 
 @section('content')
-<div class="bg-gray-50 min-h-screen">
+<div class=" min-h-screen">
 
     {{-- Hero --}}
-    <div class="bg-white border-b border-gray-100 py-16 sm:py-20 text-center">
+    <div class="bg-white py-16 sm:py-20 text-center">
         <div class="max-w-3xl mx-auto px-4">
             <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-[hsl(var(--primary))]/10 mb-5">
                 <span class="material-icons-outlined text-[hsl(var(--primary))] text-3xl">verified_user</span>
@@ -136,18 +136,6 @@
             </div>
         </div>
 
-        {{-- 7. การเปลี่ยนแปลงนโยบาย --}}
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-            <div class="flex items-start gap-4">
-                <div class="shrink-0 w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600">
-                    <span class="material-icons-outlined">update</span>
-                </div>
-                <div class="flex-1">
-                    <h2 class="text-xl font-bold text-gray-900 mb-3">7. การเปลี่ยนแปลงนโยบาย</h2>
-                    <p class="text-gray-600 leading-relaxed">เราอาจปรับปรุงนโยบายความเป็นส่วนตัวนี้เป็นครั้งคราว การเปลี่ยนแปลงใดๆ จะถูกประกาศบนหน้านี้พร้อมระบุวันที่อัปเดต เราแนะนำให้คุณตรวจสอบนโยบายนี้เป็นประจำเพื่อรับทราบถึงแนวทางปฏิบัติล่าสุดของเรา</p>
-                </div>
-            </div>
-        </div>
 
     </main>
 </div>
