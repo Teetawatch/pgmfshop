@@ -82,6 +82,11 @@
                             <span class="material-icons-outlined">location_on</span>
                             ที่อยู่จัดส่ง
                         </a>
+                        <a href="{{ route('account.wishlist') }}"
+                           class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
+                            <span class="material-icons-outlined">favorite</span>
+                            รายการโปรด
+                        </a>
                         @if(auth()->user()->role === 'admin')
                             <a href="/admin"
                                class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">

@@ -13,6 +13,14 @@ class WishlistPage extends Component
 {
     use WithSeo;
 
+    public function logout()
+    {
+        auth()->logout();
+        session()->invalidate();
+        session()->regenerateToken();
+        return redirect('/');
+    }
+
     public function removeFromWishlist(int $productId)
     {
         Wishlist::where('user_id', auth()->id())
