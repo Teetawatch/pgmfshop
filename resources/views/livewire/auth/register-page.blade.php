@@ -16,7 +16,7 @@
                 <a href="{{ route('home') }}"
                    class="w-16 h-16 rounded-2xl bg-linear-to-br from-orange-400 to-blue-500 p-0.5 shadow-lg block">
                     <div class="w-full h-full bg-white rounded-[14px] flex items-center justify-center overflow-hidden">
-                        <img src="{{ asset('images/pgmf-logo.jpg') }}" alt="PGMF Shop"
+                        <img src="{{ vite_image('pgmf-logo.jpg') }}" alt="PGMF Shop"
                              class="w-full h-full object-cover opacity-90" />
                     </div>
                 </a>
