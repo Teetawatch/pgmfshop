@@ -40,10 +40,10 @@
                     <h2 class="text-3xl font-bold text-gray-900 mb-8">เราเชื่อมั่นในคุณภาพและ <br> เจตจำนงที่ชัดเจน</h2>
                     <div class="space-y-6 text-gray-600 leading-relaxed text-lg">
                         <p>
-                            PGMF Shop เป็นร้านค้าออนไลน์ที่มุ่งมั่นนำเสนอสินค้าคุณภาพในราคาที่เข้าถึงได้ เราคัดสรรสินค้าจากแบรนด์ชั้นนำทั้งในและต่างประเทศ เพื่อตอบสนองความต้องการของลูกค้าทุกท่าน
+                            PGMF Shop ภายใต้มูลนิธิคณะก้าวหน้า มีภารกิจในการผลิตและแปลหนังสือเนื้อหาก้าวหน้า เพื่อส่งเสริมประชาธิปไตย สิทธิมนุษยชน ความเท่าเทียมทางเพศ ความหลากหลายทางวัฒนธรรม และความยุติธรรม เพื่อขับเคลื่อนสังคมให้ก้าวหน้า
                         </p>
                         <p>
-                            เราเชื่อว่าการช้อปปิ้งออนไลน์ควรเป็นเรื่องง่าย สะดวก และปลอดภัย ด้วยระบบที่ทันสมัยและทีมงานที่พร้อมให้บริการ เราจึงมุ่งมั่นพัฒนาประสบการณ์การซื้อสินค้าออนไลน์ให้ดียิ่งขึ้นอย่างต่อเนื่อง
+                            พร้อมกันนี้ ยังพัฒนาพื้นที่จำหน่ายสินค้าที่ระลึกเชิงสร้างสรรค์ เพื่อเป็นอีกช่องทางในการสื่อสารแนวคิด และเปิดโอกาสให้ผู้สนับสนุนมีส่วนร่วมกับการเปลี่ยนแปลง
                         </p>
                         <div class="pt-4 flex items-center gap-6">
                             <div class="flex flex-col">
@@ -60,48 +60,6 @@
                 </div>
             </div>
 
-        </div>
-    </section>
-
-    {{-- ─── Why Us ─── --}}
-    <section class="py-24 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold text-gray-900 mb-16">ทำไมต้องเลือกเรา</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-                <div class="p-8 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mb-6 mx-auto">
-                        <x-heroicon-o-shield-check class="h-6 w-6" />
-                    </div>
-                    <h3 class="text-lg font-bold mb-3 text-gray-900">สินค้าคุณภาพ</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">คัดสรรสินค้าจากแบรนด์ชั้นนำ รับประกันคุณภาพทุกชิ้นงาน</p>
-                </div>
-
-                <div class="p-8 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-6 mx-auto">
-                        <x-heroicon-o-currency-dollar class="h-6 w-6" />
-                    </div>
-                    <h3 class="text-lg font-bold mb-3 text-gray-900">ราคาคุ้มค่า</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">ราคาที่เข้าถึงได้ พร้อมโปรโมชั่นและส่วนลดพิเศษประจำเดือน</p>
-                </div>
-
-                <div class="p-8 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-6 mx-auto">
-                        <x-heroicon-o-bolt class="h-6 w-6" />
-                    </div>
-                    <h3 class="text-lg font-bold mb-3 text-gray-900">จัดส่งรวดเร็ว</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">จัดส่งภายใน 1-3 วันทำการ ผ่านระบบขนส่งมาตรฐานชั้นนำ</p>
-                </div>
-
-                <div class="p-8 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-6 mx-auto">
-                        <x-heroicon-o-lifebuoy class="h-6 w-6" />
-                    </div>
-                    <h3 class="text-lg font-bold mb-3 text-gray-900">บริการหลังการขาย</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">ทีมงานพร้อมดูแลและช่วยเหลือคุณทุกวัน 09:00 - 21:00 น.</p>
-                </div>
-
-            </div>
         </div>
     </section>
 
@@ -153,7 +111,7 @@
                     </div>
 
                     <div class="mt-12 flex gap-4">
-                        <a href="https://progressivemovement.in.th" target="_blank" rel="noopener"
+                        <a href="https://pgmfshop.in.th/" target="_blank" rel="noopener"
                            class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-gray-500 hover:bg-orange-500 hover:text-white transition-all">
                             <x-heroicon-o-globe-alt class="h-5 w-5" />
                         </a>

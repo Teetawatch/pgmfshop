@@ -88,17 +88,6 @@
                     </div>
                 </div>
 
-                <!-- Phone -->
-                <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center shrink-0">
-                        <x-heroicon-o-phone class="h-5 w-5 text-gray-600" />
-                    </div>
-                    <div>
-                        <h3 class="font-medium text-gray-900 mb-1">เบอร์โทรศัพท์</h3>
-                        <p class="text-gray-600">02-123-4567</p>
-                    </div>
-                </div>
-
                 <!-- Email -->
                 <div class="flex items-start gap-4">
                     <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center shrink-0">
@@ -122,36 +111,6 @@
                 </div>
             </div>
 
-            <!-- Social Media Links -->
-            <div class="mt-8 pt-8 border-t border-gray-200">
-                <h3 class="font-medium text-gray-900 mb-4">ช่องทางติดต่ออื่น ๆ</h3>
-                <div class="flex flex-wrap gap-3">
-                    <a href="tel:02-123-4567" 
-                       class="inline-flex items-center justify-center w-10 h-10 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-                        <x-heroicon-o-phone class="h-5 w-5 text-gray-600" />
-                    </a>
-                    <a href="https://facebook.com" target="_blank" 
-                       class="inline-flex items-center justify-center w-10 h-10 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-                        <x-heroicon-o-chat-bubble-left-right class="h-5 w-5 text-gray-600" />
-                    </a>
-                    <a href="https://line.me" target="_blank" 
-                       class="inline-flex items-center justify-center w-10 h-10 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-                        <x-heroicon-o-chat-bubble-left-right class="h-5 w-5 text-gray-600" />
-                    </a>
-                    <a href="https://twitter.com" target="_blank" 
-                       class="inline-flex items-center justify-center w-10 h-10 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-                        <x-heroicon-o-cursor-arrow-rays class="h-5 w-5 text-gray-600" />
-                    </a>
-                    <a href="https://instagram.com" target="_blank" 
-                       class="inline-flex items-center justify-center w-10 h-10 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-                        <x-heroicon-o-photo class="h-5 w-5 text-gray-600" />
-                    </a>
-                    <a href="{{ route('home') }}" 
-                       class="inline-flex items-center justify-center w-10 h-10 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-                        <x-heroicon-o-globe-alt class="h-5 w-5 text-gray-600" />
-                    </a>
-                </div>
-            </div>
         </div>
     </div>
 </div>
