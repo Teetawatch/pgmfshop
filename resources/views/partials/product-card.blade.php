@@ -7,14 +7,16 @@
 
     {{-- Image --}}
     <div class="relative aspect-4/5 overflow-hidden">
-        <img src="{{ $firstImage }}" alt="{{ $product->name }}"
-             class="w-full h-full object-cover transition-transform duration-500 {{ $outOfStock ? 'grayscale opacity-60' : 'group-hover:scale-110' }}"
-             loading="lazy" />
+        <a href="{{ route('products.show', $product->slug) }}" class="block w-full h-full">
+            <img src="{{ $firstImage }}" alt="{{ $product->name }}"
+                 class="w-full h-full object-cover transition-transform duration-500 {{ $outOfStock ? '' : 'group-hover:scale-110' }}"
+                 loading="lazy" />
+        </a>
 
         {{-- Sold out overlay --}}
         @if($outOfStock)
-            <div class="absolute inset-0 bg-black/20 flex items-center justify-center backdrop-blur-[2px]">
-                <span class="px-6 py-2 bg-black/80 text-white text-sm font-bold rounded-full border border-white/20 tracking-wider">SOLD OUT</span>
+            <div class="absolute inset-0 bg-white/60 flex items-center justify-center pointer-events-none">
+                <span class="px-6 py-2 bg-white/80 text-slate-500 text-sm font-bold rounded-full border border-slate-200 tracking-wider shadow-sm">SOLD OUT</span>
             </div>
         @endif
 
@@ -64,9 +66,11 @@
             </div>
         @endif
 
-        <h3 class="font-bold text-slate-800 line-clamp-2 leading-snug flex-1 group-hover:text-orange-500 transition-colors duration-200">
-            {{ $product->name }}
-        </h3>
+        <a href="{{ route('products.show', $product->slug) }}" class="flex-1">
+            <h3 class="font-bold text-slate-800 line-clamp-2 leading-snug group-hover:text-orange-500 transition-colors duration-200">
+                {{ $product->name }}
+            </h3>
+        </a>
 
         <div class="mt-4 flex items-end justify-between">
             <div class="flex flex-col">
@@ -78,12 +82,9 @@
                 </span>
             </div>
             @if(!$outOfStock)
-                <a href="{{ route('products.show', $product->slug) }}"
-                   class="p-2.5 bg-slate-900 text-white rounded-lg hover:bg-orange-500 transition-colors shadow-sm">
-                    <x-heroicon-o-shopping-cart class="w-5 h-5" />
-                </a>
+                <livewire:add-to-cart-button :product-id="$product->id" :product-name="$product->name" :key="'cart-btn-'.$product->id" />
             @else
-                <button disabled class="p-2.5 bg-slate-200 text-slate-400 rounded-lg cursor-not-allowed">
+                <button disabled class="p-2.5 bg-slate-200 text-slate-400 rounded-lg cursor-not-allowed" title="สินค้าหมด">
                     <x-heroicon-o-shopping-cart class="w-5 h-5" />
                 </button>
             @endif
