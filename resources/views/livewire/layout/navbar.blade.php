@@ -107,7 +107,7 @@
             </div>
 
             {{-- Search Bar --}}
-            <form wire:submit="search" class="flex shrink-0 w-[120px] sm:w-[160px] md:w-[220px]" x-data @click.away="$wire.closeSuggestions()">
+            <form wire:submit="search" class="flex flex-1 min-w-0 mx-2 sm:mx-3 md:flex-none md:w-[320px] lg:w-[420px]" x-data @click.away="$wire.closeSuggestions()">
                 <div class="relative w-full">
                     <input type="text" wire:model.live.debounce.300ms="searchQuery" placeholder="ค้นหาสินค้า..."
                         @focus="if($wire.searchQuery.length >= 2) $wire.showSuggestions = true"
