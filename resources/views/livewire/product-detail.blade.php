@@ -55,14 +55,15 @@
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
 
         {{-- LEFT: Images + Description (desktop) --}}
-        <div class="lg:col-span-7 space-y-6">
+        <div class="lg:col-span-7 space-y-6"
+             x-data="{ currentImage: {{ $selectedImage }} }"
+             x-init="$watch('currentImage', v => $wire.set('selectedImage', v))">
 
             {{-- Main Image --}}
-            <div class="relative aspect-4/5 w-full rounded-2xl overflow-hidden bg-gray-100 shadow-lg group"
-                 x-data="{ currentImage: @entangle('selectedImage') }">
+            <div class="relative aspect-4/5 w-full rounded-2xl overflow-hidden bg-gray-100 shadow-lg group">
                 @if(count($images) > 0)
                     <div class="w-full h-full overflow-hidden">
-                        <div class="image-slider flex transition-transform duration-500 ease-in-out h-full"
+                        <div class="flex transition-transform duration-300 ease-out h-full"
                              :style="`transform: translateX(-${currentImage * 100}%)`">
                             @foreach($images as $img)
                                 <div class="w-full h-full shrink-0">
@@ -91,9 +92,9 @@
             @if(count($images) > 1)
                 <div class="flex gap-3 overflow-x-auto no-scrollbar pb-1">
                     @foreach($images as $idx => $img)
-                        <button wire:click="selectImage({{ $idx }})"
-                                class="shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-200
-                                    {{ $selectedImage === $idx ? 'border-[hsl(var(--primary))] shadow-md' : 'border-transparent hover:border-gray-300' }}">
+                        <button @click="currentImage = {{ $idx }}"
+                                :class="currentImage === {{ $idx }} ? 'border-[hsl(var(--primary))] shadow-md' : 'border-transparent hover:border-gray-300'"
+                                class="shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-200">
                             <img src="{{ $img }}" alt="{{ $product->name }} {{ $idx + 1 }}" class="w-full h-full object-cover" />
                         </button>
                     @endforeach
@@ -214,18 +215,21 @@
                 {{-- END BOOK INFO --}}
 
                 {{-- Variants --}}
-                <div class="space-y-5">
+                <div class="space-y-5"
+                     x-data="{ selectedSize: '{{ $selectedSize }}', selectedColor: '{{ $selectedColor }}' }"
+                     x-init="
+                         $watch('selectedSize', v => $wire.set('selectedSize', v));
+                         $watch('selectedColor', v => $wire.set('selectedColor', v));
+                     ">
 
                     {{-- Size Selector --}}
                     @if($product->isClothing() && !empty($product->sizes))
                     <div>
                         <div class="flex justify-between items-center mb-3">
                             <span class="font-medium text-gray-900">ขนาด / ไซส์</span>
-                            @if($selectedSize)
-                                <span class="text-xs text-[hsl(var(--primary))] font-medium">เลือกแล้ว: {{ $selectedSize }}</span>
-                            @else
-                                <span class="text-xs text-red-500 font-medium">* กรุณาเลือก</span>
-                            @endif
+                            <span class="text-xs font-medium"
+                                  :class="selectedSize ? 'text-[hsl(var(--primary))]' : 'text-red-500'"
+                                  x-text="selectedSize ? 'เลือกแล้ว: ' + selectedSize : '* กรุณาเลือก'"></span>
                         </div>
                         <div class="flex flex-wrap gap-3">
                             @foreach($product->sizes as $size)
@@ -237,18 +241,17 @@
                                     $sizeOutOfStock = $hasVariants && $sizeStock <= 0;
                                 @endphp
                                 <button
-                                    wire:click="$set('selectedSize', '{{ $size }}')"
+                                    @if(!$sizeOutOfStock) @click="selectedSize = '{{ $size }}'" @endif
                                     @if($sizeOutOfStock) disabled @endif
-                                    class="relative w-16 h-12 rounded-lg border-2 text-sm font-medium flex flex-col items-center justify-center transition-all duration-200
-                                        {{ $sizeOutOfStock
-                                            ? 'border-gray-100 text-gray-300 bg-gray-50 cursor-not-allowed opacity-50'
-                                            : ($selectedSize === $size
-                                                ? 'border-[hsl(var(--primary))] bg-[hsl(var(--primary))]/5 text-[hsl(var(--primary))] shadow-sm'
-                                                : 'border-gray-200 text-gray-900 hover:border-[hsl(var(--primary))] hover:text-[hsl(var(--primary))]') }}"
+                                    :class="selectedSize === '{{ $size }}'
+                                        ? 'border-[hsl(var(--primary))] bg-[hsl(var(--primary))]/5 text-[hsl(var(--primary))] shadow-sm'
+                                        : 'border-gray-200 text-gray-900 hover:border-[hsl(var(--primary))] hover:text-[hsl(var(--primary))]'"
+                                    class="relative w-16 h-12 rounded-lg border-2 text-sm font-medium flex flex-col items-center justify-center transition-all duration-150
+                                        {{ $sizeOutOfStock ? 'border-gray-100 text-gray-300 bg-gray-50 cursor-not-allowed opacity-50 !important' : '' }}"
                                 >
                                     <span class="{{ $sizeOutOfStock ? 'line-through' : '' }}">{{ $size }}</span>
                                     @if($hasVariants)
-                                        <span class="text-[10px] font-normal opacity-80 {{ $sizeOutOfStock ? '' : ($selectedSize === $size ? '' : 'text-gray-500') }}">
+                                        <span class="text-[10px] font-normal opacity-80 text-gray-500">
                                             {{ $sizeOutOfStock ? 'หมด' : 'เหลือ '.$sizeStock }}
                                         </span>
                                     @endif
@@ -263,11 +266,9 @@
                     <div>
                         <div class="flex justify-between items-center mb-3">
                             <span class="font-medium text-gray-900">สี / ลาย</span>
-                            @if($selectedColor)
-                                <span class="text-xs text-[hsl(var(--primary))] font-medium">เลือกแล้ว: {{ $selectedColor }}</span>
-                            @else
-                                <span class="text-xs text-red-500 font-medium">* กรุณาเลือก</span>
-                            @endif
+                            <span class="text-xs font-medium"
+                                  :class="selectedColor ? 'text-[hsl(var(--primary))]' : 'text-red-500'"
+                                  x-text="selectedColor ? 'เลือกแล้ว: ' + selectedColor : '* กรุณาเลือก'"></span>
                         </div>
                         <div class="flex flex-wrap gap-3">
                             @foreach($product->colors as $color)
@@ -291,29 +292,24 @@
                                     $isLight = in_array($color, ['ขาว', 'เหลือง']);
                                 @endphp
                                 <button
-                                    wire:click="$set('selectedColor', '{{ $color }}')"
+                                    @if(!$colorOutOfStock) @click="selectedColor = '{{ $color }}'" @endif
                                     @if($colorOutOfStock) disabled @endif
-                                    class="group relative px-4 py-2 rounded-lg border-2 flex items-center gap-2 transition-all duration-200 bg-white
-                                        {{ $colorOutOfStock
-                                            ? 'border-gray-100 opacity-50 cursor-not-allowed'
-                                            : ($selectedColor === $color
-                                                ? 'border-[hsl(var(--primary))] shadow-sm'
-                                                : 'border-gray-200 hover:border-gray-300') }}"
+                                    :class="selectedColor === '{{ $color }}' ? 'border-[hsl(var(--primary))] shadow-sm' : 'border-gray-200 hover:border-gray-300'"
+                                    class="group relative px-4 py-2 rounded-lg border-2 flex items-center gap-2 transition-all duration-150 bg-white
+                                        {{ $colorOutOfStock ? 'border-gray-100 opacity-50 cursor-not-allowed' : '' }}"
                                 >
                                     <span class="w-4 h-4 rounded-full shrink-0 {{ $isLight ? 'border border-gray-200' : '' }}"
                                           style="background-color: {{ $dotColor }}"></span>
                                     <div class="flex flex-col text-left">
-                                        <span class="text-sm font-medium text-gray-900 {{ $colorOutOfStock ? 'line-through text-gray-400' : 'group-hover:text-[hsl(var(--primary))]' }}">{{ $color }}</span>
+                                        <span class="text-sm font-medium {{ $colorOutOfStock ? 'line-through text-gray-400' : 'text-gray-900 group-hover:text-[hsl(var(--primary))]' }}">{{ $color }}</span>
                                         @if($hasVariants)
                                             <span class="text-[10px] text-gray-500">{{ $colorOutOfStock ? 'หมด' : 'เหลือ '.$colorStock }}</span>
                                         @endif
                                     </div>
-                                    @if($selectedColor === $color && !$colorOutOfStock)
-                                        <span class="absolute -top-1 -right-1 flex h-3 w-3">
-                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[hsl(var(--primary))] opacity-75"></span>
-                                            <span class="relative inline-flex rounded-full h-3 w-3 bg-[hsl(var(--primary))]"></span>
-                                        </span>
-                                    @endif
+                                    <span x-show="selectedColor === '{{ $color }}'" class="absolute -top-1 -right-1 flex h-3 w-3" @if($colorOutOfStock) style="display:none" @endif>
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[hsl(var(--primary))] opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-3 w-3 bg-[hsl(var(--primary))]"></span>
+                                    </span>
                                 </button>
                             @endforeach
                         </div>
