@@ -582,13 +582,13 @@
         </section>
     @endif
 
-</div>
-
+@push('styles')
 <style>
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 </style>
-
+@endpush
+@push('scripts')
 <script>
 document.addEventListener('livewire:init', () => {
     Livewire.on('stock-exceeded', () => {
@@ -602,3 +602,5 @@ document.addEventListener('livewire:init', () => {
     });
 });
 </script>
+@endpush
+</div>
