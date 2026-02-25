@@ -7,7 +7,7 @@
 <div class="bg-white">
 
     {{-- Hero Section --}}
-    <section class="relative w-full h-64 md:h-80 flex items-center justify-center overflow-hidden bg-linear-to-br from-orange-50 via-white to-orange-50">
+    <section class="relative w-full h-64 md:h-80 flex items-center justify-center overflow-hidden bg-white">
         <div class="relative z-10 flex flex-col items-center text-center px-4 max-w-3xl mx-auto space-y-3">
             <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">ติดต่อร้านค้า</h1>
             <p class="text-slate-500 text-lg max-w-2xl mx-auto">
