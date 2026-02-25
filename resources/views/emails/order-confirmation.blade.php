@@ -12,7 +12,6 @@
 
     <div class="highlight-box info">
         <div style="display: flex; align-items: center; gap: 12px;">
-            <span style="font-size: 24px;">📋</span>
             <div>
                 <p style="font-size: 16px; color: #1e40af; margin: 0; font-weight: 600;">
                     หมายเลขคำสั่งซื้อ: {{ $order->order_number }}
@@ -76,7 +75,7 @@
 
     {{-- Shipping Address --}}
     @if($order->shipping_address)
-    <h3 style="font-size: 15px; color: #1a1a2e; margin: 20px 0 10px;">📦 ที่อยู่จัดส่ง</h3>
+    <h3 style="font-size: 15px; color: #1a1a2e; margin: 20px 0 10px;">ที่อยู่จัดส่ง</h3>
     <div class="info-box">
         <p style="font-size: 14px; color: #4a5568; margin: 0; line-height: 1.8;">
             <strong>{{ $order->shipping_address['name'] ?? '' }}</strong><br>
@@ -111,7 +110,7 @@
     </div>
 
     <p style="text-align: center;">
-        <a href="{{ url('/account/orders/' . $order->id) }}" class="btn">📋 ดูรายละเอียดคำสั่งซื้อ</a>
+        <a href="{{ url('/account/orders/' . $order->id) }}" class="btn">ดูรายละเอียดคำสั่งซื้อ</a>
     </p>
 
     <hr class="divider">

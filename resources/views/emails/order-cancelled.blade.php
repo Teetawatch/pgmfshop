@@ -12,7 +12,6 @@
 
     <div class="highlight-box danger">
         <div style="display: flex; align-items: center; gap: 12px;">
-            <span style="font-size: 24px;">❌</span>
             <div>
                 <p style="font-size: 16px; color: #991b1b; margin: 0; font-weight: 600;">
                     คำสั่งซื้อถูกยกเลิก
@@ -26,7 +25,7 @@
 
     {{-- Reason --}}
     @if($reason)
-    <h3 style="font-size: 15px; color: #1a1a2e; margin: 20px 0 10px;">📝 เหตุผล</h3>
+    <h3 style="font-size: 15px; color: #1a1a2e; margin: 20px 0 10px;">เหตุผล</h3>
     <div class="info-box">
         <p style="font-size: 14px; color: #4a5568; margin: 0;">
             {{ $reason }}
@@ -70,13 +69,13 @@
     @if($order->payment_method === 'promptpay' && $order->slip_verified)
     <div class="highlight-box warning">
         <p style="font-size: 14px; color: #92400e; margin: 0;">
-            💰 <strong>การคืนเงิน:</strong> หากคุณชำระเงินแล้ว ทางร้านจะดำเนินการคืนเงินให้ภายใน 3-5 วันทำการ
+            <strong>การคืนเงิน:</strong> หากคุณชำระเงินแล้ว ทางร้านจะดำเนินการคืนเงินให้ภายใน 3-5 วันทำการ
         </p>
     </div>
     @endif
 
     <p style="text-align: center;">
-        <a href="{{ url('/products') }}" class="btn">🛍️ เลือกซื้อสินค้าอื่น</a>
+        <a href="{{ url('/products') }}" class="btn">เลือกซื้อสินค้าอื่น</a>
     </p>
 
     <hr class="divider">
