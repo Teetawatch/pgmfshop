@@ -1,16 +1,16 @@
-{{-- Loading overlay --}}
-<div wire:loading.delay wire:target="addToCart,removeFromWishlist"
-     class="fixed inset-0 bg-white/60 backdrop-blur-sm z-50 flex items-center justify-center">
-    <div class="flex items-center gap-3 bg-white rounded-xl shadow-lg px-6 py-4 border">
-        <svg class="h-5 w-5 animate-spin text-[#ff6b00]" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-        </svg>
-        <span class="text-sm font-medium text-gray-600">กำลังดำเนินการ...</span>
-    </div>
-</div>
-
 <div class="min-h-screen bg-gray-50">
+
+    {{-- Loading overlay --}}
+    <div wire:loading.delay wire:target="addToCart,removeFromWishlist"
+         class="fixed inset-0 bg-white/60 backdrop-blur-sm z-50 flex items-center justify-center">
+        <div class="flex items-center gap-3 bg-white rounded-xl shadow-lg px-6 py-4 border">
+            <svg class="h-5 w-5 animate-spin text-[#ff6b00]" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+            </svg>
+            <span class="text-sm font-medium text-gray-600">กำลังดำเนินการ...</span>
+        </div>
+    </div>
 
     {{-- ===== HERO HEADER ===== --}}
     <div class="relative overflow-hidden"
