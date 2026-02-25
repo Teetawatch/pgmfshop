@@ -190,6 +190,15 @@
                     <x-heroicon-o-tag class="w-5 h-5 {{ request()->routeIs('admin.coupons.*') ? 'text-white' : 'text-gray-400 group-hover:text-white' }}" />
                     <span class="font-medium">คูปอง</span>
                 </a>
+                
+                <a href="{{ route('admin.contact-messages.index') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 {{ request()->routeIs('admin.contact-messages.*') ? 'bg-gradient-to-r from-primary to-teal-600 text-white shadow-lg' : 'hover:bg-gray-700/50 text-gray-300 hover:text-white' }}">
+                    <x-heroicon-o-chat-bubble-left-right class="w-5 h-5 {{ request()->routeIs('admin.contact-messages.*') ? 'text-white' : 'text-gray-400 group-hover:text-white' }}" />
+                    <span class="font-medium">ข้อความติดต่อ</span>
+                    @php $newContactCount = \App\Models\ContactMessage::where('status', 'new')->count(); @endphp
+                    @if($newContactCount > 0)
+                        <span class="ml-auto bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">{{ $newContactCount }}</span>
+                    @endif
+                </a>
             </div>
 
             <!-- Reports Section -->

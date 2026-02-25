@@ -6,6 +6,31 @@
 @section('content')
 <div class="bg-white">
 
+    {{-- Success Message --}}
+    @if(session('success'))
+        <div class="max-w-6xl mx-auto px-4 md:px-8 pt-6">
+            <div class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl text-sm flex items-center gap-3">
+                <x-heroicon-o-check-circle class="w-5 h-5 text-green-500 shrink-0" />
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+
+    {{-- Validation Errors --}}
+    @if($errors->any())
+        <div class="max-w-6xl mx-auto px-4 md:px-8 pt-6">
+            <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
+                <div class="flex items-center gap-2 mb-1">
+                    <x-heroicon-o-exclamation-triangle class="w-5 h-5 text-red-500 shrink-0" />
+                    <span class="font-medium">กรุณาตรวจสอบข้อมูล</span>
+                </div>
+                @foreach($errors->all() as $error)
+                    <p class="ml-7">{{ $error }}</p>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
     {{-- Hero Section --}}
     <section class="relative w-full h-64 md:h-80 flex items-center justify-center overflow-hidden bg-white">
         <div class="relative z-10 flex flex-col items-center text-center px-4 max-w-3xl mx-auto space-y-3">
@@ -29,7 +54,8 @@
                     </div>
 
                     @if(auth()->check())
-                        <form class="space-y-5">
+                        <form action="{{ route('contact.store') }}" method="POST" class="space-y-5">
+                            @csrf
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div class="space-y-1.5">
                                     <label class="text-xs font-bold uppercase tracking-wide text-gray-400">ชื่อ</label>

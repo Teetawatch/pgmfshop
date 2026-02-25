@@ -13,7 +13,9 @@ use App\Http\Controllers\Admin\StockManageController;
 use App\Http\Controllers\Admin\ShippingRateController as ShippingRateCtrl;
 use App\Http\Controllers\Admin\ReviewManageController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\ContactManageController;
 use App\Http\Controllers\SocialAuthController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PromptPayQRController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -33,6 +35,7 @@ Route::get('/promptpay-qr', [PromptPayQRController::class, 'generate'])->name('p
 // Static Pages
 Route::view('/about', 'pages.about')->name('about');
 Route::view('/contact', 'pages.contact')->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->middleware('auth')->name('contact.store');
 Route::view('/faq', 'pages.faq')->name('faq');
 Route::view('/how-to-order', 'pages.how-to-order')->name('how-to-order');
 Route::view('/privacy', 'pages.privacy')->name('privacy');
@@ -141,6 +144,13 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/reports/low-stock', [ReportController::class, 'lowStock'])->name('reports.low-stock');
     Route::get('/reports/low-stock/pdf', [ReportController::class, 'exportLowStockPdf'])->name('reports.low-stock.pdf');
     Route::get('/reports/low-stock/excel', [ReportController::class, 'exportLowStockExcel'])->name('reports.low-stock.excel');
+
+    // Contact Messages
+    Route::get('/contact-messages', [ContactManageController::class, 'index'])->name('contact-messages.index');
+    Route::get('/contact-messages/{contactMessage}', [ContactManageController::class, 'show'])->name('contact-messages.show');
+    Route::patch('/contact-messages/{contactMessage}/reply', [ContactManageController::class, 'reply'])->name('contact-messages.reply');
+    Route::patch('/contact-messages/{contactMessage}/close', [ContactManageController::class, 'close'])->name('contact-messages.close');
+    Route::delete('/contact-messages/{contactMessage}', [ContactManageController::class, 'destroy'])->name('contact-messages.destroy');
 
     // Coupons
     Route::get('/coupons', [CouponManageController::class, 'index'])->name('coupons.index');
