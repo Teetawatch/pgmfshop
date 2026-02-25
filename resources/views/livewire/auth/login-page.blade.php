@@ -1,12 +1,6 @@
-<div class="relative min-h-[80vh] flex items-center justify-center px-4 py-12 overflow-hidden">
+<div class="min-h-[80vh] flex items-center justify-center px-4 py-12">
 
-    {{-- Blur decorations --}}
-    <div class="pointer-events-none absolute inset-0 overflow-hidden">
-        <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-orange-200/60 blur-[80px]"></div>
-        <div class="absolute -bottom-40 -right-40 w-120 h-120 rounded-full bg-blue-200/60 blur-[80px]"></div>
-    </div>
-
-    <div class="relative z-10 w-full max-w-md">
+    <div class="w-full max-w-md">
 
         {{-- Card --}}
         <div class="bg-white rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.12)] border border-gray-100 p-8 text-center">
@@ -16,7 +10,7 @@
                     <a href="{{ route('home') }}"
                        class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-400 to-blue-500 p-0.5 shadow-lg block">
                         <div class="w-full h-full bg-white rounded-[14px] flex items-center justify-center overflow-hidden">
-                            <img src="{{ asset('images/pgmf-logo.jpg') }}" alt="PGMF Shop"
+                            <img src="{{ vite_image('pgmf-logo.jpg') }}" alt="PGMF Shop"
                                  class="w-full h-full object-cover opacity-90" />
                         </div>
                     </a>
@@ -129,7 +123,6 @@
                     <a href="{{ route('register') }}" class="text-[hsl(var(--primary))] font-semibold hover:underline">สมัครสมาชิกฟรี</a>
                 </div>
 
-            </div>
         </div>
 
         {{-- Trust badges --}}
