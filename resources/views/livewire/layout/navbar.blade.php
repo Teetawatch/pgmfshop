@@ -278,5 +278,4 @@
                 </div>
             </div>
         </div>
-    @endif
 </header>
