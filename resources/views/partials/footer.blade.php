@@ -53,17 +53,17 @@
                     </li>
                 </ul>
                 <div class="flex gap-3 mt-6">
-                    <a href="https://www.facebook.com/commonschoolth" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-[hsl(var(--primary))] hover:text-white transition-all">
-                        <img src="{{ asset('images/social/facebook-logo-svgrepo-com.svg') }}" alt="Facebook" class="w-4 h-4">
+                    <a href="https://www.facebook.com/commonschoolth" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-[hsl(var(--primary))] hover:text-white transition-all">
+                        <img src="{{ asset('images/social/facebook-logo-svgrepo-com.svg') }}" alt="Facebook" class="w-5 h-5">
                     </a>
-                    <a href="https://www.instagram.com/pgmf_th?igsh=NzRrMnZsbmdsNmds" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-[hsl(var(--primary))] hover:text-white transition-all">
-                        <img src="{{ asset('images/social/instagram-round-svgrepo-com.svg') }}" alt="Instagram" class="w-4 h-4">
+                    <a href="https://www.instagram.com/pgmf_th?igsh=NzRrMnZsbmdsNmds" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-[hsl(var(--primary))] hover:text-white transition-all">
+                        <img src="{{ asset('images/social/instagram-round-svgrepo-com.svg') }}" alt="Instagram" class="w-5 h-5">
                     </a>
-                    <a href="https://www.youtube.com/@pgmfshop" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-[hsl(var(--primary))] hover:text-white transition-all">
-                        <img src="{{ asset('images/social/youtube-round-svgrepo-com.svg') }}" alt="YouTube" class="w-4 h-4">
+                    <a href="https://www.youtube.com/@pgmfshop" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-[hsl(var(--primary))] hover:text-white transition-all">
+                        <img src="{{ asset('images/social/youtube-round-svgrepo-com.svg') }}" alt="YouTube" class="w-5 h-5">
                     </a>
-                    <a href="https://lin.ee/I2lbHqqa" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-[hsl(var(--primary))] hover:text-white transition-all">
-                        <img src="{{ asset('images/social/line-logo-svgrepo-com.svg') }}" alt="LINE" class="w-4 h-4">
+                    <a href="https://lin.ee/I2lbHqqa" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-[hsl(var(--primary))] hover:text-white transition-all">
+                        <img src="{{ asset('images/social/line-logo-svgrepo-com.svg') }}" alt="LINE" class="w-5 h-5">
                     </a>
                 </div>
             </div>
