@@ -153,7 +153,7 @@
                 </div>
 
                 {{-- Price Panel --}}
-                <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                <div class=" rounded-xl p-6">
                     <div class="flex items-baseline gap-2 mb-2">
                         <span class="text-3xl font-bold text-[hsl(var(--primary))]">฿{{ number_format($product->price, 0) }}</span>
                         @if($product->original_price)
