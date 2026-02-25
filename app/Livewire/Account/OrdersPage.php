@@ -12,6 +12,14 @@ class OrdersPage extends Component
 {
     use WithSeo;
 
+    public function logout()
+    {
+        auth()->logout();
+        session()->invalidate();
+        session()->regenerateToken();
+        return redirect('/');
+    }
+
     public function render()
     {
         if (!auth()->check()) {

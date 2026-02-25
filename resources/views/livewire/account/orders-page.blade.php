@@ -61,6 +61,46 @@
 
     {{-- ===== MAIN CONTENT (overlaps hero) ===== --}}
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 mb-16 relative z-20">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+
+            {{-- ===== SIDEBAR ===== --}}
+            <aside class="lg:col-span-1">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden sticky top-24">
+                    <nav class="flex flex-col p-2 space-y-1">
+                        <a href="{{ route('account') }}"
+                           class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
+                            <span class="material-icons-outlined">person</span>
+                            ข้อมูลส่วนตัว
+                        </a>
+                        <a href="{{ route('account.orders') }}"
+                           class="flex items-center gap-3 px-4 py-3 rounded-lg bg-orange-50 text-[#ff6b00] font-medium transition-colors">
+                            <span class="material-icons-outlined">inventory_2</span>
+                            คำสั่งซื้อ
+                        </a>
+                        <a href="{{ route('account.addresses') }}"
+                           class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
+                            <span class="material-icons-outlined">location_on</span>
+                            ที่อยู่จัดส่ง
+                        </a>
+                        @if(auth()->user()->role === 'admin')
+                            <a href="/admin"
+                               class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
+                                <span class="material-icons-outlined">admin_panel_settings</span>
+                                แอดมิน
+                            </a>
+                        @endif
+                        <div class="my-1 border-t border-gray-100"></div>
+                        <button wire:click="logout"
+                                class="flex items-center gap-3 px-4 py-3 rounded-lg text-red-500 hover:bg-red-50 hover:text-red-600 transition-colors w-full text-left">
+                            <span class="material-icons-outlined">logout</span>
+                            ออกจากระบบ
+                        </button>
+                    </nav>
+                </div>
+            </aside>
+
+            {{-- ===== ORDER LIST ===== --}}
+            <div class="lg:col-span-3">
 
         @if($orders->count() === 0)
             {{-- Empty State --}}
@@ -173,5 +213,7 @@
             </div>
         @endif
 
+            </div>{{-- end lg:col-span-3 --}}
+        </div>{{-- end grid --}}
     </main>
 </div>
