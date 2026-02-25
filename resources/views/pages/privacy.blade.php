@@ -9,9 +9,6 @@
     {{-- Hero --}}
     <div class="bg-white py-16 sm:py-20 text-center">
         <div class="max-w-3xl mx-auto px-4">
-            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-[hsl(var(--primary))]/10 mb-5">
-                <span class="material-icons-outlined text-[hsl(var(--primary))] text-3xl">verified_user</span>
-            </div>
             <h1 class="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight mb-3">นโยบายความเป็นส่วนตัว</h1>
             <p class="text-gray-500 max-w-xl mx-auto">PGMF Shop ให้ความสำคัญกับการคุ้มครองข้อมูลส่วนบุคคลของคุณ เพื่อความมั่นใจและความปลอดภัยสูงสุดในการใช้บริการ</p>
             <p class="text-sm text-gray-400 mt-3">อัปเดตล่าสุด: 1 มกราคม 2569</p>
