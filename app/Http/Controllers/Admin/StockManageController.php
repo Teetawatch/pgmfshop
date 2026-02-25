@@ -201,6 +201,73 @@ class StockManageController extends Controller
     }
 
     /**
+     * Export stock movement history as CSV
+     */
+    public function exportHistory(Request $request): StreamedResponse
+    {
+        $query = StockMovement::with(['product', 'user']);
+
+        if ($request->filled('product_id')) {
+            $query->where('product_id', $request->product_id);
+        }
+        if ($request->filled('type')) {
+            $query->where('type', $request->type);
+        }
+        if ($request->filled('reference_type')) {
+            $query->where('reference_type', $request->reference_type);
+        }
+        if ($request->filled('date_from')) {
+            $query->whereDate('created_at', '>=', $request->date_from);
+        }
+        if ($request->filled('date_to')) {
+            $query->whereDate('created_at', '<=', $request->date_to);
+        }
+
+        $movements = $query->latest()->get();
+
+        $typeLabels = [
+            'in'      => 'รับเข้า',
+            'out'     => 'จ่ายออก',
+            'adjust'  => 'ปรับสต็อก',
+            'return'  => 'คืนสต็อก',
+            'initial' => 'สต็อกเริ่มต้น',
+        ];
+
+        $refLabels = [
+            'order'  => 'คำสั่งซื้อ',
+            'manual' => 'ปรับมือ',
+            'import' => 'นำเข้า',
+            'return' => 'คืนสินค้า',
+        ];
+
+        return response()->streamDownload(function () use ($movements, $typeLabels, $refLabels) {
+            $handle = fopen('php://output', 'w');
+            fprintf($handle, chr(0xEF) . chr(0xBB) . chr(0xBF));
+
+            fputcsv($handle, ['วันที่', 'สินค้า', 'ประเภท', 'จำนวน', 'สต็อกก่อน', 'สต็อกหลัง', 'เหตุผล', 'ที่มา', 'อ้างอิง', 'โดย']);
+
+            foreach ($movements as $mv) {
+                fputcsv($handle, [
+                    $mv->created_at->format('d/m/Y H:i'),
+                    $mv->product->name ?? 'ลบแล้ว',
+                    $typeLabels[$mv->type] ?? $mv->type,
+                    $mv->quantity,
+                    $mv->stock_before,
+                    $mv->stock_after,
+                    $mv->reason ?? '',
+                    $refLabels[$mv->reference_type] ?? ($mv->reference_type ?? ''),
+                    $mv->reference_id ?? '',
+                    $mv->user->name ?? 'ระบบ',
+                ]);
+            }
+
+            fclose($handle);
+        }, 'stock-history-' . now()->format('Y-m-d') . '.csv', [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+        ]);
+    }
+
+    /**
      * Export stock report as CSV
      */
     public function export(Request $request): StreamedResponse

@@ -2,8 +2,15 @@
 @section('title', 'ประวัติสต็อกทั้งหมด')
 
 @section('content')
-<div class="mb-4">
+<div class="mb-4 flex items-center justify-between">
     <a href="{{ route('admin.stock.index') }}" class="text-sm text-gray-500 hover:text-teal-600">← กลับไปจัดการสต็อก</a>
+    <a href="{{ route('admin.stock.history.export', request()->query()) }}"
+       class="inline-flex items-center gap-1.5 px-4 py-2 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 16v-8m0 8-3-3m3 3 3-3M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1"/>
+        </svg>
+        ส่งออก CSV
+    </a>
 </div>
 
 <!-- Filters -->

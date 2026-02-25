@@ -120,6 +120,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Stock Management
     Route::get('/stock', [StockManageController::class, 'index'])->name('stock.index');
     Route::get('/stock/history', [StockManageController::class, 'history'])->name('stock.history');
+    Route::get('/stock/history/export', [StockManageController::class, 'exportHistory'])->name('stock.history.export');
     Route::get('/stock/bulk', [StockManageController::class, 'bulkForm'])->name('stock.bulk');
     Route::post('/stock/bulk', [StockManageController::class, 'bulkUpdate'])->name('stock.bulk.update');
     Route::get('/stock/export', [StockManageController::class, 'export'])->name('stock.export');
