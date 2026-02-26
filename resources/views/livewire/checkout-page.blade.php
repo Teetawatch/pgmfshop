@@ -84,16 +84,16 @@
         </div>
     @else
         {{-- Step Indicator --}}
-        <div class="flex justify-center mb-8">
-            <div class="flex items-center space-x-4">
-                <button wire:click="goToStep1" class="flex items-center space-x-2 px-4 py-2 rounded-full shadow-sm transition-all {{ $step >= 1 ? 'bg-[#FF6B00] text-white shadow-[#FF6B00]/20' : 'text-slate-500 bg-white border border-slate-200' }}">
-                    <x-heroicon-o-truck class="h-4 w-4" />
-                    <span class="text-sm font-medium">ที่อยู่ & จัดส่ง</span>
+        <div class="flex justify-center mb-8 px-4">
+            <div class="flex items-center space-x-2 sm:space-x-4 max-w-full overflow-x-auto">
+                <button wire:click="goToStep1" class="flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-full shadow-sm transition-all whitespace-nowrap {{ $step >= 1 ? 'bg-[#FF6B00] text-white shadow-[#FF6B00]/20' : 'text-slate-500 bg-white border border-slate-200' }}">
+                    <x-heroicon-o-truck class="h-4 w-4 shrink-0" />
+                    <span class="text-xs sm:text-sm font-medium">ที่อยู่ & จัดส่ง</span>
                 </button>
-                <div class="h-0.5 w-12 bg-slate-200"></div>
-                <div class="flex items-center space-x-2 px-4 py-2 rounded-full transition-all {{ $step >= 2 ? 'bg-[#FF6B00] text-white shadow-sm shadow-[#FF6B00]/20' : 'text-slate-500 bg-white border border-slate-200' }}">
-                    <x-heroicon-o-credit-card class="h-4 w-4" />
-                    <span class="text-sm font-medium">ชำระเงิน</span>
+                <div class="h-0.5 w-8 sm:w-12 bg-slate-200 shrink-0"></div>
+                <div class="flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-full transition-all whitespace-nowrap {{ $step >= 2 ? 'bg-[#FF6B00] text-white shadow-sm shadow-[#FF6B00]/20' : 'text-slate-500 bg-white border border-slate-200' }}">
+                    <x-heroicon-o-credit-card class="h-4 w-4 shrink-0" />
+                    <span class="text-xs sm:text-sm font-medium">ชำระเงิน</span>
                 </div>
             </div>
         </div>
@@ -271,7 +271,7 @@
                                         <p class="text-3xl font-bold text-[#FF6B00] mt-1">฿{{ number_format($total, 2) }}</p>
                                     </div>
                                     <div class="space-y-1.5 text-sm">
-                                        <p class="text-slate-500">ชื่อบัญชี: <span class="font-medium text-slate-700">{{ config('app.promptpay_name', 'มูลนิธิคณะก้าวหน้า') }}</span></p>
+                                        <p class="text-slate-500">ชื่อบัญชี: <span class="font-medium text-slate-700">{{ config('app.promptpay_name', 'ของที่ระลึกมูลนิธิ') }}</span></p>
                                         <div class="grid grid-cols-2 gap-x-4 gap-y-1 max-w-xs mx-auto text-left">
                                             <span class="text-slate-500">Biller ID:</span>
                                             <span class="font-mono font-medium text-slate-700">{{ config('app.billpayment_biller_id', '099300045304207') }}</span>
@@ -491,7 +491,7 @@
                             <span>ถัดไป: เลือกวิธีชำระเงิน</span>
                             <x-heroicon-o-arrow-right class="h-5 w-5" />
                         </button>
-                    @endif
+                    @endif  
                 </div>
             </div>
         </div>
