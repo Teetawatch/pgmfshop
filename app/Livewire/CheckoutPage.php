@@ -17,6 +17,7 @@ use App\Services\SlipVerifier;
 use App\Mail\OrderConfirmationMail;
 use App\Mail\PaymentSuccessMail;
 use App\Livewire\Traits\WithSeo;
+use App\Services\ThaiQrPayment;
 
 #[Layout('layouts.app')]
 class CheckoutPage extends Component
@@ -421,6 +422,15 @@ class CheckoutPage extends Component
         $total = $subtotal + $shippingCost;
         $shippingRates = ShippingRate::getActiveRates();
 
+        $qrCodeImage = ThaiQrPayment::generatePng(
+            config('app.billpayment_biller_id', '099300045304207'),
+            config('app.billpayment_ref1', 'QR001'),
+            config('app.billpayment_ref2', '0'),
+            (float) $total,
+            config('app.billpayment_ref3', '23012534'),
+            300
+        );
+
         $this->setSeo(
             title: 'ชำระเงิน — PGMF Shop',
             description: 'ดำเนินการชำระเงินและสั่งซื้อสินค้าจาก PGMF Shop',
@@ -433,6 +443,7 @@ class CheckoutPage extends Component
             'shippingCost' => $shippingCost,
             'total' => $total,
             'shippingRates' => $shippingRates,
+            'qrCodeImage' => $qrCodeImage,
         ]);
     }
 }

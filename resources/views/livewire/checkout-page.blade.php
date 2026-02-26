@@ -257,14 +257,14 @@
                                 </div>
                                 <div class="rounded-xl p-6 border border-slate-100 text-center space-y-4">
                                     <div class="inline-block p-3 bg-white rounded-xl border-2 border-slate-100 shadow-md">
-                                        <img src="{{ vite_image('paymentbiller.png') }}" alt="Bill Payment QR Code" class="w-56 h-auto mx-auto" />
+                                        <img id="billPaymentQr" src="{{ $qrCodeImage }}" alt="Bill Payment QR Code" class="w-56 h-auto mx-auto" />
                                     </div>
                                     <div class="flex justify-center">
-                                        <button onclick="downloadImage('{{ vite_image('paymentbiller.png') }}', 'PGMF-Payment-QR.png')"
+                                        <a href="{{ $qrCodeImage }}" download="PGMF-Payment-QR-{{ number_format($total, 2) }}.png"
                                             class="inline-flex items-center gap-2 px-4 py-2 bg-[#FF6B00] hover:bg-orange-600 text-white text-sm font-medium rounded-xl transition-colors">
                                             <x-heroicon-o-arrow-down-tray class="h-4 w-4" />
                                             บันทึกรูปภาพ QR Code
-                                        </button>
+                                        </a>
                                     </div>
                                     <div class="bg-orange-50 rounded-xl p-4 border border-orange-100">
                                         <p class="text-sm text-slate-500">ยอดชำระ</p>
