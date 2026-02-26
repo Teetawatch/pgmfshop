@@ -15,7 +15,7 @@
         </div>
     </section>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 pb-20">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 pb-20 relative z-10">
     @if(count($items) === 0 && !$orderId)
         <div class="max-w-2xl mx-auto py-12">
             <div class="bg-white rounded-3xl p-12 text-center shadow-sm border border-slate-100">
@@ -84,7 +84,7 @@
         </div>
     @else
         {{-- Step Indicator --}}
-        <div class="flex justify-center mb-8 px-4">
+        <div class="flex justify-center mb-4 px-4">
             <div class="flex items-center space-x-2 sm:space-x-4 max-w-full overflow-x-auto">
                 <button wire:click="goToStep1" class="flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-full shadow-sm transition-all whitespace-nowrap {{ $step >= 1 ? 'bg-[#FF6B00] text-white shadow-[#FF6B00]/20' : 'text-slate-500 bg-white border border-slate-200' }}">
                     <x-heroicon-o-truck class="h-4 w-4 shrink-0" />
