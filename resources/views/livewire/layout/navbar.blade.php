@@ -159,6 +159,7 @@
                                 <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-white text-xs font-semibold border border-slate-200">{{ strtoupper(mb_substr($authUser->name, 0, 1)) }}</div>
                             @endif
                             <span class="hidden xl:block text-sm font-medium text-slate-700 max-w-[90px] truncate">{{ $authUser->name }}</span>
+                            <x-heroicon-o-chevron-down class="h-4 w-4 text-slate-400 transition-transform duration-200" x-bind:class="open ? 'rotate-180' : ''" />
                         </button>
                         <div x-show="open" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-1" class="absolute right-0 top-full mt-2 w-64 z-50" style="display:none">
                             <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
@@ -173,7 +174,6 @@
                                             <p class="text-sm font-semibold text-slate-900 truncate">{{ $authUser->name }}</p>
                                             <p class="text-xs text-slate-500 truncate">{{ $authUser->email }}</p>
                                         </div>
-                                        <x-heroicon-o-chevron-down class="h-4 w-4 text-slate-400 transition-transform duration-200" x-bind:class="open ? 'rotate-180' : ''" />
                                     </div>
                                 </div>
                                 <div class="py-1.5">
