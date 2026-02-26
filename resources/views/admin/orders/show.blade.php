@@ -557,7 +557,7 @@
 
         {{-- Customer Info --}}
         <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-5 border-b border-gray-200">
+            <div class="px-6 py-5 border-b border-gray-200 flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center">
                         <x-heroicon-o-user class="w-5 h-5 text-gray-600" />
@@ -567,17 +567,68 @@
                         <p class="text-sm text-gray-500 mt-0.5">รายละเอียดผู้สั่งซื้อ</p>
                     </div>
                 </div>
+                @if($order->user)
+                <a href="{{ route('admin.customers.show', $order->user) }}" class="text-xs text-teal-600 hover:text-teal-800 font-medium flex items-center gap-1">
+                    ดูโปรไฟล์
+                    <x-heroicon-o-arrow-top-right-on-square class="w-3.5 h-3.5" />
+                </a>
+                @endif
             </div>
-            <div class="p-6">
+            <div class="p-5">
+                @if($order->user)
+                @php $userAvatar = $order->user->avatar ?? $order->user->social_avatar ?? null; @endphp
+                {{-- Avatar + Name --}}
                 <div class="flex items-center gap-4 mb-4">
-                    <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-lg font-semibold text-gray-600 border border-gray-300">
-                        {{ mb_substr($order->user->name ?? '?', 0, 1) }}
-                    </div>
-                    <div>
-                        <p class="text-base font-semibold text-gray-900">{{ $order->user->name ?? '-' }}</p>
-                        <p class="text-xs text-gray-400">{{ $order->user->email ?? '-' }}</p>
+                    @if($userAvatar)
+                        <img src="{{ $userAvatar }}" alt="{{ $order->user->name }}"
+                            class="w-14 h-14 rounded-full object-cover border-2 border-gray-200 shadow-sm shrink-0">
+                    @else
+                        <div class="w-14 h-14 rounded-full bg-linear-to-br from-teal-400 to-teal-600 flex items-center justify-center text-white text-xl font-bold shadow-sm shrink-0">
+                            {{ mb_substr($order->user->name, 0, 1) }}
+                        </div>
+                    @endif
+                    <div class="min-w-0">
+                        <p class="text-base font-semibold text-gray-900 truncate">{{ $order->user->name }}</p>
+                        @if($order->user->email_verified_at)
+                            <span class="inline-flex items-center gap-1 text-[10px] text-emerald-600 font-medium">
+                                <x-heroicon-o-check-badge class="w-3.5 h-3.5" />
+                                ยืนยันอีเมลแล้ว
+                            </span>
+                        @else
+                            <span class="inline-flex items-center gap-1 text-[10px] text-amber-500 font-medium">
+                                <x-heroicon-o-exclamation-circle class="w-3.5 h-3.5" />
+                                ยังไม่ยืนยันอีเมล
+                            </span>
+                        @endif
                     </div>
                 </div>
+
+                {{-- Customer Details --}}
+                <div class="space-y-2.5 text-sm">
+                    <div class="flex items-center gap-2.5 text-gray-600">
+                        <x-heroicon-o-envelope class="w-4 h-4 text-gray-400 shrink-0" />
+                        <span class="truncate">{{ $order->user->email }}</span>
+                    </div>
+                    @if($order->user->phone)
+                    <div class="flex items-center gap-2.5 text-gray-600">
+                        <x-heroicon-o-phone class="w-4 h-4 text-gray-400 shrink-0" />
+                        <span>{{ $order->user->phone }}</span>
+                    </div>
+                    @endif
+                    @if($order->user->social_provider)
+                    <div class="flex items-center gap-2.5 text-gray-600">
+                        <x-heroicon-o-link class="w-4 h-4 text-gray-400 shrink-0" />
+                        <span class="capitalize text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full font-medium">{{ $order->user->social_provider }}</span>
+                    </div>
+                    @endif
+                    <div class="flex items-center gap-2.5 text-gray-500 text-xs pt-1 border-t border-gray-100">
+                        <x-heroicon-o-calendar class="w-3.5 h-3.5 text-gray-400 shrink-0" />
+                        สมัครสมาชิก {{ $order->user->created_at->format('d/m/Y') }}
+                    </div>
+                </div>
+                @else
+                <p class="text-sm text-gray-400 text-center py-2">ไม่พบข้อมูลลูกค้า</p>
+                @endif
             </div>
         </div>
 

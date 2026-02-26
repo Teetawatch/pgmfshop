@@ -29,10 +29,26 @@
             <tr class="hover:bg-gray-50">
                 <td class="px-5 py-3">
                     <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center text-teal-700 text-xs font-bold">
-                            {{ mb_substr($customer->name, 0, 1) }}
+                        @php $customerAvatar = $customer->avatar ?? $customer->social_avatar ?? null; @endphp
+                        @if($customerAvatar)
+                            <img src="{{ $customerAvatar }}" alt="{{ $customer->name }}"
+                                class="w-9 h-9 rounded-full object-cover border border-gray-200 shadow-sm shrink-0">
+                        @else
+                            <div class="w-9 h-9 rounded-full bg-linear-to-br from-teal-400 to-teal-600 flex items-center justify-center text-white text-xs font-bold shrink-0 shadow-sm">
+                                {{ mb_substr($customer->name, 0, 1) }}
+                            </div>
+                        @endif
+                        <div>
+                            <p class="font-medium text-gray-800 leading-tight">{{ $customer->name }}</p>
+                            @if($customer->email_verified_at)
+                                <span class="text-[10px] text-emerald-600 flex items-center gap-0.5">
+                                    <svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                    ยืนยันอีเมลแล้ว
+                                </span>
+                            @else
+                                <span class="text-[10px] text-amber-500">ยังไม่ยืนยัน</span>
+                            @endif
                         </div>
-                        <span class="font-medium text-gray-800">{{ $customer->name }}</span>
                     </div>
                 </td>
                 <td class="px-5 py-3 text-gray-600">{{ $customer->email }}</td>
