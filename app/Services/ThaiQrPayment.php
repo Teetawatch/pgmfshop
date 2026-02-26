@@ -39,12 +39,12 @@ class ThaiQrPayment
         // ID 01: Point of Initiation Method → "12" (dynamic, amount present)
         $pointOfInitiation = $tlv('01', '12');
 
-        // ID 30: Bill Payment application (Thai PromptPay standard)
-        // Sub-tag 00: Application ID  "A000000556010111" (PromptPay Bill Payment)
+        // ID 30: Bill Payment application (Thai BOT standard)
+        // Sub-tag 00: Application ID  "A000000677010112" (Thai Bill Payment)
         // Sub-tag 01: Biller ID
         // Sub-tag 02: Reference 1
         // Sub-tag 03: Reference 2
-        $billPaymentSubData  = $tlv('00', 'A000000556010111');
+        $billPaymentSubData  = $tlv('00', 'A000000677010112');
         $billPaymentSubData .= $tlv('01', $billerId);
         $billPaymentSubData .= $tlv('02', $ref1);
         $billPaymentSubData .= $tlv('03', $ref2);
@@ -61,6 +61,13 @@ class ThaiQrPayment
         // ID 58: Country Code → "TH"
         $countryCode = $tlv('58', 'TH');
 
+        // ID 62: Additional Data Field — sub-tag 07 = Reference Label (Ref3)
+        $additionalData = '';
+        if ($ref3 !== '') {
+            $additionalSubData = $tlv('07', $ref3);
+            $additionalData    = $tlv('62', $additionalSubData);
+        }
+
         // Assemble payload without CRC first (CRC field occupies the last 4 chars)
         $payloadWithoutCrc =
             $payloadFormatIndicator .
@@ -69,6 +76,7 @@ class ThaiQrPayment
             $currency .
             $transactionAmount .
             $countryCode .
+            $additionalData .
             '6304'; // ID 63 + length "04" + placeholder (will be replaced by actual CRC)
 
         // ID 63: CRC-16/CCITT-FALSE (seed 0xFFFF, poly 0x1021)
