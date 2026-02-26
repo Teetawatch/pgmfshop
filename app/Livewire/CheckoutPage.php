@@ -203,8 +203,22 @@ class CheckoutPage extends Component
             return;
         }
 
-        // Block if amount doesn't match
+        // Block if OCR found wrong account name (not transferred to correct account)
+        $ocrAccountCheck = collect($verification['checks'])->where('name', 'ocr_account')->first();
+        if ($ocrAccountCheck && !$ocrAccountCheck['passed'] && !empty($verification['ocr_text'])) {
+            $this->dispatch('toast', message: 'ไม่พบชื่อบัญชีปลายทางที่ถูกต้องในสลิป กรุณาโอนเงินมาที่บัญชี "ที่ระลึกมูลนิธิคณะก้าวหน้า" เท่านั้น', type: 'error');
+            return;
+        }
+
+        // Block if OCR amount doesn't match expected total
         if (!($verification['amount_matched'] ?? false)) {
+            // If OCR found amounts but none match
+            $ocrAmountCheck = collect($verification['checks'])->where('name', 'ocr_amount')->first();
+            if ($ocrAmountCheck && !$ocrAmountCheck['passed'] && !empty($verification['ocr_text'])) {
+                $this->dispatch('toast', message: 'ยอดเงินในสลิปไม่ตรงกับยอดสั่งซื้อ ฿' . number_format($expectedTotal, 2) . ' กรุณาตรวจสอบยอดเงินและอัปโหลดสลิปที่ถูกต้อง', type: 'error');
+                return;
+            }
+            // Fallback: user-entered amount doesn't match
             $this->dispatch('toast', message: 'ยอดเงินที่ระบุไม่ตรงกับยอดสั่งซื้อ ฿' . number_format($expectedTotal, 2) . ' กรุณาตรวจสอบยอดเงินอีกครั้ง', type: 'error');
             return;
         }

@@ -222,7 +222,7 @@
                             <div>
                                 <div class="flex items-center justify-between mb-2">
                                     <span class="text-xs font-medium text-gray-600">คะแนนตรวจสลิป</span>
-                                    <div class="flex items-center gap-2">
+                                    <div class="flex items-center gap-2 flex-wrap">
                                         @if($sv['can_auto_verify'] ?? false)
                                             <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-green-100 text-green-700">
                                                 <x-heroicon-o-check-circle class="w-3 h-3" />
@@ -242,6 +242,44 @@
                                         <span class="text-sm font-bold {{ ($sv['percentage'] ?? 0) >= 70 ? 'text-green-600' : (($sv['percentage'] ?? 0) >= 40 ? 'text-amber-600' : 'text-red-600') }}">{{ $sv['percentage'] ?? 0 }}%</span>
                                     </div>
                                 </div>
+
+                                {{-- OCR Status Badges --}}
+                                <div class="flex flex-wrap gap-1.5">
+                                    @if($sv['ocr_amount_matched'] ?? false)
+                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-green-100 text-green-700">
+                                            <x-heroicon-o-banknotes class="w-3 h-3" />
+                                            OCR ยอดตรง
+                                        </span>
+                                    @elseif(!empty($sv['ocr_text']))
+                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-red-100 text-red-700">
+                                            <x-heroicon-o-banknotes class="w-3 h-3" />
+                                            OCR ยอดไม่ตรง
+                                        </span>
+                                    @else
+                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-100 text-gray-500">
+                                            <x-heroicon-o-banknotes class="w-3 h-3" />
+                                            OCR ไม่สามารถอ่านได้
+                                        </span>
+                                    @endif
+
+                                    @if($sv['ocr_account_matched'] ?? false)
+                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-green-100 text-green-700">
+                                            <x-heroicon-o-building-library class="w-3 h-3" />
+                                            บัญชีถูกต้อง
+                                        </span>
+                                    @elseif(!empty($sv['ocr_text']))
+                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-red-100 text-red-700">
+                                            <x-heroicon-o-building-library class="w-3 h-3" />
+                                            บัญชีผิด
+                                        </span>
+                                    @else
+                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-100 text-gray-500">
+                                            <x-heroicon-o-building-library class="w-3 h-3" />
+                                            ไม่สามารถตรวจบัญชีได้
+                                        </span>
+                                    @endif
+                                </div>
+
                                 <div class="w-full bg-gray-100 rounded-full h-2">
                                     <div class="h-2 rounded-full transition-all {{ ($sv['percentage'] ?? 0) >= 70 ? 'bg-green-500' : (($sv['percentage'] ?? 0) >= 40 ? 'bg-amber-500' : 'bg-red-500') }}" style="width: {{ $sv['percentage'] ?? 0 }}%"></div>
                                 </div>
@@ -276,6 +314,17 @@
                                         </div>
                                     @endforeach
                                 </div>
+                            @endif
+
+                            @if(!empty($sv['ocr_text']))
+                                <details class="group">
+                                    <summary class="cursor-pointer text-[11px] font-medium text-gray-500 uppercase tracking-wider flex items-center gap-1 hover:text-gray-700">
+                                        <x-heroicon-o-document-text class="w-3.5 h-3.5" />
+                                        ข้อความ OCR จากสลิป
+                                        <x-heroicon-o-chevron-right class="w-3 h-3 transition-transform group-open:rotate-90" />
+                                    </summary>
+                                    <div class="mt-1.5 p-2.5 bg-gray-50 rounded-lg border border-gray-200 text-[11px] text-gray-600 font-mono whitespace-pre-wrap max-h-40 overflow-y-auto leading-relaxed">{{ Str::limit($sv['ocr_text'], 1000) }}</div>
+                                </details>
                             @endif
                         @endif
 

@@ -161,7 +161,7 @@
                             <span class="hidden xl:block text-sm font-medium text-slate-700 max-w-[90px] truncate">{{ $authUser->name }}</span>
                         </button>
                         <div x-show="open" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-1" class="absolute right-0 top-full mt-2 w-64 z-50" style="display:none">
-                            <div class="bg-white rounded-xl border border-slate-200 shadow-lg shadow-slate-200/50 overflow-hidden">
+                            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
                                 <div class="px-4 py-3 bg-slate-50 border-b border-slate-100">
                                     <div class="flex items-center gap-3">
                                         @if($authUser->social_avatar || $authUser->avatar)

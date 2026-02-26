@@ -193,4 +193,11 @@ return [
     'billpayment_ref2' => env('BILLPAYMENT_REF2', '0'),
     'billpayment_ref3' => env('BILLPAYMENT_REF3', '23012534'),
 
+    // ─── Google Vision OCR (for slip verification) ───
+    'google_vision_key' => env('GOOGLE_VISION_API_KEY'),
+
+    // ─── Valid recipient account names for slip verification ───
+    // Comma-separated partial names that must appear on the slip
+    'slip_valid_recipients' => env('SLIP_VALID_RECIPIENTS', 'ที่ระลึกมูลนิธิ,มูลนิธิคณะก้าวหน้า'),
+
 ];
