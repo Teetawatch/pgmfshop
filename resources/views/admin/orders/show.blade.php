@@ -114,7 +114,7 @@
                     <p class="text-xs text-gray-600">ภายใน {{ $order->payment_deadline->format('d/m/Y H:i') }} น.</p>
                 </div>
             </div>
-            <div x-show="!expired" cl   ass="flex items-center gap-3">
+            <div x-show="!expired" class="flex items-center gap-3">
                 <div class="bg-white border border-gray-300 rounded-lg px-3 py-2 text-center min-w-[48px]">
                     <span class="text-lg font-bold font-mono text-gray-900" x-text="hours">00</span>
                     <p class="text-[10px] text-gray-500 -mt-0.5">ชม.</p>
