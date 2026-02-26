@@ -154,7 +154,7 @@ class CheckoutPage extends Component
 
         // Validate slip file and transfer info
         $this->validate([
-            'paymentSlip' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
+            'paymentSlip' => 'required|image|mimes:jpg,jpeg,png,webp',
             'transferDate' => 'required|date',
             'transferTime' => 'required|date_format:H:i',
             'transferAmount' => 'required|numeric|min:1',
@@ -162,7 +162,6 @@ class CheckoutPage extends Component
             'paymentSlip.required' => 'กรุณาแนบสลิปการชำระเงิน',
             'paymentSlip.image' => 'ไฟล์สลิปต้องเป็นรูปภาพเท่านั้น',
             'paymentSlip.mimes' => 'รองรับเฉพาะไฟล์ JPG, PNG, WEBP',
-            'paymentSlip.max' => 'ขนาดไฟล์สลิปต้องไม่เกิน 5MB',
             'transferDate.required' => 'กรุณาระบุวันที่โอนเงิน',
             'transferDate.date' => 'รูปแบบวันที่ไม่ถูกต้อง',
             'transferTime.required' => 'กรุณาระบุเวลาที่โอน',
@@ -171,6 +170,12 @@ class CheckoutPage extends Component
             'transferAmount.numeric' => 'จำนวนเงินต้องเป็นตัวเลข',
             'transferAmount.min' => 'จำนวนเงินต้องมากกว่า 0',
         ]);
+
+        // Manual file size check (avoid Livewire temp file_size issue on shared hosting)
+        if ($this->paymentSlip->getSize() > 5 * 1024 * 1024) {
+            $this->dispatch('toast', message: 'ขนาดไฟล์สลิปต้องไม่เกิน 5MB', type: 'error');
+            return;
+        }
 
         // Run slip verification
         $slipPath = $this->paymentSlip->getRealPath();
