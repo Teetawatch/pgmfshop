@@ -382,13 +382,29 @@
                             </div>
                             <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">อัปโหลดรูปสลิปหลังชำระเงิน (รองรับ JPG, PNG, WEBP ไม่เกิน 5MB)</p>
                             <div class="p-4">
-                                <div x-data="{ dragging: false }" class="relative">
-                                    <input type="file" wire:model="paymentSlip" accept="image/jpeg,image/png,image/webp" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" x-on:dragover.prevent="dragging = true" x-on:dragleave="dragging = false" x-on:drop="dragging = false" />
-                                    <div class="border-2 border-dashed rounded-xl p-8 text-center transition-all" :class="dragging ? 'border-blue-600 bg-blue-50/30 dark:bg-blue-900/10' : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'">
-                                        @if($paymentSlip)
+                                <div x-data="{
+                                        dragging: false,
+                                        previewSrc: null,
+                                        handleFile(e) {
+                                            const file = e.target.files[0];
+                                            if (!file) return;
+                                            const reader = new FileReader();
+                                            reader.onload = (r) => { this.previewSrc = r.target.result; };
+                                            reader.readAsDataURL(file);
+                                        }
+                                    }" class="relative">
+                                    <input type="file" wire:model="paymentSlip" accept="image/jpeg,image/png,image/webp"
+                                        class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                                        x-on:dragover.prevent="dragging = true"
+                                        x-on:dragleave="dragging = false"
+                                        x-on:drop="dragging = false"
+                                        x-on:change="handleFile($event)" />
+                                    <div class="border-2 border-dashed rounded-xl p-8 text-center transition-all"
+                                        :class="dragging ? 'border-blue-600 bg-blue-50/30 dark:bg-blue-900/10' : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'">
+                                        <template x-if="previewSrc">
                                             <div class="space-y-3">
                                                 <div class="w-48 mx-auto rounded-lg overflow-hidden border border-gray-200 dark:border-gray-600 shadow-sm">
-                                                    <img src="{{ $paymentSlip->temporaryUrl() }}" alt="สลิป" class="w-full h-auto" />
+                                                    <img :src="previewSrc" alt="สลิป" class="w-full h-auto" />
                                                 </div>
                                                 <div class="flex items-center justify-center gap-2 text-green-600 dark:text-green-400">
                                                     <span class="material-icons-round">check_circle</span>
@@ -396,7 +412,8 @@
                                                 </div>
                                                 <p class="text-xs text-gray-500 dark:text-gray-400">คลิกเพื่อเปลี่ยนรูป</p>
                                             </div>
-                                        @else
+                                        </template>
+                                        <template x-if="!previewSrc">
                                             <div class="space-y-2">
                                                 <div class="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto">
                                                     <span class="material-icons-round text-gray-400 dark:text-gray-500">upload_file</span>
@@ -404,7 +421,7 @@
                                                 <p class="font-medium text-gray-700 dark:text-gray-300">ลากไฟล์หรือคลิกเพื่อเลือกรูปสลิป</p>
                                                 <p class="text-sm text-gray-400 dark:text-gray-500">JPG, PNG, WEBP (ไม่เกิน 5MB)</p>
                                             </div>
-                                        @endif
+                                        </template>
                                     </div>
                                 </div>
 
