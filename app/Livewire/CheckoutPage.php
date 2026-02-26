@@ -187,12 +187,25 @@ class CheckoutPage extends Component
         $preTotalItems = collect($cart)->sum(fn($i) => $i['quantity']);
         $expectedTotal = $preSubtotal + ShippingRate::getCostForQuantity($preTotalItems);
 
-        $verification = SlipVerifier::verify($slipPath, $expectedTotal);
+        $verification = SlipVerifier::verify(
+            $slipPath,
+            $expectedTotal,
+            (float) $this->transferAmount,
+            $this->transferDate ?: null,
+            $this->transferTime ?: null,
+            auth()->id()
+        );
 
         // Block if duplicate slip detected
         $hasDuplicate = collect($verification['checks'])->where('name', 'duplicate')->where('passed', false)->isNotEmpty();
         if ($hasDuplicate) {
             $this->dispatch('toast', message: 'สลิปนี้เคยถูกใช้แล้ว กรุณาอัปโหลดสลิปใหม่', type: 'error');
+            return;
+        }
+
+        // Block if amount doesn't match
+        if (!($verification['amount_matched'] ?? false)) {
+            $this->dispatch('toast', message: 'ยอดเงินที่ระบุไม่ตรงกับยอดสั่งซื้อ ฿' . number_format($expectedTotal, 2) . ' กรุณาตรวจสอบยอดเงินอีกครั้ง', type: 'error');
             return;
         }
 
@@ -249,8 +262,8 @@ class CheckoutPage extends Component
             copy($sourcePath, $destPath);
         }
 
-        // Auto-verify if score >= 80%
-        $autoVerified = $verification['percentage'] >= 80;
+        // Auto-verify only when all critical checks pass (amount match + no duplicate + reasonable date + high score)
+        $autoVerified = $verification['can_auto_verify'] ?? false;
 
         $order = Order::create([
             'user_id' => auth()->id(),

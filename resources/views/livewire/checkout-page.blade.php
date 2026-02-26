@@ -53,7 +53,7 @@
                 </div>
 @php $slipVerification = session('slipVerification'); @endphp
                 {{-- Status Badge --}}
-                @if($slipVerification && ($slipVerification['percentage'] ?? 0) >= 80)
+                @if($slipVerification && ($slipVerification['can_auto_verify'] ?? false))
                     <div class="bg-green-50 rounded-lg p-4 border border-green-200 text-center">
                         <div class="flex items-center justify-center gap-2 mb-1">
                             <x-heroicon-o-check-circle class="h-5 w-5 text-green-500" />

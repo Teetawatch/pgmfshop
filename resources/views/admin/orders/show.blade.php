@@ -222,10 +222,28 @@
                             <div>
                                 <div class="flex items-center justify-between mb-2">
                                     <span class="text-xs font-medium text-gray-600">คะแนนตรวจสลิป</span>
-                                    <span class="text-sm font-bold {{ ($sv['percentage'] ?? 0) >= 80 ? 'text-green-600' : (($sv['percentage'] ?? 0) >= 50 ? 'text-amber-600' : 'text-red-600') }}">{{ $sv['percentage'] ?? 0 }}%</span>
+                                    <div class="flex items-center gap-2">
+                                        @if($sv['can_auto_verify'] ?? false)
+                                            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-green-100 text-green-700">
+                                                <x-heroicon-o-check-circle class="w-3 h-3" />
+                                                ตรวจอัตโนมัติผ่าน
+                                            </span>
+                                        @elseif($sv['amount_matched'] ?? false)
+                                            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-blue-100 text-blue-700">
+                                                <x-heroicon-o-check class="w-3 h-3" />
+                                                ยอดตรง
+                                            </span>
+                                        @else
+                                            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-red-100 text-red-700">
+                                                <x-heroicon-o-x-mark class="w-3 h-3" />
+                                                ยอดไม่ตรง
+                                            </span>
+                                        @endif
+                                        <span class="text-sm font-bold {{ ($sv['percentage'] ?? 0) >= 70 ? 'text-green-600' : (($sv['percentage'] ?? 0) >= 40 ? 'text-amber-600' : 'text-red-600') }}">{{ $sv['percentage'] ?? 0 }}%</span>
+                                    </div>
                                 </div>
                                 <div class="w-full bg-gray-100 rounded-full h-2">
-                                    <div class="h-2 rounded-full transition-all {{ ($sv['percentage'] ?? 0) >= 80 ? 'bg-green-500' : (($sv['percentage'] ?? 0) >= 50 ? 'bg-amber-500' : 'bg-red-500') }}" style="width: {{ $sv['percentage'] ?? 0 }}%"></div>
+                                    <div class="h-2 rounded-full transition-all {{ ($sv['percentage'] ?? 0) >= 70 ? 'bg-green-500' : (($sv['percentage'] ?? 0) >= 40 ? 'bg-amber-500' : 'bg-red-500') }}" style="width: {{ $sv['percentage'] ?? 0 }}%"></div>
                                 </div>
                             </div>
 
