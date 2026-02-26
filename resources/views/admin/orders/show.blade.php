@@ -138,6 +138,8 @@
     </div>
 @endif
 
+
+<br>
 <div class="grid lg:grid-cols-3 gap-6">
     {{-- ==================== LEFT COLUMN ==================== --}}
     <div class="lg:col-span-2 space-y-6">

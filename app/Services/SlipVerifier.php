@@ -13,7 +13,7 @@ class SlipVerifier
      * Max Hamming distance to consider two perceptual hashes as "similar".
      * 16x16 hash = 256 bits. Threshold 25 ≈ ~10% difference.
      */
-    private const HAMMING_THRESHOLD = 25;
+    private const HAMMING_THRESHOLD = 10;
 
     /**
      * Max orders a single user can place per hour.
@@ -168,10 +168,12 @@ class SlipVerifier
                 $warnings[] = "⚠ สลิปนี้เคยถูกใช้โดยลูกค้าคนอื่น (คำสั่งซื้อ {$dup->order_number})";
             }
         } elseif ($duplicateResult['fuzzy_match']) {
+            // Fuzzy match = warning only, do NOT block (same-bank slips have similar templates)
             $fuz = $duplicateResult['fuzzy_match'];
             $dist = $duplicateResult['fuzzy_distance'];
-            $checks[] = ['name' => 'duplicate', 'passed' => false, 'detail' => "สลิปคล้ายกับคำสั่งซื้อ {$fuz->order_number} (ความต่าง {$dist}/256 bits)"];
-            $warnings[] = "สลิปคล้ายกับสลิปที่เคยใช้ในคำสั่งซื้อ {$fuz->order_number} (อาจถูก crop/resize)";
+            $checks[] = ['name' => 'duplicate', 'passed' => true, 'detail' => "สลิปคล้ายกับคำสั่งซื้อ {$fuz->order_number} (ความต่าง {$dist}/256 bits) — แจ้งเตือนเท่านั้น"];
+            $warnings[] = "สลิปคล้ายกับสลิปในคำสั่งซื้อ {$fuz->order_number} (ความต่าง {$dist}/256 bits) — ควรตรวจสอบด้วยตนเอง";
+            $score += 10; // partial score for fuzzy
             if ($duplicateResult['is_cross_user']) {
                 $warnings[] = "⚠ สลิปที่คล้ายนี้เคยถูกใช้โดยลูกค้าคนอื่น";
             }
@@ -179,7 +181,8 @@ class SlipVerifier
             $checks[] = ['name' => 'duplicate', 'passed' => true, 'detail' => 'ไม่พบสลิปซ้ำหรือคล้ายในระบบ'];
             $score += 20;
         }
-        $hasDuplicate = $duplicateResult['exact_match'] || $duplicateResult['fuzzy_match'];
+        // Only exact match blocks — fuzzy is warning only
+        $hasDuplicate = (bool) $duplicateResult['exact_match'];
 
         // ── 10. Color analysis (5 pts) ──
         $maxScore += 5;
