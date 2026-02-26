@@ -14,13 +14,22 @@
             </div>
             {{-- Step Indicator inside Hero --}}
             <div class="flex items-center space-x-2 sm:space-x-4">
+                {{-- Step 1 --}}
                 <div class="flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-full whitespace-nowrap {{ isset($step) && $step >= 1 ? 'bg-white text-[#FF6B00] font-semibold shadow' : 'bg-white/20 text-white' }}">
-                    <x-heroicon-o-truck class="h-4 w-4 shrink-0" />
+                    <div class="w-5 h-5 rounded-full flex items-center justify-center {{ isset($step) && $step >= 1 ? 'bg-[#FF6B00] text-white' : 'bg-white/40 text-white' }}">
+                        <span class="text-xs font-bold">1</span>
+                    </div>
                     <span class="text-xs sm:text-sm font-medium">ที่อยู่ & จัดส่ง</span>
                 </div>
-                <div class="h-0.5 w-8 sm:w-12 bg-white/40 shrink-0"></div>
+                
+                {{-- Line 1→2 --}}
+                <div class="h-0.5 w-8 sm:w-12 {{ isset($step) && $step >= 2 ? 'bg-white' : 'bg-white/40' }} shrink-0"></div>
+                
+                {{-- Step 2 --}}
                 <div class="flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-full whitespace-nowrap {{ isset($step) && $step >= 2 ? 'bg-white text-[#FF6B00] font-semibold shadow' : 'bg-white/20 text-white' }}">
-                    <x-heroicon-o-credit-card class="h-4 w-4 shrink-0" />
+                    <div class="w-5 h-5 rounded-full flex items-center justify-center {{ isset($step) && $step >= 2 ? 'bg-[#FF6B00] text-white' : 'bg-white/40 text-white' }}">
+                        <span class="text-xs font-bold">2</span>
+                    </div>
                     <span class="text-xs sm:text-sm font-medium">ชำระเงิน</span>
                 </div>
             </div>
