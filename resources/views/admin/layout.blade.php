@@ -165,6 +165,15 @@
                     <x-heroicon-o-clipboard-document-list class="w-5 h-5 {{ request()->routeIs('admin.orders.*') ? 'text-white' : 'text-gray-400 group-hover:text-white' }}" />
                     <span class="font-medium">คำสั่งซื้อ</span>
                 </a>
+
+                <a href="{{ route('admin.dispatch.index') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 {{ request()->routeIs('admin.dispatch.*') ? 'bg-gradient-to-r from-primary to-teal-600 text-white shadow-lg' : 'hover:bg-gray-700/50 text-gray-300 hover:text-white' }}">
+                    <x-heroicon-o-qr-code class="w-5 h-5 {{ request()->routeIs('admin.dispatch.*') ? 'text-white' : 'text-gray-400 group-hover:text-white' }}" />
+                    <span class="font-medium">จัดส่งพัสดุ</span>
+                    @php $pendingDispatch = \App\Models\Order::whereIn('status', ['processing','paid'])->where(function($q){ $q->whereNull('tracking_number')->orWhere('tracking_number',''); })->count(); @endphp
+                    @if($pendingDispatch > 0)
+                        <span class="ml-auto bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">{{ $pendingDispatch }}</span>
+                    @endif
+                </a>
                 
                 <a href="{{ route('admin.shipping.index') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 {{ request()->routeIs('admin.shipping.*') ? 'bg-gradient-to-r from-primary to-teal-600 text-white shadow-lg' : 'hover:bg-gray-700/50 text-gray-300 hover:text-white' }}">
                     <x-heroicon-o-truck class="w-5 h-5 {{ request()->routeIs('admin.shipping.*') ? 'text-white' : 'text-gray-400 group-hover:text-white' }}" />

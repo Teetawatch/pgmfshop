@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ShippingRateController as ShippingRateCtrl;
 use App\Http\Controllers\Admin\ReviewManageController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ContactManageController;
+use App\Http\Controllers\Admin\ShippingDispatchController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PromptPayQRController;
@@ -130,6 +131,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Shipping Rates
     Route::get('/shipping', [ShippingRateCtrl::class, 'index'])->name('shipping.index');
     Route::put('/shipping', [ShippingRateCtrl::class, 'update'])->name('shipping.update');
+
+    // Shipping Dispatch (Barcode Scanner)
+    Route::get('/dispatch', [ShippingDispatchController::class, 'index'])->name('dispatch.index');
+    Route::post('/dispatch/bulk-labels', [ShippingDispatchController::class, 'bulkLabels'])->name('dispatch.bulkLabels');
+    Route::post('/dispatch/{order}/tracking', [ShippingDispatchController::class, 'assignTracking'])->name('dispatch.assignTracking');
 
     // Reviews
     Route::get('/reviews', [ReviewManageController::class, 'index'])->name('reviews.index');
