@@ -162,10 +162,15 @@ class SlipVerifier
 
         if ($duplicateResult['exact_match']) {
             $dup = $duplicateResult['exact_match'];
-            $checks[] = ['name' => 'duplicate', 'passed' => false, 'detail' => "สลิปซ้ำกับคำสั่งซื้อ {$dup->order_number}"];
-            $warnings[] = "สลิปนี้เคยใช้กับคำสั่งซื้อ {$dup->order_number} แล้ว";
             if ($duplicateResult['is_cross_user']) {
+                // CROSS-USER exact match = HARD BLOCK (likely fraud)
+                $checks[] = ['name' => 'duplicate', 'passed' => false, 'detail' => "สลิปซ้ำกับคำสั่งซื้อ {$dup->order_number} (ลูกค้าคนอื่น)"];
                 $warnings[] = "⚠ สลิปนี้เคยถูกใช้โดยลูกค้าคนอื่น (คำสั่งซื้อ {$dup->order_number})";
+            } else {
+                // SAME-USER exact match = warning only (normal for same bank repeat transfers)
+                $checks[] = ['name' => 'duplicate', 'passed' => true, 'detail' => "สลิปคล้ายกับคำสั่งซื้อ {$dup->order_number} (ผู้ใช้คนเดียวกัน) — แจ้งเตือน"];
+                $warnings[] = "สลิปคล้ายกับคำสั่งซื้อ {$dup->order_number} (โอนจากธนาคารเดิม) — ควรตรวจสอบด้วยตนเอง";
+                $score += 10;
             }
         } elseif ($duplicateResult['fuzzy_match']) {
             // Fuzzy match = warning only, do NOT block (same-bank slips have similar templates)
@@ -173,7 +178,7 @@ class SlipVerifier
             $dist = $duplicateResult['fuzzy_distance'];
             $checks[] = ['name' => 'duplicate', 'passed' => true, 'detail' => "สลิปคล้ายกับคำสั่งซื้อ {$fuz->order_number} (ความต่าง {$dist}/256 bits) — แจ้งเตือนเท่านั้น"];
             $warnings[] = "สลิปคล้ายกับสลิปในคำสั่งซื้อ {$fuz->order_number} (ความต่าง {$dist}/256 bits) — ควรตรวจสอบด้วยตนเอง";
-            $score += 10; // partial score for fuzzy
+            $score += 10;
             if ($duplicateResult['is_cross_user']) {
                 $warnings[] = "⚠ สลิปที่คล้ายนี้เคยถูกใช้โดยลูกค้าคนอื่น";
             }
@@ -181,8 +186,8 @@ class SlipVerifier
             $checks[] = ['name' => 'duplicate', 'passed' => true, 'detail' => 'ไม่พบสลิปซ้ำหรือคล้ายในระบบ'];
             $score += 20;
         }
-        // Only exact match blocks — fuzzy is warning only
-        $hasDuplicate = (bool) $duplicateResult['exact_match'];
+        // Only cross-user exact match blocks — same-user and fuzzy are warnings only
+        $hasDuplicate = (bool) ($duplicateResult['exact_match'] && $duplicateResult['is_cross_user']);
 
         // ── 10. Color analysis (5 pts) ──
         $maxScore += 5;
