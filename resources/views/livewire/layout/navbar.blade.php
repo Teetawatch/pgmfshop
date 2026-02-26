@@ -173,6 +173,7 @@
                                             <p class="text-sm font-semibold text-slate-900 truncate">{{ $authUser->name }}</p>
                                             <p class="text-xs text-slate-500 truncate">{{ $authUser->email }}</p>
                                         </div>
+                                        <x-heroicon-o-chevron-down class="h-4 w-4 text-slate-400 transition-transform duration-200" x-bind:class="open ? 'rotate-180' : ''" />
                                     </div>
                                 </div>
                                 <div class="py-1.5">
