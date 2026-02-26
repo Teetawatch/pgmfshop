@@ -90,6 +90,8 @@
         </div>
     </div>
 
+    <br>
+
 {{-- Payment Deadline Countdown (awaiting_payment only) --}}
 @if($order->status === 'awaiting_payment' && $order->payment_deadline)
     <div x-data="{
