@@ -72,7 +72,8 @@
     @include('partials.footer')
     @livewireScripts
     <style>
-        .toast-container { position: fixed; top: 1.25rem; right: 1.25rem; z-index: 9999; display: flex; flex-direction: column; gap: 0.75rem; pointer-events: none; }
+        .toast-container { position: fixed; top: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 0.75rem; pointer-events: none; }
+        @media (min-width: 768px) { .toast-container { left: auto; right: 1.25rem; transform: none; } }
         .toast-item { pointer-events: auto; display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem 1.25rem; border-radius: 0.625rem; font-size: 0.875rem; font-weight: 500; box-shadow: 0 4px 12px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.06); transform: translateX(120%); opacity: 0; transition: transform 0.5s cubic-bezier(.21,1.02,.73,1), opacity 0.4s ease; position: relative; overflow: hidden; min-width: 280px; max-width: 420px; border: 1px solid; }
         .toast-item.show { transform: translateX(0); opacity: 1; }
         .toast-item.hide { transform: translateX(120%); opacity: 0; }
