@@ -39,12 +39,12 @@ class ThaiQrPayment
         // ID 01: Point of Initiation Method → "12" (dynamic, amount present)
         $pointOfInitiation = $tlv('01', '12');
 
-        // ID 30: Bill Payment application (Thai BOT standard)
-        // Sub-tag 00: Application ID  "A000000677010112" (Thai standard for Bill Payment)
+        // ID 30: Bill Payment application (Thai PromptPay standard)
+        // Sub-tag 00: Application ID  "A000000556010111" (PromptPay Bill Payment)
         // Sub-tag 01: Biller ID
         // Sub-tag 02: Reference 1
         // Sub-tag 03: Reference 2
-        $billPaymentSubData  = $tlv('00', 'A000000677010112');
+        $billPaymentSubData  = $tlv('00', 'A000000556010111');
         $billPaymentSubData .= $tlv('01', $billerId);
         $billPaymentSubData .= $tlv('02', $ref1);
         $billPaymentSubData .= $tlv('03', $ref2);
