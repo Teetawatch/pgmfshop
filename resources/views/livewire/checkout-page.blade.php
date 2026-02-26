@@ -1,9 +1,9 @@
 <div class="min-h-screen bg-slate-50">
 
     <!-- Hero Header -->
-    <section class="bg-[#FF6B00] pt-10 pb-20 text-white">
+    <section class="bg-[#FF6B00] pt-10 pb-16 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-4 mb-6">
                 <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
                     <x-heroicon-o-credit-card class="h-6 w-6 text-white" />
                 </div>
@@ -12,10 +12,22 @@
                     <p class="text-white/80 font-light">ดำเนินการสั่งซื้อและชำระเงิน</p>
                 </div>
             </div>
+            {{-- Step Indicator inside Hero --}}
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <div class="flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-full whitespace-nowrap {{ isset($step) && $step >= 1 ? 'bg-white text-[#FF6B00] font-semibold shadow' : 'bg-white/20 text-white' }}">
+                    <x-heroicon-o-truck class="h-4 w-4 shrink-0" />
+                    <span class="text-xs sm:text-sm font-medium">ที่อยู่ & จัดส่ง</span>
+                </div>
+                <div class="h-0.5 w-8 sm:w-12 bg-white/40 shrink-0"></div>
+                <div class="flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-full whitespace-nowrap {{ isset($step) && $step >= 2 ? 'bg-white text-[#FF6B00] font-semibold shadow' : 'bg-white/20 text-white' }}">
+                    <x-heroicon-o-credit-card class="h-4 w-4 shrink-0" />
+                    <span class="text-xs sm:text-sm font-medium">ชำระเงิน</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 pb-20 relative z-10">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 pb-20">
     @if(count($items) === 0 && !$orderId)
         <div class="max-w-2xl mx-auto py-12">
             <div class="bg-white rounded-3xl p-12 text-center shadow-sm border border-slate-100">
@@ -83,21 +95,6 @@
             </div>
         </div>
     @else
-        {{-- Step Indicator --}}
-        <div class="flex justify-center mb-4 px-4">
-            <div class="flex items-center space-x-2 sm:space-x-4 max-w-full overflow-x-auto">
-                <button wire:click="goToStep1" class="flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-full shadow-sm transition-all whitespace-nowrap {{ $step >= 1 ? 'bg-[#FF6B00] text-white shadow-[#FF6B00]/20' : 'text-slate-500 bg-white border border-slate-200' }}">
-                    <x-heroicon-o-truck class="h-4 w-4 shrink-0" />
-                    <span class="text-xs sm:text-sm font-medium">ที่อยู่ & จัดส่ง</span>
-                </button>
-                <div class="h-0.5 w-8 sm:w-12 bg-slate-200 shrink-0"></div>
-                <div class="flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-full transition-all whitespace-nowrap {{ $step >= 2 ? 'bg-[#FF6B00] text-white shadow-sm shadow-[#FF6B00]/20' : 'text-slate-500 bg-white border border-slate-200' }}">
-                    <x-heroicon-o-credit-card class="h-4 w-4 shrink-0" />
-                    <span class="text-xs sm:text-sm font-medium">ชำระเงิน</span>
-                </div>
-            </div>
-        </div>
-
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div class="lg:col-span-8 space-y-6">
                 @if($step === 1)
