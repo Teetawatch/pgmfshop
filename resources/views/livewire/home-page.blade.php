@@ -35,42 +35,39 @@
         <div class="absolute inset-0 bg-linear-to-r from-orange-50 to-transparent pointer-events-none"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
             @if($banners->count() > 0)
-            <div x-data="bannerSlider({{ $banners->count() }})" x-init="startAutoSlide()" class="relative w-full rounded-3xl overflow-hidden shadow-2xl group bg-black">
-                <!-- Slides -->
-                <div class="relative w-full">
-                    @foreach($banners as $idx => $banner)
-                    <div x-show="current === {{ $idx }}"
-                         x-transition:enter="transition ease-out duration-700"
-                         x-transition:enter-start="opacity-0"
-                         x-transition:enter-end="opacity-100"
-                         x-transition:leave="transition ease-in duration-500"
-                         x-transition:leave-start="opacity-100"
-                         x-transition:leave-end="opacity-0"
-                         class="{{ $idx === 0 ? 'relative' : 'absolute inset-0' }}">
-                        <img src="{{ $banner->image }}" alt="{{ $banner->title }}" class="w-full h-auto block">
-                        @if($banner->title || $banner->subtitle || $banner->button_text)
-                        <div class="absolute inset-0 bg-linear-to-r from-black/60 via-black/30 to-transparent"></div>
-                        <div class="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent"></div>
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="px-6 sm:px-10 md:px-16 lg:px-24 text-white space-y-2 sm:space-y-3 md:space-y-4 max-w-xl">
-                                @if($banner->title)
-                                    <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs sm:text-sm font-medium border border-white/30">{{ $banner->subtitle ?: 'New Collection' }}</span>
-                                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-extrabold leading-tight">
-                                        {{ $banner->title }}
-                                    </h1>
-                                @endif
-                                @if($banner->button_text && $banner->button_link)
-                                    <a href="{{ $banner->button_link }}" class="mt-2 sm:mt-4 inline-flex items-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 bg-white text-[hsl(var(--primary))] font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base">
-                                        {{ $banner->button_text }}
-                                        <x-heroicon-o-arrow-right class="w-4 h-4" />
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-                    @endforeach
+            <div x-data="bannerSlider({{ $banners->count() }})" x-init="startAutoSlide()" class="relative w-full rounded-3xl overflow-hidden shadow-2xl bg-black">
+                <!-- Invisible placeholder (tallest image) to maintain container height -->
+                <div class="relative w-full invisible" aria-hidden="true">
+                    <img src="{{ $banners->first()->image }}" alt="" class="w-full h-auto block">
                 </div>
+                <!-- Slides (all absolute) -->
+                @foreach($banners as $idx => $banner)
+                <div style="opacity: {{ $idx === 0 ? '1' : '0' }}; transition: opacity 0.7s ease;"
+                     :style="current === {{ $idx }} ? 'opacity:1;z-index:2' : 'opacity:0;z-index:1'"
+                     class="absolute inset-0">
+                    <img src="{{ $banner->image }}" alt="{{ $banner->title }}" class="w-full h-full object-contain block">
+                    @if($banner->title || $banner->subtitle || $banner->button_text)
+                    <div class="absolute inset-0 bg-linear-to-r from-black/60 via-black/30 to-transparent"></div>
+                    <div class="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent"></div>
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="px-6 sm:px-10 md:px-16 lg:px-24 text-white space-y-2 sm:space-y-3 md:space-y-4 max-w-xl">
+                            @if($banner->title)
+                                <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs sm:text-sm font-medium border border-white/30">{{ $banner->subtitle ?: 'New Collection' }}</span>
+                                <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-extrabold leading-tight">
+                                    {{ $banner->title }}
+                                </h1>
+                            @endif
+                            @if($banner->button_text && $banner->button_link)
+                                <a href="{{ $banner->button_link }}" class="mt-2 sm:mt-4 inline-flex items-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 bg-white text-[hsl(var(--primary))] font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base">
+                                    {{ $banner->button_text }}
+                                    <x-heroicon-o-arrow-right class="w-4 h-4" />
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+                    @endif
+                </div>
+                @endforeach
 
                 @if($banners->count() > 1)
                 <!-- Navigation -->
@@ -84,6 +81,15 @@
                     <button @click="next()" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/20 backdrop-blur text-white hover:bg-white hover:text-[hsl(var(--primary))] transition-colors flex items-center justify-center">
                         <x-heroicon-o-chevron-right class="w-4 h-4 sm:w-5 sm:h-5" />
                     </button>
+                </div>
+                <!-- Dot indicators -->
+                <div class="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
+                    @foreach($banners as $idx => $banner)
+                    <button @click="goTo({{ $idx }})"
+                        class="rounded-full transition-all duration-300"
+                        :class="current === {{ $idx }} ? 'w-6 h-2 bg-white' : 'w-2 h-2 bg-white/50 hover:bg-white/80'">
+                    </button>
+                    @endforeach
                 </div>
                 @endif
             </div>
