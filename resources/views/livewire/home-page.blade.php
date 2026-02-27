@@ -35,19 +35,19 @@
         <div class="absolute inset-0 bg-linear-to-r from-orange-50 to-transparent pointer-events-none"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
             @if($banners->count() > 0)
-            <div x-data="bannerSlider({{ $banners->count() }})" x-init="startAutoSlide()" class="relative w-full rounded-3xl overflow-hidden shadow-2xl group">
+            <div x-data="bannerSlider({{ $banners->count() }})" x-init="startAutoSlide()" class="relative w-full rounded-3xl overflow-hidden shadow-2xl group bg-black">
                 <!-- Slides -->
                 <div class="relative w-full">
                     @foreach($banners as $idx => $banner)
                     <div x-show="current === {{ $idx }}"
                          x-transition:enter="transition ease-out duration-700"
-                         x-transition:enter-start="opacity-0 scale-[1.02]"
-                         x-transition:enter-end="opacity-100 scale-100"
+                         x-transition:enter-start="opacity-0"
+                         x-transition:enter-end="opacity-100"
                          x-transition:leave="transition ease-in duration-500"
                          x-transition:leave-start="opacity-100"
                          x-transition:leave-end="opacity-0"
-                         class="w-full">
-                        <img src="{{ $banner->image }}" alt="{{ $banner->title }}" class="w-full h-auto object-contain">
+                         class="{{ $idx === 0 ? 'relative' : 'absolute inset-0' }}">
+                        <img src="{{ $banner->image }}" alt="{{ $banner->title }}" class="w-full h-auto block">
                         @if($banner->title || $banner->subtitle || $banner->button_text)
                         <div class="absolute inset-0 bg-linear-to-r from-black/60 via-black/30 to-transparent"></div>
                         <div class="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent"></div>
