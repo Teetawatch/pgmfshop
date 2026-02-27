@@ -28,9 +28,9 @@
             {{-- About: image + text --}}
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="relative">
-                    <div class="aspect-4/5 rounded-xl overflow-hidden shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&q=80"
-                             alt="PGMF Shop" class="w-full h-full object-cover">
+                    <div class="w-full rounded-xl overflow-hidden shadow-2xl">
+                        <img src="{{ asset('images/Artboard 5-PMS-draft.jpg') }}"
+                             alt="PGMF Shop" class="w-full h-auto object-contain">
                     </div>
                     <div class="absolute -bottom-10 -right-10 hidden lg:block w-64 h-64 bg-slate-50 -z-10 rounded-full blur-3xl opacity-60"></div>
                 </div>
