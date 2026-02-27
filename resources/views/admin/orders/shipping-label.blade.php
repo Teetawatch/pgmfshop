@@ -197,14 +197,13 @@
             background: #f9fafb;
             border-top: 1.5px solid #e5e7eb;
             padding: 3px 10px;
-            display: flex; align-items: center; justify-content: space-between;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             flex-shrink: 0;
         }
         .footer-brand {
             font-size: 7.5px; font-weight: 700; color: #6b7280; letter-spacing: .3px;
-        }
-        .footer-total {
-            font-size: 8px; font-weight: 800; color: #111827;
         }
 
         /* ── Print Styles ── */
@@ -245,7 +244,6 @@
             <div class="label-header">
                 <div class="header-left">
                     <span class="carrier-name">{{ $carrierName }}</span>
-                    <span class="carrier-badge">PARCEL</span>
                 </div>
                 <div class="header-right">
                     <div class="order-number">{{ $order->order_number }}</div>
@@ -296,9 +294,12 @@
                                 </div>
                                 @if($item->variant_id && $item->variant)
                                     <div class="product-variant">
-                                        @foreach(array_filter([$item->variant->size ?? null, $item->variant->color ?? null]) as $attr)
-                                            <span class="variant-chip">{{ $attr }}</span>
-                                        @endforeach
+                                        @if($item->variant->size)
+                                            <span>ไซต์: {{ $item->variant->size }}</span>
+                                        @endif
+                                        @if($item->variant->color)
+                                            <span>สี: {{ $item->variant->color }}</span>
+                                        @endif
                                     </div>
                                 @endif
                             </div>
@@ -313,7 +314,6 @@
             {{-- Footer --}}
             <div class="label-footer">
                 <span class="footer-brand">{{ $senderName }}</span>
-                <span class="footer-total">฿{{ number_format($order->total, 0) }}</span>
             </div>
 
         </div>
