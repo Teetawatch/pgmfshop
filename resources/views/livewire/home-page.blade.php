@@ -42,7 +42,7 @@
                 </div>
                 <!-- Slides (all absolute) -->
                 @foreach($banners as $idx => $banner)
-                <div style="opacity: {{ $idx === 0 ? '1' : '0' }}; transition: opacity 0.7s ease;"
+                <div style="opacity: {{ $idx === 0 ? '1' : '0' }}; transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);"
                      :style="current === {{ $idx }} ? 'opacity:1;z-index:2' : 'opacity:0;z-index:1'"
                      class="absolute inset-0">
                     <img src="{{ $banner->image }}" alt="{{ $banner->title }}" class="w-full h-full object-contain block">
