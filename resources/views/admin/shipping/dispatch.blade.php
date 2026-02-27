@@ -192,6 +192,7 @@
                                 placeholder="ยิง Barcode หรือพิมพ์เลข Tracking..."
                                 @keydown.enter.prevent="handleEnter($event, {{ $order->id }})"
                                 @focus="currentFocus = {{ $order->id }}"
+                                style="text-transform: uppercase;"
                                 class="w-full border rounded-lg px-3 py-2 text-sm font-mono transition-all outline-none
                                     {{ $hasTracking ? 'border-teal-300 bg-teal-50 focus:ring-2 focus:ring-teal-400' : 'border-gray-200 bg-white focus:ring-2 focus:ring-primary' }}"
                                 :class="savedOrders['{{ $order->id }}'] ? 'border-green-400 bg-green-50' : ''">
