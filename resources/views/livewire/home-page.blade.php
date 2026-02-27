@@ -35,9 +35,9 @@
         <div class="absolute inset-0 bg-linear-to-r from-orange-50 to-transparent pointer-events-none"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
             @if($banners->count() > 0)
-            <div x-data="bannerSlider({{ $banners->count() }})" x-init="startAutoSlide()" class="relative w-full aspect-21/9 rounded-3xl overflow-hidden shadow-2xl group">
+            <div x-data="bannerSlider({{ $banners->count() }})" x-init="startAutoSlide()" class="relative w-full rounded-3xl overflow-hidden shadow-2xl group">
                 <!-- Slides -->
-                <div class="relative w-full h-full">
+                <div class="relative w-full">
                     @foreach($banners as $idx => $banner)
                     <div x-show="current === {{ $idx }}"
                          x-transition:enter="transition ease-out duration-700"
@@ -46,11 +46,11 @@
                          x-transition:leave="transition ease-in duration-500"
                          x-transition:leave-start="opacity-100"
                          x-transition:leave-end="opacity-0"
-                         class="absolute inset-0">
-                        <img src="{{ $banner->image }}" alt="{{ $banner->title }}" class="w-full h-full object-cover">
+                         class="w-full">
+                        <img src="{{ $banner->image }}" alt="{{ $banner->title }}" class="w-full h-auto object-contain">
+                        @if($banner->title || $banner->subtitle || $banner->button_text)
                         <div class="absolute inset-0 bg-linear-to-r from-black/60 via-black/30 to-transparent"></div>
                         <div class="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent"></div>
-                        @if($banner->title || $banner->subtitle || $banner->button_text)
                         <div class="absolute inset-0 flex items-center">
                             <div class="px-6 sm:px-10 md:px-16 lg:px-24 text-white space-y-2 sm:space-y-3 md:space-y-4 max-w-xl">
                                 @if($banner->title)
@@ -89,11 +89,11 @@
             </div>
             @else
             {{-- Fallback: default banner when no banners uploaded --}}
-            <div class="relative w-full aspect-21/9 rounded-3xl overflow-hidden shadow-2xl group">
+            <div class="relative w-full rounded-3xl overflow-hidden shadow-2xl group">
                 <div class="absolute inset-0 bg-[#C04918] flex items-center justify-center overflow-hidden">
                     <div class="absolute top-0 right-0 w-1/2 h-full bg-orange-600 -skew-x-12 translate-x-20 opacity-80"></div>
                     <div class="absolute bottom-0 left-0 w-1/3 h-2/3 bg-orange-700 rounded-full blur-3xl opacity-50"></div>
-                    <div class="relative z-10 w-full h-full flex items-center justify-between px-6 sm:px-10 md:px-16 lg:px-24">
+                    <div class="relative z-10 w-full h-full flex items-center justify-between px-6 sm:px-10 md:px-16 lg:px-24 py-16 sm:py-20 md:py-24">
                         <div class="max-w-xl text-white space-y-3 sm:space-y-4">
                             <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs sm:text-sm font-medium border border-white/30">ยินดีต้อนรับ</span>
                             <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
