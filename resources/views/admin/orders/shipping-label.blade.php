@@ -313,7 +313,7 @@
 
             {{-- Footer --}}
             <div class="label-footer">
-                <span class="footer-brand">{{ $senderName }}</span>
+                
             </div>
 
         </div>
