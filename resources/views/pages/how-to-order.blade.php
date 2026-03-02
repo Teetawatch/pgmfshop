@@ -8,7 +8,7 @@
     .timeline-line::before {
         content: '';
         position: absolute;
-        left: 28px;
+        left: 23px;
         top: 0;
         bottom: 0;
         width: 2px;
@@ -24,22 +24,13 @@
 @endpush
 
 @section('content')
-<div class="min-h-screen bg-[#fafafa]">
+<div class="min-h-screen bg-[#ffffff]">
 
     {{-- ===== HERO HEADER — Centered ===== --}}
     <section class="pt-20 pb-12 text-center">
         <div class="max-w-3xl mx-auto px-6">
-            {{-- Breadcrumb --}}
-            <div class="flex items-center justify-center gap-2 text-sm text-gray-400 mb-8">
-                <a href="{{ route('home') }}" class="hover:text-[#ff6b00] transition-colors">หน้าแรก</a>
-                <span class="material-icons-outlined text-xs">chevron_right</span>
-                <span class="text-gray-600 font-medium">วิธีการสั่งซื้อ</span>
-            </div>
             <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">วิธีการสั่งซื้อ</h1>
             <p class="text-lg text-gray-500">ช้อปง่ายๆ เพียงไม่กี่ขั้นตอน มั่นใจ ปลอดภัย ด้วยมาตรฐาน PGMF Shop</p>
-            <div class="mt-8 flex justify-center">
-                <div class="h-1 w-20 bg-[#ff6b00] rounded-full"></div>
-            </div>
         </div>
     </section>
 
@@ -87,10 +78,10 @@
         @endphp
 
         @foreach($steps as $i => $step)
-            <div class="relative pl-20 {{ $loop->last ? '' : 'mb-12' }}">
+            <div class="relative pl-16 {{ $loop->last ? '' : 'mb-12' }}">
                 {{-- Step Number Badge --}}
-                <div class="absolute left-0 w-14 h-14 bg-[#ff6b00] text-white flex items-center justify-center rounded-2xl shadow-lg shadow-orange-500/20 z-10">
-                    <span class="text-2xl font-bold">{{ $i + 1 }}</span>
+                <div class="absolute left-0 w-12 h-12 bg-[#ff6b00] text-white flex items-center justify-center rounded-xl shadow-lg shadow-orange-500/20 z-10">
+                    <span class="text-xl font-bold">{{ $i + 1 }}</span>
                 </div>
                 {{-- Step Card --}}
                 <div class="step-card bg-white border border-gray-100 p-8 rounded-3xl shadow-sm hover:shadow-xl hover:shadow-orange-500/5">
@@ -118,28 +109,6 @@
             </div>
         @endforeach
 
-    </section>
-
-    {{-- ===== CTA — Dramatic Full-Width ===== --}}
-    <section class="max-w-7xl mx-auto px-6 pb-24">
-        <div class="relative overflow-hidden rounded-[3rem] bg-gray-900 text-white min-h-[400px] flex items-center justify-center">
-            <div class="absolute inset-0 bg-gradient-to-br from-[#ff6b00]/30 via-gray-900/60 to-gray-900"></div>
-            <div class="relative z-10 text-center px-6 py-16 max-w-2xl">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">พร้อมที่จะเริ่มช้อปแล้วหรือยัง?</h2>
-                <p class="text-xl text-gray-300 mb-10">พบกับสินค้าคุณภาพและโปรโมชั่นพิเศษมากมายที่เราคัดสรรมาเพื่อคุณ</p>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="{{ route('products') }}"
-                       class="px-10 py-4 bg-[#ff6b00] text-white font-bold rounded-full hover:scale-105 transition-transform shadow-lg shadow-orange-500/30 flex items-center gap-2">
-                        <span class="material-icons-outlined">shopping_bag</span>
-                        เริ่มช้อปสินค้าเลย
-                    </a>
-                    <a href="{{ route('products') }}?sort=bestselling"
-                       class="px-10 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 font-bold rounded-full hover:bg-white/20 transition-colors">
-                        ดูสินค้าขายดี
-                    </a>
-                </div>
-            </div>
-        </div>
     </section>
 
 </div>
