@@ -8,7 +8,7 @@
     .timeline-line::before {
         content: '';
         position: absolute;
-        left: calc(1.5rem + 24px);
+        left: 24px;
         top: 0;
         bottom: 0;
         width: 1px;
@@ -78,7 +78,7 @@
         @endphp
 
         @foreach($steps as $i => $step)
-            <   div class="relative pl-20 {{ $loop->last ? '' : 'mb-12' }}">
+            <div class="relative pl-20 {{ $loop->last ? '' : 'mb-12' }}">
                 {{-- Step Number Badge --}}
                 <div class="absolute left-0 w-12 h-12 bg-[#ff6b00] text-white flex items-center justify-center rounded-xl shadow-lg shadow-orange-500/20 z-10">
                     <span class="text-xl font-bold">{{ $i + 1 }}</span>
