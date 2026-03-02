@@ -8,11 +8,11 @@
     .timeline-line::before {
         content: '';
         position: absolute;
-        left: 24px;
+        left: calc(1.5rem + 24px);
         top: 0;
         bottom: 0;
         width: 1px;
-        background: linear-gradient(to bottom, transparent, #e5e7eb, #e5e7eb, transparent);
+        background: linear-gradient(to bottom, transparent, #d1d5db, #d1d5db, transparent);
     }
     .step-card {
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -78,7 +78,7 @@
         @endphp
 
         @foreach($steps as $i => $step)
-            <div class="relative pl-20 {{ $loop->last ? '' : 'mb-12' }}">
+            <   div class="relative pl-20 {{ $loop->last ? '' : 'mb-12' }}">
                 {{-- Step Number Badge --}}
                 <div class="absolute left-0 w-12 h-12 bg-[#ff6b00] text-white flex items-center justify-center rounded-xl shadow-lg shadow-orange-500/20 z-10">
                     <span class="text-xl font-bold">{{ $i + 1 }}</span>
@@ -107,7 +107,6 @@
                 </div>
             </div>
         @endforeach
-
     </section>
 
 </div>
