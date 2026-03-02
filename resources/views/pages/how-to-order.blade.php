@@ -8,7 +8,7 @@
     .timeline-line::before {
         content: '';
         position: absolute;
-        left: 23px;
+        left: 24px;
         top: 0;
         bottom: 0;
         width: 1px;
@@ -93,7 +93,6 @@
                         <p class="text-gray-600 leading-relaxed">{{ $step['desc'] }}</p>
                         @if(!empty($step['note']))
                             <div class="mt-4 flex items-start gap-2 text-sm text-orange-700 bg-orange-50 border border-orange-100 rounded-xl px-4 py-3 leading-relaxed">
-                                <span class="material-icons-outlined text-base shrink-0 mt-0.5">info_outline</span>
                                 <span><span class="font-semibold">หมายเหตุ:</span> {{ $step['note'] }}</span>
                             </div>
                         @endif
