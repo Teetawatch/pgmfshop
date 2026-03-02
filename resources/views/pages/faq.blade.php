@@ -57,7 +57,7 @@
                 {{-- Sticky Sidebar --}}
                 <aside class="lg:w-1/4">
                     <div class="sticky top-24">
-                        <nav class="flex flex-col space-y-1" id="faq-nav">
+                        <nav class="flex flex-col space-y-1 bg-white rounded-2xl shadow-sm border border-gray-100 p-2" id="faq-nav">
                             @foreach($faqs as $i => $section)
                                 <a href="#{{ $section['id'] }}"
                                    class="faq-nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all {{ $i === 0 ? 'bg-white text-orange-500 shadow-sm border-l-4 border-orange-500 font-semibold' : 'text-slate-500 hover:bg-slate-100' }}">
