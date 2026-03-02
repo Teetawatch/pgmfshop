@@ -36,10 +36,10 @@
             <div class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-700 ml-4">
                 {{-- Categories Dropdown --}}
                 <div class="relative" x-data="{ open: false, timer: null }" @mouseenter="clearTimeout(timer); open = true" @mouseleave="timer = setTimeout(() => open = false, 150)">
-                    <button class="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:text-[hsl(var(--primary))] hover:bg-slate-50 transition-colors" aria-haspopup="true" :aria-expanded="open">
+                    <button class="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:text-[hsl(var(--primary))] hover:bg-slate-50 transition-colors" aria-haspopup="true" x-bind:aria-expanded="open">
                         <x-heroicon-o-bars-3 class="h-4 w-4" />
                         <span>หมวดหมู่</span>
-                        <x-heroicon-o-chevron-down class="h-3.5 w-3.5 text-slate-400 transition-transform duration-200" :class="open ? 'rotate-180' : ''" />
+                        <x-heroicon-o-chevron-down class="h-3.5 w-3.5 text-slate-400 transition-transform duration-200" x-bind:class="open ? 'rotate-180' : ''" />
                     </button>
                     <div x-show="open" 
                          x-cloak
@@ -83,7 +83,7 @@
                 <div class="relative" x-data="{ open: false, timer: null }" @mouseenter="clearTimeout(timer); open = true" @mouseleave="timer = setTimeout(() => open = false, 150)">
                     <button class="flex items-center gap-1 px-3 py-2 rounded-lg text-sm text-slate-600 hover:text-[hsl(var(--primary))] hover:bg-slate-50 transition-colors">
                         <span>เกี่ยวกับร้าน</span>
-                        <x-heroicon-o-chevron-down class="h-3 w-3 text-slate-400 transition-transform duration-200" :class="open ? 'rotate-180' : ''" />
+                        <x-heroicon-o-chevron-down class="h-3 w-3 text-slate-400 transition-transform duration-200" x-bind:class="open ? 'rotate-180' : ''" />
                     </button>
                     <div x-show="open" 
                          x-cloak
@@ -162,14 +162,14 @@
                     @auth   
                     {{-- User Dropdown - Desktop --}}
                     <div class="hidden md:block relative" x-data="{ open: false }" @click.away="open = false">
-                        <button @click="open = !open" class="flex items-center gap-2 pl-2 hover:opacity-80 transition-opacity" aria-haspopup="true" :aria-expanded="open">
+                        <button @click="open = !open" class="flex items-center gap-2 pl-2 hover:opacity-80 transition-opacity" aria-haspopup="true" x-bind:aria-expanded="open">
                             @if($authUser->social_avatar || $authUser->avatar)
                                 <img src="{{ $authUser->social_avatar ?: $authUser->avatar }}" alt="{{ $authUser->name }}" class="w-8 h-8 rounded-full object-cover border border-slate-200" referrerpolicy="no-referrer" />
                             @else
                                 <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-white text-[10px] font-semibold border border-slate-200">{{ strtoupper(mb_substr($authUser->name, 0, 1)) }}</div>
                             @endif
                             <span class="hidden xl:block text-sm font-medium text-slate-700 max-w-[90px] truncate">{{ $authUser->name }}</span>
-                            <x-heroicon-o-chevron-down class="h-4 w-4 text-slate-400 transition-transform duration-200" :class="open ? 'rotate-180' : ''" />
+                            <x-heroicon-o-chevron-down class="h-4 w-4 text-slate-400 transition-transform duration-200" x-bind:class="open ? 'rotate-180' : ''" />
                         </button>
                         <div x-show="open" 
                              x-cloak
