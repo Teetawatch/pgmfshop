@@ -18,8 +18,8 @@ use App\Http\Controllers\Api\SocialAuthController;
 */
 
 // Auth
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register'])->middleware('throttle:register');
+Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:login');
 
 // Social OAuth
 Route::get('/auth/{provider}/redirect', [SocialAuthController::class, 'redirect']);

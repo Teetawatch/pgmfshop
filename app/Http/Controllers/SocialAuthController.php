@@ -59,9 +59,10 @@ class SocialAuthController extends Controller
                     'social_provider' => $provider,
                     'social_avatar' => $socialUser->getAvatar(),
                     'avatar' => $socialUser->getAvatar() ?? '',
-                    'role' => 'customer',
                     'password' => null,
                 ]);
+                $user->role = 'customer';
+                $user->save();
 
                 $user->markEmailAsVerified();
                 try {

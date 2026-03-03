@@ -31,20 +31,25 @@ class RegisterPage extends Component
 
     public function register()
     {
-        if (!$this->name || !$this->email || !$this->password) {
-            $this->dispatch('toast', message: 'กรุณากรอกข้อมูลให้ครบ', type: 'error');
-            return;
-        }
-        if ($this->password !== $this->confirmPassword) {
-            $this->dispatch('toast', message: 'รหัสผ่านไม่ตรงกัน', type: 'error');
-            return;
-        }
-        if (strlen($this->password) < 6) {
-            $this->dispatch('toast', message: 'รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร', type: 'error');
-            return;
-        }
-        if (User::where('email', $this->email)->exists()) {
-            $this->dispatch('toast', message: 'อีเมลนี้ถูกใช้แล้ว', type: 'error');
+        try {
+            $this->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users,email',
+                'password' => 'required|string|min:8',
+                'confirmPassword' => 'required|same:password',
+            ], [
+                'name.required' => 'กรุณากรอกชื่อ',
+                'name.max' => 'ชื่อต้องไม่เกิน 255 ตัวอักษร',
+                'email.required' => 'กรุณากรอกอีเมล',
+                'email.email' => 'รูปแบบอีเมลไม่ถูกต้อง',
+                'email.unique' => 'อีเมลนี้ถูกใช้แล้ว',
+                'password.required' => 'กรุณากรอกรหัสผ่าน',
+                'password.min' => 'รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร',
+                'confirmPassword.same' => 'รหัสผ่านไม่ตรงกัน',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            $firstError = collect($e->errors())->flatten()->first();
+            $this->dispatch('toast', message: $firstError, type: 'error');
             return;
         }
 
@@ -52,8 +57,9 @@ class RegisterPage extends Component
             'name' => $this->name,
             'email' => $this->email,
             'password' => Hash::make($this->password),
-            'role' => 'customer',
         ]);
+        $user->role = 'customer';
+        $user->save();
 
         event(new Registered($user));
         try {

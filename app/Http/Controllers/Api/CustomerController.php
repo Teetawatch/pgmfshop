@@ -34,6 +34,16 @@ class CustomerController extends Controller
         $user->loadSum('orders', 'total');
         $user->load(['orders' => fn($q) => $q->latest()->limit(10)]);
 
-        return response()->json($user);
+        return response()->json([
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'phone' => $user->phone,
+            'avatar' => $user->avatar,
+            'created_at' => $user->created_at,
+            'orders_count' => $user->orders_count,
+            'orders_sum_total' => $user->orders_sum_total,
+            'orders' => $user->orders,
+        ]);
     }
 }

@@ -15,7 +15,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:8|confirmed',
             'phone' => 'nullable|string|max:20',
         ]);
 
@@ -24,13 +24,14 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
-            'role' => 'customer',
         ]);
+        $user->role = 'customer';
+        $user->save();
 
         $token = $user->createToken('auth-token')->plainTextToken;
 
         return response()->json([
-            'user' => $user,
+            'user' => $user->only(['id', 'name', 'email', 'phone', 'avatar']),
             'token' => $token,
         ], 201);
     }
@@ -53,7 +54,7 @@ class AuthController extends Controller
         $token = $user->createToken('auth-token')->plainTextToken;
 
         return response()->json([
-            'user' => $user,
+            'user' => $user->only(['id', 'name', 'email', 'phone', 'avatar']),
             'token' => $token,
         ]);
     }
@@ -67,7 +68,7 @@ class AuthController extends Controller
 
     public function me(Request $request)
     {
-        return response()->json($request->user());
+        return response()->json($request->user()->only(['id', 'name', 'email', 'phone', 'avatar', 'addresses']));
     }
 
     public function updateProfile(Request $request)
@@ -82,6 +83,6 @@ class AuthController extends Controller
 
         $user->update($request->only(['name', 'phone', 'addresses']));
 
-        return response()->json($user);
+        return response()->json($user->only(['id', 'name', 'email', 'phone', 'avatar', 'addresses']));
     }
 }
