@@ -26,7 +26,7 @@
     </section>
 
     {{-- ===== TIMELINE STEPS ===== --}}
-    <section class="max-w-4xl mx-auto px-6 pb-24">
+    <section class="max-w-4xl mx-auto px-6 pb-24 relative">
 
         @php
             $steps = [
@@ -68,40 +68,37 @@
             ];
         @endphp
 
-        {{-- Steps --}}
-        <div class="space-y-6">
-            @foreach($steps as $i => $step)
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
-                    <div class="p-5 flex items-start gap-5">
-                        {{-- Number + Icon --}}
-                        <div class="shrink-0 flex flex-col items-center gap-2">
-                            <div class="w-10 h-10 rounded-lg bg-orange-100 text-[#ff6b00] flex items-center justify-center">
-                                <span class="material-icons-outlined">{{ $step['icon'] }}</span>
+        @foreach($steps as $i => $step)
+            <div class="relative pl-20 {{ $loop->last ? '' : 'mb-12' }}">
+                {{-- Step Number Badge --}}
+                <div class="absolute left-0 w-12 h-12 bg-[#ff6b00] text-white flex items-center justify-center rounded-xl shadow-lg shadow-orange-500/20 z-10">
+                    <span class="text-xl font-bold">{{ $i + 1 }}</span>
+                </div>
+                {{-- Step Card --}}
+                <div class="step-card bg-white border border-gray-100 p-8 rounded-3xl shadow-sm hover:shadow-xl hover:shadow-orange-500/5">
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-center gap-3">
+                            <span class="material-icons-outlined text-[#ff6b00]">{{ $step['icon'] }}</span>
+                            {{ $step['title'] }}
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">{{ $step['desc'] }}</p>
+                        @if(!empty($step['note']))
+                            <div class="mt-4 flex items-start gap-2 text-sm text-orange-700 bg-orange-50 border border-orange-100 rounded-xl px-4 py-3 leading-relaxed">
+                                <span><span class="font-semibold">หมายเหตุ:</span> {{ $step['note'] }}</span>
                             </div>
-                            <span class="text-xs font-bold text-gray-400">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
-                        </div>
-                        {{-- Content --}}
-                        <div class="flex-1 min-w-0 py-0.5">
-                            <h3 class="text-base font-semibold text-gray-900 mb-1">{{ $step['title'] }}</h3>
-                            <p class="text-sm text-gray-500 leading-relaxed">{{ $step['desc'] }}</p>
-                            @if(!empty($step['note']))
-                                <div class="mt-3 flex items-start gap-2 text-sm text-orange-700 bg-orange-50 border border-orange-100 rounded-lg px-3 py-2.5 leading-relaxed">
-                                    <span class="material-icons-outlined text-base shrink-0 mt-0.5">info_outline</span>
-                                    <span><span class="font-semibold">หมายเหตุ:</span> {{ $step['note'] }}</span>
-                                </div>
-                            @endif
-                            @if(!empty($step['link']))
-                                <a href="{{ route($step['link']['url']) }}"
-                                   class="inline-flex items-center gap-1 mt-3 text-sm font-medium text-[#ff6b00] hover:text-orange-600 hover:underline transition-colors">
-                                    {{ $step['link']['label'] }}
-                                    <span class="material-icons-outlined text-base">arrow_forward</span>
-                                </a>
-                            @endif
-                        </div>
+                        @endif
+                        @if(!empty($step['link']))
+                            <a href="{{ route($step['link']['url']) }}"
+                               class="inline-flex items-center gap-1.5 mt-4 text-sm font-semibold text-[#ff6b00] hover:text-orange-600 transition-colors group">
+                                {{ $step['link']['label'] }}
+                                <span class="material-icons-outlined text-base group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                            </a>
+                        @endif
                     </div>
                 </div>
-            @endforeach
-        </div>
+            </div>
+        @endforeach
+    </section>
 
 </div>
 @endsection
