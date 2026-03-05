@@ -72,7 +72,7 @@
         @endphp
 
         {{-- Steps --}}
-        <div class="space-y-4">
+        <div class="space-y-6">
             @foreach($steps as $i => $step)
                 <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
                     <div class="p-5 flex items-start gap-5">
