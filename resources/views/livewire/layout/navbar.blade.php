@@ -1,4 +1,4 @@
-﻿@php $authUser = auth()->user(); @endphp
+@php $authUser = auth()->user(); @endphp
 
 <header
     x-data="{

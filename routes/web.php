@@ -31,12 +31,12 @@ Route::get('/', App\Livewire\HomePage::class)->name('home');
 Route::get('/products', App\Livewire\ProductsPage::class)->name('products');
 Route::get('/products/{slug}', App\Livewire\ProductDetail::class)->name('products.show');
 Route::get('/cart', App\Livewire\CartPage::class)->name('cart');
-Route::get('/promptpay-qr', [PromptPayQRController::class, 'generate'])->name('promptpay.qr');
+Route::get('/promptpay-qr', [PromptPayQRController::class, 'generate'])->middleware(['auth', 'throttle:10,1'])->name('promptpay.qr');
 
 // Static Pages
 Route::view('/about', 'pages.about')->name('about');
 Route::view('/contact', 'pages.contact')->name('contact');
-Route::post('/contact', [ContactController::class, 'store'])->middleware('auth')->name('contact.store');
+Route::post('/contact', [ContactController::class, 'store'])->middleware(['auth', 'throttle:contact'])->name('contact.store');
 Route::view('/faq', 'pages.faq')->name('faq');
 Route::view('/how-to-order', 'pages.how-to-order')->name('how-to-order');
 Route::view('/privacy', 'pages.privacy')->name('privacy');
@@ -73,7 +73,7 @@ Route::middleware(['auth'])->group(function () {
 
 // Admin Auth
 Route::get('/admin/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
-Route::post('/admin/login', [AdminAuthController::class, 'login']);
+Route::post('/admin/login', [AdminAuthController::class, 'login'])->middleware('throttle:login');
 Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
 // Admin Panel (auth + admin)

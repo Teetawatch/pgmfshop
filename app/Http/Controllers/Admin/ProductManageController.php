@@ -247,7 +247,11 @@ class ProductManageController extends Controller
                 mkdir($dir, 0755, true);
             }
             foreach ($request->file('upload_images') as $file) {
-                $filename = time() . '_' . Str::random(8) . '.' . $file->getClientOriginalExtension();
+                $ext = $file->guessExtension() ?: 'jpg';
+                if (!in_array($ext, ['jpeg', 'jpg', 'png', 'gif', 'webp'])) {
+                    continue;
+                }
+                $filename = time() . '_' . Str::random(8) . '.' . $ext;
                 $file->move($dir, $filename);
                 $images[] = '/uploads/products/' . $filename;
             }

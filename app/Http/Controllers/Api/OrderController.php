@@ -121,10 +121,9 @@ class OrderController extends Controller
         foreach ($orderItems as $item) {
             $order->items()->create($item);
 
-            Product::where('id', $item['product_id'])->update([
-                'stock' => \DB::raw("stock - {$item['quantity']}"),
-                'sold' => \DB::raw("sold + {$item['quantity']}"),
-            ]);
+            $qty = (int) $item['quantity'];
+            Product::where('id', $item['product_id'])->decrement('stock', $qty);
+            Product::where('id', $item['product_id'])->increment('sold', $qty);
         }
 
         return response()->json($order->load('items'), 201);
@@ -148,10 +147,9 @@ class OrderController extends Controller
 
         if ($request->status === 'cancelled') {
             foreach ($order->items as $item) {
-                Product::where('id', $item->product_id)->update([
-                    'stock' => \DB::raw("stock + {$item->quantity}"),
-                    'sold' => \DB::raw("sold - {$item->quantity}"),
-                ]);
+                $qty = (int) $item->quantity;
+                Product::where('id', $item->product_id)->increment('stock', $qty);
+                Product::where('id', $item->product_id)->decrement('sold', $qty);
             }
         }
 

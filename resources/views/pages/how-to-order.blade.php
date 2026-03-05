@@ -3,33 +3,30 @@
     'seoDescription' => 'ขั้นตอนการสั่งซื้อสินค้าจาก PGMF Shop อย่างง่ายๆ ตั้งแต่เลือกสินค้าจนถึงรับสินค้า',
 ])
 
+@push('seo')
+<style>
+    .step-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .step-card:hover {
+        transform: translateY(-4px);
+    }
+</style>
+@endpush
+
 @section('content')
-<div class="min-h-screen bg-gray-50">
+<div class="min-h-screen bg-[#ffffff]">
 
-    {{-- ===== HERO HEADER ===== --}}
-    <div class="relative overflow-hidden bg-[#FF6B00]">
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-16">
-            {{-- Breadcrumb --}}
-            <div class="flex items-center gap-2 text-sm text-orange-200 mb-5">
-                <a href="{{ route('home') }}" class="hover:text-white transition-colors">หน้าแรก</a>
-                <span class="material-icons-outlined text-xs">chevron_right</span>
-                <span class="text-white font-medium">วิธีการสั่งซื้อ</span>
-            </div>
-            {{-- Title --}}
-            <div class="flex items-center gap-4">
-                <div class="p-3 bg-white/10 rounded-xl">
-                    <span class="material-icons-outlined text-3xl text-white">help_outline</span>
-                </div>
-                <div>
-                    <h1 class="text-2xl font-bold text-white tracking-tight">วิธีการสั่งซื้อ</h1>
-                    <p class="text-orange-100 text-sm mt-0.5">ช้อปง่ายๆ เพียงไม่กี่ขั้นตอน มั่นใจ ปลอดภัย</p>
-                </div>
-            </div>
+    {{-- ===== HERO HEADER — Centered ===== --}}
+    <section class="pt-20 pb-12 text-center">
+        <div class="max-w-3xl mx-auto px-6">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">วิธีการสั่งซื้อ</h1>
+            <p class="text-lg text-gray-500">ช้อปง่ายๆ เพียงไม่กี่ขั้นตอน มั่นใจ ปลอดภัย ด้วยมาตรฐาน PGMF Shop</p>
         </div>
-    </div>
+    </section>
 
-    {{-- ===== MAIN CONTENT (overlaps hero) ===== --}}
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 mb-16 relative z-20">
+    {{-- ===== TIMELINE STEPS ===== --}}
+    <section class="max-w-4xl mx-auto px-6 pb-24">
 
         @php
             $steps = [
@@ -105,34 +102,6 @@
                 </div>
             @endforeach
         </div>
-
-        {{-- ─── CTA ─── --}}
-        <div class="mt-8 bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
-            <div class="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-                <div class="flex items-center gap-4">
-                    <div class="p-3 bg-orange-100 rounded-xl text-[#ff6b00] shrink-0">
-                        <span class="material-icons-outlined text-3xl">storefront</span>
-                    </div>
-                    <div>
-                        <h2 class="text-lg font-semibold text-gray-900">พร้อมที่จะเริ่มช้อปแล้วหรือยัง?</h2>
-                        <p class="text-sm text-gray-500 mt-0.5">พบกับสินค้าคุณภาพและโปรโมชั่นพิเศษมากมายที่เราคัดสรรมาเพื่อคุณ</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-3 shrink-0">
-                    <a href="{{ route('products') }}"
-                       class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#ff6b00] text-white rounded-full text-sm font-medium hover:bg-orange-600 transition-colors shadow-sm">
-                        <span class="material-icons-outlined text-base">shopping_bag</span>
-                        เริ่มช้อปสินค้าเลย
-                    </a>
-                    <a href="{{ route('products') }}?sort=bestselling"
-                       class="inline-flex items-center gap-2 px-5 py-2.5 border border-gray-200 bg-white text-gray-600 rounded-full text-sm hover:bg-gray-50 transition-colors">
-                        ดูสินค้าขายดี
-                    </a>
-                </div>
-            </div>
-        </div>
-
-    </main>
 
 </div>
 @endsection

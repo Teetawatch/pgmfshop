@@ -273,7 +273,8 @@ class CheckoutPage extends Component
         if (!file_exists($slipDir)) {
             mkdir($slipDir, 0755, true);
         }
-        $slipFilename = 'slips/' . auth()->id() . '_' . time() . '.' . $this->paymentSlip->getClientOriginalExtension();
+        $safeExt = $this->paymentSlip->guessExtension() ?: 'jpg';
+        $slipFilename = 'slips/' . auth()->id() . '_' . time() . '.' . $safeExt;
         $this->paymentSlip->storeAs('public', $slipFilename);
         // Also copy to public/uploads for shared hosting
         $sourcePath = storage_path('app/public/' . $slipFilename);
