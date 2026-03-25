@@ -67,11 +67,7 @@ class ContactManageController extends Controller
         $contactMessage->reply($validated['admin_reply'], auth()->id());
 
         // Send reply email to customer
-        try {
-            Mail::to($contactMessage->user->email)->queue(new ContactReplyMail($contactMessage));
-        } catch (\Exception $e) {
-            \Log::error('Failed to send contact reply email: ' . $e->getMessage());
-        }
+        Mail::to($contactMessage->user->email)->queue(new ContactReplyMail($contactMessage));
 
         return redirect()->route('admin.contact-messages.show', $contactMessage)
             ->with('success', 'ตอบกลับข้อความเรียบร้อยแล้ว');

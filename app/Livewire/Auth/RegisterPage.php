@@ -61,11 +61,7 @@ class RegisterPage extends Component
         $user->role = 'customer';
         $user->save();
 
-        try {
-            event(new Registered($user));
-        } catch (\Exception $e) {
-            \Log::error('Failed to send verification email: ' . $e->getMessage());
-        }
+        event(new Registered($user));
         try {
             Mail::to($user->email)->send(new WelcomeMail($user));
         } catch (\Exception $e) {

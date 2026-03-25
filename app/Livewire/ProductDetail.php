@@ -84,35 +84,14 @@ class ProductDetail extends Component
             ->first();
     }
 
-    public function updatedSelectedSize()
-    {
-        $this->quantity = 1;
-    }
 
-    public function updatedSelectedColor()
+    public function addToCart($size = '', $color = '', $qty = 1)
     {
-        $this->quantity = 1;
-    }
+        // Accept values from Alpine (passed as arguments)
+        $this->selectedSize = $size;
+        $this->selectedColor = $color;
+        $this->quantity = max(1, (int) $qty);
 
-    public function incrementQty()
-    {
-        $maxStock = $this->getAvailableStock();
-        if ($this->quantity < $maxStock) {
-            $this->quantity++;
-        } else {
-            $this->dispatch('stock-exceeded');
-        }
-    }
-
-    public function decrementQty()
-    {
-        if ($this->quantity > 1) {
-            $this->quantity--;
-        }
-    }
-
-    public function addToCart()
-    {
         $availableStock = $this->getAvailableStock();
 
         // Validate clothing options
@@ -183,9 +162,9 @@ class ProductDetail extends Component
         $this->dispatch('toast', message: "เพิ่ม \"{$this->product->name}\"{$optionText} x{$this->quantity} ลงตะกร้าแล้ว", type: 'success');
     }
 
-    public function buyNow()
+    public function buyNow($size = '', $color = '', $qty = 1)
     {
-        $this->addToCart();
+        $this->addToCart($size, $color, $qty);
         return redirect()->route('cart');
     }
 
@@ -290,7 +269,6 @@ class ProductDetail extends Component
             'canReview' => $canReview,
             'hasReviewed' => $hasReviewed,
             'variantStockMap' => $variantStockMap,
-            'currentVariantStock' => $this->getAvailableStock(),
         ]);
     }
 }

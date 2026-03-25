@@ -13,7 +13,7 @@ class Order extends Model
     protected $fillable = [
         'order_number', 'user_id', 'status', 'subtotal', 'discount',
         'shipping_cost', 'total', 'coupon_code', 'payment_method',
-        'payment_slip', 'slip_verified', 'slip_hash', 'slip_content_hash', 'slip_verification_data',
+        'payment_slip', 'slip_verified', 'slip_hash', 'slip_verification_data',
         'shipping_method', 'tracking_number', 'tracking_url',
         'shipping_address', 'status_history', 'notes', 'payment_deadline',
         'transfer_date', 'transfer_time', 'transfer_amount',

@@ -32,11 +32,7 @@ class ContactController extends Controller
         // Notify admin via email
         $admins = User::where('role', 'admin')->get();
         foreach ($admins as $admin) {
-            try {
-                Mail::to($admin->email)->queue(new NewContactMessageMail($contactMessage));
-            } catch (\Exception $e) {
-                \Log::error('Failed to send contact notification email: ' . $e->getMessage());
-            }
+            Mail::to($admin->email)->queue(new NewContactMessageMail($contactMessage));
         }
 
         return redirect()->route('contact')->with('success', 'ส่งข้อความเรียบร้อยแล้ว ทีมงานจะตอบกลับภายใน 24 ชั่วโมง');

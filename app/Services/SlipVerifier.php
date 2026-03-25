@@ -11,9 +11,10 @@ class SlipVerifier
 {
     /**
      * Max Hamming distance to consider two perceptual hashes as "similar".
-     * 16x16 hash = 256 bits. Threshold 25 ≈ ~10% difference.
+     * 16x16 hash = 256 bits. Threshold 30 ≈ ~12% difference.
+     * Set higher to tolerate same-bank template similarity (especially SCB).
      */
-    private const HAMMING_THRESHOLD = 10;
+    private const HAMMING_THRESHOLD = 30;
 
     /**
      * Max orders a single user can place per hour.
@@ -35,7 +36,6 @@ class SlipVerifier
         $ocrAmountMatched = false;
         $ocrAccountMatched = false;
         $ocrText = '';
-        $fileContentHash = md5_file($filePath);
 
         // ── 1. Valid image check (15 pts) ──
         $maxScore += 15;
@@ -159,7 +159,7 @@ class SlipVerifier
         // ── 9. Duplicate slip check — exact + fuzzy Hamming (20 pts) ──
         $maxScore += 20;
         $slipHash = self::imageHash($filePath);
-        $duplicateResult = self::checkDuplicateSlip($slipHash, $userId, $fileContentHash);
+        $duplicateResult = self::checkDuplicateSlip($slipHash, $userId);
 
         if ($duplicateResult['exact_match']) {
             $dup = $duplicateResult['exact_match'];
@@ -254,7 +254,7 @@ class SlipVerifier
             && $noRateLimitIssue
             && $noSuspiciousAmount;
 
-        return self::result($passed, $score, $maxScore, $checks, $warnings, $slipHash, $amountMatched, $canAutoVerify, $ocrText, $ocrAmountMatched, $ocrAccountMatched, $fileContentHash);
+        return self::result($passed, $score, $maxScore, $checks, $warnings, $slipHash, $amountMatched, $canAutoVerify, $ocrText, $ocrAmountMatched, $ocrAccountMatched);
     }
 
     /**
@@ -279,21 +279,28 @@ class SlipVerifier
         $origW = imagesx($image);
         $origH = imagesy($image);
 
-        // Crop center 60% of image to focus on unique transaction content
-        // (skip bank template header/footer/logo that cause false duplicates)
-        $cropX = (int) ($origW * 0.10);
-        $cropY = (int) ($origH * 0.20);
-        $cropW = (int) ($origW * 0.80);
-        $cropH = (int) ($origH * 0.60);
-        $cropped = imagecrop($image, ['x' => $cropX, 'y' => $cropY, 'width' => $cropW, 'height' => $cropH]);
-        if ($cropped) {
-            imagedestroy($image);
-            $image = $cropped;
+        // Crop out bank template header (top 20%) and footer (bottom 15%)
+        // to focus on the unique content area (amounts, dates, transaction refs).
+        // Thai bank slips (especially SCB) share identical templates that dominate
+        // the perceptual hash at low resolution, causing false duplicate matches.
+        $cropTop = (int) round($origH * 0.20);
+        $cropBottom = (int) round($origH * 0.15);
+        $cropH = $origH - $cropTop - $cropBottom;
+
+        if ($cropH < 50) {
+            // Image too small to crop meaningfully, use full image
+            $cropTop = 0;
+            $cropH = $origH;
         }
+
+        $cropped = imagecreatetruecolor($origW, $cropH);
+        imagecopy($cropped, $image, 0, 0, 0, $cropTop, $origW, $cropH);
+        imagedestroy($image);
 
         // Resize to 16x16 for better accuracy than 8x8
         $small = imagecreatetruecolor(16, 16);
-        imagecopyresampled($small, $image, 0, 0, 0, 0, 16, 16, imagesx($image), imagesy($image));
+        imagecopyresampled($small, $cropped, 0, 0, 0, 0, 16, 16, $origW, $cropH);
+        imagedestroy($cropped);
 
         // Convert to grayscale and collect pixel values
         $pixels = [];
@@ -307,7 +314,6 @@ class SlipVerifier
             }
         }
 
-        imagedestroy($image);
         imagedestroy($small);
 
         // Average hash
@@ -353,7 +359,7 @@ class SlipVerifier
      * Check for duplicate slips: exact match + fuzzy Hamming distance.
      * Also detects cross-user reuse.
      */
-    private static function checkDuplicateSlip(string $slipHash, ?int $userId, ?string $fileContentHash = null): array
+    private static function checkDuplicateSlip(string $slipHash, ?int $userId): array
     {
         $result = [
             'exact_match' => null,
@@ -364,7 +370,7 @@ class SlipVerifier
 
         $existingOrders = Order::whereNotNull('slip_hash')
             ->whereNotIn('status', ['cancelled', 'expired'])
-            ->select(['id', 'order_number', 'user_id', 'slip_hash', 'slip_content_hash'])
+            ->select(['id', 'order_number', 'user_id', 'slip_hash'])
             ->get();
 
         $bestFuzzyDistance = PHP_INT_MAX;
@@ -372,18 +378,8 @@ class SlipVerifier
 
         foreach ($existingOrders as $order) {
             if ($order->slip_hash === $slipHash) {
-                // Perceptual hash matches — verify with file content hash
-                // Different slips from the same bank can produce identical perceptual hashes
-                // Only treat as exact match if content hash also matches (or no content hash stored)
-                if ($fileContentHash && $order->slip_content_hash && $order->slip_content_hash !== $fileContentHash) {
-                    // Same perceptual hash but different file content — not a true duplicate
-                    // Treat as fuzzy match instead
-                    $bestFuzzyDistance = 0;
-                    $bestFuzzyOrder = $order;
-                    continue;
-                }
                 $result['exact_match'] = $order;
-                $result['is_cross_user'] = $userId && $order->user_id != $userId;
+                $result['is_cross_user'] = $userId && $order->user_id !== $userId;
                 return $result;
             }
 
@@ -400,7 +396,7 @@ class SlipVerifier
         if ($bestFuzzyDistance <= self::HAMMING_THRESHOLD && $bestFuzzyOrder) {
             $result['fuzzy_match'] = $bestFuzzyOrder;
             $result['fuzzy_distance'] = $bestFuzzyDistance;
-            $result['is_cross_user'] = $userId && $bestFuzzyOrder->user_id != $userId;
+            $result['is_cross_user'] = $userId && $bestFuzzyOrder->user_id !== $userId;
         }
 
         return $result;
@@ -795,7 +791,7 @@ class SlipVerifier
         return mb_strtolower($text);
     }
 
-    private static function result(bool $passed, int $score, int $maxScore, array $checks, array $warnings, ?string $hash = null, bool $amountMatched = false, bool $canAutoVerify = false, string $ocrText = '', bool $ocrAmountMatched = false, bool $ocrAccountMatched = false, ?string $contentHash = null): array
+    private static function result(bool $passed, int $score, int $maxScore, array $checks, array $warnings, ?string $hash = null, bool $amountMatched = false, bool $canAutoVerify = false, string $ocrText = '', bool $ocrAmountMatched = false, bool $ocrAccountMatched = false): array
     {
         $percentage = $maxScore > 0 ? round(($score / $maxScore) * 100) : 0;
 
@@ -807,7 +803,6 @@ class SlipVerifier
             'checks' => $checks,
             'warnings' => $warnings,
             'hash' => $hash,
-            'content_hash' => $contentHash,
             'amount_matched' => $amountMatched,
             'can_auto_verify' => $canAutoVerify,
             'ocr_text' => $ocrText,
