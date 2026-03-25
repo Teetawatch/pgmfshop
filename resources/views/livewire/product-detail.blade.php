@@ -120,10 +120,11 @@
 
         {{-- RIGHT: Sticky Product Info --}}
         <div class="lg:col-span-5"
+             wire:ignore
              x-data="{
-                selectedSize: @js($selectedSize),
-                selectedColor: @js($selectedColor),
-                quantity: @js($quantity),
+                selectedSize: '',
+                selectedColor: '',
+                quantity: 1,
                 hasVariants: @js($hasVariants),
                 productStock: @js($product->stock),
                 variantStockMap: @js($variantStockMap),
@@ -165,26 +166,26 @@
                 selectSize(size) {
                     this.selectedSize = size;
                     this.quantity = 1;
-                    $wire.set('selectedSize', size, false);
-                    $wire.set('quantity', 1, false);
                 },
                 selectColor(color) {
                     this.selectedColor = color;
                     this.quantity = 1;
-                    $wire.set('selectedColor', color, false);
-                    $wire.set('quantity', 1, false);
                 },
                 increment() {
                     if (this.quantity < this.currentStock) {
                         this.quantity++;
-                        $wire.set('quantity', this.quantity, false);
                     }
                 },
                 decrement() {
                     if (this.quantity > 1) {
                         this.quantity--;
-                        $wire.set('quantity', this.quantity, false);
                     }
+                },
+                doAddToCart() {
+                    $wire.call('addToCart', this.selectedSize, this.selectedColor, this.quantity);
+                },
+                doBuyNow() {
+                    $wire.call('buyNow', this.selectedSize, this.selectedColor, this.quantity);
                 },
              }"
         >
@@ -409,33 +410,19 @@
 
                     {{-- Action Buttons --}}
                     <div class="grid grid-cols-12 gap-3">
-                        <button wire:click="addToCart"
-                                wire:loading.attr="disabled" wire:target="addToCart"
+                        <button x-on:click="doAddToCart()"
                                 :disabled="!canAddToCart"
                                 :class="!canAddToCart ? 'opacity-50 cursor-not-allowed' : ''"
                                 class="col-span-12 md:col-span-5 bg-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))]/90 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg shadow-orange-500/20 transition-all active:scale-95 flex items-center justify-center gap-2">
-                            <x-heroicon-o-shopping-cart wire:loading.remove wire:target="addToCart" class="h-5 w-5" />
-                            <svg wire:loading wire:target="addToCart" class="h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
-                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-                            </svg>
-                            <span wire:loading.remove wire:target="addToCart">เพิ่มลงตะกร้า</span>
-                            <span wire:loading wire:target="addToCart">กำลังเพิ่ม...</span>
+                            <x-heroicon-o-shopping-cart class="h-5 w-5" />
+                            <span>เพิ่มลงตะกร้า</span>
                         </button>
 
-                        <button wire:click="buyNow"
-                                wire:loading.attr="disabled" wire:target="buyNow"
+                        <button x-on:click="doBuyNow()"
                                 :disabled="!canAddToCart"
                                 :class="!canAddToCart ? 'opacity-50 cursor-not-allowed' : ''"
                                 class="col-span-10 md:col-span-5 border-2 border-gray-200 hover:border-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] text-gray-700 font-semibold py-3.5 px-4 rounded-xl transition-all active:scale-95 bg-white">
-                            <span wire:loading.remove wire:target="buyNow">ซื้อเลย</span>
-                            <span wire:loading wire:target="buyNow" class="inline-flex items-center justify-center gap-2">
-                                <svg class="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-                                </svg>
-                                กำลังดำเนินการ...
-                            </span>
+                            <span>ซื้อเลย</span>
                         </button>
 
                         <div class="col-span-2 flex items-center justify-center">
