@@ -84,32 +84,6 @@ class ProductDetail extends Component
             ->first();
     }
 
-    public function updatedSelectedSize()
-    {
-        $this->quantity = 1;
-    }
-
-    public function updatedSelectedColor()
-    {
-        $this->quantity = 1;
-    }
-
-    public function incrementQty()
-    {
-        $maxStock = $this->getAvailableStock();
-        if ($this->quantity < $maxStock) {
-            $this->quantity++;
-        } else {
-            $this->dispatch('stock-exceeded');
-        }
-    }
-
-    public function decrementQty()
-    {
-        if ($this->quantity > 1) {
-            $this->quantity--;
-        }
-    }
 
     public function addToCart()
     {
@@ -290,7 +264,6 @@ class ProductDetail extends Component
             'canReview' => $canReview,
             'hasReviewed' => $hasReviewed,
             'variantStockMap' => $variantStockMap,
-            'currentVariantStock' => $this->getAvailableStock(),
         ]);
     }
 }

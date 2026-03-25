@@ -119,7 +119,75 @@
         {{-- END LEFT --}}
 
         {{-- RIGHT: Sticky Product Info --}}
-        <div class="lg:col-span-5">
+        <div class="lg:col-span-5"
+             x-data="{
+                selectedSize: @js($selectedSize),
+                selectedColor: @js($selectedColor),
+                quantity: @js($quantity),
+                hasVariants: @js($hasVariants),
+                productStock: @js($product->stock),
+                variantStockMap: @js($variantStockMap),
+                sizes: @js($product->sizes ?? []),
+                colors: @js($product->colors ?? []),
+                getVariantStock(size, color) {
+                    let key = (size || '') + '|' + (color || '');
+                    return this.variantStockMap[key] ?? 0;
+                },
+                get currentStock() {
+                    if (!this.hasVariants) return this.productStock;
+                    if (!this.selectedSize && !this.selectedColor) return 0;
+                    return this.getVariantStock(this.selectedSize, this.selectedColor);
+                },
+                getSizeStock(size) {
+                    let total = 0;
+                    if (this.colors.length > 0) {
+                        this.colors.forEach(c => { total += this.getVariantStock(size, c); });
+                    } else {
+                        total = this.getVariantStock(size, null);
+                    }
+                    return total;
+                },
+                getColorStock(color) {
+                    if (this.selectedSize) {
+                        return this.getVariantStock(this.selectedSize, color);
+                    }
+                    let total = 0;
+                    if (this.sizes.length > 0) {
+                        this.sizes.forEach(s => { total += this.getVariantStock(s, color); });
+                    } else {
+                        total = this.getVariantStock(null, color);
+                    }
+                    return total;
+                },
+                get canAddToCart() {
+                    return this.currentStock > 0;
+                },
+                selectSize(size) {
+                    this.selectedSize = size;
+                    this.quantity = 1;
+                    $wire.set('selectedSize', size, false);
+                    $wire.set('quantity', 1, false);
+                },
+                selectColor(color) {
+                    this.selectedColor = color;
+                    this.quantity = 1;
+                    $wire.set('selectedColor', color, false);
+                    $wire.set('quantity', 1, false);
+                },
+                increment() {
+                    if (this.quantity < this.currentStock) {
+                        this.quantity++;
+                        $wire.set('quantity', this.quantity, false);
+                    }
+                },
+                decrement() {
+                    if (this.quantity > 1) {
+                        this.quantity--;
+                        $wire.set('quantity', this.quantity, false);
+                    }
+                },
+             }"
+        >
             <div class="sticky top-24 space-y-6">
 
                 {{-- Badges + Title + Rating --}}
@@ -163,18 +231,26 @@
                     </div>
                     <div class="flex items-start gap-2 text-xs">
                         @if($hasVariants)
-                            @if($selectedSize || $selectedColor)
-                                @if($currentVariantStock > 0)
-                                    <x-heroicon-s-check-circle class="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                                    <p class="text-green-600">มีสินค้า (คงเหลือ {{ $currentVariantStock }} ชิ้น)</p>
-                                @else
+                            <template x-if="selectedSize || selectedColor">
+                                <template x-if="currentStock > 0">
+                                    <div class="flex items-start gap-2">
+                                        <x-heroicon-s-check-circle class="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                                        <p class="text-green-600">มีสินค้า (คงเหลือ <span x-text="currentStock"></span> ชิ้น)</p>
+                                    </div>
+                                </template>
+                            </template>
+                            <template x-if="(selectedSize || selectedColor) && currentStock <= 0">
+                                <div class="flex items-start gap-2">
                                     <x-heroicon-s-x-circle class="w-4 h-4 text-red-400 mt-0.5 shrink-0" />
                                     <p class="text-red-500">ตัวเลือกนี้สินค้าหมด</p>
-                                @endif
-                            @else
-                                <x-heroicon-o-information-circle class="w-4 h-4 text-gray-400 mt-0.5 shrink-0" />
-                                <p class="text-gray-500">กรุณาเลือกไซส์/สี เพื่อดูจำนวนสินค้าคงเหลือ</p>
-                            @endif
+                                </div>
+                            </template>
+                            <template x-if="!selectedSize && !selectedColor">
+                                <div class="flex items-start gap-2">
+                                    <x-heroicon-o-information-circle class="w-4 h-4 text-gray-400 mt-0.5 shrink-0" />
+                                    <p class="text-gray-500">กรุณาเลือกไซส์/สี เพื่อดูจำนวนสินค้าคงเหลือ</p>
+                                </div>
+                            </template>
                         @elseif($product->stock > 0)
                             <x-heroicon-s-check-circle class="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
                             <p class="text-green-600">มีสินค้า (คงเหลือ {{ $product->stock }} ชิ้น)</p>
@@ -215,12 +291,7 @@
                 {{-- END BOOK INFO --}}
 
                 {{-- Variants --}}
-                <div class="space-y-5"
-                     x-data="{ selectedSize: '{{ $selectedSize }}', selectedColor: '{{ $selectedColor }}' }"
-                     x-init="
-                         $watch('selectedSize', v => $wire.set('selectedSize', v));
-                         $watch('selectedColor', v => $wire.set('selectedColor', v));
-                     ">
+                <div class="space-y-5">
 
                     {{-- Size Selector --}}
                     @if($product->isClothing() && !empty($product->sizes))
@@ -233,27 +304,20 @@
                         </div>
                         <div class="flex flex-wrap gap-3">
                             @foreach($product->sizes as $size)
-                                @php
-                                    $sizeStock = 0;
-                                    if ($hasVariants) {
-                                        $sizeStock = $product->variants->where('size', $size)->where('is_active', true)->sum('stock');
-                                    }
-                                    $sizeOutOfStock = $hasVariants && $sizeStock <= 0;
-                                @endphp
                                 <button
-                                    @if(!$sizeOutOfStock) @click="selectedSize = '{{ $size }}'" @endif
-                                    @if($sizeOutOfStock) disabled @endif
+                                    x-on:click="getSizeStock('{{ $size }}') > 0 && selectSize('{{ $size }}')"
+                                    :disabled="getSizeStock('{{ $size }}') <= 0"
                                     :class="selectedSize === '{{ $size }}'
                                         ? 'border-[hsl(var(--primary))] bg-[hsl(var(--primary))]/5 text-[hsl(var(--primary))] shadow-sm'
-                                        : 'border-gray-200 text-gray-900 hover:border-[hsl(var(--primary))] hover:text-[hsl(var(--primary))]'"
-                                    class="relative w-16 h-12 rounded-lg border-2 text-sm font-medium flex flex-col items-center justify-center transition-all duration-150
-                                        {{ $sizeOutOfStock ? 'border-gray-100 text-gray-300 bg-gray-50 cursor-not-allowed opacity-50 !important' : '' }}"
+                                        : getSizeStock('{{ $size }}') <= 0
+                                            ? 'border-gray-100 text-gray-300 bg-gray-50 cursor-not-allowed opacity-50'
+                                            : 'border-gray-200 text-gray-900 hover:border-[hsl(var(--primary))] hover:text-[hsl(var(--primary))]'"
+                                    class="relative w-16 h-12 rounded-lg border-2 text-sm font-medium flex flex-col items-center justify-center transition-all duration-150"
                                 >
-                                    <span class="{{ $sizeOutOfStock ? 'line-through' : '' }}">{{ $size }}</span>
+                                    <span :class="getSizeStock('{{ $size }}') <= 0 ? 'line-through' : ''">{{ $size }}</span>
                                     @if($hasVariants)
-                                        <span class="text-[10px] font-normal opacity-80 text-gray-500">
-                                            {{ $sizeOutOfStock ? 'หมด' : 'เหลือ '.$sizeStock }}
-                                        </span>
+                                        <span class="text-[10px] font-normal opacity-80 text-gray-500"
+                                              x-text="getSizeStock('{{ $size }}') <= 0 ? 'หมด' : 'เหลือ ' + getSizeStock('{{ $size }}')"></span>
                                     @endif
                                 </button>
                             @endforeach
@@ -273,15 +337,6 @@
                         <div class="flex flex-wrap gap-3">
                             @foreach($product->colors as $color)
                                 @php
-                                    $colorStock = 0;
-                                    if ($hasVariants) {
-                                        $colorVariants = $product->variants->where('color', $color)->where('is_active', true);
-                                        if ($selectedSize) {
-                                            $colorVariants = $colorVariants->where('size', $selectedSize);
-                                        }
-                                        $colorStock = $colorVariants->sum('stock');
-                                    }
-                                    $colorOutOfStock = $hasVariants && $colorStock <= 0;
                                     $colorMap = [
                                         'ดำ' => '#111827', 'ขาว' => '#F9FAFB', 'แดง' => '#EF4444',
                                         'น้ำเงิน' => '#3B82F6', 'เขียว' => '#22C55E', 'เหลือง' => '#EAB308',
@@ -292,21 +347,25 @@
                                     $isLight = in_array($color, ['ขาว', 'เหลือง']);
                                 @endphp
                                 <button
-                                    @if(!$colorOutOfStock) @click="selectedColor = '{{ $color }}'" @endif
-                                    @if($colorOutOfStock) disabled @endif
-                                    :class="selectedColor === '{{ $color }}' ? 'border-[hsl(var(--primary))] shadow-sm' : 'border-gray-200 hover:border-gray-300'"
-                                    class="group relative px-4 py-2 rounded-lg border-2 flex items-center gap-2 transition-all duration-150 bg-white
-                                        {{ $colorOutOfStock ? 'border-gray-100 opacity-50 cursor-not-allowed' : '' }}"
+                                    x-on:click="getColorStock('{{ $color }}') > 0 && selectColor('{{ $color }}')"
+                                    :disabled="getColorStock('{{ $color }}') <= 0"
+                                    :class="[
+                                        selectedColor === '{{ $color }}' ? 'border-[hsl(var(--primary))] shadow-sm' : 'border-gray-200 hover:border-gray-300',
+                                        getColorStock('{{ $color }}') <= 0 ? 'border-gray-100 opacity-50 cursor-not-allowed' : ''
+                                    ]"
+                                    class="group relative px-4 py-2 rounded-lg border-2 flex items-center gap-2 transition-all duration-150 bg-white"
                                 >
                                     <span class="w-4 h-4 rounded-full shrink-0 {{ $isLight ? 'border border-gray-200' : '' }}"
                                           style="background-color: {{ $dotColor }}"></span>
                                     <div class="flex flex-col text-left">
-                                        <span class="text-sm font-medium {{ $colorOutOfStock ? 'line-through text-gray-400' : 'text-gray-900 group-hover:text-[hsl(var(--primary))]' }}">{{ $color }}</span>
+                                        <span class="text-sm font-medium"
+                                              :class="getColorStock('{{ $color }}') <= 0 ? 'line-through text-gray-400' : 'text-gray-900 group-hover:text-[hsl(var(--primary))]'">{{ $color }}</span>
                                         @if($hasVariants)
-                                            <span class="text-[10px] text-gray-500">{{ $colorOutOfStock ? 'หมด' : 'เหลือ '.$colorStock }}</span>
+                                            <span class="text-[10px] text-gray-500"
+                                                  x-text="getColorStock('{{ $color }}') <= 0 ? 'หมด' : 'เหลือ ' + getColorStock('{{ $color }}')"></span>
                                         @endif
                                     </div>
-                                    <span x-show="selectedColor === '{{ $color }}'" class="absolute -top-1 -right-1 flex h-3 w-3" @if($colorOutOfStock) style="display:none" @endif>
+                                    <span x-show="selectedColor === '{{ $color }}'" x-cloak class="absolute -top-1 -right-1 flex h-3 w-3">
                                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[hsl(var(--primary))] opacity-75"></span>
                                         <span class="relative inline-flex rounded-full h-3 w-3 bg-[hsl(var(--primary))]"></span>
                                     </span>
@@ -334,25 +393,27 @@
                     <div class="flex items-center justify-between">
                         <span class="font-medium text-gray-900">จำนวน</span>
                         <div class="flex items-center border border-gray-200 rounded-lg bg-white">
-                            <button wire:click="decrementQty"
-                                    class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-[hsl(var(--primary))] transition-colors {{ $quantity <= 1 ? 'opacity-40 cursor-not-allowed' : '' }}">
+                            <button x-on:click="decrement()"
+                                    :class="quantity <= 1 ? 'opacity-40 cursor-not-allowed' : ''"
+                                    class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-[hsl(var(--primary))] transition-colors">
                                 <x-heroicon-o-minus class="w-4 h-4" />
                             </button>
-                            <span class="w-12 h-10 flex items-center justify-center text-center font-semibold text-gray-900 border-x border-gray-200">{{ $quantity }}</span>
-                            <button wire:click="incrementQty"
-                                    class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-[hsl(var(--primary))] transition-colors {{ $quantity >= $currentVariantStock ? 'opacity-40 cursor-not-allowed' : '' }}">
+                            <span class="w-12 h-10 flex items-center justify-center text-center font-semibold text-gray-900 border-x border-gray-200" x-text="quantity"></span>
+                            <button x-on:click="increment()"
+                                    :class="quantity >= currentStock ? 'opacity-40 cursor-not-allowed' : ''"
+                                    class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-[hsl(var(--primary))] transition-colors">
                                 <x-heroicon-o-plus class="w-4 h-4" />
                             </button>
                         </div>
                     </div>
 
                     {{-- Action Buttons --}}
-                    @php $canAddToCart = $currentVariantStock > 0; @endphp
                     <div class="grid grid-cols-12 gap-3">
                         <button wire:click="addToCart"
                                 wire:loading.attr="disabled" wire:target="addToCart"
-                                @if(!$canAddToCart) disabled @endif
-                                class="col-span-12 md:col-span-5 bg-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))]/90 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg shadow-orange-500/20 transition-all active:scale-95 flex items-center justify-center gap-2 {{ !$canAddToCart ? 'opacity-50 cursor-not-allowed' : '' }}">
+                                :disabled="!canAddToCart"
+                                :class="!canAddToCart ? 'opacity-50 cursor-not-allowed' : ''"
+                                class="col-span-12 md:col-span-5 bg-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))]/90 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg shadow-orange-500/20 transition-all active:scale-95 flex items-center justify-center gap-2">
                             <x-heroicon-o-shopping-cart wire:loading.remove wire:target="addToCart" class="h-5 w-5" />
                             <svg wire:loading wire:target="addToCart" class="h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
@@ -364,8 +425,9 @@
 
                         <button wire:click="buyNow"
                                 wire:loading.attr="disabled" wire:target="buyNow"
-                                @if(!$canAddToCart) disabled @endif
-                                class="col-span-10 md:col-span-5 border-2 border-gray-200 hover:border-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] text-gray-700 font-semibold py-3.5 px-4 rounded-xl transition-all active:scale-95 bg-white {{ !$canAddToCart ? 'opacity-50 cursor-not-allowed' : '' }}">
+                                :disabled="!canAddToCart"
+                                :class="!canAddToCart ? 'opacity-50 cursor-not-allowed' : ''"
+                                class="col-span-10 md:col-span-5 border-2 border-gray-200 hover:border-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] text-gray-700 font-semibold py-3.5 px-4 rounded-xl transition-all active:scale-95 bg-white">
                             <span wire:loading.remove wire:target="buyNow">ซื้อเลย</span>
                             <span wire:loading wire:target="buyNow" class="inline-flex items-center justify-center gap-2">
                                 <svg class="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
