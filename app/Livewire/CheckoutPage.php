@@ -179,68 +179,9 @@ class CheckoutPage extends Component
             return;
         }
 
-        // Run slip verification
-        $slipPath = $this->paymentSlip->getRealPath();
-        $cart = session('cart', []);
-        $preProductIds = collect($cart)->pluck('product_id')->filter()->unique()->values()->toArray();
-        if (empty($preProductIds)) $preProductIds = array_keys($cart);
-        $preProducts = Product::whereIn('id', $preProductIds)->get()->keyBy('id');
-        $preSubtotal = 0;
-        foreach ($cart as $cartKey => $ci) {
-            $pid = $ci['product_id'] ?? $cartKey;
-            $pp = $preProducts->get($pid);
-            if ($pp) $preSubtotal += $pp->price * $ci['quantity'];
-        }
-        $preTotalItems = collect($cart)->sum(fn($i) => $i['quantity']);
-        $expectedTotal = $preSubtotal + ShippingRate::getCostForQuantity($preTotalItems);
-
-        $verification = SlipVerifier::verify(
-            $slipPath,
-            $expectedTotal,
-            (float) $this->transferAmount,
-            $this->transferDate ?: null,
-            $this->transferTime ?: null,
-            auth()->id()
-        );
-
-        // Block if duplicate slip detected (cross-user exact hash match only)
-        $duplicateCheck = collect($verification['checks'])->where('name', 'duplicate')->first();
-        if ($duplicateCheck && !$duplicateCheck['passed']) {
-            $dupDetail = $duplicateCheck['detail'] ?? '';
-            Log::warning('SlipVerifier: duplicate slip blocked', [
-                'user_id' => auth()->id(),
-                'detail' => $dupDetail,
-                'hash' => $verification['hash'] ?? null,
-            ]);
-            $this->dispatch('toast', message: 'สลิปนี้เคยถูกใช้แล้ว กรุณาอัปโหลดสลิปใหม่', type: 'error');
-            return;
-        }
-
-        // Block if OCR found wrong account name (not transferred to correct account)
-        $ocrAccountCheck = collect($verification['checks'])->where('name', 'ocr_account')->first();
-        if ($ocrAccountCheck && !$ocrAccountCheck['passed'] && !empty($verification['ocr_text'])) {
-            $this->dispatch('toast', message: 'ไม่พบชื่อบัญชีปลายทางที่ถูกต้องในสลิป กรุณาโอนเงินมาที่บัญชี "ที่ระลึกมูลนิธิคณะก้าวหน้า" เท่านั้น', type: 'error');
-            return;
-        }
-
-        // Block if OCR amount doesn't match expected total
-        if (!($verification['amount_matched'] ?? false)) {
-            // If OCR found amounts but none match
-            $ocrAmountCheck = collect($verification['checks'])->where('name', 'ocr_amount')->first();
-            if ($ocrAmountCheck && !$ocrAmountCheck['passed'] && !empty($verification['ocr_text'])) {
-                $this->dispatch('toast', message: 'ยอดเงินในสลิปไม่ตรงกับยอดสั่งซื้อ ฿' . number_format($expectedTotal, 2) . ' กรุณาตรวจสอบยอดเงินและอัปโหลดสลิปที่ถูกต้อง', type: 'error');
-                return;
-            }
-            // Fallback: user-entered amount doesn't match
-            $this->dispatch('toast', message: 'ยอดเงินที่ระบุไม่ตรงกับยอดสั่งซื้อ ฿' . number_format($expectedTotal, 2) . ' กรุณาตรวจสอบยอดเงินอีกครั้ง', type: 'error');
-            return;
-        }
-
-        // Block if score too low (below 30%)
-        if ($verification['percentage'] < 30) {
-            $this->dispatch('toast', message: 'สลิปไม่ผ่านการตรวจสอบ กรุณาอัปโหลดสลิปที่ถูกต้อง', type: 'error');
-            return;
-        }
+        // ── Slip verification DISABLED — ตรวจสลิปด้วยคนแทน ──
+        // TODO: เปิดกลับเมื่อแก้ปัญหา SlipVerifier เสร็จแล้ว
+        $verification = null;
 
         $this->submitting = true;
 
