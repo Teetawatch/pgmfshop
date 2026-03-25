@@ -11,9 +11,10 @@ class SlipVerifier
 {
     /**
      * Max Hamming distance to consider two perceptual hashes as "similar".
-     * 16x16 hash = 256 bits. Threshold 25 ≈ ~10% difference.
+     * 16x16 hash = 256 bits. Threshold 30 ≈ ~12% difference.
+     * Set higher to tolerate same-bank template similarity (especially SCB).
      */
-    private const HAMMING_THRESHOLD = 10;
+    private const HAMMING_THRESHOLD = 30;
 
     /**
      * Max orders a single user can place per hour.
@@ -275,9 +276,31 @@ class SlipVerifier
 
         if (!$image) return md5_file($filePath);
 
+        $origW = imagesx($image);
+        $origH = imagesy($image);
+
+        // Crop out bank template header (top 20%) and footer (bottom 15%)
+        // to focus on the unique content area (amounts, dates, transaction refs).
+        // Thai bank slips (especially SCB) share identical templates that dominate
+        // the perceptual hash at low resolution, causing false duplicate matches.
+        $cropTop = (int) round($origH * 0.20);
+        $cropBottom = (int) round($origH * 0.15);
+        $cropH = $origH - $cropTop - $cropBottom;
+
+        if ($cropH < 50) {
+            // Image too small to crop meaningfully, use full image
+            $cropTop = 0;
+            $cropH = $origH;
+        }
+
+        $cropped = imagecreatetruecolor($origW, $cropH);
+        imagecopy($cropped, $image, 0, 0, 0, $cropTop, $origW, $cropH);
+        imagedestroy($image);
+
         // Resize to 16x16 for better accuracy than 8x8
         $small = imagecreatetruecolor(16, 16);
-        imagecopyresampled($small, $image, 0, 0, 0, 0, 16, 16, imagesx($image), imagesy($image));
+        imagecopyresampled($small, $cropped, 0, 0, 0, 0, 16, 16, $origW, $cropH);
+        imagedestroy($cropped);
 
         // Convert to grayscale and collect pixel values
         $pixels = [];
@@ -291,7 +314,6 @@ class SlipVerifier
             }
         }
 
-        imagedestroy($image);
         imagedestroy($small);
 
         // Average hash

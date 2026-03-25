@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\StockMovement;
 use App\Models\ShippingRate;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Services\SlipVerifier;
@@ -202,9 +203,15 @@ class CheckoutPage extends Component
             auth()->id()
         );
 
-        // Block if duplicate slip detected
-        $hasDuplicate = collect($verification['checks'])->where('name', 'duplicate')->where('passed', false)->isNotEmpty();
-        if ($hasDuplicate) {
+        // Block if duplicate slip detected (cross-user exact hash match only)
+        $duplicateCheck = collect($verification['checks'])->where('name', 'duplicate')->first();
+        if ($duplicateCheck && !$duplicateCheck['passed']) {
+            $dupDetail = $duplicateCheck['detail'] ?? '';
+            Log::warning('SlipVerifier: duplicate slip blocked', [
+                'user_id' => auth()->id(),
+                'detail' => $dupDetail,
+                'hash' => $verification['hash'] ?? null,
+            ]);
             $this->dispatch('toast', message: 'สลิปนี้เคยถูกใช้แล้ว กรุณาอัปโหลดสลิปใหม่', type: 'error');
             return;
         }
