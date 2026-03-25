@@ -182,6 +182,17 @@
                             @endif
                         </div>
 
+                        {{-- Paid – Awaiting Slip Verification --}}
+                        @if($order->status === 'paid')
+                            <div class="mx-6 mb-4 bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
+                                <span class="material-icons-outlined text-blue-500 shrink-0 mt-0.5">hourglass_top</span>
+                                <div class="text-sm text-blue-700 leading-relaxed">
+                                    <p class="font-semibold">ขณะนี้ระบบได้รับข้อมูลการโอนเงินของท่านเรียบร้อยแล้ว</p>
+                                    <p class="mt-0.5">และอยู่ระหว่างดำเนินการตรวจสอบสลิปการโอนเงิน กรุณารอการตรวจสอบภายในระยะเวลาไม่เกิน 24 ชั่วโมง</p>
+                                </div>
+                            </div>
+                        @endif
+
                         {{-- Card Footer --}}
                         <div class="px-6 py-4 bg-gray-50 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div class="flex items-center gap-4">
