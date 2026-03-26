@@ -24,6 +24,12 @@
         </div>
     </div>
 
+    <div style="margin: 20px 0; font-size: 14px; color: #4a5568; line-height: 1.6; text-align: center;">
+        <p style="margin: 0;">🙏 ขอบคุณที่สนับสนุนสินค้ามูลนิธิคณะก้าวหน้า</p>
+        <p style="margin: 8px 0;">ท่านสามารถตรวจสอบเลขพัสดุได้หลังเวลา 16.00 น. ของวันถัดไป</p>
+        <p style="margin: 0;">📦 ทั้งนี้ ระยะเวลาอาจเร็วหรือช้ากว่ากำหนดเล็กน้อย ขึ้นอยู่กับระบบและการจัดส่งในแต่ละพื้นที่</p>
+    </div>
+
     {{-- Tracking Info --}}
     <div class="info-box">
         <table style="width: 100%; font-size: 14px;">

@@ -1,9 +1,14 @@
 <div class="min-h-screen bg-slate-50">
     {{-- Loading overlay for cart actions --}}
-    <div wire:loading.delay wire:target="updateQuantity,removeItem,clearCart,applyCoupon" class="fixed inset-0 bg-white/60 backdrop-blur-sm z-50 flex items-center justify-center">
-        <div class="flex items-center gap-3 bg-white rounded-2xl shadow-lg px-6 py-4 border border-slate-100">
-            <svg class="h-5 w-5 animate-spin text-[#FF6B00]" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
-            <span class="text-sm font-medium text-slate-600">กำลังอัปเดตตะกร้า...</span>
+    <div wire:loading.delay wire:target="updateQuantity,removeItem,clearCart,applyCoupon"
+         class="fixed inset-0 z-[9999] flex items-center justify-center bg-white/60 backdrop-blur-sm"
+         style="padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);">
+        <div class="flex items-center gap-2 sm:gap-3 bg-white rounded-xl sm:rounded-2xl shadow-lg px-4 py-3 sm:px-6 sm:py-4 border border-slate-100 mx-4 max-w-[90vw] sm:max-w-sm animate-fade-in">
+            <svg class="h-4 w-4 sm:h-5 sm:w-5 animate-spin text-[#FF6B00] shrink-0" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+            </svg>
+            <span class="text-xs sm:text-sm font-medium text-slate-600 whitespace-nowrap">กำลังอัปเดตตะกร้า...</span>
         </div>
     </div>
 

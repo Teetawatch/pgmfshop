@@ -134,12 +134,10 @@
                     let key = (size || '') + '|' + (color || '');
                     return this.variantStockMap[key] ?? 0;
                 },
-                get currentStock() {
-                    if (!this.hasVariants) return this.productStock;
-                    if (!this.selectedSize && !this.selectedColor) return 0;
-                    return this.getVariantStock(this.selectedSize, this.selectedColor);
-                },
                 getSizeStock(size) {
+                    if (this.selectedColor) {
+                        return this.getVariantStock(size, this.selectedColor);
+                    }
                     let total = 0;
                     if (this.colors.length > 0) {
                         this.colors.forEach(c => { total += this.getVariantStock(size, c); });
@@ -160,15 +158,32 @@
                     }
                     return total;
                 },
+                get currentStock() {
+                    if (!this.hasVariants) return this.productStock;
+                    if (!this.selectedSize && !this.selectedColor) return 0;
+                    
+                    if (this.sizes.length > 0 && this.colors.length > 0) {
+                        if (this.selectedSize && this.selectedColor) return this.getVariantStock(this.selectedSize, this.selectedColor);
+                        if (this.selectedSize) return this.getSizeStock(this.selectedSize);
+                        if (this.selectedColor) return this.getColorStock(this.selectedColor);
+                    }
+                    
+                    if (this.selectedSize) return this.getVariantStock(this.selectedSize, null);
+                    if (this.selectedColor) return this.getVariantStock(null, this.selectedColor);
+                    return 0;
+                },
                 get canAddToCart() {
+                    if (!this.hasVariants) return this.productStock > 0;
+                    if (this.sizes.length > 0 && !this.selectedSize) return false;
+                    if (this.colors.length > 0 && !this.selectedColor) return false;
                     return this.currentStock > 0;
                 },
                 selectSize(size) {
-                    this.selectedSize = size;
+                    this.selectedSize = this.selectedSize === size ? '' : size;
                     this.quantity = 1;
                 },
                 selectColor(color) {
-                    this.selectedColor = color;
+                    this.selectedColor = this.selectedColor === color ? '' : color;
                     this.quantity = 1;
                 },
                 increment() {
