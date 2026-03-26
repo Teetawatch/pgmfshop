@@ -135,6 +135,23 @@
             </div>
         @endif
 
+        {{-- Paid – Awaiting Slip Verification --}}
+        @if($order->status === 'paid')
+            <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6 flex items-start gap-4">
+                <div class="p-2 bg-blue-100 rounded-full shrink-0">
+                    <span class="material-icons-outlined text-blue-600">hourglass_top</span>
+                </div>
+                <div>
+                    <p class="font-semibold text-blue-800">ขณะนี้ระบบได้รับข้อมูลการโอนเงินของท่านเรียบร้อยแล้ว</p>
+                    <p class="text-sm text-blue-600 mt-1 leading-relaxed">
+                        และอยู่ระหว่างดำเนินการตรวจสอบสลิปการโอนเงิน<br>
+                        กรุณารอการตรวจสอบภายในระยะเวลาไม่เกิน 24 ชั่วโมง<br>
+                        โดยทางเราจะแจ้งอัปเดตสถานะไปยังอีเมลของท่านอีกครั้งเมื่อดำเนินการเรียบร้อย
+                    </p>
+                </div>
+            </div>
+        @endif
+
         {{-- Progress Steps --}}
         @if(!$isCancelled && !$isExpired)
             <div class="bg-white rounded-xl shadow-sm p-6 mb-6">

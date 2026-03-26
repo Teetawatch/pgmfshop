@@ -82,7 +82,11 @@
                 </span>
             </div>
             @if(!$outOfStock)
-                <livewire:add-to-cart-button :product-id="$product->id" :product-name="$product->name" :key="'cart-btn-'.$product->id" />
+                <a href="{{ route('products.show', $product->slug) }}"
+                   class="p-2.5 bg-slate-900 text-white rounded-lg hover:bg-orange-500 transition-colors shadow-sm"
+                   title="ดูรายละเอียดสินค้า">
+                    <x-heroicon-o-shopping-cart class="w-5 h-5" />
+                </a>
             @else
                 <button disabled class="p-2.5 bg-slate-200 text-slate-400 rounded-lg cursor-not-allowed" title="สินค้าหมด">
                     <x-heroicon-o-shopping-cart class="w-5 h-5" />
