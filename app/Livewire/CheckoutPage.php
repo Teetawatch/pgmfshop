@@ -179,166 +179,180 @@ class CheckoutPage extends Component
             return;
         }
 
-        // ── Slip verification DISABLED — ตรวจสลิปด้วยคนแทน ──
-        // TODO: เปิดกลับเมื่อแก้ปัญหา SlipVerifier เสร็จแล้ว
-        $verification = null;
-
         $this->submitting = true;
 
-        $cart = session('cart', []);
-        $productIds = collect($cart)->pluck('product_id')->filter()->unique()->values()->toArray();
-        if (empty($productIds)) $productIds = array_keys($cart);
-        $products = Product::whereIn('id', $productIds)->get()->keyBy('id');
-
-        $subtotal = 0;
-        $orderItems = [];
-        foreach ($cart as $cartKey => $item) {
-            $productId = $item['product_id'] ?? $cartKey;
-            $product = $products->get($productId);
-            if ($product) {
-                $lineTotal = $product->price * $item['quantity'];
-                $subtotal += $lineTotal;
-                $options = $item['options'] ?? [];
-                $variantId = $item['variant_id'] ?? null;
-                $orderItems[] = [
-                    'product_id' => $product->id,
-                    'variant_id' => $variantId,
-                    'product_name' => $product->name,
-                    'product_image' => is_array($product->images) ? ($product->images[0] ?? '') : '',
-                    'price' => $product->price,
-                    'quantity' => $item['quantity'],
-                    'options' => !empty($options) ? $options : null,
-                ];
-            }
-        }
-
-        $totalQty = collect($cart)->sum(fn($i) => $i['quantity']);
-        $shippingCost = ShippingRate::getCostForQuantity($totalQty);
-        $total = $subtotal + $shippingCost;
-
-        // Store slip directly in public/uploads for shared hosting compatibility
-        $slipDir = public_path('uploads/slips');
-        if (!file_exists($slipDir)) {
-            mkdir($slipDir, 0755, true);
-        }
-        $safeExt = $this->paymentSlip->guessExtension() ?: 'jpg';
-        $slipFilename = 'slips/' . auth()->id() . '_' . time() . '.' . $safeExt;
-        $this->paymentSlip->storeAs('public', $slipFilename);
-        // Also copy to public/uploads for shared hosting
-        $sourcePath = storage_path('app/public/' . $slipFilename);
-        $destPath = public_path('uploads/' . $slipFilename);
-        if (file_exists($sourcePath)) {
-            copy($sourcePath, $destPath);
-        }
-
-        // Auto-verify only when all critical checks pass (amount match + no duplicate + reasonable date + high score)
-        $autoVerified = $verification['can_auto_verify'] ?? false;
-
-        $order = Order::create([
-            'user_id' => auth()->id(),
-            'order_number' => Order::generateOrderNumber(),
-            'status' => $autoVerified ? 'paid' : 'awaiting_payment',
-            'subtotal' => $subtotal,
-            'shipping_cost' => $shippingCost,
-            'discount' => 0,
-            'total' => $total,
-            'payment_method' => $this->paymentMethod,
-            'payment_slip' => $slipFilename,
-            'slip_verified' => $autoVerified,
-            'slip_hash' => $verification['hash'] ?? null,
-            'slip_verification_data' => $verification,
-            'shipping_method' => 'thaipost',
-            'payment_deadline' => now()->addHours(24),
-            'transfer_date' => $this->transferDate,
-            'transfer_time' => $this->transferTime,
-            'transfer_amount' => $this->transferAmount,
-            'shipping_address' => [
-                'name' => $this->addressName,
-                'phone' => $this->addressPhone,
-                'address' => $this->addressLine,
-                'district' => $this->addressDistrict,
-                'province' => $this->addressProvince,
-                'postal_code' => $this->addressPostalCode,
-            ],
-        ]);
-
-        foreach ($orderItems as $oi) {
-            OrderItem::create([
-                'order_id' => $order->id,
-                'product_id' => $oi['product_id'],
-                'variant_id' => $oi['variant_id'],
-                'product_name' => $oi['product_name'],
-                'product_image' => $oi['product_image'],
-                'price' => $oi['price'],
-                'quantity' => $oi['quantity'],
-                'options' => $oi['options'],
-                'total' => $oi['price'] * $oi['quantity'],
-            ]);
-        }
-
-        // Decrease stock with audit trail
-        // For variant items: deduct from variant (which auto-syncs product stock)
-        // For non-variant items: deduct from product directly
-        $productSoldQty = [];
-        foreach ($cart as $cartKey => $item) {
-            $pid = $item['product_id'] ?? $cartKey;
-            $variantId = $item['variant_id'] ?? null;
-            $qty = $item['quantity'];
-
-            if ($variantId) {
-                $variant = ProductVariant::find($variantId);
-                if ($variant) {
-                    $variant->adjustStock(
-                        -$qty,
-                        StockMovement::TYPE_OUT,
-                        'ขายสินค้า',
-                        StockMovement::REF_ORDER,
-                        $order->order_number,
-                        auth()->id()
-                    );
-                }
-            } else {
-                $p = Product::find($pid);
-                if ($p) {
-                    $p->adjustStock(
-                        -$qty,
-                        StockMovement::TYPE_OUT,
-                        'ขายสินค้า',
-                        StockMovement::REF_ORDER,
-                        $order->order_number,
-                        auth()->id()
-                    );
-                }
-            }
-            $productSoldQty[$pid] = ($productSoldQty[$pid] ?? 0) + $qty;
-        }
-        foreach ($productSoldQty as $pid => $totalSold) {
-            Product::where('id', $pid)->increment('sold', $totalSold);
-        }
-
-        session(['cart' => []]);
-        $this->orderId = $order->order_number;
-        $this->finalTotal = $total;
-        $this->step = 3;
-        $this->submitting = false;
-        session(['slipVerification' => $verification]);
-        $this->dispatch('cart-updated');
-        $this->dispatch('toast', message: 'สั่งซื้อสำเร็จ!', type: 'success');
-
-        $order->load(['items', 'user']);
-        
         try {
-            Mail::to($order->user->email)->send(new OrderConfirmationMail($order));
-        } catch (\Exception $e) {
-            \Log::error('Failed to send order confirmation email: ' . $e->getMessage());
-        }
+            // ── Slip verification DISABLED — ตรวจสลิปด้วยคนแทน ──
+            // TODO: เปิดกลับเมื่อแก้ปัญหา SlipVerifier เสร็จแล้ว
+            $verification = null;
 
-        if ($autoVerified) {
-            try {
-                Mail::to($order->user->email)->send(new PaymentSuccessMail($order));
-            } catch (\Exception $e) {
-                \Log::error('Failed to send payment success email: ' . $e->getMessage());
+            $cart = session('cart', []);
+            $productIds = collect($cart)->pluck('product_id')->filter()->unique()->values()->toArray();
+            if (empty($productIds)) $productIds = array_keys($cart);
+            $products = Product::whereIn('id', $productIds)->get()->keyBy('id');
+
+            $subtotal = 0;
+            $orderItems = [];
+            foreach ($cart as $cartKey => $item) {
+                $productId = $item['product_id'] ?? $cartKey;
+                $product = $products->get($productId);
+                if ($product) {
+                    $lineTotal = $product->price * $item['quantity'];
+                    $subtotal += $lineTotal;
+                    $options = $item['options'] ?? [];
+                    $variantId = $item['variant_id'] ?? null;
+                    $orderItems[] = [
+                        'product_id' => $product->id,
+                        'variant_id' => $variantId,
+                        'product_name' => $product->name,
+                        'product_image' => is_array($product->images) ? ($product->images[0] ?? '') : '',
+                        'price' => $product->price,
+                        'quantity' => $item['quantity'],
+                        'options' => !empty($options) ? $options : null,
+                    ];
+                }
             }
+
+            $totalQty = collect($cart)->sum(fn($i) => $i['quantity']);
+            $shippingCost = ShippingRate::getCostForQuantity($totalQty);
+            $total = $subtotal + $shippingCost;
+
+            // Store slip directly in public/uploads for shared hosting compatibility
+            $slipDir = public_path('uploads/slips');
+            if (!file_exists($slipDir)) {
+                mkdir($slipDir, 0755, true);
+            }
+            $safeExt = $this->paymentSlip->guessExtension() ?: 'jpg';
+            $slipFilename = 'slips/' . auth()->id() . '_' . time() . '.' . $safeExt;
+            $this->paymentSlip->storeAs('public', $slipFilename);
+            // Also copy to public/uploads for shared hosting
+            $sourcePath = storage_path('app/public/' . $slipFilename);
+            $destPath = public_path('uploads/' . $slipFilename);
+            if (file_exists($sourcePath)) {
+                copy($sourcePath, $destPath);
+            }
+
+            // Auto-verify only when all critical checks pass (amount match + no duplicate + reasonable date + high score)
+            $autoVerified = $verification['can_auto_verify'] ?? false;
+
+            $order = Order::create([
+                'user_id' => auth()->id(),
+                'order_number' => Order::generateOrderNumber(),
+                'status' => $autoVerified ? 'paid' : 'awaiting_payment',
+                'subtotal' => $subtotal,
+                'shipping_cost' => $shippingCost,
+                'discount' => 0,
+                'total' => $total,
+                'payment_method' => $this->paymentMethod,
+                'payment_slip' => $slipFilename,
+                'slip_verified' => $autoVerified,
+                'slip_hash' => $verification['hash'] ?? null,
+                'slip_verification_data' => $verification,
+                'shipping_method' => 'thaipost',
+                'payment_deadline' => now()->addHours(24),
+                'transfer_date' => $this->transferDate,
+                'transfer_time' => $this->transferTime,
+                'transfer_amount' => $this->transferAmount,
+                'shipping_address' => [
+                    'name' => $this->addressName,
+                    'phone' => $this->addressPhone,
+                    'address' => $this->addressLine,
+                    'district' => $this->addressDistrict,
+                    'province' => $this->addressProvince,
+                    'postal_code' => $this->addressPostalCode,
+                ],
+            ]);
+
+            foreach ($orderItems as $oi) {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $oi['product_id'],
+                    'variant_id' => $oi['variant_id'],
+                    'product_name' => $oi['product_name'],
+                    'product_image' => $oi['product_image'],
+                    'price' => $oi['price'],
+                    'quantity' => $oi['quantity'],
+                    'options' => $oi['options'],
+                    'total' => $oi['price'] * $oi['quantity'],
+                ]);
+            }
+
+            // Decrease stock with audit trail
+            // For variant items: deduct from variant (which auto-syncs product stock)
+            // For non-variant items: deduct from product directly
+            $productSoldQty = [];
+            foreach ($cart as $cartKey => $item) {
+                $pid = $item['product_id'] ?? $cartKey;
+                $variantId = $item['variant_id'] ?? null;
+                $qty = $item['quantity'];
+
+                if ($variantId) {
+                    $variant = ProductVariant::find($variantId);
+                    if ($variant) {
+                        $variant->adjustStock(
+                            -$qty,
+                            StockMovement::TYPE_OUT,
+                            'ขายสินค้า',
+                            StockMovement::REF_ORDER,
+                            $order->order_number,
+                            auth()->id()
+                        );
+                    }
+                } else {
+                    $p = Product::find($pid);
+                    if ($p) {
+                        $p->adjustStock(
+                            -$qty,
+                            StockMovement::TYPE_OUT,
+                            'ขายสินค้า',
+                            StockMovement::REF_ORDER,
+                            $order->order_number,
+                            auth()->id()
+                        );
+                    }
+                }
+                $productSoldQty[$pid] = ($productSoldQty[$pid] ?? 0) + $qty;
+            }
+            foreach ($productSoldQty as $pid => $totalSold) {
+                Product::where('id', $pid)->increment('sold', $totalSold);
+            }
+
+            // ── Update UI state FIRST (before email) so user sees success immediately ──
+            session(['cart' => []]);
+            $this->orderId = $order->order_number;
+            $this->finalTotal = $total;
+            $this->step = 3;
+            $this->submitting = false;
+            session(['slipVerification' => $verification]);
+            $this->dispatch('cart-updated');
+            $this->dispatch('toast', message: 'สั่งซื้อสำเร็จ!', type: 'success');
+
+            // ── Send emails via defer() — runs AFTER response is sent to browser ──
+            $order->load(['items', 'user']);
+            $orderId = $order->id;
+            $isAutoVerified = $autoVerified;
+
+            defer(function () use ($orderId, $isAutoVerified) {
+                try {
+                    $deferredOrder = Order::with(['items', 'user'])->find($orderId);
+                    if ($deferredOrder && $deferredOrder->user) {
+                        Mail::to($deferredOrder->user->email)->send(new OrderConfirmationMail($deferredOrder));
+
+                        if ($isAutoVerified) {
+                            Mail::to($deferredOrder->user->email)->send(new PaymentSuccessMail($deferredOrder));
+                        }
+                    }
+                } catch (\Exception $e) {
+                    Log::error('Failed to send order email: ' . $e->getMessage());
+                }
+            });
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            $this->submitting = false;
+            throw $e;
+        } catch (\Exception $e) {
+            $this->submitting = false;
+            Log::error('placeOrder failed: ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
+            $this->dispatch('toast', message: 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง', type: 'error');
         }
     }
 

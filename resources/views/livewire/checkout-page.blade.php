@@ -424,7 +424,12 @@
                                 <x-heroicon-o-arrow-left class="h-5 w-5" />
                                 ย้อนกลับ
                             </button>
-                            <button wire:click="placeOrder" class="flex-1 py-3 bg-[#FF6B00] hover:bg-orange-600 text-white rounded-xl font-medium transition-colors flex items-center justify-center gap-2 shadow-lg shadow-[#FF6B00]/20" wire:loading.attr="disabled">
+                            <button wire:click="placeOrder"
+                                    wire:loading.attr="disabled"
+                                    wire:loading.class="opacity-60 cursor-not-allowed"
+                                    wire:target="placeOrder,paymentSlip"
+                                    @click="if($wire.submitting) return false;"
+                                    class="flex-1 py-3 bg-[#FF6B00] hover:bg-orange-600 text-white rounded-xl font-medium transition-colors flex items-center justify-center gap-2 shadow-lg shadow-[#FF6B00]/20 disabled:opacity-60 disabled:cursor-not-allowed">
                                 <span wire:loading wire:target="placeOrder"><svg class="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg></span>
                                 <span wire:loading wire:target="placeOrder">กำลังสั่งซื้อ...</span>
                                 <span wire:loading.remove wire:target="placeOrder" class="flex items-center gap-2">

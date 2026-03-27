@@ -1,8 +1,12 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-B6_An3lG.css",
+    "file": "assets/app-BAlpWQS-.css",
     "src": "resources/css/app.css",
-    "isEntry": true
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
   },
   "resources/fonts/anakotmai-bold.eot": {
     "file": "assets/anakotmai-bold-B5195NLd.eot",
@@ -49,7 +53,7 @@
     "src": "resources/images/ThailandPost_Logo.svg"
   },
   "resources/images/banks/bay.svg": {
-    "file": "assets/bay-DSQG24if.svg",
+    "file": "assets/bay-DbYQdpNC.svg",
     "src": "resources/images/banks/bay.svg"
   },
   "resources/images/paymentbiller.png": {
@@ -61,7 +65,7 @@
     "src": "resources/images/pgmf-logo.jpg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-CKl8NZMC.js",
+    "file": "assets/app-BuG9aa18.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
