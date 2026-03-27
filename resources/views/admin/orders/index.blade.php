@@ -37,15 +37,20 @@
     @endforeach
 </div>
 
-<!-- Search -->
-<form method="GET" class="mb-4">
-    @if(request('status'))<input type="hidden" name="status" value="{{ request('status') }}">@endif
-    <div class="flex gap-2">
+<!-- Search & Export -->
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+    <form method="GET" class="flex gap-2">
+        @if(request('status'))<input type="hidden" name="status" value="{{ request('status') }}">@endif
         <input type="text" name="search" value="{{ request('search') }}" placeholder="ค้นหาหมายเลขคำสั่งซื้อ..."
             class="px-3 py-2 border border-gray-300 rounded-lg text-sm w-full sm:w-72 focus:ring-2 focus:ring-teal-500 outline-none">
         <button type="submit" class="px-4 py-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700 shrink-0">ค้นหา</button>
-    </div>
-</form>
+    </form>
+    <a href="{{ route('admin.orders.exportExcel', request('status') ? ['status' => request('status')] : []) }}"
+        class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition-colors shrink-0">
+        <x-heroicon-o-arrow-down-tray class="w-4 h-4" />
+        Export Excel
+    </a>
+</div>
 
 <div class="bg-white rounded-xl border overflow-hidden">
 <div class="overflow-x-auto">

@@ -14,8 +14,11 @@ use App\Helpers\ThaiTextHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\OrderExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrderManageController extends Controller
+
 {
     public function index(Request $request)
     {
@@ -228,6 +231,14 @@ class OrderManageController extends Controller
         }
 
         return back()->with('success', "ปฏิเสธสลิปและยกเลิกคำสั่งซื้อ {$order->order_number} สำเร็จ");
+    }
+
+    public function exportExcel(Request $request)
+    {
+        $status = $request->query('status');
+        $filename = 'orders-' . ($status ?? 'all') . '-' . now()->format('Ymd-His') . '.xlsx';
+
+        return Excel::download(new OrderExport($status), $filename);
     }
 
     /**

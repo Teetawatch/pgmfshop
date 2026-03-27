@@ -113,6 +113,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::patch('/orders/{order}/reject-slip', [OrderManageController::class, 'rejectSlip'])->name('orders.rejectSlip');
     Route::get('/orders/{order}/receipt', [OrderManageController::class, 'receipt'])->name('orders.receipt');
     Route::get('/orders/{order}/shipping-label', [OrderManageController::class, 'shippingLabel'])->name('orders.shippingLabel');
+    Route::get('/orders-export-excel', [OrderManageController::class, 'exportExcel'])->name('orders.exportExcel');
 
     // Customers
     Route::get('/customers', [CustomerManageController::class, 'index'])->name('customers.index');
