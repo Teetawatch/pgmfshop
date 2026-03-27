@@ -80,6 +80,9 @@
                 <span class="text-xl font-bold {{ $outOfStock ? 'text-slate-500' : 'text-orange-500' }}">
                     ฿{{ number_format($product->price, 2) }}
                 </span>
+                @if($product->sold > 0)
+                    <span class="text-[10px] text-slate-400 font-medium">ขายแล้ว {{ number_format($product->sold) }} ชิ้น</span>
+                @endif
             </div>
             @if(!$outOfStock)
                 <a href="{{ route('products.show', $product->slug) }}"
