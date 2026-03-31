@@ -89,7 +89,7 @@
                         <div class="space-y-1.5">
                             <div class="flex items-center justify-between">
                                 <label class="text-sm font-semibold text-gray-700">รหัสผ่าน</label>
-                                <button type="button" class="text-xs text-[hsl(var(--primary))] hover:underline font-medium transition-colors">ลืมรหัสผ่าน?</button>
+                                <a href="{{ route('password.request') }}" class="text-xs text-[hsl(var(--primary))] hover:underline font-medium transition-colors">ลืมรหัสผ่าน?</a>
                             </div>
                             <div class="relative" x-data="{ show: false }">
                                 <x-heroicon-o-lock-closed class="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />

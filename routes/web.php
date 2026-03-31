@@ -45,6 +45,8 @@ Route::view('/privacy', 'pages.privacy')->name('privacy');
 Route::middleware('guest')->group(function () {
     Route::get('/login', App\Livewire\Auth\LoginPage::class)->name('login');
     Route::get('/register', App\Livewire\Auth\RegisterPage::class)->name('register');
+    Route::get('/forgot-password', App\Livewire\Auth\ForgotPasswordPage::class)->name('password.request');
+    Route::get('/reset-password/{token}', App\Livewire\Auth\ResetPasswordPage::class)->name('password.reset');
 });
 
 // Social Auth (Google, Facebook)

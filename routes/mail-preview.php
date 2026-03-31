@@ -8,6 +8,7 @@ use App\Mail\OrderConfirmationMail;
 use App\Mail\PaymentSuccessMail;
 use App\Mail\ShippingNotificationMail;
 use App\Mail\OrderCancelledMail;
+use App\Mail\PasswordResetMail;
 
 /**
  * Mail preview routes — local/dev only
@@ -21,6 +22,7 @@ Route::prefix('mail-preview')->group(function () {
             . '<li><a href="/mail-preview/payment-success">Payment Success</a></li>'
             . '<li><a href="/mail-preview/shipping-notification">Shipping Notification</a></li>'
             . '<li><a href="/mail-preview/order-cancelled">Order Cancelled</a></li>'
+            . '<li><a href="/mail-preview/password-reset">Password Reset</a></li>'
             . '</ul>';
     });
 
@@ -52,5 +54,11 @@ Route::prefix('mail-preview')->group(function () {
         $order = Order::with(['items', 'user'])->latest()->first();
         if (!$order) return 'No orders found.';
         return new OrderCancelledMail($order, 'สินค้าหมดสต็อก - ขออภัยในความไม่สะดวก');
+    });
+
+    Route::get('/password-reset', function () {
+        $user = User::first();
+        $resetUrl = url('/reset-password/fake-token-for-preview?email=' . urlencode($user->email));
+        return new PasswordResetMail($resetUrl, $user->email);
     });
 });
